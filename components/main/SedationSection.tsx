@@ -54,31 +54,23 @@ export default function SedationSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="h-screen w-full relative overflow-hidden bg-black">
-      {/* 유튜브 영상 배경 - 즉시 마운트 */}
-      <iframe
-        src="https://www.youtube.com/embed/SOI5QjYwCMM?autoplay=1&mute=1&loop=1&playlist=SOI5QjYwCMM&controls=0&showinfo=0&modestbranding=1&playsinline=1"
-        style={{
-          position: 'absolute',
-          top: '0',
-          left: '50%',
-          width: '100vw',
-          height: '56.25vw',
-          minHeight: '100vh',
-          minWidth: '177.78vh',
-          transform: 'translateX(-50%)',
-          border: 'none',
-        }}
-        allow="autoplay; encrypted-media; picture-in-picture"
-        allowFullScreen
-        title="의식하진정법 소개 영상"
+    <section ref={sectionRef} className="min-h-[620px] w-full relative overflow-hidden bg-black md:min-h-[680px] lg:min-h-[720px]">
+      <video
+        className="absolute inset-0 h-full w-full object-cover"
+        src="/images/video/sedation-hero.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="metadata"
+        aria-hidden="true"
       />
 
       {/* 어두운 오버레이 */}
       <div className="absolute inset-0 bg-black/50" />
 
       {/* 콘텐츠 오버레이 */}
-      <div className="relative z-10 h-full flex flex-col items-center justify-center px-4 gap-9">
+      <div className="absolute inset-0 z-10 flex flex-col items-center justify-center px-4 gap-9">
         <div className="text-center">
           <p className={`text-[14px] md:text-[18px] tracking-[0.24em] md:tracking-[0.3em] uppercase text-white/50 mb-3 ${visible ? 'scroll-reveal-drop' : 'scroll-hidden'}`}>
             Sedation Dentistry

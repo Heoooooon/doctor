@@ -12,24 +12,33 @@ export default function BoardHero({ title, subtitle, videoId, localVideo, heroIm
   // 로컬 영상 히어로 (GIF는 video로 재생 불가 → img로 렌더)
   if (localVideo) {
     const isGif = /\.gif(\?|$)/i.test(localVideo)
+    const sectionClassName = 'relative w-full overflow-hidden bg-black'
+    const mediaClassName = heroFull
+      ? 'absolute inset-0 w-full h-full object-contain'
+      : 'absolute inset-0 w-full h-full object-cover'
+    const overlayClassName = heroFull
+      ? 'absolute inset-0 bg-black/70'
+      : 'absolute inset-0 bg-gradient-to-t from-black/95 via-black/55 to-black/10'
+
     return (
-      <section className="relative w-full overflow-hidden bg-black" style={{ paddingBottom: '56.25%' }} aria-label={`${title} 소개`}>
+      <section className={sectionClassName} style={{ paddingBottom: '56.25%' }} aria-label={`${title} 소개`}>
         {isGif ? (
           <img
-            className="absolute inset-0 w-full h-full object-cover"
+            className={mediaClassName}
             src={localVideo}
             alt={`${title} 소개`}
           />
         ) : (
           <video
-            className="absolute inset-0 w-full h-full object-cover"
+            className={mediaClassName}
             src={localVideo}
             autoPlay
+            loop
             muted
             playsInline
           />
         )}
-        <div className="absolute inset-0 bg-black/25" />
+        <div className={overlayClassName} aria-hidden="true" />
         <div className="absolute inset-x-0 bottom-0 flex items-end">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-6 sm:pb-10 w-full">
             <h1 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight animate-drop-in">{title}</h1>
@@ -40,7 +49,6 @@ export default function BoardHero({ title, subtitle, videoId, localVideo, heroIm
     )
   }
 
-  // YouTube 영상 히어로 — 16:9 원본 비율 유지
   if (videoId) {
     return (
       <section className="relative w-full overflow-hidden bg-black" style={{ paddingBottom: '56.25%' }} aria-label={`${title} 소개`}>

@@ -20,7 +20,8 @@ export default function ImplantPage() {
       title="수원 임플란트 치료 안내"
       subtitle="상실된 치아를 회복하는 방법"
       treatments={implantTreatments}
-      videoId="RkhAehLEia4"
+      localVideo="/images/video/sedation-hero.mp4"
+      heroFull
       extraSection={<ImplantIdentity />}
     />
   )
