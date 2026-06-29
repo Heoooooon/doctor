@@ -1,6 +1,7 @@
 'use client'
 
 import { useCallback, useEffect, useRef, useState, type FormEvent } from 'react'
+import { usePathname } from 'next/navigation'
 import { Phone, X, MessageSquareText } from 'lucide-react'
 
 interface FormState {
@@ -39,6 +40,28 @@ export default function QuickConsultBar() {
   const [render, setRender] = useState(false)
   const [show, setShow] = useState(false)
   const firstFieldRef = useRef<HTMLInputElement>(null)
+  const [scrolled, setScrolled] = useState(false)
+  const pathname = usePathname()
+
+  // 히어로(첫 화면)를 지나 스크롤했을 때만 FAB 노출 → 히어로 카운터와 겹침 방지.
+  // 데스크탑 홈은 #home-desktop 내부 스크롤, 그 외/모바일은 window 스크롤.
+  useEffect(() => {
+    const desktop = document.getElementById('home-desktop')
+    const compute = () => {
+      const winY = window.scrollY || document.documentElement.scrollTop || 0
+      const deskY = desktop ? desktop.scrollTop : 0
+      setScrolled(Math.max(winY, deskY) > window.innerHeight * 0.6)
+    }
+    compute()
+    window.addEventListener('scroll', compute, { passive: true })
+    desktop?.addEventListener('scroll', compute, { passive: true })
+    window.addEventListener('resize', compute)
+    return () => {
+      window.removeEventListener('scroll', compute)
+      desktop?.removeEventListener('scroll', compute)
+      window.removeEventListener('resize', compute)
+    }
+  }, [pathname])
 
   // 하단 고정바가 사라졌으므로, 바 높이만큼 비워두던 영역을 제거(0px)
   useEffect(() => {
@@ -135,7 +158,11 @@ export default function QuickConsultBar() {
         aria-label="상담 신청 열기"
         aria-haspopup="dialog"
         aria-expanded={render}
-        className="fixed right-4 bottom-4 sm:right-6 sm:bottom-6 z-[55] flex items-center gap-2 rounded-full bg-[#0080C8] pl-4 pr-5 h-12 sm:h-14 text-white font-semibold shadow-[0_10px_30px_rgba(0,128,200,0.45)] hover:bg-[#0a6fa8] hover:shadow-[0_14px_38px_rgba(0,128,200,0.55)] active:scale-95 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#0080C8]/40 focus:ring-offset-2"
+        className={`fixed right-4 bottom-4 sm:right-6 sm:bottom-6 z-[55] flex items-center gap-2 rounded-full bg-[#0080C8] pl-4 pr-5 h-12 sm:h-14 text-white font-semibold shadow-[0_10px_30px_rgba(0,128,200,0.45)] hover:bg-[#0a6fa8] hover:shadow-[0_14px_38px_rgba(0,128,200,0.55)] active:scale-95 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#0080C8]/40 focus:ring-offset-2 ${
+          scrolled
+            ? 'opacity-100 translate-y-0 pointer-events-auto'
+            : 'opacity-0 translate-y-3 pointer-events-none'
+        }`}
       >
         <MessageSquareText size={20} aria-hidden="true" />
         <span className="text-[15px] sm:text-[16px] whitespace-nowrap">상담신청</span>

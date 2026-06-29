@@ -84,6 +84,10 @@ export default function HeroSlider() {
     }
   }
 
+  // 스크롤/스와이프 핸들러가 최신 goTo를 참조하도록 ref로 보관
+  const goToRef = useRef(goTo)
+  goToRef.current = goTo
+
   const handleVideoEnded = () => {
     if (videoAdvancedRef.current) return
     videoAdvancedRef.current = true
@@ -156,6 +160,77 @@ export default function HeroSlider() {
     return () => { if (rafRef.current !== null) cancelAnimationFrame(rafRef.current) }
   }, [])
 
+  // ── 스크롤/스와이프로 히어로 캐러셀 제어(스크롤잭) ──────────────────
+  // 히어로가 화면에 있을 때: 아래로 스크롤 = 다음 슬라이드, 위로 = 이전 슬라이드.
+  // 마지막(또는 첫) 슬라이드 경계에서는 가로채지 않아 자연스럽게 다음/이전 섹션으로 이동.
+  // 데스크탑은 #home-desktop 내부 스크롤(wheel), 모바일은 #main-hero 세로 스와이프(touch).
+  useEffect(() => {
+    const desktop = document.getElementById('home-desktop')
+    const hero = document.getElementById('main-hero')
+    let resumeTimer: number | undefined
+
+    const pauseAuto = () => {
+      isPausedRef.current = true
+      if (resumeTimer) window.clearTimeout(resumeTimer)
+      resumeTimer = window.setTimeout(() => {
+        isPausedRef.current = false
+        startTimeRef.current = Date.now()
+      }, 1600)
+    }
+
+    // 경계가 아니면 가로채야 하는지 판정
+    const shouldHijack = (dir: number) => {
+      const last = slidesRef.current.length - 1
+      const cur = currentRef.current
+      if (dir > 0 && cur >= last) return false // 마지막 → 다음 섹션
+      if (dir < 0 && cur <= 0) return false    // 첫 슬라이드 위로 → 그대로
+      return true
+    }
+
+    // 데스크탑: wheel
+    let wheelLock = false
+    const onWheel = (e: WheelEvent) => {
+      if (!desktop || desktop.scrollTop > 8) return
+      const dir = e.deltaY > 0 ? 1 : e.deltaY < 0 ? -1 : 0
+      if (dir === 0 || !shouldHijack(dir)) return
+      e.preventDefault()
+      if (wheelLock || Math.abs(e.deltaY) < 6) return
+      wheelLock = true
+      pauseAuto()
+      goToRef.current(currentRef.current + dir)
+      window.setTimeout(() => { wheelLock = false }, 720)
+    }
+
+    // 모바일: 세로 스와이프
+    let touchStartY = 0
+    let touchLock = false
+    const onTouchStart = (e: TouchEvent) => {
+      touchStartY = e.touches[0]?.clientY ?? 0
+      touchLock = false
+    }
+    const onTouchMove = (e: TouchEvent) => {
+      if ((window.scrollY || 0) > 8) return
+      const dy = touchStartY - (e.touches[0]?.clientY ?? 0) // +면 위로 스와이프(다음)
+      const dir = dy > 0 ? 1 : -1
+      if (Math.abs(dy) < 8 || !shouldHijack(dir)) return
+      e.preventDefault()
+      if (touchLock || Math.abs(dy) < 42) return
+      touchLock = true
+      pauseAuto()
+      goToRef.current(currentRef.current + dir)
+    }
+
+    desktop?.addEventListener('wheel', onWheel, { passive: false })
+    hero?.addEventListener('touchstart', onTouchStart, { passive: true })
+    hero?.addEventListener('touchmove', onTouchMove, { passive: false })
+    return () => {
+      desktop?.removeEventListener('wheel', onWheel)
+      hero?.removeEventListener('touchstart', onTouchStart)
+      hero?.removeEventListener('touchmove', onTouchMove)
+      if (resumeTimer) window.clearTimeout(resumeTimer)
+    }
+  }, [isMobile])
+
   const slides = isMobile ? MOBILE_SLIDES : WEB_SLIDES
   const slide  = slides[current] ?? slides[0]
 
@@ -196,7 +271,7 @@ export default function HeroSlider() {
       {slide.isVideo && (
         <video
           key="hero-video"
-          className="hidden md:block absolute inset-0 w-full h-full object-contain"
+          className="hidden md:block absolute inset-0 w-full h-full object-cover"
           src="/images/slides/slide-1.mp4"
           poster="/images/slides/slide-1-poster.webp"
           preload="auto"
