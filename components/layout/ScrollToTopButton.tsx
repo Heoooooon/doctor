@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { ArrowUp } from 'lucide-react'
 
-/** 모바일 전용: 하단 고정바 바로 위에 표시되는 '맨 위로' 버튼 */
+/** 모바일 전용: 우측 하단 상담 신청 버튼 바로 위에 표시되는 '맨 위로' 버튼 */
 export default function ScrollToTopButton() {
   const [visible, setVisible] = useState(false)
 
@@ -24,7 +24,7 @@ export default function ScrollToTopButton() {
           ? 'opacity-100 translate-y-0 pointer-events-auto'
           : 'opacity-0 translate-y-2 pointer-events-none'
       }`}
-      style={{ bottom: 'calc(var(--mobile-bottom-bar-height) + 16px)' }}
+      style={{ bottom: 'calc(64px + env(safe-area-inset-bottom) + 16px)' }}
     >
       <ArrowUp size={20} strokeWidth={2.4} />
     </button>

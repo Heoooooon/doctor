@@ -1,7 +1,7 @@
 'use client'
 
-import { useEffect, useRef, useState, type FormEvent } from 'react'
-import { Phone } from 'lucide-react'
+import { useCallback, useEffect, useRef, useState, type FormEvent } from 'react'
+import { Phone, X, MessageSquareText } from 'lucide-react'
 
 interface FormState {
   name: string
@@ -34,29 +34,45 @@ export default function QuickConsultBar() {
   const [errors, setErrors] = useState<FormErrors>({})
   const [submitting, setSubmitting] = useState(false)
   const [toast, setToast] = useState<{ type: 'success' | 'error'; message: string } | null>(null)
-  const barRef = useRef<HTMLDivElement>(null)
 
-  // 실제 렌더 높이(safe-area 포함)를 CSS 변수에 반영 → 이미지/버튼이 정확히 바 위로 정렬
+  // 모달 상태: render(마운트 여부) / show(진입·이탈 애니메이션 트리거)
+  const [render, setRender] = useState(false)
+  const [show, setShow] = useState(false)
+  const firstFieldRef = useRef<HTMLInputElement>(null)
+
+  // 하단 고정바가 사라졌으므로, 바 높이만큼 비워두던 영역을 제거(0px)
   useEffect(() => {
-    const el = barRef.current
-    if (!el) return
-    const apply = () => {
-      document.documentElement.style.setProperty(
-        '--mobile-bottom-bar-height',
-        `${Math.round(el.getBoundingClientRect().height)}px`,
-      )
-    }
-    apply()
-    const ro = new ResizeObserver(apply)
-    ro.observe(el)
-    window.addEventListener('resize', apply)
-    window.addEventListener('orientationchange', apply)
-    return () => {
-      ro.disconnect()
-      window.removeEventListener('resize', apply)
-      window.removeEventListener('orientationchange', apply)
-    }
+    document.documentElement.style.setProperty('--mobile-bottom-bar-height', '0px')
   }, [])
+
+  const openModal = useCallback(() => {
+    setRender(true)
+    // 다음 프레임에 show=true → 진입 트랜지션 발동
+    requestAnimationFrame(() => requestAnimationFrame(() => setShow(true)))
+  }, [])
+
+  const closeModal = useCallback(() => {
+    setShow(false)
+    setErrors({})
+    window.setTimeout(() => setRender(false), 260)
+  }, [])
+
+  // 모달 열림 동안: 스크롤 잠금 + ESC 닫기 + 첫 필드 포커스
+  useEffect(() => {
+    if (!render) return
+    const prevOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeModal()
+    }
+    window.addEventListener('keydown', onKey)
+    const t = window.setTimeout(() => firstFieldRef.current?.focus(), 120)
+    return () => {
+      document.body.style.overflow = prevOverflow
+      window.removeEventListener('keydown', onKey)
+      window.clearTimeout(t)
+    }
+  }, [render, closeModal])
 
   const showToast = (type: 'success' | 'error', message: string) => {
     setToast({ type, message })
@@ -90,6 +106,7 @@ export default function QuickConsultBar() {
       showToast('success', '상담 신청이 완료되었습니다. 빠른 시일 내에 연락드리겠습니다.')
       setForm({ name: '', contact: '', agreed: false })
       setErrors({})
+      closeModal()
     } catch {
       showToast('error', '네트워크 오류가 발생했습니다. 잠시 후 다시 시도해주세요.')
     } finally {
@@ -98,173 +115,170 @@ export default function QuickConsultBar() {
   }
 
   return (
-    <div
-      ref={barRef}
-      className="fixed bottom-0 left-0 right-0 z-50 bg-gray-900/95 backdrop-blur-md border-t border-white/10"
-      style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
-      role="complementary"
-      aria-label="빠른 상담 신청"
-    >
-      {/* 토스트 메시지 */}
+    <>
+      {/* 토스트 메시지 (최상단 중앙) */}
       {toast && (
         <div
-          className={`absolute -top-14 left-1/2 -translate-x-1/2 px-4 py-2 rounded-lg text-[18px] font-medium shadow-lg transition-all animate-[fadeIn_0.2s_ease-out] ${
-            toast.type === 'success'
-              ? 'bg-green-600 text-white'
-              : 'bg-red-600 text-white'
+          className={`fixed top-5 left-1/2 z-[70] -translate-x-1/2 px-4 py-2.5 rounded-lg text-[15px] font-medium shadow-lg transition-all ${
+            toast.type === 'success' ? 'bg-green-600 text-white' : 'bg-red-600 text-white'
           }`}
           role="status"
         >
           {toast.message}
         </div>
       )}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* 데스크톱: 풀 폼 */}
-        <form
-          onSubmit={handleSubmit}
-          noValidate
-          className="hidden sm:flex items-center gap-3 py-3"
+      {/* 우측 하단 플로팅 버튼 */}
+      <button
+        type="button"
+        onClick={openModal}
+        aria-label="상담 신청 열기"
+        aria-haspopup="dialog"
+        aria-expanded={render}
+        className="fixed right-4 bottom-4 sm:right-6 sm:bottom-6 z-[55] flex items-center gap-2 rounded-full bg-[#0080C8] pl-4 pr-5 h-12 sm:h-14 text-white font-semibold shadow-[0_10px_30px_rgba(0,128,200,0.45)] hover:bg-[#0a6fa8] hover:shadow-[0_14px_38px_rgba(0,128,200,0.55)] active:scale-95 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#0080C8]/40 focus:ring-offset-2"
+      >
+        <MessageSquareText size={20} aria-hidden="true" />
+        <span className="text-[15px] sm:text-[16px] whitespace-nowrap">상담신청</span>
+      </button>
+
+      {/* 오버레이 모달 */}
+      {render && (
+        <div
+          className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center"
+          role="dialog"
+          aria-modal="true"
+          aria-label="상담 신청"
         >
-          {/* 이름 */}
-          <div className="flex flex-col gap-0.5 flex-shrink-0">
-            <input
-              type="text"
-              value={form.name}
-              onChange={(e) => setForm((p) => ({ ...p, name: e.target.value }))}
-              placeholder="이름"
-              aria-label="이름"
-              aria-invalid={!!errors.name}
-              aria-describedby={errors.name ? 'err-name' : undefined}
-              className={`h-11 w-36 px-3 rounded bg-white/10 text-white text-[18px] placeholder-white/40 border outline-none focus:ring-2 focus:ring-[#0080C8] transition ${
-                errors.name ? 'border-red-400' : 'border-white/20 focus:border-[#0080C8]'
-              }`}
-            />
-            {errors.name && (
-              <span id="err-name" role="alert" className="text-red-400 text-[18px] leading-none">
-                {errors.name}
-              </span>
-            )}
-          </div>
+          {/* 백드롭 */}
+          <div
+            onClick={closeModal}
+            className={`absolute inset-0 bg-black/55 backdrop-blur-sm transition-opacity duration-300 ${
+              show ? 'opacity-100' : 'opacity-0'
+            }`}
+            aria-hidden="true"
+          />
 
-          {/* 연락처 */}
-          <div className="flex flex-col gap-0.5 flex-shrink-0">
-            <input
-              type="tel"
-              value={form.contact}
-              onChange={(e) => setForm((p) => ({ ...p, contact: e.target.value }))}
-              placeholder="연락처 (숫자만)"
-              aria-label="연락처"
-              aria-invalid={!!errors.contact}
-              aria-describedby={errors.contact ? 'err-contact' : undefined}
-              className={`h-11 w-48 px-3 rounded bg-white/10 text-white text-[18px] placeholder-white/40 border outline-none focus:ring-2 focus:ring-[#0080C8] transition ${
-                errors.contact ? 'border-red-400' : 'border-white/20 focus:border-[#0080C8]'
-              }`}
-            />
-            {errors.contact && (
-              <span id="err-contact" role="alert" className="text-red-400 text-[18px] leading-none">
-                {errors.contact}
-              </span>
-            )}
-          </div>
+          {/* 패널 */}
+          <div
+            className={`relative w-full sm:max-w-md sm:mx-4 bg-gray-900 text-white rounded-t-3xl sm:rounded-2xl border border-white/10 shadow-2xl px-6 pt-6 pb-7 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+              show
+                ? 'translate-y-0 sm:scale-100 opacity-100'
+                : 'translate-y-8 sm:translate-y-4 sm:scale-95 opacity-0'
+            }`}
+            style={{ paddingBottom: 'calc(env(safe-area-inset-bottom) + 28px)' }}
+          >
+            {/* 닫기 */}
+            <button
+              type="button"
+              onClick={closeModal}
+              aria-label="닫기"
+              className="absolute top-4 right-4 w-9 h-9 rounded-full flex items-center justify-center text-white/55 hover:text-white hover:bg-white/10 transition-colors"
+            >
+              <X size={20} />
+            </button>
 
-          {/* 개인정보 동의 */}
-          <div className="flex flex-col gap-0.5 flex-shrink-0">
-            <label className="flex items-center gap-2 cursor-pointer group">
-              <input
-                type="checkbox"
-                checked={form.agreed}
-                onChange={(e) => setForm((p) => ({ ...p, agreed: e.target.checked }))}
-                aria-invalid={!!errors.agreed}
-                aria-describedby={errors.agreed ? 'err-agreed' : undefined}
-                className="w-4 h-4 accent-[#0080C8] cursor-pointer"
-              />
-              <span className="text-[18px] text-white/60 group-hover:text-white/80 transition-colors whitespace-nowrap">
-                개인정보 수집 동의
-              </span>
-              <a
-                href="/privacy"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                className="text-[13px] text-white/40 hover:text-[#0080C8] underline underline-offset-2 transition-colors whitespace-nowrap"
+            <p className="text-[#4FC3F7] text-[13px] font-semibold tracking-widest uppercase">
+              Consulting
+            </p>
+            <h2 className="text-[22px] font-bold mt-1 mb-1.5">빠른 상담 신청</h2>
+            <p className="text-white/55 text-[14px] mb-5 leading-relaxed">
+              이름과 연락처를 남겨주시면 빠른 시일 내에 연락드리겠습니다.
+            </p>
+
+            <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-3">
+              {/* 이름 */}
+              <div className="flex flex-col gap-1">
+                <input
+                  ref={firstFieldRef}
+                  type="text"
+                  value={form.name}
+                  onChange={(e) => setForm((p) => ({ ...p, name: e.target.value }))}
+                  placeholder="이름"
+                  aria-label="이름"
+                  aria-invalid={!!errors.name}
+                  className={`h-12 w-full px-4 rounded-xl bg-white/10 text-white text-[16px] placeholder-white/40 border outline-none focus:ring-2 focus:ring-[#0080C8] transition ${
+                    errors.name ? 'border-red-400' : 'border-white/20 focus:border-[#0080C8]'
+                  }`}
+                />
+                {errors.name && (
+                  <span role="alert" className="text-red-400 text-[13px] leading-none">
+                    {errors.name}
+                  </span>
+                )}
+              </div>
+
+              {/* 연락처 */}
+              <div className="flex flex-col gap-1">
+                <input
+                  type="tel"
+                  value={form.contact}
+                  onChange={(e) => setForm((p) => ({ ...p, contact: e.target.value }))}
+                  placeholder="연락처 (숫자만)"
+                  aria-label="연락처"
+                  aria-invalid={!!errors.contact}
+                  className={`h-12 w-full px-4 rounded-xl bg-white/10 text-white text-[16px] placeholder-white/40 border outline-none focus:ring-2 focus:ring-[#0080C8] transition ${
+                    errors.contact ? 'border-red-400' : 'border-white/20 focus:border-[#0080C8]'
+                  }`}
+                />
+                {errors.contact && (
+                  <span role="alert" className="text-red-400 text-[13px] leading-none">
+                    {errors.contact}
+                  </span>
+                )}
+              </div>
+
+              {/* 개인정보 동의 */}
+              <div className="flex flex-col gap-1">
+                <label className="flex items-center gap-2 cursor-pointer group">
+                  <input
+                    type="checkbox"
+                    checked={form.agreed}
+                    onChange={(e) => setForm((p) => ({ ...p, agreed: e.target.checked }))}
+                    aria-invalid={!!errors.agreed}
+                    className="w-4 h-4 accent-[#0080C8] cursor-pointer"
+                  />
+                  <span className="text-[14px] text-white/65 group-hover:text-white/85 transition-colors">
+                    개인정보 수집 동의
+                  </span>
+                  <a
+                    href="/privacy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="text-[13px] text-white/40 hover:text-[#4FC3F7] underline underline-offset-2 transition-colors"
+                  >
+                    보기
+                  </a>
+                </label>
+                {errors.agreed && (
+                  <span role="alert" className="text-red-400 text-[13px] leading-none">
+                    {errors.agreed}
+                  </span>
+                )}
+              </div>
+
+              {/* 상담예약 버튼 */}
+              <button
+                type="submit"
+                disabled={submitting}
+                className="h-12 mt-1 rounded-xl bg-[#0080C8] text-white text-[16px] font-semibold hover:bg-[#0a6fa8] disabled:opacity-60 disabled:cursor-not-allowed transition-colors focus:outline-none focus:ring-2 focus:ring-[#0080C8] focus:ring-offset-2 focus:ring-offset-gray-900"
               >
-                보기
+                {submitting ? '신청 중...' : '상담 신청하기'}
+              </button>
+
+              {/* 전화 상담 */}
+              <a
+                href="tel:031-896-5512"
+                className="h-12 rounded-xl bg-white/10 text-white text-[15px] font-medium flex items-center justify-center gap-2 hover:bg-white/15 transition-colors"
+                aria-label="전화로 빠른 상담하기 031-896-5512"
+              >
+                <Phone size={16} aria-hidden="true" />
+                전화 상담 031-896-5512
               </a>
-            </label>
-            {errors.agreed && (
-              <span id="err-agreed" role="alert" className="text-red-400 text-[18px] leading-none">
-                {errors.agreed}
-              </span>
-            )}
+            </form>
           </div>
-
-          {/* 상담예약 버튼 */}
-          <button
-            type="submit"
-            disabled={submitting}
-            className="h-11 px-5 rounded bg-[#0080C8] text-white text-[18px] font-semibold whitespace-nowrap hover:bg-[#2B2D42] disabled:opacity-60 disabled:cursor-not-allowed transition-colors flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-[#0080C8] focus:ring-offset-2 focus:ring-offset-gray-900"
-          >
-            {submitting ? '신청 중...' : '상담예약'}
-          </button>
-
-          {/* 구분선 */}
-          <div className="h-7 w-px bg-white/20 mx-1 flex-shrink-0" aria-hidden="true" />
-
-          {/* 빠른상담 (전화) */}
-          <a
-            href="tel:031-896-5512"
-            className="h-11 px-4 rounded bg-white/10 text-white text-[18px] font-medium whitespace-nowrap hover:bg-[#0080C8] flex items-center gap-2 transition-colors flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-white/50"
-            aria-label="전화로 빠른 상담하기 031-896-5512"
-          >
-            <Phone size={14} aria-hidden="true" />
-            빠른상담
-          </a>
-
-          {/* 우측 안내 텍스트 */}
-          <p className="ml-auto text-[18px] text-white/30 hidden 2xl:block whitespace-nowrap">
-            평일 09:30 ~ 18:30 &nbsp;|&nbsp; 화·금 09:30 ~ 20:30 &nbsp;|&nbsp; 토 09:30 ~ 13:30
-          </p>
-        </form>
-
-        {/* 모바일: 간소화 레이아웃 */}
-        <form
-          onSubmit={handleSubmit}
-          noValidate
-          className="flex sm:hidden items-center gap-2 py-2"
-        >
-          <input
-            type="text"
-            value={form.name}
-            onChange={(e) => setForm((p) => ({ ...p, name: e.target.value }))}
-            placeholder="이름"
-            aria-label="이름"
-            className="h-11 flex-1 min-w-0 px-3 rounded bg-white/10 text-white text-[18px] placeholder-white/40 border border-white/20 outline-none focus:border-[#0080C8] transition"
-          />
-          <input
-            type="tel"
-            value={form.contact}
-            onChange={(e) => setForm((p) => ({ ...p, contact: e.target.value }))}
-            placeholder="연락처"
-            aria-label="연락처"
-            className="h-11 flex-1 min-w-0 px-3 rounded bg-white/10 text-white text-[18px] placeholder-white/40 border border-white/20 outline-none focus:border-[#0080C8] transition"
-          />
-          <button
-            type="submit"
-            disabled={submitting}
-            className="h-11 px-3 rounded bg-[#0080C8] text-white text-[18px] font-semibold whitespace-nowrap hover:bg-[#2B2D42] disabled:opacity-60 transition-colors flex-shrink-0"
-          >
-            예약
-          </button>
-          <a
-            href="tel:031-896-5512"
-            className="h-10 w-10 rounded bg-white/10 text-white flex items-center justify-center hover:bg-[#0080C8] transition-colors flex-shrink-0"
-            aria-label="전화 상담"
-          >
-            <Phone size={16} aria-hidden="true" />
-          </a>
-        </form>
-      </div>
-    </div>
+        </div>
+      )}
+    </>
   )
 }
