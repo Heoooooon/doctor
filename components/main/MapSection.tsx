@@ -3,157 +3,138 @@
 import Image from 'next/image'
 import { clinicInfo } from '@/data/clinic-info'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
-import { Clock } from 'lucide-react'
+import { Phone, MapPin, Navigation } from 'lucide-react'
 
-const KAKAO_HREF = `https://map.kakao.com/link/to/서울이건치과 수원점,${clinicInfo.latitude},${clinicInfo.longitude}`
+const KAKAO_DIRECTIONS = `https://map.kakao.com/link/to/서울이건치과,${clinicInfo.latitude},${clinicInfo.longitude}`
+const KAKAO_MAP = `https://map.kakao.com/link/map/서울이건치과,${clinicInfo.latitude},${clinicInfo.longitude}`
 
 const KakaoIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-    <path d="M12 2C6.48 2 2 5.58 2 10c0 2.8 1.8 5.27 4.55 6.72L12 22l5.45-5.28C20.2 15.27 22 12.8 22 10c0-4.42-4.48-8-10-8z" fill="#3C1E1E"/>
-    <circle cx="12" cy="10" r="3" fill="#FEE500"/>
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M12 3C6.5 3 2 6.6 2 11c0 2.8 1.9 5.3 4.7 6.7-.2.7-.7 2.6-.8 3-.1.5.2.5.4.4.2-.1 2.6-1.8 3.7-2.5.6.1 1.3.1 2 .1 5.5 0 10-3.6 10-8S17.5 3 12 3z" />
   </svg>
 )
 
 export default function MapSection() {
-  const { ref, isVisible } = useScrollReveal(0.2)
+  const { ref, isVisible } = useScrollReveal(0.15)
 
   return (
-    <section ref={ref} className="relative w-full">
-      {/* 지도 이미지 — 모바일 고정 높이 / 데스크탑 fullscreen */}
-      <div className="relative w-full h-[220px] md:h-screen">
-        <Image
-          src="/images/clinic/map.png"
-          alt="서울이건치과 위치 지도"
-          fill
-          sizes="100vw"
-          className="object-cover"
-        />
+    <section
+      ref={ref}
+      className="w-full bg-[#0f1216] text-white"
+      aria-label="오시는 길 · 진료 안내"
+    >
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-14 lg:py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8">
 
-        {/* 데스크탑: 왼쪽 정보 카드 */}
-        <div className="hidden md:flex absolute inset-y-0 left-0 z-10 items-center pl-10">
-          <div className="scale-[0.8] origin-top-left">
-            <div className={`w-[240px] bg-white/95 backdrop-blur-sm rounded-xl shadow-xl p-4 md:p-5 ${isVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}>
-              <Image
-                src="/images/logo/egun-logo.png"
-                alt="서울이건치과"
-                width={1000}
-                height={400}
-                className="h-12 w-auto mb-3"
-              />
-              <div className="w-8 h-0.5 bg-[var(--e-primary)] mb-3" />
-              <a
-                href={`tel:${clinicInfo.phone}`}
-                className="block text-lg md:text-xl font-bold text-gray-900 tracking-wide mb-2 hover:text-[var(--e-primary)] transition-colors"
-              >
-                {clinicInfo.phone}
-              </a>
-              <p className="text-[11px] text-gray-600 leading-relaxed mb-3">
+          {/* ── Contact ── */}
+          <div className={`lg:col-span-3 ${isVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}>
+            <p className="text-[#38b6ff] text-[15px] font-bold tracking-[0.2em] uppercase mb-5">
+              Contact
+            </p>
+            <a
+              href={`tel:${clinicInfo.phone}`}
+              className="inline-flex items-center gap-2.5 text-[30px] lg:text-[34px] font-extrabold tracking-tight hover:text-[#38b6ff] transition-colors"
+            >
+              <Phone size={22} className="text-[#38b6ff]" aria-hidden="true" />
+              {clinicInfo.phone}
+            </a>
+
+            <div className="mt-6 space-y-2">
+              {clinicInfo.businessHours.map((h) => (
+                <div key={h.day} className="flex items-baseline text-[15px]">
+                  <span className="w-9 shrink-0 whitespace-nowrap text-white/45">{h.day}</span>
+                  <span className="tabular-nums text-white/85">{h.hours}</span>
+                  {h.note && (
+                    <span className="ml-2 text-[12px] text-[#38b6ff] font-medium">{h.note}</span>
+                  )}
+                </div>
+              ))}
+              <div className="flex items-baseline text-[15px]">
+                <span className="w-9 shrink-0 whitespace-nowrap text-white/45">점심</span>
+                <span className="tabular-nums text-white/60">{clinicInfo.lunchTime}</span>
+              </div>
+            </div>
+
+            <div className="mt-5 space-y-1 text-[13px] text-white/40 leading-relaxed">
+              <p>※ 일요일 · 공휴일은 휴진입니다.</p>
+              <p>※ 토요일은 점심시간 없이 진료합니다.</p>
+            </div>
+          </div>
+
+          {/* ── Location ── */}
+          <div className={`lg:col-span-4 ${isVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}
+            style={isVisible ? { animationDelay: '0.1s' } : undefined}
+          >
+            <p className="text-[#38b6ff] text-[15px] font-bold tracking-[0.2em] uppercase mb-5">
+              Location
+            </p>
+
+            <div className="flex items-start gap-2.5">
+              <MapPin size={20} className="text-[#38b6ff] shrink-0 mt-1" aria-hidden="true" />
+              <p className="text-[16px] lg:text-[17px] font-semibold leading-relaxed">
                 경기도 수원시 영통구<br />
                 인계로220번길 6-3 미산빌딩 2층
               </p>
+            </div>
+
+            <div className="mt-6 space-y-3 text-[14px] text-white/70 leading-relaxed">
+              <p>
+                <span className="text-[#38b6ff] font-semibold">[ 위치 ]</span> 효원공원 인근,
+                수원영통경찰서 매탄지구대 방면
+              </p>
+              <p>
+                <span className="text-[#38b6ff] font-semibold">[ 주차 ]</span> 건물 및 인근 주차장 이용 가능
+              </p>
+            </div>
+
+            <div className="mt-7 flex flex-wrap gap-3">
               <a
-                href={KAKAO_HREF}
+                href={KAKAO_DIRECTIONS}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 bg-[#FEE500] hover:bg-[#F5DC00] text-[#3C1E1E] font-semibold text-[11px] py-2 rounded-lg transition-colors"
+                className="inline-flex items-center gap-2 bg-[#FEE500] hover:bg-[#f5dc00] text-[#3C1E1E] font-bold text-[14px] px-5 py-3 rounded-full transition-colors"
               >
                 <KakaoIcon />
                 카카오맵 길찾기
               </a>
+              <a
+                href={KAKAO_MAP}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 border border-white/20 hover:border-[#38b6ff] hover:text-[#38b6ff] text-white/80 font-medium text-[14px] px-5 py-3 rounded-full transition-colors"
+              >
+                <Navigation size={15} aria-hidden="true" />
+                지도 크게 보기
+              </a>
             </div>
           </div>
-        </div>
 
-        {/* 데스크탑: 오른쪽 진료시간 카드 */}
-        <div className="hidden md:flex absolute inset-y-0 right-0 z-10 items-center pr-10">
-          <div className={`w-[460px] bg-white/95 backdrop-blur-sm rounded-xl shadow-xl p-5 ${isVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}
-            style={isVisible ? { animationDelay: '0.15s' } : undefined}
+          {/* ── Map ── */}
+          <div className={`lg:col-span-5 ${isVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}
+            style={isVisible ? { animationDelay: '0.2s' } : undefined}
           >
-            <div className="flex items-center gap-2 mb-3">
-              <Clock className="w-4 h-4 text-[var(--e-primary)] shrink-0" aria-hidden="true" />
-              <span className="text-sm font-bold text-gray-800">진료시간</span>
-            </div>
-            <div className="w-8 h-0.5 bg-[var(--e-primary)] mb-3" />
-            <div className="space-y-1.5">
-              {clinicInfo.businessHours.map((h) => (
-                <div key={h.day} className="flex items-center text-sm">
-                  <span className="text-gray-500 w-7 shrink-0">{h.day}</span>
-                  <span className={`w-36 shrink-0 tabular-nums ${h.isClosed ? 'text-gray-300' : 'text-gray-800'}`}>
-                    {h.hours}
-                  </span>
-                  {h.note && (
-                    <span className="text-xs text-[var(--e-primary)] font-medium">{h.note}</span>
-                  )}
-                </div>
-              ))}
-            </div>
-            <p className="text-xs text-gray-400 mt-3 pt-3 border-t border-gray-100">
-              점심 12:30 – 14:00 &nbsp;·&nbsp; 토요일 점심 없음 &nbsp;·&nbsp; 일요일 휴진
-            </p>
+            <a
+              href={KAKAO_MAP}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="카카오맵에서 서울이건치과 위치 보기"
+              className="group relative block w-full aspect-[16/11] rounded-2xl overflow-hidden ring-1 ring-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.45)]"
+            >
+              <Image
+                src="/images/clinic/map.png"
+                alt="서울이건치과 위치 지도"
+                fill
+                sizes="(max-width: 1024px) 100vw, 42vw"
+                className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+              />
+              <span className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 bg-black/60 backdrop-blur-sm text-white text-[12px] font-medium px-3 py-1.5 rounded-full">
+                <Navigation size={13} aria-hidden="true" />
+                지도 보기
+              </span>
+            </a>
           </div>
+
         </div>
-
-      </div>
-
-      {/* 모바일 전용: 지도 아래 카드 영역 */}
-      <div className="md:hidden bg-white px-4 pt-5 pb-6 flex flex-col gap-4">
-
-        {/* 정보 카드 */}
-        <div className="bg-white rounded-xl shadow border border-gray-100 p-4">
-          <Image
-            src="/images/logo/egun-logo.png"
-            alt="서울이건치과"
-            width={1000}
-            height={400}
-            className="h-9 w-auto mb-3"
-          />
-          <div className="w-8 h-0.5 bg-[var(--e-primary)] mb-3" />
-          <a
-            href={`tel:${clinicInfo.phone}`}
-            className="flex items-center text-lg font-bold text-gray-900 tracking-wide mb-2 hover:text-[var(--e-primary)] transition-colors min-h-[44px]"
-          >
-            {clinicInfo.phone}
-          </a>
-          <p className="text-sm text-gray-600 leading-relaxed mb-4">
-            경기도 수원시 영통구<br />
-            인계로220번길 6-3 미산빌딩 2층
-          </p>
-          <a
-            href={KAKAO_HREF}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 bg-[#FEE500] hover:bg-[#F5DC00] text-[#3C1E1E] font-semibold text-sm rounded-lg transition-colors min-h-[44px]"
-          >
-            <KakaoIcon />
-            카카오맵 길찾기
-          </a>
-        </div>
-
-        {/* 진료시간 카드 */}
-        <div className="bg-white rounded-xl shadow border border-gray-100 p-4">
-          <div className="flex items-center gap-2 mb-3">
-            <Clock className="w-4 h-4 text-[var(--e-primary)] shrink-0" aria-hidden="true" />
-            <span className="text-sm font-bold text-gray-800">진료시간</span>
-          </div>
-          <div className="w-8 h-0.5 bg-[var(--e-primary)] mb-3" />
-          <div className="space-y-2">
-            {clinicInfo.businessHours.map((h) => (
-              <div key={h.day} className="flex items-center text-sm">
-                <span className="text-gray-500 w-7 shrink-0">{h.day}</span>
-                <span className={`flex-1 tabular-nums ${h.isClosed ? 'text-gray-300' : 'text-gray-800'}`}>
-                  {h.hours}
-                </span>
-                {h.note && (
-                  <span className="text-xs text-[var(--e-primary)] font-medium">{h.note}</span>
-                )}
-              </div>
-            ))}
-          </div>
-          <p className="text-xs text-gray-400 mt-3 pt-3 border-t border-gray-100 leading-relaxed">
-            점심 12:30 – 14:00 (토요일 없음 · 일요일 휴진)
-          </p>
-        </div>
-
       </div>
     </section>
   )

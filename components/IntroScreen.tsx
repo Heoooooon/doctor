@@ -1,6 +1,9 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+
+const useIsoLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
+const INTRO_SEEN_KEY = 'egun:intro-seen';
 
 const SplitText = ({ text, colorShadow = false }: { text: string; colorShadow?: boolean }) => {
   return (
@@ -26,6 +29,13 @@ export default function IntroScreen() {
   const restoreScrollRef = useRef<() => void>(() => {});
   const removeListenersRef = useRef<() => void>(() => {});
 
+  // 이미 본 인트로면(같은 세션) 페인트 전에 즉시 숨김 → 페이지 복귀 시 재생/깜빡임 방지
+  useIsoLayoutEffect(() => {
+    try {
+      if (sessionStorage.getItem(INTRO_SEEN_KEY) === '1') setVisible(false);
+    } catch {}
+  }, []);
+
   const handleClose = useCallback(() => {
     if (closingRef.current) return;
     closingRef.current = true;
@@ -41,6 +51,12 @@ export default function IntroScreen() {
   }, []);
 
   useEffect(() => {
+    // 이미 본 인트로면 잠금/리스너 설정 없이 종료
+    try {
+      if (sessionStorage.getItem(INTRO_SEEN_KEY) === '1') return;
+      sessionStorage.setItem(INTRO_SEEN_KEY, '1');
+    } catch {}
+
     const html = document.documentElement;
     const body = document.body;
     const prevHtml = html.style.overflow;

@@ -5,47 +5,71 @@ export default function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-white text-gray-800 border-t border-gray-100">
+    <footer className="bg-[#0a0c0f] text-white/55 border-t border-white/10">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-8">
 
-      {/* 하단 바 — 사업자 정보 + 면책 + 저작권 */}
-      <div className="border-t border-gray-100 bg-gray-50 px-6 lg:px-10 py-5">
-        <div className="max-w-7xl mx-auto">
-          {/* 사업자 정보 한 줄 */}
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[8px] text-gray-400 mb-2">
-            <span><span className="text-gray-300">대표</span> {clinicInfo.representative}</span>
-            <span className="text-gray-200">|</span>
-            <span><span className="text-gray-300">주소</span> {clinicInfo.address}</span>
-            <span className="text-gray-200">|</span>
-            <span>
-              <span className="text-gray-300">전화</span>{' '}
-              <a href={`tel:${clinicInfo.phone}`} className="hover:text-[#0080C8] transition-colors">
-                {clinicInfo.phone}
-              </a>
-            </span>
-            <span className="text-gray-200">|</span>
-            <span><span className="text-gray-300">팩스</span> {clinicInfo.fax}</span>
-            <span className="text-gray-200">|</span>
-            <span><span className="text-gray-300">사업자명</span> 서울이건치과의원</span>
-            <span className="text-gray-200">|</span>
-            <span><span className="text-gray-300">사업자번호</span> {clinicInfo.businessNumber}</span>
-          </div>
-
-          {/* 면책 + 저작권 */}
-          <p className="text-[8px] text-gray-300 leading-relaxed">
-            본 페이지의 내용은 의료법에 따라 참고용 정보이며, 정확한 진단과 치료는 내원 상담을 통해 결정됩니다.
-          </p>
-          <div className="flex items-center gap-3 mt-1">
-            <p className="text-[8px] text-gray-300">
-              &copy; {currentYear} {clinicInfo.name}. All rights reserved.
+        {/* 상단: 로고 + 바로가기 링크 */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-6 border-b border-white/10">
+          <div>
+            <p className="text-white font-extrabold text-[18px] tracking-tight">서울이건치과</p>
+            <p className="text-white/35 text-[11px] tracking-[0.25em] uppercase mt-0.5">
+              Seoul Egun Dental Clinic
             </p>
-            <span className="text-gray-200 text-[8px]">|</span>
-            <Link href="/privacy" className="text-[8px] text-gray-400 hover:text-[#0080C8] transition-colors">
+          </div>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[13px]">
+            <Link href="/privacy" className="text-white/60 hover:text-[#38b6ff] transition-colors">
               개인정보처리방침
             </Link>
+            <span className="text-white/15">|</span>
+            <a
+              href={clinicInfo.socialLinks.youtube}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/60 hover:text-[#38b6ff] transition-colors"
+            >
+              유튜브
+            </a>
+            <span className="text-white/15">|</span>
+            <a
+              href={clinicInfo.socialLinks.blog}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/60 hover:text-[#38b6ff] transition-colors"
+            >
+              블로그
+            </a>
           </div>
         </div>
-      </div>
 
+        {/* 사업자 정보 */}
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[12px] text-white/45 mt-6">
+          <span><span className="text-white/30">대표</span> {clinicInfo.representative}</span>
+          <span className="text-white/15">|</span>
+          <span><span className="text-white/30">사업자명</span> 서울이건치과의원</span>
+          <span className="text-white/15">|</span>
+          <span><span className="text-white/30">사업자번호</span> {clinicInfo.businessNumber}</span>
+          <span className="text-white/15">|</span>
+          <span>
+            <span className="text-white/30">TEL</span>{' '}
+            <a href={`tel:${clinicInfo.phone}`} className="hover:text-[#38b6ff] transition-colors">
+              {clinicInfo.phone}
+            </a>
+          </span>
+          <span className="text-white/15">|</span>
+          <span><span className="text-white/30">FAX</span> {clinicInfo.fax}</span>
+        </div>
+        <p className="text-[12px] text-white/45 mt-1.5">
+          <span className="text-white/30">주소</span> {clinicInfo.address}
+        </p>
+
+        {/* 면책 + 저작권 */}
+        <p className="text-[11px] text-white/30 leading-relaxed mt-5">
+          본 페이지의 내용은 의료법에 따라 참고용 정보이며, 정확한 진단과 치료는 내원 상담을 통해 결정됩니다.
+        </p>
+        <p className="text-[11px] text-white/30 mt-1.5 tracking-wide">
+          COPYRIGHT &copy; {currentYear} {clinicInfo.name}. ALL RIGHTS RESERVED.
+        </p>
+      </div>
     </footer>
   )
 }
