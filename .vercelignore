@@ -1,7 +1,9 @@
-node_modules
-.git
-.claude
-.next
-media
-public/images/video/*
-!public/images/video/egun1.gif
+# local OMO tooling (broken symlink on remote → breaks next build)
+.codegraph
+
+# OMO audit/evidence artifacts (not needed for build)
+.omo
+
+# local agent state
+.claude/worktrees
+.claude/memory
