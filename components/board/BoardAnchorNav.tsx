@@ -1,7 +1,7 @@
 'use client'
 
 // @TASK Board - 게시판 앵커 내비게이션 (sticky, 스크롤 하이라이트)
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 
 interface NavItem {
   id: string
@@ -13,6 +13,8 @@ interface BoardAnchorNavProps {
 }
 
 export default function BoardAnchorNav({ items }: BoardAnchorNavProps) {
+  const listRef = useRef<HTMLUListElement>(null)
+  const itemRefs = useRef(new Map<string, HTMLAnchorElement>())
   const [activeId, setActiveId] = useState<string>(() => {
     if (typeof window !== 'undefined') {
       const hash = window.location.hash.slice(1)
@@ -26,7 +28,11 @@ export default function BoardAnchorNav({ items }: BoardAnchorNavProps) {
       e.preventDefault()
       const el = document.getElementById(id)
       if (!el) return
-      const offset = 164
+      const nav = e.currentTarget.closest('nav')
+      const stickyTop = nav ? Number.parseFloat(window.getComputedStyle(nav).top) : 0
+      const offset = nav
+        ? (Number.isFinite(stickyTop) ? stickyTop : 0) + nav.getBoundingClientRect().height
+        : 164
       const top = el.getBoundingClientRect().top + window.scrollY - offset
       window.scrollTo({ top: Math.max(top, 0), behavior: 'smooth' })
       setActiveId(id)
@@ -35,32 +41,59 @@ export default function BoardAnchorNav({ items }: BoardAnchorNavProps) {
   )
 
   useEffect(() => {
-    const sectionEls = items
-      .map((item) => document.getElementById(item.id))
-      .filter(Boolean) as HTMLElement[]
+    const sectionEls = items.flatMap((item) => {
+      const section = document.getElementById(item.id)
+      return section ? [section] : []
+    })
+    let rafId: number | null = null
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries.filter((e) => e.isIntersecting)
-        if (visible.length > 0) {
-          // 가장 위에 있는 섹션을 active로
-          const topEntry = visible.reduce((prev, curr) =>
-            prev.boundingClientRect.top < curr.boundingClientRect.top
-              ? prev
-              : curr,
-          )
-          setActiveId((topEntry.target as HTMLElement).id)
+    const updateActiveId = () => {
+      const nav = listRef.current?.closest('nav')
+      const navBottom = nav?.getBoundingClientRect().bottom ?? 136
+      const activationY = window.scrollY + navBottom + 1
+      let nextActiveId = sectionEls[0]?.id ?? ''
+
+      for (const section of sectionEls) {
+        const sectionTop = section.getBoundingClientRect().top + window.scrollY
+        if (sectionTop <= activationY) {
+          nextActiveId = section.id
         }
-      },
-      {
-        rootMargin: '-136px 0px -50% 0px',
-        threshold: 0,
-      },
-    )
+      }
 
-    sectionEls.forEach((el) => observer.observe(el))
-    return () => observer.disconnect()
+      if (nextActiveId) setActiveId(nextActiveId)
+    }
+
+    const scheduleUpdate = () => {
+      if (rafId !== null) return
+      rafId = window.requestAnimationFrame(() => {
+        rafId = null
+        updateActiveId()
+      })
+    }
+
+    updateActiveId()
+    window.addEventListener('scroll', scheduleUpdate, { passive: true })
+    window.addEventListener('resize', scheduleUpdate)
+
+    return () => {
+      if (rafId !== null) window.cancelAnimationFrame(rafId)
+      window.removeEventListener('scroll', scheduleUpdate)
+      window.removeEventListener('resize', scheduleUpdate)
+    }
   }, [items])
+
+  useEffect(() => {
+    const list = listRef.current
+    const activeItem = itemRefs.current.get(activeId)
+    if (!list || !activeItem) return
+
+    const targetLeft = activeItem.offsetLeft - (list.clientWidth - activeItem.offsetWidth) / 2
+    const maxLeft = list.scrollWidth - list.clientWidth
+    list.scrollTo({
+      left: Math.max(0, Math.min(targetLeft, maxLeft)),
+      behavior: 'smooth',
+    })
+  }, [activeId])
 
   return (
     <nav
@@ -68,12 +101,19 @@ export default function BoardAnchorNav({ items }: BoardAnchorNavProps) {
       aria-label="치료 섹션 이동"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <ul className="flex overflow-x-auto scrollbar-none gap-0" role="list">
+        <ul ref={listRef} className="flex overflow-x-auto scrollbar-none gap-0 pr-4" role="list">
           {items.map((item) => {
             const isActive = activeId === item.id
             return (
               <li key={item.id} className="shrink-0">
                 <a
+                  ref={(node) => {
+                    if (node) {
+                      itemRefs.current.set(item.id, node)
+                    } else {
+                      itemRefs.current.delete(item.id)
+                    }
+                  }}
                   href={`#${item.id}`}
                   onClick={(e) => handleClick(e, item.id)}
                   className={`inline-block px-4 sm:px-5 py-3 text-base font-medium whitespace-nowrap transition-all duration-200 border-b-2 ${

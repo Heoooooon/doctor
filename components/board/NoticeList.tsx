@@ -25,10 +25,14 @@ export default function NoticeList({ notices }: { notices: Notice[] }) {
       return
     }
 
-    document.getElementById(`notice-image-${notice.id}`)?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start',
-    })
+    const target = document.getElementById(`notice-image-${notice.id}`)
+    if (!target) return
+
+    const headerHeight =
+      document.querySelector('header')?.getBoundingClientRect().height ?? 0
+    const top =
+      target.getBoundingClientRect().top + window.scrollY - headerHeight - 16
+    window.scrollTo({ top: Math.max(top, 0), behavior: 'smooth' })
   }
 
   return (

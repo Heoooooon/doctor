@@ -99,7 +99,7 @@ export default async function NoticePage({ searchParams }: NoticePageProps) {
   }
 
   return (
-    <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+    <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16 sm:pt-32 sm:pb-24">
       <div className="text-center mb-12">
         <h1 className="text-3xl sm:text-4xl font-bold text-gray-900">
           이건공지
@@ -131,29 +131,34 @@ export default async function NoticePage({ searchParams }: NoticePageProps) {
               </div>
 
               <div className="space-y-8">
-                {pagedImageNotices.map((notice) => (
-                  <article
-                    key={notice.id}
-                    id={`notice-image-${notice.id}`}
-                    className="overflow-hidden rounded-lg border border-gray-200 bg-white"
-                  >
-                    <div className="flex flex-col gap-2 border-b border-gray-200 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
-                      <h3 className="text-base font-semibold text-gray-900">
-                        {notice.title}
-                      </h3>
-                      <time className="text-sm text-gray-500 whitespace-nowrap">
-                        {formatDate(notice.notice_date)}
-                      </time>
-                    </div>
-                    <div className="bg-gray-50 px-3 py-4 sm:px-6 sm:py-6">
-                      <img
-                        src={notice.image_url!}
-                        alt={notice.title}
-                        className="mx-auto h-auto max-w-full rounded-md border border-gray-100 bg-white md:max-h-[80vh] md:w-auto md:object-contain"
-                      />
-                    </div>
-                  </article>
-                ))}
+                {pagedImageNotices.map((notice) => {
+                  const imageUrl = notice.image_url
+                  if (!imageUrl) return null
+
+                  return (
+                    <article
+                      key={notice.id}
+                      id={`notice-image-${notice.id}`}
+                      className="overflow-hidden rounded-lg border border-gray-200 bg-white"
+                    >
+                      <div className="flex flex-col gap-2 border-b border-gray-200 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+                        <h3 className="text-base font-semibold text-gray-900">
+                          {notice.title}
+                        </h3>
+                        <time className="text-sm text-gray-500 whitespace-nowrap">
+                          {formatDate(notice.notice_date)}
+                        </time>
+                      </div>
+                      <div className="bg-gray-50 px-3 py-4 sm:px-6 sm:py-6">
+                        <img
+                          src={imageUrl}
+                          alt={notice.title}
+                          className="mx-auto h-auto max-w-full rounded-md border border-gray-100 bg-white md:max-h-[80vh] md:w-auto md:object-contain"
+                        />
+                      </div>
+                    </article>
+                  )
+                })}
               </div>
 
               {totalImagePages > 1 && (
