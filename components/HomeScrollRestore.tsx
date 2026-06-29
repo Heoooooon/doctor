@@ -65,6 +65,7 @@ export default function HomeScrollRestore() {
     } catch {}
     const navType = (performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming | undefined)?.type
     if (navType === 'back_forward') isPop = true
+    ;(window as unknown as { __rd?: unknown }).__rd = { isPop, navType, saved: (()=>{try{return sessionStorage.getItem(POS_KEY)}catch{return null}})(), scroller: getScroller()?.id || 'window' }
 
     if (isPop) {
       let target = 0
