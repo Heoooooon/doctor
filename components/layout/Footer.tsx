@@ -12,11 +12,11 @@ export default function Footer() {
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-6 border-b border-white/10">
           <div>
             <p className="text-white font-extrabold text-[18px] tracking-tight">서울이건치과</p>
-            <p className="text-white/35 text-[11px] tracking-[0.25em] uppercase mt-0.5">
+            <p className="text-white/35 text-[18px] tracking-[0.18em] uppercase mt-1">
               Seoul Egun Dental Clinic
             </p>
           </div>
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[13px]">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[18px]">
             <Link href="/privacy" className="text-white/60 hover:text-[#38b6ff] transition-colors">
               개인정보처리방침
             </Link>
@@ -42,7 +42,7 @@ export default function Footer() {
         </div>
 
         {/* 사업자 정보 */}
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[12px] text-white/45 mt-6">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-[18px] text-white/45 mt-6">
           <span><span className="text-white/30">대표</span> {clinicInfo.representative}</span>
           <span className="text-white/15">|</span>
           <span><span className="text-white/30">사업자명</span> 서울이건치과의원</span>
@@ -58,15 +58,15 @@ export default function Footer() {
           <span className="text-white/15">|</span>
           <span><span className="text-white/30">FAX</span> {clinicInfo.fax}</span>
         </div>
-        <p className="text-[12px] text-white/45 mt-1.5">
+        <p className="text-[18px] text-white/45 mt-2">
           <span className="text-white/30">주소</span> {clinicInfo.address}
         </p>
 
         {/* 면책 + 저작권 */}
-        <p className="text-[11px] text-white/30 leading-relaxed mt-5">
+        <p className="text-[18px] text-white/30 leading-relaxed mt-5">
           본 페이지의 내용은 의료법에 따라 참고용 정보이며, 정확한 진단과 치료는 내원 상담을 통해 결정됩니다.
         </p>
-        <p className="text-[11px] text-white/30 mt-1.5 tracking-wide">
+        <p className="text-[18px] text-white/30 mt-2 tracking-wide">
           COPYRIGHT &copy; {currentYear} {clinicInfo.name}. ALL RIGHTS RESERVED.
         </p>
       </div>

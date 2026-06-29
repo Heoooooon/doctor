@@ -1,0 +1,255 @@
+components/seo/JsonLd.tsx:88:      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+components/seo/JsonLd.tsx:116:      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+lib/admin-auth.ts:3:const ADMIN_SESSION_COOKIE = 'admin-session'
+lib/admin-auth.ts:6:export async function isAdminAuthenticated(): Promise<boolean> {
+data/local-notices.json:6:    "image_url": "/uploads/notices/1780043441613-1r3uqk.png",
+data/local-notices.json:15:    "image_url": "/uploads/notices/1780043361035-lmyftd.png",
+lib/supabase/server.ts:7:export function createAdminClient() {
+lib/supabase/server.ts:10:    process.env.SUPABASE_SERVICE_ROLE_KEY!,
+lib/column-ai.ts:1:export interface GenerateResult {
+lib/column-ai.ts:71:export async function generateColumnWithOpenAI(notes: string, systemPrompt = COLUMN_SYSTEM_PROMPT): Promise<GenerateResult> {
+lib/column-ai.ts:92:          name: 'column_generate_result',
+lib/column-ai.ts:111:  return JSON.parse(text) as GenerateResult
+app/api/upload/route.ts:2:import { isAdminAuthenticated } from '@/lib/admin-auth'
+app/api/upload/route.ts:3:import { createAdminClient } from '@/lib/supabase/server'
+app/api/upload/route.ts:11:    if (!(await isAdminAuthenticated())) {
+app/api/upload/route.ts:45:    const supabase = createAdminClient()
+app/api/upload/route.ts:48:    const { error: uploadError } = await supabase.storage
+app/api/upload/route.ts:50:      .upload(storagePath, arrayBuffer, {
+app/api/upload/route.ts:56:    if (uploadError) {
+app/api/upload/route.ts:57:      console.error('storage upload error:', uploadError)
+app/api/columns/[id]/route.ts:2:import { createAdminClient } from '@/lib/supabase/server'
+app/api/columns/[id]/route.ts:3:import { isAdminAuthenticated } from '@/lib/admin-auth'
+app/api/columns/[id]/route.ts:40:    if (!(await isAdminAuthenticated())) {
+app/api/columns/[id]/route.ts:66:    const supabase = createAdminClient()
+app/api/columns/[id]/route.ts:77:    if (!(await isAdminAuthenticated())) {
+app/api/columns/[id]/route.ts:89:    const supabase = createAdminClient()
+components/cases/CasesView.tsx:33:    ;['member_token', 'member_id', 'member_name'].forEach((c) => {
+components/cases/CasesView.tsx:177:          본 사례는 해당 환자분의 동의를 받아 게시된 자료입니다.<br />
+app/api/admin/auth/route.ts:4:const ADMIN_SESSION_COOKIE = 'admin-session'
+app/api/admin/auth/route.ts:6:const DEFAULT_ADMIN_PASSWORD = 'egun2024'
+app/api/admin/auth/route.ts:23:    if (password !== DEFAULT_ADMIN_PASSWORD && password !== adminPassword) {
+app/api/admin/auth/route.ts:32:      httpOnly: true,
+app/api/admin/auth/route.ts:53:      httpOnly: true,
+app/api/columns/import-naver/route.ts:3:import { isAdminAuthenticated } from '@/lib/admin-auth'
+app/api/columns/import-naver/route.ts:4:import { COLUMN_SYSTEM_PROMPT, generateColumnWithOpenAI } from '@/lib/column-ai'
+app/api/columns/import-naver/route.ts:5:import { createAdminClient } from '@/lib/supabase/server'
+app/api/columns/import-naver/route.ts:150:async function uploadImage(buffer: Buffer, contentType: string, index: number): Promise<UploadedImage> {
+app/api/columns/import-naver/route.ts:151:  const supabase = createAdminClient()
+app/api/columns/import-naver/route.ts:158:    .upload(storagePath, buffer, { contentType, cacheControl: '31536000', upsert: false })
+app/api/columns/import-naver/route.ts:170:function removeUnuploadedImageBlocks(html: string, allowedImageUrls: string[]): string {
+app/api/columns/import-naver/route.ts:190:    if (!(await isAdminAuthenticated())) {
+app/api/columns/import-naver/route.ts:234:    const uploadedByUrl = new Map<string, UploadedImage>()
+app/api/columns/import-naver/route.ts:241:        const uploaded = await uploadImage(dl.buffer, dl.contentType, images.length + 1)
+app/api/columns/import-naver/route.ts:242:        images.push(uploaded)
+app/api/columns/import-naver/route.ts:243:        uploadedByUrl.set(imgUrl, uploaded)
+app/api/columns/import-naver/route.ts:253:        const up = uploadedByUrl.get(p.url)
+app/api/columns/import-naver/route.ts:266:    const result = await generateColumnWithOpenAI(notes, NAVER_SYSTEM_PROMPT)
+app/api/columns/import-naver/route.ts:267:    const sanitizedContent = removeUnuploadedImageBlocks(result.content, images.map((img) => img.url))
+components/cases/SignupGateModal.tsx:46:  return getCookie('member_name')
+components/cases/SignupGateModal.tsx:273:                  가입 시 <a href="/privacy" target="_blank" className="underline hover:text-[#0080C8]">개인정보처리방침</a>에 동의하는 것으로 간주합니다.
+app/board/[slug]/page.tsx:10:export function generateStaticParams() {
+app/board/[slug]/page.tsx:14:export async function generateMetadata({ params }: Props): Promise<Metadata> {
+app/board/[slug]/page.tsx:85:        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+app/column/[id]/page.tsx:2:import { createAdminClient } from '@/lib/supabase/server'
+app/column/[id]/page.tsx:11:  const supabase = createAdminClient()
+app/column/[id]/page.tsx:72:            dangerouslySetInnerHTML={{ __html: post.content }}
+app/notice/page.tsx:27:    image_url: '/uploads/notices/june-doctor-schedule-1.png',
+app/notice/page.tsx:34:    image_url: '/uploads/notices/june-doctor-schedule-2.png',
+app/api/columns/generate/route.ts:2:import { isAdminAuthenticated } from '@/lib/admin-auth'
+app/api/columns/generate/route.ts:3:import { generateColumnWithOpenAI } from '@/lib/column-ai'
+app/api/columns/generate/route.ts:7:    if (!(await isAdminAuthenticated())) {
+app/api/columns/generate/route.ts:16:    const result = await generateColumnWithOpenAI(notes)
+app/api/patient-cases/[id]/route.ts:2:import { createAdminClient } from '@/lib/supabase/server'
+app/api/patient-cases/[id]/route.ts:3:import { isAdminAuthenticated } from '@/lib/admin-auth'
+app/api/patient-cases/[id]/route.ts:9:    if (!(await isAdminAuthenticated())) {
+app/api/patient-cases/[id]/route.ts:30:    const supabase = createAdminClient()
+app/api/patient-cases/[id]/route.ts:49:    if (!(await isAdminAuthenticated())) {
+app/api/patient-cases/[id]/route.ts:54:    const supabase = createAdminClient()
+app/cases/page.tsx:2:import { createAdminClient } from '@/lib/supabase/server'
+app/cases/page.tsx:17:    const supabase = createAdminClient()
+app/admin/columns/page.tsx:124:  const [uploading, setUploading] = useState(false)
+app/admin/columns/page.tsx:126:  const [uploadedImages, setUploadedImages] = useState<UploadedImage[]>([])
+app/admin/columns/page.tsx:189:  const uploadImages = async (files: File[]) => {
+app/admin/columns/page.tsx:194:      const uploaded: UploadedImage[] = []
+app/admin/columns/page.tsx:199:        const res = await fetch('/api/upload', { method: 'POST', body: fd })
+app/admin/columns/page.tsx:202:          uploaded.push({ url: data.url, name: file.name })
+app/admin/columns/page.tsx:205:      setUploadedImages((prev) => [...prev, ...uploaded])
+app/admin/columns/page.tsx:206:      if (uploaded[0]) setForm((p) => ({ ...p, image_url: p.image_url || uploaded[0].url }))
+app/admin/columns/page.tsx:215:    await uploadImages(Array.from(e.target.files || []))
+app/admin/columns/page.tsx:226:      const res = await fetch('/api/upload', { method: 'POST', body: fd })
+app/admin/columns/page.tsx:381:    await uploadImages(Array.from(e.dataTransfer.files || []))
+app/admin/columns/page.tsx:389:        ? uploadedImages.find((img) => img.url !== url)?.url || ''
+app/admin/columns/page.tsx:439:  const handleAiGenerate = async () => {
+app/admin/columns/page.tsx:444:      const res = await fetch('/api/columns/generate', {
+app/admin/columns/page.tsx:470:  const handleDocxGenerate = async (file: File) => {
+app/admin/columns/page.tsx:480:      const res = await fetch('/api/columns/generate-from-docx', { method: 'POST', body: fd })
+app/admin/columns/page.tsx:523:        image_url: form.image_url || uploadedImages[0]?.url || null,
+app/admin/columns/page.tsx:731:                        if (file) await handleDocxGenerate(file)
+app/admin/columns/page.tsx:737:                      onClick={handleAiGenerate}
+app/admin/columns/page.tsx:890:                  disabled={uploading}
+app/admin/columns/page.tsx:894:                    uploading ? 'cursor-wait opacity-70' : '',
+app/admin/columns/page.tsx:899:                    {uploading ? '업로드 중...' : '이미지를 끌어다 놓거나 클릭해서 선택'}
+app/admin/columns/page.tsx:903:                {uploadedImages.length > 0 ? (
+app/admin/columns/page.tsx:907:                      {uploadedImages.map((img, i) => {
+components/layout/QuickConsultBar.tsx:28:    errors.agreed = '개인정보 수집에 동의해주세요.'
+components/layout/QuickConsultBar.tsx:119:          privacy_agreed: form.agreed,
+components/layout/QuickConsultBar.tsx:257:              {/* 개인정보 동의 */}
+components/layout/QuickConsultBar.tsx:268:                    개인정보 수집 동의
+app/admin/notices/page.tsx:45:  const [uploading, setUploading] = useState(false)
+app/admin/notices/page.tsx:47:  const [uploadedImages, setUploadedImages] = useState<UploadedImage[]>([])
+app/admin/notices/page.tsx:88:  const uploadImages = async (files: File[]) => {
+app/admin/notices/page.tsx:97:      const uploaded: UploadedImage[] = []
+app/admin/notices/page.tsx:104:        const res = await fetch('/api/upload', {
+app/admin/notices/page.tsx:111:          uploaded.push({ url: data.url, name: file.name })
+app/admin/notices/page.tsx:115:      setUploadedImages((prev) => [...prev, ...uploaded])
+app/admin/notices/page.tsx:116:      if (uploaded[0]) {
+app/admin/notices/page.tsx:117:        setForm((p) => ({ ...p, image_url: p.image_url || uploaded[0].url }))
+app/admin/notices/page.tsx:127:    await uploadImages(Array.from(e.target.files || []))
+app/admin/notices/page.tsx:134:    await uploadImages(Array.from(e.dataTransfer.files || []))
+app/admin/notices/page.tsx:143:          ? uploadedImages.find((image) => image.url !== url)?.url || ''
+app/admin/notices/page.tsx:154:        !editingId && uploadedImages.length > 0
+app/admin/notices/page.tsx:155:          ? uploadedImages
+app/admin/notices/page.tsx:388:                  disabled={uploading}
+app/admin/notices/page.tsx:395:                    uploading ? 'cursor-wait opacity-70' : '',
+app/admin/notices/page.tsx:400:                    {uploading
+app/admin/notices/page.tsx:409:                {uploadedImages.length > 0 ? (
+app/admin/notices/page.tsx:411:                    {uploadedImages.map((image, index) => (
+app/admin/notices/page.tsx:454:                {uploadedImages.length > 1 && !editingId && (
+app/api/patient-cases/route.ts:2:import { createAdminClient } from '@/lib/supabase/server'
+app/api/patient-cases/route.ts:3:import { isAdminAuthenticated } from '@/lib/admin-auth'
+app/api/patient-cases/route.ts:10:    const supabase = createAdminClient()
+app/api/patient-cases/route.ts:34:    if (!(await isAdminAuthenticated())) {
+app/api/patient-cases/route.ts:48:    const supabase = createAdminClient()
+app/privacy/page.tsx:4:  title: '개인정보처리방침 | 서울이건치과의원',
+app/privacy/page.tsx:5:  description: '서울이건치과의원 개인정보처리방침',
+app/privacy/page.tsx:14:        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">개인정보처리방침</h1>
+app/privacy/page.tsx:22:              서울이건치과의원(이하 "병원")은 개인정보보호법, 의료법 및 관련 법령에 따라
+app/privacy/page.tsx:23:              이용자의 개인정보를 보호하고 이와 관련한 고충을 신속하고 원활하게 처리할 수 있도록
+app/privacy/page.tsx:24:              다음과 같이 개인정보처리방침을 수립·공개합니다.
+app/privacy/page.tsx:31:              제1조 (개인정보의 처리 목적)
+app/privacy/page.tsx:33:            <p className="mb-3">병원은 다음 목적을 위하여 개인정보를 처리합니다. 처리된 개인정보는 해당 목적 이외의 용도로는 사용되지 않으며, 목적이 변경될 경우에는 별도의 동의를 받겠습니다.</p>
+app/privacy/page.tsx:46:              제2조 (처리하는 개인정보의 항목)
+app/privacy/page.tsx:48:            <p className="mb-3">병원은 다음과 같은 개인정보 항목을 처리합니다.</p>
+app/privacy/page.tsx:54:                  <li>만 14세 미만인 경우: 법정대리인의 이름, 연락처 및 동의 여부</li>
+app/privacy/page.tsx:75:              제3조 (개인정보의 처리 및 보유 기간)
+app/privacy/page.tsx:77:            <p className="mb-3">병원은 법령에 따른 개인정보 보유·이용 기간 또는 정보주체로부터 동의 받은 보유·이용 기간 내에서 개인정보를 처리·보유합니다.</p>
+app/privacy/page.tsx:105:              제4조 (개인정보의 제3자 제공)
+app/privacy/page.tsx:107:            <p className="mb-2">병원은 정보주체의 개인정보를 제1조에서 명시한 목적 범위 내에서만 처리하며, 다음의 경우에만 제3자에게 제공합니다.</p>
+app/privacy/page.tsx:109:              <li>정보주체가 사전에 동의한 경우</li>
+app/privacy/page.tsx:112:            <p className="mt-3 text-gray-600">현재 병원은 개인정보를 제3자에게 제공하지 않습니다.</p>
+app/privacy/page.tsx:118:              제5조 (개인정보 처리의 위탁)
+app/privacy/page.tsx:120:            <p>병원은 현재 개인정보 처리 업무를 외부에 위탁하지 않습니다. 향후 위탁이 발생할 경우 위탁 대상자 및 위탁 업무 내용을 이 방침에 공개하고 필요한 경우 별도의 동의를 받겠습니다.</p>
+app/privacy/page.tsx:130:              <li>개인정보 처리현황 통지 요구</li>
+app/privacy/page.tsx:131:              <li>개인정보 열람 요구</li>
+app/privacy/page.tsx:132:              <li>개인정보 정정·삭제 요구</li>
+app/privacy/page.tsx:133:              <li>개인정보 처리정지 요구</li>
+app/privacy/page.tsx:134:              <li>개인정보 처리에 대한 동의 철회</li>
+app/privacy/page.tsx:137:            <p className="mt-2">정보주체가 개인정보의 오류 등에 대한 정정 또는 삭제를 요청한 경우에는 정정 또는 삭제를 완료할 때까지 해당 개인정보를 이용하거나 제공하지 않습니다.</p>
+app/privacy/page.tsx:143:              제7조 (만 14세 미만 아동의 개인정보 처리)
+app/privacy/page.tsx:145:            <p className="mb-2">병원은 만 14세 미만 아동에 대해 개인정보를 수집·이용·제공하는 경우 법정대리인의 동의를 받습니다.</p>
+app/privacy/page.tsx:148:              <li>만 14세 미만인 경우 법정대리인(부모 등)의 이름, 연락처를 수집하고 동의를 받습니다.</li>
+app/privacy/page.tsx:149:              <li>법정대리인은 아동의 개인정보 열람, 정정, 삭제, 처리정지를 요청할 수 있습니다.</li>
+app/privacy/page.tsx:156:              제8조 (개인정보의 파기)
+app/privacy/page.tsx:158:            <p className="mb-3">병원은 개인정보 보유 기간의 경과, 처리 목적 달성 등 개인정보가 불필요하게 되었을 경우 지체 없이 해당 개인정보를 파기합니다.</p>
+app/privacy/page.tsx:162:                <p className="pl-2">병원은 파기 사유가 발생한 개인정보를 선정하고, 개인정보 보호책임자의 승인을 받아 개인정보를 파기합니다.</p>
+app/privacy/page.tsx:168:                  <li>종이에 출력된 개인정보: 분쇄기로 분쇄하거나 소각</li>
+app/privacy/page.tsx:177:              제9조 (개인정보의 안전성 확보 조치)
+app/privacy/page.tsx:179:            <p className="mb-3">병원은 개인정보의 안전성 확보를 위하여 다음과 같은 조치를 취하고 있습니다.</p>
+app/privacy/page.tsx:181:              <li>개인정보 취급 직원의 최소화 및 교육</li>
+app/privacy/page.tsx:182:              <li>개인정보에 대한 접근 제한 (비밀번호 암호화 저장)</li>
+app/privacy/page.tsx:184:              <li>개인정보 처리시스템의 접속 기록 보관 및 위·변조 방지</li>
+app/privacy/page.tsx:185:              <li>개인정보의 암호화 (전송 구간 SSL/TLS 적용)</li>
+app/privacy/page.tsx:203:                  <li>Chrome: 설정 → 개인정보 및 보안 → 쿠키 및 기타 사이트 데이터</li>
+app/privacy/page.tsx:214:              제11조 (개인정보 보호책임자)
+app/privacy/page.tsx:216:            <p className="mb-3">병원은 개인정보 처리에 관한 업무를 총괄해서 책임지고, 개인정보 처리와 관련한 정보주체의 불만 처리 및 피해구제를 위하여 아래와 같이 개인정보 보호책임자를 지정하고 있습니다.</p>
+app/privacy/page.tsx:228:            <p className="mt-3">정보주체는 병원의 서비스를 이용하면서 발생한 모든 개인정보 보호 관련 문의, 불만처리, 피해구제 등에 관한 사항을 개인정보 보호책임자에게 문의하실 수 있습니다.</p>
+app/privacy/page.tsx:236:            <p className="mb-3">정보주체는 아래의 기관에 대해 개인정보 침해에 대한 피해구제, 상담 등을 문의하실 수 있습니다.</p>
+app/privacy/page.tsx:239:                <p className="font-semibold text-gray-800">개인정보 침해신고센터 (한국인터넷진흥원 운영)</p>
+app/privacy/page.tsx:244:                <p className="font-semibold text-gray-800">개인정보 분쟁조정위원회</p>
+app/privacy/page.tsx:264:              제13조 (개인정보처리방침의 변경)
+app/privacy/page.tsx:266:            <p>이 개인정보처리방침은 2026년 1월 1일부터 적용됩니다. 법령 및 방침에 따른 변경 내용의 추가, 삭제 및 정정이 있는 경우에는 변경사항 시행 7일 전부터 홈페이지(https://egundc.com)를 통하여 고지합니다. 단, 정보주체의 권리에 중대한 변경이 발생할 경우에는 30일 전에 고지합니다.</p>
+app/api/notices/[id]/route.ts:2:import { createAdminClient } from '@/lib/supabase/server'
+app/api/notices/[id]/route.ts:3:import { isAdminAuthenticated } from '@/lib/admin-auth'
+app/api/notices/[id]/route.ts:39:    if (!(await isAdminAuthenticated())) {
+app/api/notices/[id]/route.ts:79:    const supabase = createAdminClient()
+app/api/notices/[id]/route.ts:103:    if (!(await isAdminAuthenticated())) {
+app/api/notices/[id]/route.ts:115:    const supabase = createAdminClient()
+app/api/auth/member-login/route.ts:2:import { createAdminClient } from '@/lib/supabase/server'
+app/api/auth/member-login/route.ts:23:    const supabase = createAdminClient()
+app/api/auth/member-login/route.ts:47:    res.cookies.set('member_token', token, {
+app/api/auth/member-login/route.ts:48:      httpOnly: false,   // 클라이언트에서 읽을 수 있도록
+app/api/auth/member-login/route.ts:54:    res.cookies.set('member_id', member.id, {
+app/api/auth/member-login/route.ts:55:      httpOnly: false,
+app/api/auth/member-login/route.ts:62:    res.cookies.set('member_name', member.name, {
+app/api/auth/member-login/route.ts:63:      httpOnly: false,
+app/api/columns/route.ts:2:import { createClient, createAdminClient } from '@/lib/supabase/server'
+app/api/columns/route.ts:3:import { isAdminAuthenticated } from '@/lib/admin-auth'
+app/api/columns/route.ts:56:    const supabase = createAdminClient()
+app/api/columns/route.ts:79:    if (!(await isAdminAuthenticated())) {
+app/api/columns/route.ts:109:    const supabase = createAdminClient()
+app/admin/patient-cases/page.tsx:61:  const [uploading, setUploading] = useState<'before' | 'after' | null>(null)
+app/admin/patient-cases/page.tsx:99:  const uploadImage = async (file: File, field: 'before_image_url' | 'after_image_url') => {
+app/admin/patient-cases/page.tsx:106:      const res = await fetch('/api/upload', { method: 'POST', body: fd })
+app/admin/patient-cases/page.tsx:314:                            if (file) uploadImage(file, field)
+app/admin/patient-cases/page.tsx:317:                          {uploading === which ? '업로드 중...' : (
+app/admin/patient-cases/page.tsx:330:                              if (file) uploadImage(file, field)
+app/api/auth/member-signup/route.ts:2:import { createAdminClient } from '@/lib/supabase/server'
+app/api/auth/member-signup/route.ts:39:    const supabase = createAdminClient()
+app/api/notices/route.ts:2:import { createAdminClient } from '@/lib/supabase/server'
+app/api/notices/route.ts:3:import { isAdminAuthenticated } from '@/lib/admin-auth'
+app/api/notices/route.ts:46:    const supabase = createAdminClient()
+app/api/notices/route.ts:75:    if (!(await isAdminAuthenticated())) {
+app/api/notices/route.ts:106:    const supabase = createAdminClient()
+components/layout/Footer.tsx:21:              개인정보처리방침
+app/admin/cases/page.tsx:102:  const [uploading, setUploading] = useState<'before' | 'after' | null>(null)
+app/admin/cases/page.tsx:202:      const res = await fetch('/api/upload', { method: 'POST', body: fd })
+app/admin/cases/page.tsx:482:                            {uploading === which ? (
+app/api/auth/signup/route.ts:2:import { createAdminClient } from '@/lib/supabase/server'
+app/api/auth/signup/route.ts:30:    const supabase = createAdminClient()
+app/api/consultations/route.ts:2:import { createAdminClient } from '@/lib/supabase/server'
+app/api/consultations/route.ts:3:import { isAdminAuthenticated } from '@/lib/admin-auth'
+app/api/consultations/route.ts:9:    const { name, phone, privacy_agreed } = body
+app/api/consultations/route.ts:24:    if (!privacy_agreed) {
+app/api/consultations/route.ts:26:        { error: '개인정보 수집에 동의해주세요.' },
+app/api/consultations/route.ts:31:    const supabase = createAdminClient()
+app/api/consultations/route.ts:38:        privacy_agreed: true,
+app/api/consultations/route.ts:60:    if (!(await isAdminAuthenticated())) {
+app/api/consultations/route.ts:64:    const supabase = createAdminClient()
+app/admin/layout.tsx:2:import { isAdminAuthenticated } from '@/lib/admin-auth'
+app/admin/layout.tsx:10:  const isAuthenticated = await isAdminAuthenticated()
+app/api/cases/[id]/route.ts:2:import { createAdminClient } from '@/lib/supabase/server'
+app/api/cases/[id]/route.ts:3:import { isAdminAuthenticated } from '@/lib/admin-auth'
+app/api/cases/[id]/route.ts:10:    if (!(await isAdminAuthenticated())) {
+app/api/cases/[id]/route.ts:14:    const supabase = createAdminClient()
+app/api/cases/[id]/route.ts:80:    if (!(await isAdminAuthenticated())) {
+app/api/cases/[id]/route.ts:84:    const supabase = createAdminClient()
+app/api/cases/route.ts:2:import { createAdminClient } from '@/lib/supabase/server'
+app/api/cases/route.ts:3:import { isAdminAuthenticated } from '@/lib/admin-auth'
+app/api/cases/route.ts:13:    const supabase = createAdminClient()
+app/api/cases/route.ts:52:    if (!(await isAdminAuthenticated())) {
+app/api/cases/route.ts:56:    const supabase = createAdminClient()
+app/api/columns/generate-from-docx/route.ts:5:import { isAdminAuthenticated } from '@/lib/admin-auth'
+app/api/columns/generate-from-docx/route.ts:6:import { COLUMN_SYSTEM_PROMPT, generateColumnWithOpenAI } from '@/lib/column-ai'
+app/api/columns/generate-from-docx/route.ts:7:import { createAdminClient } from '@/lib/supabase/server'
+app/api/columns/generate-from-docx/route.ts:55:function removeUnuploadedImageBlocks(html: string, allowedImageUrls: string[]): string {
+app/api/columns/generate-from-docx/route.ts:64:async function uploadDocxImage(buffer: Buffer, contentType: string, index: number): Promise<ExtractedImage> {
+app/api/columns/generate-from-docx/route.ts:65:  const supabase = createAdminClient()
+app/api/columns/generate-from-docx/route.ts:72:    .upload(storagePath, buffer, {
+app/api/columns/generate-from-docx/route.ts:87:async function uploadImagesFromDocxZip(docxBuffer: Buffer, startIndex: number): Promise<ExtractedImage[]> {
+app/api/columns/generate-from-docx/route.ts:94:  const uploaded: ExtractedImage[] = []
+app/api/columns/generate-from-docx/route.ts:98:    uploaded.push(await uploadDocxImage(buffer, contentType, startIndex + uploaded.length))
+app/api/columns/generate-from-docx/route.ts:100:  return uploaded
+app/api/columns/generate-from-docx/route.ts:117:    if (!(await isAdminAuthenticated())) {
+app/api/columns/generate-from-docx/route.ts:147:          const uploaded = await uploadDocxImage(buffer, image.contentType, images.length + 1)
+app/api/columns/generate-from-docx/route.ts:148:          images.push(uploaded)
+app/api/columns/generate-from-docx/route.ts:149:          return { src: uploaded.url }
+app/api/columns/generate-from-docx/route.ts:157:      images.push(...await uploadImagesFromDocxZip(docxBuffer, 1))
+app/api/columns/generate-from-docx/route.ts:175:    const result = await generateColumnWithOpenAI(notes, DOCX_SYSTEM_PROMPT)
+app/api/columns/generate-from-docx/route.ts:176:    const sanitizedContent = removeUnuploadedImageBlocks(result.content, images.map((img) => img.url))
+app/api/consultations/[id]/route.ts:2:import { createAdminClient } from '@/lib/supabase/server'
+app/api/consultations/[id]/route.ts:3:import { isAdminAuthenticated } from '@/lib/admin-auth'
+app/api/consultations/[id]/route.ts:10:    if (!(await isAdminAuthenticated())) {
+app/api/consultations/[id]/route.ts:14:    const supabase = createAdminClient()
+app/api/consultations/[id]/route.ts:64:    if (!(await isAdminAuthenticated())) {
+app/api/consultations/[id]/route.ts:68:    const supabase = createAdminClient()

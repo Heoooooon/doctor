@@ -28,7 +28,7 @@ export default function NaturalPhilosophySection() {
             <span style={{ color: '#0080C8' }}>자연치아</span>{' '}입니다.
           </span>
         </h2>
-        <p className={`text-sm text-white/85 leading-[1.85] max-w-sm ${isVisible ? 'scroll-reveal-drop' : 'scroll-hidden'}`}
+        <p className={`text-[18px] text-white/85 leading-[1.85] max-w-sm ${isVisible ? 'scroll-reveal-drop' : 'scroll-hidden'}`}
           style={isVisible ? { animationDelay: '0.2s' } : undefined}>
           자연치아는 인공치아가 결코 흉내 낼 수 없는{' '}
           <strong style={{ color: '#0080C8' }}>고유의 치주인대</strong>를 가지고 있어,
@@ -36,7 +36,7 @@ export default function NaturalPhilosophySection() {
         </p>
         <Link
           href="/natural-tooth"
-          className={`mt-6 text-sm font-medium px-8 py-2.5 rounded-full transition-all duration-200 ${isVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}
+          className={`mt-6 inline-flex min-h-[44px] items-center text-[18px] font-medium px-8 py-3 rounded-full transition-all duration-200 ${isVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}
           style={{
             color: '#0080C8',
             border: '1.5px solid #0080C8',
@@ -69,21 +69,21 @@ export default function NaturalPhilosophySection() {
 
           {/* 우측: 본문 */}
           <div className="space-y-4">
-            <p className={`text-sm md:text-base leading-[1.9] text-gray-600 ${isVisible ? 'scroll-reveal-right' : 'scroll-hidden'}`}
+            <p className={`text-[18px] leading-[1.9] text-gray-600 ${isVisible ? 'scroll-reveal-right' : 'scroll-hidden'}`}
               style={isVisible ? { animationDelay: '0.15s' } : undefined}>
               자연치아는 인공치아가 결코 흉내 낼 수 없는{' '}
               <strong style={{ color: '#0080C8' }}>고유의 치주인대</strong>를 가지고 있어,
               음식의 질감을 느끼게 하고 외부 충격을 완화하는 천연{' '}
               <strong style={{ color: '#0080C8' }}>완충 작용</strong>을 합니다.
             </p>
-            <p className={`text-sm md:text-base leading-[1.9] text-gray-600 ${isVisible ? 'scroll-reveal-right' : 'scroll-hidden'}`}
+            <p className={`text-[18px] leading-[1.9] text-gray-600 ${isVisible ? 'scroll-reveal-right' : 'scroll-hidden'}`}
               style={isVisible ? { animationDelay: '0.28s' } : undefined}>
               손상이 큰 경우에도{' '}
               <strong style={{ color: '#0080C8' }}>불필요한 삭제를 줄이는 방향</strong>으로
               신중하게 결정합니다.
               결국 중요한 것은 치료 방법 자체가 아니라, 환자분의 치아 상태에 맞는 적절한 선택입니다.
             </p>
-            <p className={`text-sm md:text-base leading-[1.9] text-gray-600 ${isVisible ? 'scroll-reveal-right' : 'scroll-hidden'}`}
+            <p className={`text-[18px] leading-[1.9] text-gray-600 ${isVisible ? 'scroll-reveal-right' : 'scroll-hidden'}`}
               style={isVisible ? { animationDelay: '0.4s' } : undefined}>
               <strong style={{ color: '#0080C8' }}>
                 자연치아를 얼마나 오래, 건강하게 유지할 수 있는가
@@ -92,7 +92,7 @@ export default function NaturalPhilosophySection() {
             </p>
             <Link
               href="/natural-tooth"
-              className={`inline-block mt-2 px-6 py-3 rounded-2xl text-white text-sm font-medium transition-opacity hover:opacity-80 ${isVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}
+              className={`inline-flex min-h-[44px] items-center mt-2 px-6 py-3 rounded-2xl text-white text-[18px] font-medium transition-opacity hover:opacity-80 ${isVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}
               style={{ backgroundColor: '#0080C8', ...(isVisible ? { animationDelay: '0.52s' } : {}) }}
             >
               자연치아 보존치료 보기

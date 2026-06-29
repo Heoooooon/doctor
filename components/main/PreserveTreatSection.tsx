@@ -50,7 +50,7 @@ function CardItem({ card, idx, hoverIdx, setHoverIdx }: {
         className="absolute"
         style={{
           top: '8px', right: '8px',
-          fontSize: '10px', letterSpacing: '2px', color: '#0080C8',
+          fontSize: '14px', letterSpacing: '2px', color: '#0080C8',
           fontWeight: 700, writingMode: 'vertical-rl',
           background: 'rgba(15,20,43,0.85)', padding: '5px 4px',
           borderRadius: '4px', border: '1px solid rgba(0,128,200,0.35)',
@@ -59,7 +59,7 @@ function CardItem({ card, idx, hoverIdx, setHoverIdx }: {
         {card.spine}
       </span>
       <div className="absolute bottom-0 left-0 right-0 p-2.5 lg:p-3">
-        <h3 style={{ fontSize: 'clamp(12px, 1.15vw, 18px)', fontWeight: 700, color: '#fff', lineHeight: 1.35 }}>
+        <h3 style={{ fontSize: 'clamp(18px, 1.15vw, 20px)', fontWeight: 700, color: '#fff', lineHeight: 1.35 }}>
           {card.title}
         </h3>
       </div>
@@ -96,7 +96,7 @@ export default function PreserveTreatSection() {
           transition: 'opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s',
         }}
       >
-        <p style={{ color: '#0080C8', letterSpacing: '7px', fontSize: '13px', fontWeight: 500, marginBottom: '16px' }}>
+        <p style={{ color: '#0080C8', letterSpacing: '5px', fontSize: '14px', fontWeight: 500, marginBottom: '16px' }}>
           NATURAL TOOTH SOLUTION
         </p>
         <h2 style={{ fontSize: 'clamp(24px, 2.45vw, 38px)', fontWeight: 700, letterSpacing: '0.01em', lineHeight: 1.38, color: '#101828' }}>
@@ -107,7 +107,7 @@ export default function PreserveTreatSection() {
           <span style={{ color: '#4f82c8', fontWeight: 900 }}>내가 가진 치아</span>
           <span style={{ color: '#101828' }}>입니다.</span>
         </h2>
-        <p style={{ color: '#4b5563', marginTop: '18px', fontSize: '15px', lineHeight: 1.85, letterSpacing: '0.01em' }}>
+        <p style={{ color: '#4b5563', marginTop: '18px', fontSize: '18px', lineHeight: 1.85, letterSpacing: '0.01em' }}>
           치아는 한 번 삭제하면 <strong style={{ color: '#101828' }}>되돌릴 수 없기에</strong>,
           처음 치료 방향이 가장 중요합니다. 저희는 충치를 없애는 것을 넘어{' '}
           <strong style={{ color: '#101828' }}>"어디까지 살릴 수 있는지"</strong>를 먼저 고민합니다.
@@ -117,7 +117,8 @@ export default function PreserveTreatSection() {
             href="/natural-tooth"
             style={{
               padding: '8px 16px', borderRadius: '999px',
-              fontSize: '13px', fontWeight: 700, letterSpacing: '0.5px',
+              minHeight: '44px',
+              fontSize: '18px', fontWeight: 700, letterSpacing: '0.5px',
               background: '#0080C8', color: '#fff',
               textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '6px',
               transition: 'background 0.2s, transform 0.2s',
@@ -129,8 +130,9 @@ export default function PreserveTreatSection() {
           <a
             href="tel:031-896-5512"
             style={{
+              minHeight: '44px',
               padding: '8px 16px', borderRadius: '999px',
-              fontSize: '13px', fontWeight: 700, letterSpacing: '0.5px',
+              fontSize: '18px', fontWeight: 700, letterSpacing: '0.5px',
               background: 'transparent', color: '#101828',
               border: '1px solid rgba(16,24,40,0.22)',
               textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '6px',
@@ -153,7 +155,7 @@ export default function PreserveTreatSection() {
           <CardItem card={CARDS[1]} idx={1} hoverIdx={hoverIdx} setHoverIdx={setHoverIdx} />
           <div className="flex flex-col justify-end pb-2 pl-1">
             <span style={{ width: '24px', height: '1px', background: 'rgba(16,24,40,0.25)', display: 'block', marginBottom: '6px' }} />
-            <span style={{ fontSize: '11px', letterSpacing: '3px', color: 'rgba(16,24,40,0.5)', textTransform: 'uppercase', lineHeight: 1.6 }}>
+            <span style={{ fontSize: '14px', letterSpacing: '3px', color: 'rgba(16,24,40,0.5)', textTransform: 'uppercase', lineHeight: 1.6 }}>
               TREATMENT<br />ARCHIVE
             </span>
           </div>

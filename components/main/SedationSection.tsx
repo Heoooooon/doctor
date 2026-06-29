@@ -26,11 +26,11 @@ function StatItem({
         <span className="text-xl sm:text-2xl md:text-4xl font-black tabular-nums text-white drop-shadow-lg">
           {count.toLocaleString()}
         </span>
-        <span className="text-base sm:text-lg md:text-2xl font-bold pb-0.5 text-white/80">
+        <span className="text-[18px] sm:text-lg md:text-2xl font-bold pb-0.5 text-white/80">
           {suffix}
         </span>
       </div>
-      <p className="text-[11px] sm:text-xs md:text-sm text-white/70 tracking-wide">
+      <p className="text-[14px] sm:text-[18px] text-white/70 tracking-wide">
         {label}
       </p>
     </div>
@@ -80,7 +80,7 @@ export default function SedationSection() {
       {/* 콘텐츠 오버레이 */}
       <div className="relative z-10 h-full flex flex-col items-center justify-center px-4 gap-9">
         <div className="text-center">
-          <p className={`text-xs tracking-[0.35em] uppercase text-white/50 mb-3 ${visible ? 'scroll-reveal-drop' : 'scroll-hidden'}`}>
+          <p className={`text-[14px] md:text-[18px] tracking-[0.24em] md:tracking-[0.3em] uppercase text-white/50 mb-3 ${visible ? 'scroll-reveal-drop' : 'scroll-hidden'}`}>
             Sedation Dentistry
           </p>
           <h2
@@ -93,7 +93,7 @@ export default function SedationSection() {
           >
             두려움 없는 치과치료
           </h2>
-          <p className={`text-xs md:text-sm text-white/60 max-w-sm mx-auto leading-relaxed ${visible ? 'scroll-reveal-drop' : 'scroll-hidden'}`}
+          <p className={`text-[18px] text-white/60 max-w-sm mx-auto leading-relaxed ${visible ? 'scroll-reveal-drop' : 'scroll-hidden'}`}
             style={visible ? { animationDelay: '0.24s' } : undefined}>
             수면 상태에서 안전하게, 의식하 진정법
           </p>

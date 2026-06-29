@@ -1,0 +1,322 @@
+[
+  {
+    "className": "fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-100 shadow-sm",
+    "fontSize": "16px",
+    "height": 65,
+    "tag": "header",
+    "text": "이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기",
+    "width": 375
+  },
+  {
+    "className": "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+    "fontSize": "16px",
+    "height": 64,
+    "tag": "div",
+    "text": "이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기",
+    "width": 375
+  },
+  {
+    "className": "flex items-center h-16 sm:h-20 gap-6 lg:gap-10",
+    "fontSize": "16px",
+    "height": 64,
+    "tag": "div",
+    "text": "이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기",
+    "width": 343
+  },
+  {
+    "className": "fixed top-0 right-0 z-50 h-full w-72 bg-white shadow-2xl transform transition-transform duration-300 ease-out flex flex-",
+    "fontSize": "16px",
+    "height": 812,
+    "tag": "nav",
+    "text": "Menu칼럼/증례공지사항원장칼럼환자사례01이건치과소개02자연치아살리기03임플란트04심미보철05교정치료06소아",
+    "width": 288
+  },
+  {
+    "className": "flex items-center justify-between px-6 py-5 border-b border-gray-100",
+    "fontSize": "16px",
+    "height": 85,
+    "tag": "div",
+    "text": "Menu",
+    "width": 288
+  },
+  {
+    "className": "flex-1 overflow-y-auto py-4",
+    "fontSize": "16px",
+    "height": 633,
+    "tag": "ul",
+    "text": "칼럼/증례공지사항원장칼럼환자사례01이건치과소개02자연치아살리기03임플란트04심미보철05교정치료06소아치과07",
+    "width": 288
+  },
+  {
+    "className": "",
+    "fontSize": "16px",
+    "height": 33,
+    "tag": "li",
+    "text": "칼럼/증례",
+    "width": 288
+  },
+  {
+    "className": "px-6 pt-2 pb-1 text-[14px] font-bold text-gray-400 uppercase tracking-widest",
+    "fontSize": "14px",
+    "height": 33,
+    "tag": "p",
+    "text": "칼럼/증례",
+    "width": 288
+  },
+  {
+    "className": "",
+    "fontSize": "16px",
+    "height": 52,
+    "tag": "li",
+    "text": "공지사항",
+    "width": 288
+  },
+  {
+    "className": "",
+    "fontSize": "16px",
+    "height": 52,
+    "tag": "li",
+    "text": "원장칼럼",
+    "width": 288
+  },
+  {
+    "className": "",
+    "fontSize": "16px",
+    "height": 52,
+    "tag": "li",
+    "text": "환자사례",
+    "width": 288
+  },
+  {
+    "className": "",
+    "fontSize": "16px",
+    "height": 59,
+    "tag": "li",
+    "text": "01이건치과소개",
+    "width": 288
+  },
+  {
+    "className": "w-6 text-[14px] text-gray-400 font-normal tabular-nums",
+    "fontSize": "14px",
+    "height": 21,
+    "tag": "span",
+    "text": "01",
+    "width": 24
+  },
+  {
+    "className": "",
+    "fontSize": "16px",
+    "height": 59,
+    "tag": "li",
+    "text": "02자연치아살리기",
+    "width": 288
+  },
+  {
+    "className": "w-6 text-[14px] text-gray-400 font-normal tabular-nums",
+    "fontSize": "14px",
+    "height": 21,
+    "tag": "span",
+    "text": "02",
+    "width": 24
+  },
+  {
+    "className": "",
+    "fontSize": "16px",
+    "height": 59,
+    "tag": "li",
+    "text": "03임플란트",
+    "width": 288
+  },
+  {
+    "className": "w-6 text-[14px] text-gray-400 font-normal tabular-nums",
+    "fontSize": "14px",
+    "height": 21,
+    "tag": "span",
+    "text": "03",
+    "width": 24
+  },
+  {
+    "className": "",
+    "fontSize": "16px",
+    "height": 59,
+    "tag": "li",
+    "text": "04심미보철",
+    "width": 288
+  },
+  {
+    "className": "w-6 text-[14px] text-gray-400 font-normal tabular-nums",
+    "fontSize": "14px",
+    "height": 21,
+    "tag": "span",
+    "text": "04",
+    "width": 24
+  },
+  {
+    "className": "",
+    "fontSize": "16px",
+    "height": 59,
+    "tag": "li",
+    "text": "05교정치료",
+    "width": 288
+  },
+  {
+    "className": "w-6 text-[14px] text-gray-400 font-normal tabular-nums",
+    "fontSize": "14px",
+    "height": 21,
+    "tag": "span",
+    "text": "05",
+    "width": 24
+  },
+  {
+    "className": "",
+    "fontSize": "16px",
+    "height": 59,
+    "tag": "li",
+    "text": "06소아치과",
+    "width": 288
+  },
+  {
+    "className": "w-6 text-[14px] text-gray-400 font-normal tabular-nums",
+    "fontSize": "14px",
+    "height": 21,
+    "tag": "span",
+    "text": "06",
+    "width": 24
+  },
+  {
+    "className": "",
+    "fontSize": "16px",
+    "height": 59,
+    "tag": "li",
+    "text": "07오시는 길",
+    "width": 288
+  },
+  {
+    "className": "w-6 text-[14px] text-gray-400 font-normal tabular-nums",
+    "fontSize": "14px",
+    "height": 21,
+    "tag": "span",
+    "text": "07",
+    "width": 24
+  },
+  {
+    "className": "px-6 py-5 border-t border-gray-100 bg-gray-50",
+    "fontSize": "16px",
+    "height": 94,
+    "tag": "div",
+    "text": "대표전화031-896-5512",
+    "width": 288
+  },
+  {
+    "className": "text-[14px] text-gray-500 mb-1",
+    "fontSize": "14px",
+    "height": 21,
+    "tag": "p",
+    "text": "대표전화",
+    "width": 240
+  },
+  {
+    "className": "pb-16 sm:pb-14",
+    "fontSize": "16px",
+    "height": 10568,
+    "tag": "main",
+    "text": "서울이건치과 — 수원치과·영통치과 임플란트·교정·수면치과 | 서울대 출신 2인 대표원장서울이건치과 주요 진료",
+    "width": 375
+  },
+  {
+    "className": "sr-only",
+    "fontSize": "16px",
+    "height": 1,
+    "tag": "h1",
+    "text": "서울이건치과 — 수원치과·영통치과 임플란트·교정·수면치과 | 서울대 출신 2인 대표원장",
+    "width": 1
+  },
+  {
+    "className": "sr-only",
+    "fontSize": "16px",
+    "height": 1,
+    "tag": "nav",
+    "text": "서울이건치과 주요 진료 안내수원 치과 | 서울이건치과서울대 출신 대표원장 | 서울이건치과수면치료 센터 | 서",
+    "width": 1
+  },
+  {
+    "className": "",
+    "fontSize": "16px",
+    "height": 24,
+    "tag": "h2",
+    "text": "서울이건치과 주요 진료 안내",
+    "width": 1
+  },
+  {
+    "className": "",
+    "fontSize": "16px",
+    "height": 150,
+    "tag": "ul",
+    "text": "수원 치과 | 서울이건치과서울대 출신 대표원장 | 서울이건치과수면치료 센터 | 서울이건치과네비게이션 임플란트",
+    "width": 1
+  },
+  {
+    "className": "",
+    "fontSize": "16px",
+    "height": 25,
+    "tag": "li",
+    "text": "수원 치과 | 서울이건치과",
+    "width": 1
+  },
+  {
+    "className": "",
+    "fontSize": "16px",
+    "height": 18,
+    "tag": "a",
+    "text": "수원 치과 | 서울이건치과",
+    "width": 155
+  },
+  {
+    "className": "",
+    "fontSize": "16px",
+    "height": 25,
+    "tag": "li",
+    "text": "서울대 출신 대표원장 | 서울이건치과",
+    "width": 1
+  },
+  {
+    "className": "",
+    "fontSize": "16px",
+    "height": 18,
+    "tag": "a",
+    "text": "서울대 출신 대표원장 | 서울이건치과",
+    "width": 228
+  },
+  {
+    "className": "",
+    "fontSize": "16px",
+    "height": 25,
+    "tag": "li",
+    "text": "수면치료 센터 | 서울이건치과",
+    "width": 1
+  },
+  {
+    "className": "",
+    "fontSize": "16px",
+    "height": 18,
+    "tag": "a",
+    "text": "수면치료 센터 | 서울이건치과",
+    "width": 182
+  },
+  {
+    "className": "",
+    "fontSize": "16px",
+    "height": 25,
+    "tag": "li",
+    "text": "네비게이션 임플란트 | 서울이건치과",
+    "width": 1
+  },
+  {
+    "className": "",
+    "fontSize": "16px",
+    "height": 18,
+    "tag": "a",
+    "text": "네비게이션 임플란트 | 서울이건치과",
+    "width": 224
+  }
+]

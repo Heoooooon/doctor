@@ -28,7 +28,7 @@ export default function MapSection() {
 
           {/* ── Contact ── */}
           <div className={`lg:col-span-3 ${isVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}>
-            <p className="text-[#38b6ff] text-[15px] font-bold tracking-[0.2em] uppercase mb-5">
+            <p className="text-[#38b6ff] text-[18px] font-bold tracking-[0.16em] uppercase mb-5">
               Contact
             </p>
             <a
@@ -41,21 +41,21 @@ export default function MapSection() {
 
             <div className="mt-6 space-y-2">
               {clinicInfo.businessHours.map((h) => (
-                <div key={h.day} className="flex items-baseline text-[15px]">
+                <div key={h.day} className="flex items-baseline text-[18px]">
                   <span className="w-9 shrink-0 whitespace-nowrap text-white/45">{h.day}</span>
                   <span className="tabular-nums text-white/85">{h.hours}</span>
                   {h.note && (
-                    <span className="ml-2 text-[12px] text-[#38b6ff] font-medium">{h.note}</span>
+                    <span className="ml-2 text-[18px] text-[#38b6ff] font-medium">{h.note}</span>
                   )}
                 </div>
               ))}
-              <div className="flex items-baseline text-[15px]">
+              <div className="flex items-baseline text-[18px]">
                 <span className="w-9 shrink-0 whitespace-nowrap text-white/45">점심</span>
                 <span className="tabular-nums text-white/60">{clinicInfo.lunchTime}</span>
               </div>
             </div>
 
-            <div className="mt-5 space-y-1 text-[13px] text-white/40 leading-relaxed">
+            <div className="mt-5 space-y-1 text-[18px] text-white/40 leading-relaxed">
               <p>※ 일요일 · 공휴일은 휴진입니다.</p>
               <p>※ 토요일은 점심시간 없이 진료합니다.</p>
             </div>
@@ -65,19 +65,19 @@ export default function MapSection() {
           <div className={`lg:col-span-4 ${isVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}
             style={isVisible ? { animationDelay: '0.1s' } : undefined}
           >
-            <p className="text-[#38b6ff] text-[15px] font-bold tracking-[0.2em] uppercase mb-5">
+            <p className="text-[#38b6ff] text-[18px] font-bold tracking-[0.16em] uppercase mb-5">
               Location
             </p>
 
             <div className="flex items-start gap-2.5">
               <MapPin size={20} className="text-[#38b6ff] shrink-0 mt-1" aria-hidden="true" />
-              <p className="text-[16px] lg:text-[17px] font-semibold leading-relaxed">
+              <p className="text-[18px] lg:text-[20px] font-semibold leading-relaxed">
                 경기도 수원시 영통구<br />
                 인계로220번길 6-3 미산빌딩 2층
               </p>
             </div>
 
-            <div className="mt-6 space-y-3 text-[14px] text-white/70 leading-relaxed">
+            <div className="mt-6 space-y-3 text-[18px] text-white/70 leading-relaxed">
               <p>
                 <span className="text-[#38b6ff] font-semibold">[ 위치 ]</span> 효원공원 인근,
                 수원영통경찰서 매탄지구대 방면
@@ -92,7 +92,7 @@ export default function MapSection() {
                 href={KAKAO_DIRECTIONS}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-[#FEE500] hover:bg-[#f5dc00] text-[#3C1E1E] font-bold text-[14px] px-5 py-3 rounded-full transition-colors"
+                className="inline-flex min-h-[44px] items-center gap-2 bg-[#FEE500] hover:bg-[#f5dc00] text-[#3C1E1E] font-bold text-[18px] px-5 py-3 rounded-full transition-colors"
               >
                 <KakaoIcon />
                 카카오맵 길찾기
@@ -101,7 +101,7 @@ export default function MapSection() {
                 href={KAKAO_MAP}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 border border-white/20 hover:border-[#38b6ff] hover:text-[#38b6ff] text-white/80 font-medium text-[14px] px-5 py-3 rounded-full transition-colors"
+                className="inline-flex min-h-[44px] items-center gap-2 border border-white/20 hover:border-[#38b6ff] hover:text-[#38b6ff] text-white/80 font-medium text-[18px] px-5 py-3 rounded-full transition-colors"
               >
                 <Navigation size={15} aria-hidden="true" />
                 지도 크게 보기
@@ -127,7 +127,7 @@ export default function MapSection() {
                 sizes="(max-width: 1024px) 100vw, 42vw"
                 className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
               />
-              <span className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 bg-black/60 backdrop-blur-sm text-white text-[12px] font-medium px-3 py-1.5 rounded-full">
+              <span className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 bg-black/60 backdrop-blur-sm text-white text-[18px] font-medium px-4 py-2 rounded-full">
                 <Navigation size={13} aria-hidden="true" />
                 지도 보기
               </span>

@@ -104,12 +104,12 @@ export default function FloatingSidebar() {
   const itemClass =
     'group w-full flex flex-col items-center justify-center gap-1.5 py-3 px-1 cursor-pointer ' +
     'text-white/55 hover:text-white hover:bg-white/8 transition-all duration-200'
-  const labelClass = 'text-[10px] font-medium leading-none tracking-wide'
+  const labelClass = 'text-center text-[14px] font-medium leading-tight tracking-wide'
 
   return (
     /* 데스크탑 전용 — 모바일에서는 숨김. 히어로 이후부터 노출 */
     <aside
-      className={`hidden md:flex fixed right-3 top-1/2 -translate-y-1/2 z-50 flex-col w-[64px] transition-opacity duration-300 ${visible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+      className={`hidden md:flex fixed right-3 top-1/2 -translate-y-1/2 z-50 flex-col w-[82px] transition-opacity duration-300 ${visible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
       style={{
         background: '#181818',
         borderRadius: '32px',

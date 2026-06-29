@@ -1,0 +1,294 @@
+docs/design-system.md:63:- 주요 CTA는 반드시 `#0080C8` (Primary)
+docs/design-system.md:65:- 임의 색상 추가 금지 — 팔레트 외 색상은 반드시 이 파일에 먼저 추가
+docs/design-system.md:163:| 치료 전후 사진 | 800 × 600px | WebP / JPG |
+docs/design-system.md:172:- 새 색상·폰트·간격을 추가하면 반드시 이 파일도 업데이트
+data/clinic-info.ts:109:        '교정 전문의 담당 진료 · 반드시 예약 후 방문',
+lib/patient-cases.ts:10:  before_image_url: string | null
+lib/patient-cases.ts:11:  after_image_url: string | null
+lib/patient-cases.ts:35: * public/images/case/{폴더}/ 를 스캔하여 환자사례 목록을 반환.
+lib/patient-cases.ts:36: * 각 폴더에는 before.*, after.*, info.json 이 있어야 함.
+lib/patient-cases.ts:61:    const beforeFile = findImage(dir, 'before')
+lib/patient-cases.ts:62:    const afterFile = findImage(dir, 'after')
+lib/patient-cases.ts:70:      before_image_url: beforeFile ? `/images/case/${slug}/${beforeFile}` : null,
+lib/patient-cases.ts:71:      after_image_url: afterFile ? `/images/case/${slug}/${afterFile}` : null,
+app/media/page.tsx:13:  title: '이건미디어 | 환자후기·이건TV - 서울이건치과',
+app/media/page.tsx:15:    '카카오톡 상담, 환자후기, 원장칼럼, 이건TV를 통해 수원 영통 서울이건치과를 만나보세요.',
+app/media/page.tsx:16:  keywords: ['서울이건치과 후기', '수원치과 후기', '이건TV', '서울이건치과 미디어'],
+app/media/page.tsx:36:    title: '실제 환자후기',
+app/media/page.tsx:38:      '서울이건치과에서 치료받으신 환자분들의 솔직한 후기를 네이버 플레이스에서 확인해보세요.',
+app/media/page.tsx:40:    linkText: '네이버 플레이스에서 후기 보기',
+app/globals.css:48:  max-width: 100%;
+app/globals.css:67:  max-width: 100%;
+app/globals.css:105:  width: 100%;
+app/globals.css:335:  100% { transform: translateX(calc(-100% + 100vw)); }
+app/globals.css:345:    width: 100%;
+app/globals.css:364:    max-width: 100%;
+app/globals.css:405:  100% { object-position: 42% center; }
+app/globals.css:415:  100% { object-position: 33% center; }
+app/globals.css:424:  0%   { object-position: 100% center; }
+app/globals.css:425:  100% { object-position: 85% center; }
+app/globals.css:428:  object-position: 100% center;
+app/globals.css:435:  100% { object-position: 63% center; }
+app/globals.css:445:  100% { object-position: 50% center; }
+app/globals.css:455:  100% { transform: scale(1.07) translateX(-2%); }
+components/main/HeroSlider.tsx:42:  ['치료 전 충분한 설명', '원장이 직접 전하는 안내', '이해에서 시작되는 진료'],
+components/main/HeroSlider.tsx:329:            'linear-gradient(to right, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.35) 50%, rgba(0,0,0,0.15) 100%)',
+components/main/HeroSlider.tsx:337:          background: 'linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 100%)',
+components/main/HeroSlider.tsx:346:          background: 'linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 100%)',
+lib/column-ai.ts:14:- 결과는 본문 inner HTML만 출력합니다. <!DOCTYPE>, <html>, <head>, <style>, <body>, <div class="post-wrap"> 래퍼는 절대 포함하지 않습니다.
+lib/column-ai.ts:33:- 치료 효과 보장, "완치", "확실히", "100%" 같은 표현 금지.
+lib/column-ai.ts:34:- "최고", "최상", "유일", "1위" 등 최상급/배타적 표현 금지.
+lib/column-ai.ts:40:- category: 반드시 다음 중 하나 — 자연치아살리기, 임플란트, 심미보철, 교정치료, 소아치과, 일반진료.
+data/treatments/cosmetic.ts:11:    beforeImage: '/images/treatments/cosmetic/lami_before.jpg?v=2',
+data/treatments/cosmetic.ts:12:    afterImage: '/images/treatments/cosmetic/lami_after.jpg?v=2',
+data/treatments/cosmetic.ts:58:    beforeImage: '/images/treatments/cosmetic/diastema-before.jpg',
+data/treatments/cosmetic.ts:59:    afterImage: '/images/treatments/cosmetic/diastema-after.jpg',
+data/treatments/cosmetic.ts:106:    beforeImage: '/images/treatments/cosmetic/ctg-before.jpg',
+data/treatments/cosmetic.ts:107:    afterImage: '/images/treatments/cosmetic/ctg-after.jpg',
+components/main/PreserveTreatSection.tsx:47:        style={{ background: 'linear-gradient(180deg, transparent 25%, rgba(8,12,30,0.90) 100%)' }}
+data/treatments/natural-tooth.ts:17:      { icon: 'Star', label: '높은 성공률', desc: '정확한 진단과 치료로\n높은 성공률을 자랑합니다.' },
+data/treatments/natural-tooth.ts:54:        question: '치료 후 다시 아플 수도 있나요?',
+data/treatments/natural-tooth.ts:56:          '치수 상태나 회복 반응에 따라 예후가 달라질 수 있습니다. 치료 후 경과 관찰이 중요하며, 경우에 따라 추가 치료가 필요할 수 있습니다.',
+data/treatments/natural-tooth.ts:68:      { src: '/images/treatments/natural-tooth/onlay-1.png', caption: '치료 전' },
+data/treatments/natural-tooth.ts:134:      { icon: 'Link', label: '보철 연계', desc: '치료 후 크라운 등\n보철로 이어갑니다.' },
+data/treatments/natural-tooth.ts:155:          '남아 있는 치아량, 균열 여부, 잇몸 상태 등에 따라 달라질 수 있습니다. 치료 후 크라운 등 적절한 보강이 중요합니다.',
+data/treatments/natural-tooth.ts:163:        question: '신경치료 후에도 통증이 있을 수 있나요?',
+data/treatments/natural-tooth.ts:175:    beforeImage: '/images/treatments/natural-tooth/sc-before.jpg',
+data/treatments/natural-tooth.ts:176:    afterImage: '/images/treatments/natural-tooth/sc-after.jpg',
+data/treatments/natural-tooth.ts:230:    beforeImage: '/images/treatments/natural-tooth/resin-before.jpg',
+data/treatments/natural-tooth.ts:231:    afterImage: '/images/treatments/natural-tooth/resin-after.jpg',
+data/treatments/natural-tooth.ts:248:      '충치 치료 후\n보강이\n필요한 경우',
+docs/planning/06-screens.md:80:- 구성: 블로그, 유튜브, 카톡상담, 환자실제후기(플레이스) 아이콘 배치
+docs/planning/06-screens.md:178:- 기능: 사진 업로드 (before/after), 제목/설명 편집, 블로그 링크 추가, 정렬 순서 변경
+components/main/ImplantTypeSection.tsx:56:              background: 'linear-gradient(135deg, #0080C8 0%, #38b6ff 50%, #0080C8 100%)',
+data/treatments/implant.ts:54:          '반드시 그렇지는 않습니다. 잔존 뼈 상태와 교합 조건에 따라 소수의 임플란트로 전체 보철을 지지하는 방식을 고려할 수 있습니다.',
+data/treatments/implant.ts:74:    beforeImage: '/images/treatments/implant/immediate-before.jpg',
+data/treatments/implant.ts:75:    afterImage: '/images/treatments/implant/immediate_2.jpg',
+data/treatments/implant.ts:150:턱 안에는 신경과 혈관이 지나고 있습니다. 네비게이션 임플란트는 수술 전 **3D로 완벽하게 시뮬레이션**해 신경 손상 위험을 최소화하고, 계획한 위치 그대로 **오차 없이** 심습니다.
+data/treatments/implant.ts:218:        question: '치료 후 회복 기간은 얼마나 걸리나요?',
+data/treatments/implant.ts:230:    beforeImage: '/images/treatments/implant/impl-before.jpg?v=2',
+data/treatments/implant.ts:231:    afterImage: '/images/treatments/implant/impl-after.jpg',
+data/treatments/implant.ts:245:      { tag: '회복 과정 혈당 관리 안내', description: '치료 후 회복 과정에서도 혈당 관리를 함께 안내합니다.' },
+data/treatments/implant.ts:251:          '당뇨 자체가 절대적인 금기는 아닙니다. 혈당 조절이 잘 되고 있다면 임플란트 치료를 고려할 수 있으며, 당화혈색소 등을 확인하여 판단합니다.',
+data/treatments/implant.ts:254:        question: '혈당 조절이 완벽해야 하나요?',
+data/treatments/implant.ts:256:          '완벽한 조절보다는 안정적인 관리 상태가 중요합니다. 주치의와 협의하여 적절한 치료 시기를 함께 결정합니다.',
+components/main/MediaSection.tsx:12:  { id: 'review',  label: '환자분 실제 후기', image: '/images/media-image/review.webp',  href: 'https://m.place.naver.com/restaurant/12872860',               external: true,  hoverColor: '#22C55E' },
+app/pediatric/page.tsx:24:        backgroundSize: '100% auto',
+components/main/TreatmentCarousel.tsx:169:                      background: 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 60%, transparent 100%)',
+app/cases/page.tsx:7:  title: '환자사례 | 수원 임플란트·교정 치료 전후 - 서울이건치과',
+app/cases/page.tsx:8:  description: '실제 내원 환자분의 치료 전·후 사례입니다. 치료 결과는 개인의 구강 상태에 따라 달라질 수 있습니다.',
+app/cases/page.tsx:9:  keywords: ['수원치과 환자사례', '임플란트 전후', '교정 전후', '서울이건치과 사례'],
+app/cases/page.tsx:32:      before_image_url: row.before_image_url,
+app/cases/page.tsx:33:      after_image_url: row.after_image_url,
+docs/planning/04-database-design.md:25:        text before_image_url
+docs/planning/04-database-design.md:26:        text after_image_url
+docs/planning/04-database-design.md:75:| before_image_url | text | NULL | 비포 이미지 URL |
+docs/planning/04-database-design.md:76:| after_image_url | text | NULL | 애프터 이미지 URL |
+docs/planning/04-database-design.md:164:| cases | 증례 사진 (before/after) | 공개 읽기, 관리자만 업로드 |
+docs/planning/01-prd.md:97:- As a 관리자, I want 증례사진을 업로드/수정, so that 최신 치료 사례를 보여줄 수 있다
+app/icon.svg:3:    <linearGradient id="gGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+app/icon.svg:5:      <stop offset="100%" style="stop-color:#1A7EC8;stop-opacity:1" />
+app/admin/AdminDashboardCards.tsx:21:    description: '치료 사례 및 Before/After 관리',
+app/api/columns/import-naver/route.ts:182:- 입력에 있는 <img src="..."> URL만 그대로 사용합니다. 절대 새 이미지 URL을 지어내지 않습니다.
+docs/planning/06-tasks.md:363:  - 추가/수정 모달 (제목, 설명, before/after 이미지 업로드, 블로그 URL)
+app/admin/patient-cases/page.tsx:12:  before_image_url: string | null
+app/admin/patient-cases/page.tsx:13:  after_image_url: string | null
+app/admin/patient-cases/page.tsx:26:  before_image_url: string
+app/admin/patient-cases/page.tsx:27:  after_image_url: string
+app/admin/patient-cases/page.tsx:46:  before_image_url: '',
+app/admin/patient-cases/page.tsx:47:  after_image_url: '',
+app/admin/patient-cases/page.tsx:61:  const [uploading, setUploading] = useState<'before' | 'after' | null>(null)
+app/admin/patient-cases/page.tsx:90:      before_image_url: item.before_image_url || '',
+app/admin/patient-cases/page.tsx:91:      after_image_url: item.after_image_url || '',
+app/admin/patient-cases/page.tsx:99:  const uploadImage = async (file: File, field: 'before_image_url' | 'after_image_url') => {
+app/admin/patient-cases/page.tsx:101:    setUploading(field === 'before_image_url' ? 'before' : 'after')
+app/admin/patient-cases/page.tsx:160:          <h1 className="text-2xl font-bold text-gray-900">환자사례 관리</h1>
+app/admin/patient-cases/page.tsx:161:          <p className="text-sm text-gray-500 mt-0.5">News 게시판 환자사례 (치료 후 공개 / 치료 전 로그인)</p>
+app/admin/patient-cases/page.tsx:168:          사례 추가
+app/admin/patient-cases/page.tsx:175:        <div className="text-center py-12 text-gray-400">등록된 환자사례가 없습니다.</div>
+app/admin/patient-cases/page.tsx:193:                      {item.before_image_url ? (
+app/admin/patient-cases/page.tsx:194:                        <img src={item.before_image_url} alt="" className="w-10 h-10 rounded object-cover" />
+app/admin/patient-cases/page.tsx:196:                      {item.after_image_url ? (
+app/admin/patient-cases/page.tsx:197:                        <img src={item.after_image_url} alt="" className="w-10 h-10 rounded object-cover" />
+app/admin/patient-cases/page.tsx:240:                {editingId ? '환자사례 수정' : '환자사례 추가'}
+app/admin/patient-cases/page.tsx:287:                {(['before_image_url', 'after_image_url'] as const).map((field) => {
+app/admin/patient-cases/page.tsx:288:                  const isBefore = field === 'before_image_url'
+app/admin/patient-cases/page.tsx:289:                  const which = isBefore ? 'before' : 'after'
+app/admin/patient-cases/page.tsx:290:                  const label = isBefore ? 'Before (치료 전)' : 'After (치료 후)'
+app/admin/patient-cases/page.tsx:373:                  placeholder="사례 간단 설명"
+app/admin/patient-cases/page.tsx:410:            <p className="text-sm text-gray-500 mb-6">삭제한 환자사례는 복구할 수 없습니다.</p>
+app/api/patient-cases/[id]/route.ts:19:      'before_image_url', 'after_image_url', 'treatment_period',
+docs/planning/07-coding-convention.md:133:- **이벤트 핸들러**: `handle` + 동사 (`handleClick`, `handleSubmit`)
+docs/planning/07-coding-convention.md:224:- 증례사진 (before/after) → `cases` 테이블 + Storage
+app/admin/columns/page.tsx:31:  <img src="[이미지URL]" style="max-width:100%; display:block; margin:0 auto;" alt="[이미지 설명]">
+app/admin/columns/page.tsx:313:    if (ref) ref.before(...group)
+app/admin/columns/page.tsx:347:      if (prev) prev.before(...group)
+app/admin/columns/page.tsx:349:      const after = group[group.length - 1].nextElementSibling
+app/admin/columns/page.tsx:350:      if (after) after.after(...group)
+app/admin/columns/page.tsx:372:      box.after(cap)
+app/api/patient-cases/route.ts:56:        before_image_url: body.before_image_url || null,
+app/api/patient-cases/route.ts:57:        after_image_url: body.after_image_url || null,
+components/main/ImplantSection.tsx:45:          상실된 치아, 완벽한 복원
+components/main/ImplantSection.tsx:80:            { label: '의식하 진정', desc: '공포 없는 수술 환경' },
+components/IntroScreen.tsx:140:          width: 100%; height: 100dvh;
+components/IntroScreen.tsx:201:          100% { transform: translateY(-100%); }
+app/admin/AdminSidebar.tsx:22:  { href: '/admin/patient-cases', label: '환자사례 관리', icon: Users },
+components/main/ImplantFaqSection.tsx:18:    a: '적절한 관리와 정기 검진을 받으시면 반영구적으로 사용 가능합니다. 구강 위생 관리와 정기적인 내원이 수명을 결정하는 가장 중요한 요소입니다.',
+components/board/CosmeticIdentity.tsx:22:      title={<>자연스러운 아름다움,<br /><span className="text-[#0080C8]">기능까지 완벽하게</span></>}
+components/board/NaturalToothIdentity.tsx:14:    description: '빠른 치료보다 오래 가는 치료를 목표로 합니다.\n치료 후 10년, 20년을 내다보는\n이건치과의 보존 중심 진료 철학입니다.',
+app/admin/cases/page.tsx:18:  before_image_url: string | null
+app/admin/cases/page.tsx:19:  after_image_url: string | null
+app/admin/cases/page.tsx:30:  before_image_url: string
+app/admin/cases/page.tsx:31:  after_image_url: string
+app/admin/cases/page.tsx:89:  before_image_url: '',
+app/admin/cases/page.tsx:90:  after_image_url: '',
+app/admin/cases/page.tsx:102:  const [uploading, setUploading] = useState<'before' | 'after' | null>(null)
+app/admin/cases/page.tsx:135:      before_image_url: item.before_image_url || '',
+app/admin/cases/page.tsx:136:      after_image_url: item.after_image_url || '',
+app/admin/cases/page.tsx:158:        before_image_url: form.before_image_url || null,
+app/admin/cases/page.tsx:159:        after_image_url: form.after_image_url || null,
+app/admin/cases/page.tsx:194:    field: 'before_image_url' | 'after_image_url',
+app/admin/cases/page.tsx:196:    const which = field === 'before_image_url' ? 'before' : 'after'
+app/admin/cases/page.tsx:433:                {(['before_image_url', 'after_image_url'] as const).map(
+app/admin/cases/page.tsx:436:                      field === 'before_image_url'
+app/admin/cases/page.tsx:440:                      field === 'before_image_url' ? 'before' : 'after'
+components/main/NaturalSolution.tsx:37:      style={{ background: 'linear-gradient(160deg, #1a1f3a 0%, #0f142b 100%)' }}>
+components/main/NaturalSolution.tsx:99:        자연치 보존치료 전체 보기
+components/cases/CasesView.tsx:58:            <h1 className="text-3xl sm:text-4xl font-bold text-[#2B2D42] mb-2">환자사례</h1>
+components/cases/CasesView.tsx:60:              실제 내원 환자분의 치료 전·후 사례입니다.<br className="hidden sm:block" />
+components/cases/CasesView.tsx:130:            <span className="font-semibold text-gray-800">{filtered.length}</span>개의 사례
+components/cases/CasesView.tsx:135:              치료 전 사진은 로그인 후 확인 가능합니다
+components/cases/CasesView.tsx:148:            <p className="text-gray-500 font-medium mb-1">등록된 사례가 없습니다</p>
+components/cases/CasesView.tsx:149:            <p className="text-sm text-gray-400">해당 카테고리의 사례를 준비 중입니다.</p>
+components/cases/CasesView.tsx:168:            <p className="font-semibold text-gray-800 mb-1">치료 전 사진은 회원 전용입니다</p>
+components/cases/CasesView.tsx:169:            <p className="text-sm text-gray-500 mb-5">간단한 가입 후 모든 치료 전·후 사례를 확인하실 수 있습니다.</p>
+components/cases/CasesView.tsx:177:          본 사례는 해당 환자분의 동의를 받아 게시된 자료입니다.<br />
+components/cases/CasesView.tsx:241:          {item.before_image_url ? (
+components/cases/CasesView.tsx:243:              src={item.before_image_url}
+components/cases/CasesView.tsx:244:              alt="치료 전"
+components/cases/CasesView.tsx:251:          {!isLoggedIn && item.before_image_url && (
+components/cases/CasesView.tsx:262:          {item.after_image_url ? (
+components/cases/CasesView.tsx:263:            <img src={item.after_image_url} alt="치료 후" className="w-full h-52 sm:h-64 object-cover block" />
+components/cases/CasesView.tsx:336:          {isLoggedIn && item.before_image_url && (
+components/cases/CasesView.tsx:339:              <img src={item.before_image_url} alt="치료 전 원본" className="max-w-full max-h-[82vh] object-contain cursor-default" />
+components/cases/CasesView.tsx:342:          {item.after_image_url && (
+components/cases/CasesView.tsx:345:              <img src={item.after_image_url} alt="치료 후 원본" className="max-w-full max-h-[82vh] object-contain cursor-default" />
+components/ui/BeforeAfterSlider.tsx:6:  beforeSrc: string
+components/ui/BeforeAfterSlider.tsx:7:  afterSrc: string
+components/ui/BeforeAfterSlider.tsx:8:  beforeAlt?: string
+components/ui/BeforeAfterSlider.tsx:9:  afterAlt?: string
+components/ui/BeforeAfterSlider.tsx:10:  beforeScale?: number
+components/ui/BeforeAfterSlider.tsx:11:  beforeOffsetX?: number
+components/ui/BeforeAfterSlider.tsx:15:  beforeSrc,
+components/ui/BeforeAfterSlider.tsx:16:  afterSrc,
+components/ui/BeforeAfterSlider.tsx:17:  beforeAlt = 'Before',
+components/ui/BeforeAfterSlider.tsx:18:  afterAlt = 'After',
+components/ui/BeforeAfterSlider.tsx:19:  beforeScale,
+components/ui/BeforeAfterSlider.tsx:20:  beforeOffsetX = 0,
+components/ui/BeforeAfterSlider.tsx:70:        src={beforeSrc}
+components/ui/BeforeAfterSlider.tsx:71:        alt={beforeAlt}
+components/ui/BeforeAfterSlider.tsx:74:          width: beforeOffsetX ? `calc(100% + ${beforeOffsetX}px)` : '100%',
+components/ui/BeforeAfterSlider.tsx:75:          marginLeft: beforeOffsetX ? `-${beforeOffsetX}px` : undefined,
+components/ui/BeforeAfterSlider.tsx:76:          transform: beforeScale ? `scale(${beforeScale})` : undefined,
+components/ui/BeforeAfterSlider.tsx:88:          src={afterSrc}
+components/ui/BeforeAfterSlider.tsx:89:          alt={afterAlt}
+components/board/TreatmentSection.tsx:102:    body: '턱 안에는 신경과 혈관이 지나고 있습니다. 수술 전 3D 시뮬레이션으로 신경 손상 위험을 최소화하고, 계획한 위치 그대로 오차 없이 식립합니다.',
+components/board/TreatmentSection.tsx:645:        {/* 오른쪽: before/after 이미지 */}
+components/board/TreatmentSection.tsx:653:          {treatment.beforeImage && (
+components/board/TreatmentSection.tsx:655:              <img src={treatment.beforeImage} alt="당뇨 환자 임플란트 치료 전" className="w-full aspect-[16/9] object-cover" />
+components/board/TreatmentSection.tsx:659:          {treatment.afterImage && (
+components/board/TreatmentSection.tsx:661:              <img src={treatment.afterImage} alt="당뇨 환자 임플란트 치료 후" className="w-full aspect-[16/9] object-cover" />
+components/board/TreatmentSection.tsx:665:          {/* 전신 건강 고려 카드 — before/after 사이 빈 공간(우측 대각선)에 배치 */}
+components/board/TreatmentSection.tsx:764:              오차 없이 정밀하게 심습니다
+components/board/TreatmentSection.tsx:950:          {treatment.beforeImage && (
+components/board/TreatmentSection.tsx:952:              <img src={treatment.beforeImage} alt="즉시로딩 임플란트 치료 전" className="w-full aspect-[16/9] object-cover" />
+components/board/TreatmentSection.tsx:956:          {treatment.afterImage && (
+components/board/TreatmentSection.tsx:958:              <img src={treatment.afterImage} alt="즉시로딩 임플란트 치료 후" className="w-full aspect-[16/9] object-cover" />
+components/board/TreatmentSection.tsx:1180:            {treatment.beforeImage && treatment.afterImage ? (
+components/board/TreatmentSection.tsx:1182:                beforeSrc={treatment.beforeImage}
+components/board/TreatmentSection.tsx:1183:                afterSrc={treatment.afterImage}
+components/board/TreatmentSection.tsx:1184:                beforeAlt={`${treatment.title} 시술 전`}
+components/board/TreatmentSection.tsx:1185:                afterAlt={`${treatment.title} 시술 후`}
+components/board/TreatmentSection.tsx:1186:                beforeScale={treatment.beforeScale}
+components/board/TreatmentSection.tsx:1187:                beforeOffsetX={treatment.beforeOffsetX}
+components/board/TreatmentSection.tsx:1291:            {treatment.beforeImage && treatment.afterImage ? (
+components/board/TreatmentSection.tsx:1293:                beforeSrc={treatment.beforeImage}
+components/board/TreatmentSection.tsx:1294:                afterSrc={treatment.afterImage}
+components/board/TreatmentSection.tsx:1295:                beforeAlt={`${treatment.title} 시술 전`}
+components/board/TreatmentSection.tsx:1296:                afterAlt={`${treatment.title} 시술 후`}
+components/board/TreatmentSection.tsx:1297:                beforeScale={treatment.beforeScale}
+components/board/TreatmentSection.tsx:1298:                beforeOffsetX={treatment.beforeOffsetX}
+components/board/TreatmentSection.tsx:1454:            {treatment.beforeImage && treatment.afterImage ? (
+components/board/TreatmentSection.tsx:1456:                beforeSrc={treatment.beforeImage}
+components/board/TreatmentSection.tsx:1457:                afterSrc={treatment.afterImage}
+components/board/TreatmentSection.tsx:1458:                beforeAlt={`${treatment.title} 시술 전`}
+components/board/TreatmentSection.tsx:1459:                afterAlt={`${treatment.title} 시술 후`}
+components/board/TreatmentSection.tsx:1714:            {treatment.beforeImage && treatment.afterImage ? (
+components/board/TreatmentSection.tsx:1716:                beforeSrc={treatment.beforeImage}
+components/board/TreatmentSection.tsx:1717:                afterSrc={treatment.afterImage}
+components/board/TreatmentSection.tsx:1718:                beforeAlt={`${treatment.title} 시술 전`}
+components/board/TreatmentSection.tsx:1719:                afterAlt={`${treatment.title} 시술 후`}
+components/board/TreatmentSection.tsx:2108:          <div className={`${treatment.beforeImage && treatment.afterImage || treatment.videoUrl ? '' : singleImageFrameClass} rounded-2xl flex items-center justify-center overflow-hidden`}>
+components/board/TreatmentSection.tsx:2119:            ) : treatment.beforeImage && treatment.afterImage ? (
+components/board/TreatmentSection.tsx:2121:                beforeSrc={treatment.beforeImage}
+components/board/TreatmentSection.tsx:2122:                afterSrc={treatment.afterImage}
+components/board/TreatmentSection.tsx:2123:                beforeAlt={`${treatment.title} 시술 전`}
+components/board/TreatmentSection.tsx:2124:                afterAlt={`${treatment.title} 시술 후`}
+components/board/TreatmentSection.tsx:2125:                beforeScale={treatment.beforeScale}
+components/board/TreatmentSection.tsx:2126:                beforeOffsetX={treatment.beforeOffsetX}
+components/board/TreatmentSection.tsx:2131:                <img src={treatment.sideImage} alt={`${treatment.title} 사례`} className="w-full h-auto rounded-2xl" />
+components/board/TreatmentSection.tsx:2208:              alt={`${treatment.title} 사례`}
+app/api/cases/[id]/route.ts:19:    const fields = ['title', 'description', 'board_category', 'treatment_type', 'before_image_url', 'after_image_url', 'sort_order']
+components/cases/SignupGateModal.tsx:171:            <p className="text-sm text-gray-500">치료 사례를 확인하실 수 있습니다.</p>
+components/cases/SignupGateModal.tsx:179:                <h2 className="text-base font-bold text-gray-900">치료 사례 전체 보기</h2>
+components/cases/SignupGateModal.tsx:180:                <p className="text-[12px] text-gray-500">회원 전용 — 치료 후 사진 확인 가능</p>
+components/cases/CaseGrid.tsx:11:  beforeSrc: string
+components/cases/CaseGrid.tsx:12:  afterSrc: string
+components/cases/CaseGrid.tsx:13:  beforeAlt: string
+components/cases/CaseGrid.tsx:14:  afterAlt: string
+components/cases/CaseGrid.tsx:54:                    src={item.beforeSrc}
+components/cases/CaseGrid.tsx:55:                    alt={item.beforeAlt}
+components/cases/CaseGrid.tsx:71:                    src={item.afterSrc}
+components/cases/CaseGrid.tsx:72:                    alt={item.afterAlt}
+components/cases/CaseGrid.tsx:97:          <p className="text-sm font-semibold text-gray-800">치료 후 사진은 회원 전용입니다</p>
+components/cases/CaseGrid.tsx:98:          <p className="text-xs text-gray-500">간단한 회원가입 후 모든 사례를 확인하세요</p>
+app/api/columns/generate-from-docx/route.ts:107:- 입력 HTML에 <img src="...">가 있으면 해당 src URL을 그대로 사용합니다. 절대 새 이미지 URL을 지어내지 않습니다.
+app/api/columns/generate-from-docx/route.ts:110:- 각 이미지는 반드시 <div class="img-box"><img src="제공된 URL" alt="내용 설명"></div>와 <p class="img-caption">▲ 캡션</p> 구조로 감쌉니다.
+components/about/PhilosophySection.tsx:19:      '무통마취기법과\n충분한 마취시간으로\n두려움 없이 치료받으실 수 있습니다.',
+components/about/AccessSection.tsx:74:            <div className="relative w-full aspect-[4/3] sm:aspect-video lg:aspect-auto lg:h-[calc(100%-56px)] min-h-64 rounded-2xl overflow-hidden border border-gray-200">
+docs/medical-law.md:3:> 홈페이지 콘텐츠 작성·수정 시 반드시 확인하세요.
+docs/medical-law.md:31:| 치료 효과 보장 | "100% 성공", "반드시 나아집니다" | "많은 환자분들이 좋은 결과를 경험하셨습니다" |
+docs/medical-law.md:32:| 최상급 표현 | "최고의 치과", "국내 최다 임플란트" | "오랜 경험의 전문의 직접 진료" |
+docs/medical-law.md:34:| 환자 후기 사용 | 환자 실명·사진 후기 | 사전 서면 동의 필수 |
+docs/medical-law.md:36:| 가격 비교 할인 강조 | "50% 할인", "이벤트 가격" | 심의 받은 경우 가능 |
+docs/medical-law.md:55:- 전문의 표기: 반드시 해당 전문과목 명시
+docs/medical-law.md:74:## 6. 치료 전후 사진(B/A) 사용
+docs/medical-law.md:87:> 본 페이지의 내용은 일반적인 의료 정보 제공을 목적으로 하며, 개인의 상태에 따라 치료 결과가 다를 수 있습니다. 정확한 진단과 치료는 반드시 전문의와 상담하시기 바랍니다.
+components/about/DoctorProfileSection.tsx:144:        <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.45) 100%)' }} />
+components/board/ImplantIdentity.tsx:14:    description: '뼈와 완전히 융합되는 반영구 솔루션입니다.\n정기 검진과 올바른 관리로\n평생 함께하는 치아를 만듭니다.',
+docs/brand.md:200:| 최고의 치과      | 정성을 다해 진료하는 치과         |
+docs/brand.md:201:| 100% 성공     | 개인 상태에 따라 결과가 달라질 수 있음 |
+docs/brand.md:202:| 완벽한 치료      | 정확한 진단을 바탕으로 한 치료      |
+docs/brand.md:203:| 무통 치료       | 통증 부담을 줄이기 위한 노력       |
+docs/brand.md:205:| 절대 아프지 않습니다 | 불편감을 줄이기 위해 세심하게 진료    |
+docs/brand.md:373:* 환자 후기나 치료 전후 사진을 홍보 목적으로 사용하지 않습니다.
+components/about/DoctorTeamSection.tsx:109:                      background: 'linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.1) 55%, transparent 100%)',
+components/about/DoctorTeamSection.tsx:122:                      background: 'linear-gradient(to top, rgba(0,64,128,0.92) 0%, rgba(0,64,128,0.6) 50%, rgba(0,0,0,0.1) 100%)',
+components/about/DoctorTeamSection.tsx:149:                      background: 'linear-gradient(135deg, rgba(255,255,255,0.55) 0%, rgba(0,128,200,0.4) 100%)',
+app/api/cases/route.ts:58:    const { title, description, board_category, treatment_type, before_image_url, after_image_url, blog_urls } = body
+app/api/cases/route.ts:74:        before_image_url: before_image_url || null,
+app/api/cases/route.ts:75:        after_image_url: after_image_url || null,
+components/layout/Header.tsx:22:  { label: '환자사례', href: '/cases' },
+components/layout/MobileNav.tsx:26:  { label: '환자사례', href: '/cases' },
+components/board/CaseGallery.tsx:10:  before_image_url: string | null
+components/board/CaseGallery.tsx:11:  after_image_url: string | null
+components/board/CaseGallery.tsx:74:              {item.before_image_url || item.after_image_url ? (
+components/board/CaseGallery.tsx:76:                  {item.before_image_url && (
+components/board/CaseGallery.tsx:79:                        src={item.before_image_url}
+components/board/CaseGallery.tsx:88:                  {item.after_image_url && (
+components/board/CaseGallery.tsx:91:                        src={item.after_image_url}
+components/board/CaseGallery.tsx:165:            {(selected.before_image_url || selected.after_image_url) && (
+components/board/CaseGallery.tsx:167:                {selected.before_image_url && (
+components/board/CaseGallery.tsx:169:                    <img src={selected.before_image_url} alt="Before" className="w-full object-cover" />
+components/board/CaseGallery.tsx:173:                {selected.after_image_url && (
+components/board/CaseGallery.tsx:175:                    <img src={selected.after_image_url} alt="After" className="w-full object-cover" />

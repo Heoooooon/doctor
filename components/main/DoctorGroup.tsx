@@ -50,7 +50,7 @@ export default function DoctorGroup() {
         <div className="w-10 h-[1.5px] bg-white/50 my-4" />
 
         {/* 서브카피 */}
-        <p className="text-white/75 text-[17px] font-light leading-snug mb-6">
+        <p className="text-white/75 text-[18px] font-light leading-snug mb-6">
           마음을 담아 정성을 다하여
         </p>
 
@@ -59,7 +59,7 @@ export default function DoctorGroup() {
           href="/about#doctor-intro"
           className="inline-flex items-center justify-center gap-2
             h-[48px] px-7 rounded-full
-            bg-[#0080C8] text-white text-[15px] font-semibold
+            bg-[#0080C8] text-white text-[18px] font-semibold
             shadow-[0_4px_20px_rgba(0,128,200,0.4)]
             transition-all duration-200 active:bg-[#006EAA]"
         >
@@ -100,10 +100,10 @@ export default function DoctorGroup() {
         <Link
           href="/about#doctor-intro"
           className="mt-8 inline-flex items-center justify-center gap-2
-            h-[36px] px-5 w-[150px]
+            min-h-[44px] px-5 w-[150px]
             rounded-none bg-white/10 text-gray-800
             border border-gray-700/60 backdrop-blur-[2px]
-            text-[14px] font-semibold
+            text-[18px] font-semibold
             transition-all duration-200
             hover:bg-white/35 hover:border-[#0080C8] hover:text-[#0080C8]"
         >

@@ -1,0 +1,342 @@
+
+===== / =====
+HTTP/1.1 200 OK
+X-Frame-Options: DENY
+X-Content-Type-Options: nosniff
+Referrer-Policy: strict-origin-when-cross-origin
+Permissions-Policy: camera=(), microphone=(), geolocation=()
+Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+Vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+x-nextjs-prerender: 1
+x-nextjs-prerender: 1
+x-nextjs-stale-time: 300
+X-Powered-By: Next.js
+Cache-Control: s-maxage=31536000
+ETag: "12cd99rg9fc3x6t"
+Content-Type: text/html; charset=utf-8
+Content-Length: 192943
+Date: Mon, 29 Jun 2026 09:45:58 GMT
+Connection: keep-alive
+
+===== /about =====
+HTTP/1.1 200 OK
+X-Frame-Options: DENY
+X-Content-Type-Options: nosniff
+Referrer-Policy: strict-origin-when-cross-origin
+Permissions-Policy: camera=(), microphone=(), geolocation=()
+Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+Vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+x-nextjs-prerender: 1
+x-nextjs-prerender: 1
+x-nextjs-stale-time: 300
+X-Powered-By: Next.js
+Cache-Control: s-maxage=31536000
+ETag: "9r4s0vy1ed2lw8"
+Content-Type: text/html; charset=utf-8
+Content-Length: 130113
+Date: Mon, 29 Jun 2026 09:45:58 GMT
+Connection: keep-alive
+
+===== /implant =====
+HTTP/1.1 200 OK
+X-Frame-Options: DENY
+X-Content-Type-Options: nosniff
+Referrer-Policy: strict-origin-when-cross-origin
+Permissions-Policy: camera=(), microphone=(), geolocation=()
+Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+Vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+x-nextjs-prerender: 1
+x-nextjs-prerender: 1
+x-nextjs-stale-time: 300
+X-Powered-By: Next.js
+Cache-Control: s-maxage=31536000
+ETag: "11770ttxgto3ldh"
+Content-Type: text/html; charset=utf-8
+Content-Length: 191627
+Date: Mon, 29 Jun 2026 09:45:58 GMT
+Connection: keep-alive
+
+===== /natural-tooth =====
+HTTP/1.1 200 OK
+X-Frame-Options: DENY
+X-Content-Type-Options: nosniff
+Referrer-Policy: strict-origin-when-cross-origin
+Permissions-Policy: camera=(), microphone=(), geolocation=()
+Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+Vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+x-nextjs-prerender: 1
+x-nextjs-prerender: 1
+x-nextjs-stale-time: 300
+X-Powered-By: Next.js
+Cache-Control: s-maxage=31536000
+ETag: "8l3x7j70a63qhr"
+Content-Type: text/html; charset=utf-8
+Content-Length: 196951
+Date: Mon, 29 Jun 2026 09:45:58 GMT
+Connection: keep-alive
+
+===== /digital-prosthesis =====
+HTTP/1.1 200 OK
+X-Frame-Options: DENY
+X-Content-Type-Options: nosniff
+Referrer-Policy: strict-origin-when-cross-origin
+Permissions-Policy: camera=(), microphone=(), geolocation=()
+Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+Vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+x-nextjs-prerender: 1
+x-nextjs-prerender: 1
+x-nextjs-stale-time: 300
+X-Powered-By: Next.js
+Cache-Control: s-maxage=31536000
+ETag: "ssdbam3w4925ro"
+Content-Type: text/html; charset=utf-8
+Content-Length: 115545
+Date: Mon, 29 Jun 2026 09:45:58 GMT
+Connection: keep-alive
+
+===== /orthodontic =====
+HTTP/1.1 200 OK
+X-Frame-Options: DENY
+X-Content-Type-Options: nosniff
+Referrer-Policy: strict-origin-when-cross-origin
+Permissions-Policy: camera=(), microphone=(), geolocation=()
+Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+Vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+x-nextjs-prerender: 1
+x-nextjs-prerender: 1
+x-nextjs-stale-time: 300
+X-Powered-By: Next.js
+Cache-Control: s-maxage=31536000
+ETag: "2wflwytnpp1ulp"
+Content-Type: text/html; charset=utf-8
+Content-Length: 98265
+Date: Mon, 29 Jun 2026 09:45:58 GMT
+Connection: keep-alive
+
+===== /pediatric =====
+HTTP/1.1 200 OK
+X-Frame-Options: DENY
+X-Content-Type-Options: nosniff
+Referrer-Policy: strict-origin-when-cross-origin
+Permissions-Policy: camera=(), microphone=(), geolocation=()
+Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+Vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+x-nextjs-prerender: 1
+x-nextjs-prerender: 1
+x-nextjs-stale-time: 300
+X-Powered-By: Next.js
+Cache-Control: s-maxage=31536000
+ETag: "u1hvohfm9r1o2z"
+Content-Type: text/html; charset=utf-8
+Content-Length: 88297
+Date: Mon, 29 Jun 2026 09:45:58 GMT
+Connection: keep-alive
+
+===== /invisalign =====
+HTTP/1.1 200 OK
+X-Frame-Options: DENY
+X-Content-Type-Options: nosniff
+Referrer-Policy: strict-origin-when-cross-origin
+Permissions-Policy: camera=(), microphone=(), geolocation=()
+Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+Vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+x-nextjs-prerender: 1
+x-nextjs-prerender: 1
+x-nextjs-stale-time: 300
+X-Powered-By: Next.js
+Cache-Control: s-maxage=31536000
+ETag: "16ze54pmuqm1q2a"
+Content-Type: text/html; charset=utf-8
+Content-Length: 91376
+Date: Mon, 29 Jun 2026 09:45:58 GMT
+Connection: keep-alive
+
+===== /location =====
+HTTP/1.1 200 OK
+X-Frame-Options: DENY
+X-Content-Type-Options: nosniff
+Referrer-Policy: strict-origin-when-cross-origin
+Permissions-Policy: camera=(), microphone=(), geolocation=()
+Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+Vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+x-nextjs-prerender: 1
+x-nextjs-prerender: 1
+x-nextjs-stale-time: 300
+X-Powered-By: Next.js
+Cache-Control: s-maxage=31536000
+ETag: "lvi1g2aic616j2"
+Content-Type: text/html; charset=utf-8
+Content-Length: 58903
+Date: Mon, 29 Jun 2026 09:45:58 GMT
+Connection: keep-alive
+
+===== /cases =====
+HTTP/1.1 200 OK
+X-Frame-Options: DENY
+X-Content-Type-Options: nosniff
+Referrer-Policy: strict-origin-when-cross-origin
+Permissions-Policy: camera=(), microphone=(), geolocation=()
+Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+Vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding
+link: </_next/static/chunks/0jo~aq.3zn~1..css>; rel=preload; as="style"
+X-Powered-By: Next.js
+Cache-Control: private, no-cache, no-store, max-age=0, must-revalidate
+Content-Type: text/html; charset=utf-8
+Date: Mon, 29 Jun 2026 09:45:59 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+
+===== /media =====
+HTTP/1.1 200 OK
+X-Frame-Options: DENY
+X-Content-Type-Options: nosniff
+Referrer-Policy: strict-origin-when-cross-origin
+Permissions-Policy: camera=(), microphone=(), geolocation=()
+Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+Vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+x-nextjs-prerender: 1
+x-nextjs-prerender: 1
+x-nextjs-stale-time: 300
+X-Powered-By: Next.js
+Cache-Control: s-maxage=31536000
+ETag: "uvs6mvpc7x12ul"
+Content-Type: text/html; charset=utf-8
+Content-Length: 53552
+Date: Mon, 29 Jun 2026 09:45:59 GMT
+Connection: keep-alive
+
+===== /column =====
+HTTP/1.1 200 OK
+X-Frame-Options: DENY
+X-Content-Type-Options: nosniff
+Referrer-Policy: strict-origin-when-cross-origin
+Permissions-Policy: camera=(), microphone=(), geolocation=()
+Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+Vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+x-nextjs-prerender: 1
+x-nextjs-prerender: 1
+x-nextjs-stale-time: 300
+X-Powered-By: Next.js
+Cache-Control: s-maxage=31536000
+ETag: "13pxbip8f8ttnw"
+Content-Type: text/html; charset=utf-8
+Content-Length: 40801
+Date: Mon, 29 Jun 2026 09:45:59 GMT
+Connection: keep-alive
+
+===== /notice =====
+HTTP/1.1 200 OK
+X-Frame-Options: DENY
+X-Content-Type-Options: nosniff
+Referrer-Policy: strict-origin-when-cross-origin
+Permissions-Policy: camera=(), microphone=(), geolocation=()
+Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+Vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding
+link: </_next/static/chunks/0jo~aq.3zn~1..css>; rel=preload; as="style"
+X-Powered-By: Next.js
+Cache-Control: private, no-cache, no-store, max-age=0, must-revalidate
+Content-Type: text/html; charset=utf-8
+Date: Mon, 29 Jun 2026 09:46:00 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+
+===== /privacy =====
+HTTP/1.1 200 OK
+X-Frame-Options: DENY
+X-Content-Type-Options: nosniff
+Referrer-Policy: strict-origin-when-cross-origin
+Permissions-Policy: camera=(), microphone=(), geolocation=()
+Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+Vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+x-nextjs-prerender: 1
+x-nextjs-prerender: 1
+x-nextjs-stale-time: 300
+X-Powered-By: Next.js
+Cache-Control: s-maxage=31536000
+ETag: "sikmibfqpi16jb"
+Content-Type: text/html; charset=utf-8
+Content-Length: 65796
+Date: Mon, 29 Jun 2026 09:46:00 GMT
+Connection: keep-alive
+
+===== /signup =====
+HTTP/1.1 200 OK
+X-Frame-Options: DENY
+X-Content-Type-Options: nosniff
+Referrer-Policy: strict-origin-when-cross-origin
+Permissions-Policy: camera=(), microphone=(), geolocation=()
+Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+Vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding
+x-nextjs-cache: HIT
+x-nextjs-prerender: 1
+x-nextjs-prerender: 1
+x-nextjs-stale-time: 300
+X-Powered-By: Next.js
+Cache-Control: s-maxage=31536000
+ETag: "h679q6xo9ssfe"
+Content-Type: text/html; charset=utf-8
+Content-Length: 39141
+Date: Mon, 29 Jun 2026 09:46:00 GMT
+Connection: keep-alive
+
+===== /admin/login =====
+HTTP/1.1 200 OK
+X-Frame-Options: DENY
+X-Content-Type-Options: nosniff
+Referrer-Policy: strict-origin-when-cross-origin
+Permissions-Policy: camera=(), microphone=(), geolocation=()
+Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+Vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding
+X-Powered-By: Next.js
+Cache-Control: private, no-cache, no-store, max-age=0, must-revalidate
+Content-Type: text/html; charset=utf-8
+Date: Mon, 29 Jun 2026 09:46:00 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+
+===== /robots.txt =====
+HTTP/1.1 200 OK
+X-Frame-Options: DENY
+X-Content-Type-Options: nosniff
+Referrer-Policy: strict-origin-when-cross-origin
+Permissions-Policy: camera=(), microphone=(), geolocation=()
+Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch
+x-nextjs-cache: HIT
+cache-control: public, max-age=0, must-revalidate
+content-type: text/plain
+Date: Mon, 29 Jun 2026 09:46:00 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+
+===== /sitemap.xml =====
+HTTP/1.1 200 OK
+X-Frame-Options: DENY
+X-Content-Type-Options: nosniff
+Referrer-Policy: strict-origin-when-cross-origin
+Permissions-Policy: camera=(), microphone=(), geolocation=()
+Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch
+x-nextjs-cache: HIT
+cache-control: public, max-age=0, must-revalidate
+content-type: application/xml
+Date: Mon, 29 Jun 2026 09:46:00 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+

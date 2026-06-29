@@ -26,7 +26,6 @@ export default function BoardHero({ title, subtitle, videoId, localVideo, heroIm
             src={localVideo}
             autoPlay
             muted
-            loop
             playsInline
           />
         )}

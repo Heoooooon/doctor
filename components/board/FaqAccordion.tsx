@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { ChevronDown } from 'lucide-react'
 
 interface FaqItem {
@@ -18,6 +18,10 @@ export default function FaqAccordion({ faq }: FaqAccordionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
   const [isMobile, setIsMobile] = useState(false)
 
+  // 각 답변 내용의 실제 높이 측정 → 하단 예약 공간 계산용
+  const answerRefs = useRef<(HTMLDivElement | null)[]>([])
+  const [reserve, setReserve] = useState(0)
+
   useEffect(() => {
     const mql = window.matchMedia('(max-width: 639px)')
     setIsMobile(mql.matches)
@@ -26,12 +30,36 @@ export default function FaqAccordion({ faq }: FaqAccordionProps) {
     return () => mql.removeEventListener('change', handler)
   }, [])
 
+  // 가장 큰 답변 높이를 하단에 예약 → 어떤 항목을 펼쳐도 FAQ 블록 전체 높이가 일정,
+  // 아래 섹션(다음 진료 챕터/CTA)은 고정된다.
+  useEffect(() => {
+    const measure = () => {
+      const max = answerRefs.current.reduce(
+        (m, el) => Math.max(m, el ? el.scrollHeight : 0),
+        0,
+      )
+      setReserve(max)
+    }
+    measure()
+    window.addEventListener('resize', measure)
+    return () => window.removeEventListener('resize', measure)
+  }, [faq])
+
+  const activeIndex = isMobile ? openIndex : hoveredIndex
+  const activeHeight =
+    activeIndex != null ? answerRefs.current[activeIndex]?.scrollHeight ?? 0 : 0
+  // 펼쳐진 답변 높이만큼 예약 공간을 줄여 총 높이를 일정하게 유지
+  const spacer = Math.max(0, reserve - activeHeight)
+
   return (
     <div>
       <h3 className="text-xl font-semibold text-gray-800 mb-4">
         자주 묻는 질문
       </h3>
-      <dl className="space-y-2">
+      <dl
+        className="space-y-2"
+        onMouseLeave={() => !isMobile && setHoveredIndex(null)}
+      >
         {faq.map((item, index) => {
           const isOpen = isMobile ? openIndex === index : hoveredIndex === index
           const answerId = `faq-answer-${index}`
@@ -41,7 +69,6 @@ export default function FaqAccordion({ faq }: FaqAccordionProps) {
               key={index}
               className="border border-gray-200 rounded-xl overflow-hidden"
               onMouseEnter={() => !isMobile && setHoveredIndex(index)}
-              onMouseLeave={() => !isMobile && setHoveredIndex(null)}
             >
               <dt>
                 <button
@@ -71,11 +98,19 @@ export default function FaqAccordion({ faq }: FaqAccordionProps) {
               </dt>
               <dd
                 id={answerId}
-                className={`overflow-hidden transition-all duration-300 ${
-                  isOpen ? 'max-h-96' : 'max-h-0'
-                }`}
+                className="overflow-hidden transition-[max-height] duration-300"
+                style={{
+                  maxHeight: isOpen
+                    ? answerRefs.current[index]?.scrollHeight ?? 400
+                    : 0,
+                }}
               >
-                <div className="px-5 pb-4 pt-1 flex gap-3">
+                <div
+                  ref={(el) => {
+                    answerRefs.current[index] = el
+                  }}
+                  className="px-5 pb-4 pt-1 flex gap-3"
+                >
                   <Image
                     src="/images/doctors/doctorqna.jpg"
                     alt="담당 원장"
@@ -95,6 +130,12 @@ export default function FaqAccordion({ faq }: FaqAccordionProps) {
           )
         })}
       </dl>
+      {/* 하단 예약 공간: 펼친 답변 높이만큼 줄어들어 아래 섹션을 고정시킨다 */}
+      <div
+        aria-hidden="true"
+        className="transition-[height] duration-300"
+        style={{ height: spacer }}
+      />
     </div>
   )
 }

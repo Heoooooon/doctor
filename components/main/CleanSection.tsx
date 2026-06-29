@@ -43,7 +43,7 @@ export default function CleanSection() {
           </h2>
 
           <p
-            className={`text-sm md:text-base leading-relaxed mb-6 md:text-[#2B2D42] text-white/90 ${isVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}
+            className={`text-[18px] leading-relaxed mb-6 md:text-[#2B2D42] text-white/90 ${isVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}
             style={isVisible ? { animationDelay: '0.15s' } : undefined}
           >
             <span className="text-[#60c0ff] md:text-[#0080C8] font-semibold">서울이건치과</span>는 치료 결과만큼이나<br />
@@ -59,7 +59,7 @@ export default function CleanSection() {
             href="https://fromel.biz/business/system/"
             target="_blank"
             rel="noopener noreferrer"
-            className={`inline-block px-5 py-2.5 rounded-xl text-white text-sm font-medium transition-opacity hover:opacity-80 ${isVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}
+            className={`inline-flex min-h-[44px] items-center px-5 py-3 rounded-xl text-white text-[18px] font-medium transition-opacity hover:opacity-80 ${isVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}
             style={{ backgroundColor: '#0080C8', ...(isVisible ? { animationDelay: '0.3s' } : {}) }}
           >
             믿을 수 있는 위생 시스템

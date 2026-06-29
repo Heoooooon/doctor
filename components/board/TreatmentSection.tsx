@@ -13,6 +13,24 @@ function LucideIcon({ name, ...props }: { name: string } & LucideProps) {
   return <Icon {...props} />
 }
 
+function Reveal({
+  children,
+  className = '',
+  threshold = 0.12,
+}: {
+  children: React.ReactNode
+  className?: string
+  threshold?: number
+}) {
+  const { ref, isVisible } = useScrollReveal(threshold)
+  return (
+    <div ref={ref} className={`${className} ${isVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}>
+      {children}
+    </div>
+  )
+}
+
+
 interface TreatmentSectionProps {
   treatment: TreatmentContent
   index: number
@@ -228,11 +246,10 @@ function RichDescription({ content }: { content: string }) {
 
 function BenefitsGrid({
   benefits,
-  cardVisible,
 }: {
   benefits: TreatmentContent['benefits']
-  cardVisible: boolean
 }) {
+  const { ref, isVisible } = useScrollReveal(0.12)
   const count = benefits.length
   const gridCols =
     count >= 5
@@ -241,12 +258,12 @@ function BenefitsGrid({
       ? 'grid-cols-2 sm:grid-cols-4'
       : 'grid-cols-2 sm:grid-cols-3'
   return (
-    <div className={`grid gap-3 ${gridCols}`}>
+    <div ref={ref} className={`grid gap-3 ${gridCols}`}>
       {benefits.map((benefit, i) => (
         <div
           key={benefit.tag}
-          className={`rounded-xl overflow-hidden border border-[#D8E9F5] shadow-sm ${cardVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}
-          style={cardVisible ? { animationDelay: `${0.06 * i}s` } : undefined}
+          className={`rounded-xl overflow-hidden border border-[#D8E9F5] shadow-sm ${isVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}
+          style={isVisible ? { animationDelay: `${0.06 * i}s` } : undefined}
         >
           <div className="bg-[#EAF4FC] px-4 py-3 flex items-center gap-2.5">
             <span className="text-[17px] font-black text-[#0080C8] leading-none tabular-nums shrink-0">
@@ -391,7 +408,7 @@ function AllOnImplantChapter({ treatment }: { treatment: TreatmentContent }) {
         </div>
       )}
 
-      <BenefitsGrid benefits={treatment.benefits} cardVisible={cardVisible} />
+      <BenefitsGrid benefits={treatment.benefits} />
 
       {treatment.comparison && (
         <div className="space-y-6">
@@ -565,7 +582,7 @@ function SinusLiftChapter({ treatment }: { treatment: TreatmentContent }) {
         <div className="h-px bg-gray-200 flex-1" />
       </div>
 
-      <BenefitsGrid benefits={treatment.benefits} cardVisible={cardVisible} />
+      <BenefitsGrid benefits={treatment.benefits} />
 
       {/* ── 영상 ── */}
       <div className="w-full sm:max-w-[80%] mx-auto rounded-[20px] overflow-hidden shadow-[0_16px_50px_rgba(16,55,91,0.10)]">
@@ -718,7 +735,7 @@ function DiabetesImplantChapter({ treatment }: { treatment: TreatmentContent }) 
         <div className="h-px bg-gray-200 flex-1" />
       </div>
 
-      <BenefitsGrid benefits={treatment.benefits} cardVisible={cardVisible} />
+      <BenefitsGrid benefits={treatment.benefits} />
 
       {/* ── 하단 CTA ── */}
       <div className="flex items-center justify-center gap-4 rounded-2xl border border-[#DCE8F2] bg-white px-6 py-5 shadow-[0_12px_40px_rgba(16,55,91,0.06)]">
@@ -878,7 +895,7 @@ function NavigationImplantChapter({ treatment }: { treatment: TreatmentContent }
         <div className="h-px bg-gray-200 flex-1" />
       </div>
 
-      <BenefitsGrid benefits={treatment.benefits} cardVisible={cardVisible} />
+      <BenefitsGrid benefits={treatment.benefits} />
 
       {/* ── 하단 CTA ── */}
       <div className="flex items-center justify-center gap-4 rounded-2xl border border-[#DCE8F2] bg-white px-6 py-5 shadow-[0_12px_40px_rgba(16,55,91,0.06)]">
@@ -1054,7 +1071,7 @@ function ImmediateLoadingChapter({ treatment }: { treatment: TreatmentContent })
         </div>
       )}
 
-      <BenefitsGrid benefits={treatment.benefits} cardVisible={cardVisible} />
+      <BenefitsGrid benefits={treatment.benefits} />
 
       {treatment.comparison && (
         <div className="space-y-6">
@@ -1221,7 +1238,7 @@ function DiastemaResinChapter({ treatment }: { treatment: TreatmentContent }) {
         <div className="h-px bg-gray-200 flex-1" />
       </div>
 
-      <BenefitsGrid benefits={treatment.benefits} cardVisible={cardVisible} />
+      <BenefitsGrid benefits={treatment.benefits} />
 
       <div className="flex items-center justify-center gap-4 rounded-2xl border border-[#DCE8F2] bg-white px-6 py-5 shadow-[0_12px_40px_rgba(16,55,91,0.06)]">
         <LucideIcon name="Tooth" size={34} className="text-[#0080C8] shrink-0" />
@@ -1367,7 +1384,7 @@ function ResinBuildupChapter({ treatment }: { treatment: TreatmentContent }) {
         <div className="h-px bg-gray-200 flex-1" />
       </div>
 
-      <BenefitsGrid benefits={treatment.benefits} cardVisible={cardVisible} />
+      <BenefitsGrid benefits={treatment.benefits} />
 
       {treatment.bottomCta && (
         <div className="flex items-center justify-center gap-4 rounded-2xl border border-[#DCE8F2] bg-white px-6 py-5 shadow-[0_12px_40px_rgba(16,55,91,0.06)]">
@@ -1495,7 +1512,7 @@ function LaminateChapter({ treatment }: { treatment: TreatmentContent }) {
         <div className="h-px bg-gray-200 flex-1" />
       </div>
 
-      <BenefitsGrid benefits={treatment.benefits} cardVisible={cardVisible} />
+      <BenefitsGrid benefits={treatment.benefits} />
 
       <div className="flex items-center justify-center gap-4 rounded-2xl border border-[#DCE8F2] bg-white px-6 py-5 shadow-[0_12px_40px_rgba(16,55,91,0.06)]">
         <LucideIcon name="Gem" size={34} className="text-[#0080C8] shrink-0" />
@@ -1629,7 +1646,7 @@ function InvisalignChapter({ treatment }: { treatment: TreatmentContent }) {
         <div className="h-px bg-gray-200 flex-1" />
       </div>
 
-      <BenefitsGrid benefits={treatment.benefits} cardVisible={cardVisible} />
+      <BenefitsGrid benefits={treatment.benefits} />
 
       <div className="flex items-center justify-center gap-4 rounded-2xl border border-[#DCE8F2] bg-white px-6 py-5 shadow-[0_12px_40px_rgba(16,55,91,0.06)]">
         <LucideIcon name="SmilePlus" size={34} className="text-[#0080C8] shrink-0" />
@@ -1767,7 +1784,7 @@ function PediatricOrthoChapter({ treatment }: { treatment: TreatmentContent }) {
         <div className="h-px bg-gray-200 flex-1" />
       </div>
 
-      <BenefitsGrid benefits={treatment.benefits} cardVisible={cardVisible} />
+      <BenefitsGrid benefits={treatment.benefits} />
 
       <div className="flex items-center justify-center gap-4 rounded-2xl border border-[#DCE8F2] bg-white px-6 py-5 shadow-[0_12px_40px_rgba(16,55,91,0.06)]">
         <LucideIcon name="ShieldCheck" size={34} className="text-[#0080C8] shrink-0" />
@@ -1885,7 +1902,7 @@ function PediatricCavityChapter({ treatment }: { treatment: TreatmentContent }) 
         <div className="h-px bg-gray-200 flex-1" />
       </div>
 
-      <BenefitsGrid benefits={treatment.benefits} cardVisible={cardVisible} />
+      <BenefitsGrid benefits={treatment.benefits} />
 
       {treatment.bottomImage && (
         <div className="rounded-[24px] overflow-hidden shadow-[0_16px_60px_rgba(16,55,91,0.10)]">
@@ -1911,7 +1928,6 @@ export default function TreatmentSection({
   treatment,
 }: TreatmentSectionProps) {
   const { ref: textRef, isVisible: textVisible } = useScrollReveal(0.15)
-  const { ref: cardRef, isVisible: cardVisible } = useScrollReveal(0.1)
   const isTriPanel = !!(treatment.richContent && treatment.indications && treatment.steps)
   const isRootCanal = treatment.treatmentType === 'root-canal'
   // 근관치료·온레이: 모바일에서 이미지를 텍스트 아래로 (데스크탑은 우측 유지)
@@ -2212,9 +2228,10 @@ export default function TreatmentSection({
         </div>
       )}
 
+      <div className="space-y-12">
       {/* 치료 과정 */}
       {treatment.steps && !isTriPanel && (
-        <div ref={cardRef} className={`${cardVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}>
+        <Reveal>
           {treatment.treatmentType === 'vpt' && (
             <div className="mb-6 rounded-2xl overflow-hidden">
               <Image src="/images/treatments/natural-tooth/vpt.jpg" alt="VPT 신경보존술" width={1920} height={1080} className="w-full h-auto" />
@@ -2268,13 +2285,12 @@ export default function TreatmentSection({
               </li>
             ))}
           </ol>
-        </div>
+        </Reveal>
       )}
 
       {/* 치료가 필요한 경우 — 한 줄씩 */}
       {treatment.indications && !isTriPanel && (
-        <div className={`${cardVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}
-          style={{ animationDelay: '0.1s' }}>
+        <Reveal>
           <h2 className="text-3xl font-bold text-gray-900 mb-6">
             {treatment.treatmentType === 'vpt' ? 'VPT 신경보존술이' : `${treatment.title}가`} 필요한 경우
           </h2>
@@ -2290,12 +2306,12 @@ export default function TreatmentSection({
               </li>
             ))}
           </ul>
-        </div>
+        </Reveal>
       )}
 
       {/* bottomVideoUrl: 해시태그 카드 위 영상 */}
       {treatment.bottomVideoUrl && (
-        <div className={`w-full sm:max-w-[80%] mx-auto ${cardVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}>
+        <Reveal className="w-full sm:max-w-[80%] mx-auto">
           <div className="w-full aspect-video rounded-2xl overflow-hidden">
             <iframe
               src={`https://www.youtube.com/embed/${treatment.bottomVideoUrl.split('youtu.be/')[1]?.split('?')[0]}?rel=0&modestbranding=1`}
@@ -2305,24 +2321,24 @@ export default function TreatmentSection({
               title={`${treatment.title} 영상`}
             />
           </div>
-        </div>
+        </Reveal>
       )}
 
       {/* benefits 섹션 타이틀 */}
       {treatment.benefitsTitle && (
-        <h2 className={`text-3xl font-bold text-gray-900 text-center ${cardVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}>
-          {treatment.benefitsTitle}
-        </h2>
+        <Reveal>
+          <h2 className="text-3xl font-bold text-gray-900 text-center">
+            {treatment.benefitsTitle}
+          </h2>
+        </Reveal>
       )}
 
       {/* 치료의 장점 카드 그리드 */}
-      <div ref={cardRef}>
-        <BenefitsGrid benefits={treatment.benefits} cardVisible={cardVisible} />
-      </div>
+      <BenefitsGrid benefits={treatment.benefits} />
 
       {/* 비교표 */}
       {treatment.comparison && (
-        <div className={`${cardVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`} style={{ animationDelay: '0.15s' }}>
+        <Reveal>
           <h2 className="text-3xl font-bold text-gray-900 text-center mb-6">
             {treatment.comparison.leftLabel}와의 차이점
           </h2>
@@ -2353,17 +2369,17 @@ export default function TreatmentSection({
               </div>
             ))}
           </div>
-        </div>
+        </Reveal>
       )}
 
       {/* 하단 CTA 배너 */}
       {treatment.bottomCta && (
-        <div className={`flex items-center gap-4 border border-gray-200 rounded-2xl px-6 py-5 bg-gray-50 ${cardVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}
-          style={{ animationDelay: '0.2s' }}>
+        <Reveal className="flex items-center gap-4 border border-gray-200 rounded-2xl px-6 py-5 bg-gray-50">
           <LucideIcon name="Smile" size={28} className="text-[#0080C8] shrink-0" />
           <p className="text-[16px] text-gray-700 font-medium leading-relaxed">{treatment.bottomCta}</p>
-        </div>
+        </Reveal>
       )}
+      </div>
     </div>
   )
 }

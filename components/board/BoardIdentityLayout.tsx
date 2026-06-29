@@ -1,6 +1,8 @@
 'use client'
 
 import { useScrollReveal } from '@/hooks/useScrollReveal'
+import ScrollFillText from '@/components/ScrollFillText'
+import RevealLines from '@/components/RevealLines'
 
 interface Pillar {
   title: string
@@ -12,10 +14,11 @@ interface BoardIdentityLayoutProps {
   title: React.ReactNode
   description: React.ReactNode
   pillars: Pillar[]
+  fill?: boolean      // 인트로 설명문에 스크롤-필(fill-by-scroll) 효과 적용
   frosted?: boolean   // 페이지 배경이 비치되 글자는 또렷하게 (반투명+블러, 소아치과 등)
 }
 
-export default function BoardIdentityLayout({ label, title, description, pillars, frosted = false }: BoardIdentityLayoutProps) {
+export default function BoardIdentityLayout({ label, title, description, pillars, frosted = false, fill = false }: BoardIdentityLayoutProps) {
   const { ref, isVisible } = useScrollReveal(0.15)
 
   return (
@@ -26,15 +29,27 @@ export default function BoardIdentityLayout({ label, title, description, pillars
           {label}
         </p>
 
-        <h2 className={`text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 leading-tight tracking-normal mb-4 ${isVisible ? 'domino-rise' : 'domino-hidden'}`}
-          style={isVisible ? { animationDelay: '0.14s' } : undefined}>
-          {title}
-        </h2>
+        {fill ? (
+          <RevealLines className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 leading-tight tracking-normal mb-4">
+            {title}
+          </RevealLines>
+        ) : (
+          <h2 className={`text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 leading-tight tracking-normal mb-4 ${isVisible ? 'domino-rise' : 'domino-hidden'}`}
+            style={isVisible ? { animationDelay: '0.14s' } : undefined}>
+            {title}
+          </h2>
+        )}
 
-        <p className={`text-base sm:text-[18px] text-gray-600 leading-[1.85] tracking-normal max-w-2xl mb-12 sm:mb-16 ${isVisible ? 'domino-rise' : 'domino-hidden'}`}
-          style={isVisible ? { animationDelay: '0.28s' } : undefined}>
-          {description}
-        </p>
+        {fill ? (
+          <ScrollFillText className="text-base sm:text-[18px] leading-[1.85] tracking-normal max-w-2xl mb-12 sm:mb-16">
+            {description}
+          </ScrollFillText>
+        ) : (
+          <p className={`text-base sm:text-[18px] text-gray-600 leading-[1.85] tracking-normal max-w-2xl mb-12 sm:mb-16 ${isVisible ? 'domino-rise' : 'domino-hidden'}`}
+            style={isVisible ? { animationDelay: '0.28s' } : undefined}>
+            {description}
+          </p>
+        )}
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
           {pillars.map((pillar, i) => (

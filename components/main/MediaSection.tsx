@@ -18,13 +18,13 @@ export default function MediaSection() {
 
   return (
     <section ref={ref}
-      className="h-screen w-full flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden"
+      className="h-screen w-full flex flex-col items-center justify-center px-4 pb-24 sm:px-6 md:pb-0 lg:px-8 overflow-hidden"
       style={{ backgroundColor: 'var(--e-bg)' }}>
       <div className="text-center mb-6 md:mb-9">
-        <p className={`text-xs tracking-[0.35em] uppercase text-stone-400 mb-3 ${isVisible ? 'scroll-reveal-drop' : 'scroll-hidden'}`}>
+        <p className={`text-[14px] md:text-[18px] tracking-[0.24em] md:tracking-[0.3em] uppercase text-stone-400 mb-3 ${isVisible ? 'scroll-reveal-drop' : 'scroll-hidden'}`}>
           Egun Media
         </p>
-        <h2 className={`text-lg md:text-xl lg:text-2xl font-bold text-stone-800 leading-tight ${isVisible ? 'scroll-reveal-drop' : 'scroll-hidden'}`}
+        <h2 className={`text-[24px] md:text-[28px] lg:text-[36px] font-bold text-stone-800 leading-tight ${isVisible ? 'scroll-reveal-drop' : 'scroll-hidden'}`}
           style={isVisible ? { animationDelay: '0.12s' } : undefined}>
           이건치과 소식
         </h2>
@@ -54,7 +54,7 @@ export default function MediaSection() {
                   }}
                 />
               </div>
-              <p className="mt-2.5 md:mt-3 text-xs md:text-sm font-semibold text-stone-700 transition-colors duration-300"
+              <p className="mt-3 w-full break-keep text-center text-[18px] font-semibold leading-snug text-stone-700 transition-colors duration-300"
                 style={isHov ? { color: item.hoverColor } : undefined}>
                 {item.label}
               </p>

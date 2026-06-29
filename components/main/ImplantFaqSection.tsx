@@ -46,7 +46,7 @@ export default function ImplantFaqSection() {
           <div className={`${isVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}>
             <p
               className="tracking-[0.3em] uppercase mb-4"
-              style={{ fontSize: '10px', color: 'rgba(255,255,255,0.35)' }}
+              style={{ fontSize: '14px', color: 'rgba(255,255,255,0.35)' }}
             >
               FREQUENTLY ASKED
             </p>
@@ -94,7 +94,7 @@ export default function ImplantFaqSection() {
                 >
                   <span
                     style={{
-                      fontSize: '16px',
+                      fontSize: '18px',
                       color: isOpen(i) ? '#4fc3f7' : 'rgba(255,255,255,0.5)',
                       flexShrink: 0,
                       transition: 'color 0.2s ease',
@@ -103,7 +103,7 @@ export default function ImplantFaqSection() {
                     Q.
                   </span>
                   <span
-                    className="flex-1 text-[17px] sm:text-[18px]"
+                    className="flex-1 text-[18px]"
                     style={{
                       fontWeight: isOpen(i) ? 700 : 500,
                       color: isOpen(i) ? '#fff' : 'rgba(255,255,255,0.92)',

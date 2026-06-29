@@ -1,0 +1,1060 @@
+components/main/HeroSlider.tsx:240:      className={`relative h-dvh md:h-screen w-full overflow-hidden ${slide.isVideo ? 'bg-black' : 'bg-white'}`}
+components/main/HeroSlider.tsx:253:              aria-hidden="true"
+components/main/HeroSlider.tsx:262:              aria-hidden="true"
+components/main/HeroSlider.tsx:310:            aria-hidden="true"
+components/main/HeroSlider.tsx:318:            aria-hidden="true"
+components/main/HeroSlider.tsx:354:          <p className="text-[9px] sm:text-[13px] font-semibold tracking-[0.3em] sm:tracking-[0.35em] whitespace-nowrap text-white/75 mb-8 sm:mb-10">
+components/main/HeroSlider.tsx:355:            <span className="text-[#0080C8]">SEOUL EGUN</span> DENTAL CLINIC
+components/main/HeroSlider.tsx:360:              <p key={i} className="text-[19px] sm:text-[28px] font-bold leading-[1.55]">
+components/main/HeroSlider.tsx:374:            aria-label={`슬라이드 ${i + 1}로 이동`}
+components/main/HeroSlider.tsx:375:            className={`w-2 h-2 rounded-full transition-all duration-300 ${
+components/main/HeroSlider.tsx:390:            aria-label={`슬라이드 ${i + 1}로 이동`}
+components/main/HeroSlider.tsx:408:                <span className="absolute w-2 h-2 rounded-full bg-white" />
+components/main/HeroSlider.tsx:411:              <span className="w-1.5 h-1.5 rounded-full bg-white/40 hover:bg-white/70 transition-colors" />
+app/media/page.tsx:29:    color: 'bg-[#FAE300]',
+app/media/page.tsx:41:    color: 'bg-[#03C75A]',
+app/media/page.tsx:53:    color: 'bg-[#03C75A]',
+app/media/page.tsx:65:    color: 'bg-[#FF0000]',
+app/media/page.tsx:77:          className="absolute inset-0 bg-gradient-to-br from-[#2B2D42] via-[#0080C8] to-[#006EAA]"
+app/media/page.tsx:78:          aria-hidden="true"
+app/media/page.tsx:120:                    <span className="inline-flex items-center gap-1.5 text-sm font-medium text-[#0080C8] group-hover:text-[#2B2D42] transition-colors">
+components/main/PreserveTreatSection.tsx:53:          fontSize: '10px', letterSpacing: '2px', color: '#0080C8',
+components/main/PreserveTreatSection.tsx:77:      className="min-h-screen w-full flex flex-col lg:flex-row items-center relative overflow-hidden bg-white py-[clamp(90px,10vh,130px)]"
+components/main/PreserveTreatSection.tsx:99:        <p style={{ color: '#0080C8', letterSpacing: '7px', fontSize: '13px', fontWeight: 500, marginBottom: '16px' }}>
+components/main/PreserveTreatSection.tsx:102:        <h2 style={{ fontSize: 'clamp(24px, 2.45vw, 38px)', fontWeight: 700, letterSpacing: '0.01em', lineHeight: 1.38, color: '#101828' }}>
+components/main/PreserveTreatSection.tsx:103:          내 치아를 <span style={{ color: '#4f82c8' }}>최대한 남기는</span>
+components/main/PreserveTreatSection.tsx:105:          <span style={{ color: '#101828' }}>가장 좋은 임플란트는</span>
+components/main/PreserveTreatSection.tsx:107:          <span style={{ color: '#4f82c8', fontWeight: 900 }}>내가 가진 치아</span>
+components/main/PreserveTreatSection.tsx:108:          <span style={{ color: '#101828' }}>입니다.</span>
+components/main/PreserveTreatSection.tsx:110:        <p style={{ color: '#4b5563', marginTop: '18px', fontSize: '15px', lineHeight: 1.85, letterSpacing: '0.01em' }}>
+components/main/PreserveTreatSection.tsx:111:          치아는 한 번 삭제하면 <strong style={{ color: '#101828' }}>되돌릴 수 없기에</strong>,
+components/main/PreserveTreatSection.tsx:113:          <strong style={{ color: '#101828' }}>"어디까지 살릴 수 있는지"</strong>를 먼저 고민합니다.
+components/main/PreserveTreatSection.tsx:121:              background: '#0080C8', color: '#fff',
+components/main/PreserveTreatSection.tsx:134:              background: 'transparent', color: '#101828',
+app/globals.css:13:  font-size: 26px;
+app/globals.css:15:  color: #1a2b3c;
+app/globals.css:16:  border-bottom: 2px solid #1a2b3c;
+app/globals.css:22:  font-size: 22px;
+app/globals.css:24:  color: #2c3e50;
+app/globals.css:25:  border-left: 5px solid #d35400;
+app/globals.css:32:  font-size: 16px;
+app/globals.css:39:  font-size: 0.7em;
+app/globals.css:54:  color: #d35400;
+app/globals.css:59:  background: #eeeeee;
+app/globals.css:72:  font-size: 14px;
+app/globals.css:79:  background: #f4f7fa;
+app/globals.css:80:  border: 1px solid #e1e8ed;
+app/globals.css:84:  font-size: 15px;
+app/globals.css:88:  font-size: 16px;
+app/globals.css:99:  font-size: 18px;
+app/globals.css:101:  color: #1a2b3c;
+app/globals.css:108:  font-size: 15px;
+app/globals.css:112:  border: 1px solid #e1e8ed;
+app/globals.css:118:  background: #f4f7fa;
+app/globals.css:120:  color: #2c3e50;
+app/globals.css:125:  .post-wrap h1 { font-size: 22px; word-break: keep-all; }
+app/globals.css:126:  .post-wrap h2 { font-size: 19px; margin-top: 40px; word-break: keep-all; }
+app/globals.css:128:    font-size: 16px;
+app/globals.css:134:  .post-wrap .summary-box { font-size: 15px; line-height: 1.85; }
+app/globals.css:135:  .post-wrap table { font-size: 13px; }
+app/globals.css:138:  .post-wrap .closing-box .closing-title { font-size: 16px; }
+app/globals.css:141:.scrollbar-hide {
+app/globals.css:145:.scrollbar-hide::-webkit-scrollbar {
+app/globals.css:201:  --e-bg:      #F8F7F9;
+app/globals.css:202:  --e-dark:    #2B2D42;
+app/globals.css:203:  --e-primary: #0080C8;
+app/globals.css:204:  --e-accent:  #0080C8;
+app/globals.css:207:  --e-bg:      #2B2D42;
+app/globals.css:208:  --e-dark:    #1a1c2e;
+app/globals.css:209:  --e-primary: #0080C8;
+app/globals.css:210:  --e-accent:  #0080C8;
+app/globals.css:213:  --e-bg:      #F8F7F9;
+app/globals.css:214:  --e-dark:    #0080C8;
+app/globals.css:215:  --e-primary: #2B2D42;
+app/globals.css:216:  --e-accent:  #0080C8;
+app/globals.css:219:  --e-bg:      #F8F7F9;
+app/globals.css:220:  --e-dark:    #2B2D42;
+app/globals.css:221:  --e-primary: #0080C8;
+app/globals.css:222:  --e-accent:  #0080C8;
+app/globals.css:227:    font-size: 16px;
+app/globals.css:234:    color: #1a1a1a;
+app/globals.css:371:.home-page [class*="text-[9px]"],
+app/globals.css:372:.home-page [class*="text-[10px]"],
+app/globals.css:373:.home-page [class*="text-[11px]"],
+app/globals.css:374:.home-page [class*="text-[12px]"],
+app/globals.css:375:.home-page [class*="text-[13px]"],
+app/globals.css:376:.home-page [class*="text-[14px]"],
+app/globals.css:377:.home-page [class*="text-[15px]"],
+app/globals.css:378:.home-page [class*="text-[16px]"],
+app/globals.css:379:.home-page [class*="text-[17px]"],
+app/globals.css:380:.home-page [style*="font-size: 9px"],
+app/globals.css:381:.home-page [style*="font-size: 10px"],
+app/globals.css:382:.home-page [style*="font-size: 11px"],
+app/globals.css:383:.home-page [style*="font-size: 12px"],
+app/globals.css:384:.home-page [style*="font-size: 13px"],
+app/globals.css:385:.home-page [style*="font-size: 14px"],
+app/globals.css:386:.home-page [style*="font-size: 15px"],
+app/globals.css:387:.home-page [style*="font-size: 16px"],
+app/globals.css:388:.home-page [style*="font-size: 17px"],
+app/globals.css:389:.home-page [style*="font-size: clamp(10px"],
+app/globals.css:390:.home-page [style*="font-size: clamp(11px"],
+app/globals.css:391:.home-page [style*="font-size: clamp(12px"],
+app/globals.css:392:.home-page [style*="font-size: clamp(13px"],
+app/globals.css:393:.home-page [style*="font-size: clamp(14px"],
+app/globals.css:394:.home-page [style*="font-size: clamp(15px"],
+app/globals.css:395:.home-page [style*="font-size: clamp(16px"],
+app/globals.css:396:.home-page [style*="font-size: clamp(17px"] {
+app/globals.css:397:  font-size: 18px !important;
+components/main/NaturalBanner.tsx:5:    <section className="relative h-screen w-full overflow-hidden">
+components/main/SedationSection.tsx:33:      <p className="text-[11px] sm:text-xs md:text-sm text-white/70 tracking-wide">
+components/main/SedationSection.tsx:57:    <section ref={sectionRef} className="h-screen w-full relative overflow-hidden bg-black">
+components/main/SedationSection.tsx:87:            className={`text-[28px] sm:text-3xl md:text-4xl lg:text-5xl font-black leading-tight mb-2 ${visible ? 'scroll-reveal-drop' : 'scroll-hidden'}`}
+components/main/SedationSection.tsx:89:              color: '#4fc3f7',
+components/main/NaturalPhilosophySection.tsx:10:    <section ref={ref} className="h-screen w-full relative overflow-hidden">
+components/main/NaturalPhilosophySection.tsx:18:      <div className="hidden md:block absolute inset-0" style={{ backgroundColor: '#F8F7F9' }} />
+components/main/NaturalPhilosophySection.tsx:23:          <span className="text-[28px] sm:text-[34px] block" style={{ color: '#0080C8' }}>
+components/main/NaturalPhilosophySection.tsx:26:          <span className="text-[28px] sm:text-[34px] block mt-1 text-white">
+components/main/NaturalPhilosophySection.tsx:28:            <span style={{ color: '#0080C8' }}>자연치아</span>{' '}입니다.
+components/main/NaturalPhilosophySection.tsx:34:          <strong style={{ color: '#0080C8' }}>고유의 치주인대</strong>를 가지고 있어,
+components/main/NaturalPhilosophySection.tsx:39:          className={`mt-6 text-sm font-medium px-8 py-2.5 rounded-full transition-all duration-200 ${isVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}
+components/main/NaturalPhilosophySection.tsx:41:            color: '#0080C8',
+components/main/NaturalPhilosophySection.tsx:42:            border: '1.5px solid #0080C8',
+components/main/NaturalPhilosophySection.tsx:59:            <h2 className="font-black leading-[1.1]" style={{ color: '#2B2D42' }}>
+components/main/NaturalPhilosophySection.tsx:61:                <span style={{ color: '#0080C8' }}>가장 좋은</span>{' '}임플란트는
+components/main/NaturalPhilosophySection.tsx:65:                <span style={{ color: '#0080C8' }}>자연치아</span>{' '}입니다.
+components/main/NaturalPhilosophySection.tsx:75:              <strong style={{ color: '#0080C8' }}>고유의 치주인대</strong>를 가지고 있어,
+components/main/NaturalPhilosophySection.tsx:77:              <strong style={{ color: '#0080C8' }}>완충 작용</strong>을 합니다.
+components/main/NaturalPhilosophySection.tsx:82:              <strong style={{ color: '#0080C8' }}>불필요한 삭제를 줄이는 방향</strong>으로
+components/main/NaturalPhilosophySection.tsx:88:              <strong style={{ color: '#0080C8' }}>
+components/main/NaturalPhilosophySection.tsx:96:              style={{ backgroundColor: '#0080C8', ...(isVisible ? { animationDelay: '0.52s' } : {}) }}
+components/main/CleanSection.tsx:12:      className="relative h-screen w-full overflow-hidden"
+components/main/CleanSection.tsx:13:      style={{ backgroundColor: '#F8F7F9' }}
+components/main/CleanSection.tsx:37:            className={`text-[28px] md:text-3xl lg:text-4xl font-bold leading-tight mb-5 md:text-[#2B2D42] text-white ${isVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}
+components/main/CleanSection.tsx:46:            className={`text-sm md:text-base leading-relaxed mb-6 md:text-[#2B2D42] text-white/90 ${isVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}
+components/main/CleanSection.tsx:49:            <span className="text-[#60c0ff] md:text-[#0080C8] font-semibold">서울이건치과</span>는 치료 결과만큼이나<br />
+components/main/CleanSection.tsx:52:            <span className="text-[#60c0ff] md:text-[#0080C8] font-semibold">철저한 멸균 과정</span>을 거치며,<br />
+components/main/CleanSection.tsx:54:            <span className="text-[#60c0ff] md:text-[#0080C8] font-semibold">위생점검</span>과{' '}
+components/main/CleanSection.tsx:55:            <span className="text-[#60c0ff] md:text-[#0080C8] font-semibold">소독</span>을 진행합니다.
+components/main/CleanSection.tsx:63:            style={{ backgroundColor: '#0080C8', ...(isVisible ? { animationDelay: '0.3s' } : {}) }}
+components/main/CleanSection.tsx:86:        className="hidden md:block absolute bottom-8 left-1/2 -translate-x-1/2 h-1 w-24 rounded-full"
+components/main/CleanSection.tsx:87:        style={{ backgroundColor: '#0080C8' }}
+app/page.tsx:37:      <nav className="sr-only" aria-label="서울이건치과 주요 진료 안내">
+app/page.tsx:52:        className="home-page hidden md:block h-screen overflow-y-scroll scrollbar-hide"
+components/main/ImplantTypeSection.tsx:43:      className="min-h-screen w-full flex items-center justify-center bg-white px-4 pt-24 sm:pt-28 pb-8"
+components/main/ImplantTypeSection.tsx:51:              color: '#0f172a',
+components/main/ImplantTypeSection.tsx:56:              background: 'linear-gradient(135deg, #0080C8 0%, #38b6ff 50%, #0080C8 100%)',
+components/main/ImplantTypeSection.tsx:62:            <span style={{ color: '#0f172a' }}>TYPES</span>
+components/main/ImplantTypeSection.tsx:64:          <div className="mt-3 h-1.5 w-28 rounded-full bg-[#0080C8] shadow-[0_0_24px_rgba(0,128,200,0.35)]" />
+components/main/ImplantTypeSection.tsx:75:                backgroundColor: '#252a3c',
+components/main/ImplantTypeSection.tsx:80:              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(79,195,247,0.35)'; (e.currentTarget as HTMLElement).style.backgroundColor = '#283044' }}
+components/main/ImplantTypeSection.tsx:81:              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(26,32,53,0.12)'; (e.currentTarget as HTMLElement).style.backgroundColor = '#252a3c' }}
+components/main/ImplantFaqSection.tsx:39:      className="min-h-screen w-full flex flex-col justify-center"
+components/main/ImplantFaqSection.tsx:40:      style={{ backgroundColor: '#1a2035' }}
+components/main/ImplantFaqSection.tsx:85:                  borderLeft: isOpen(i) ? '3px solid #4fc3f7' : '3px solid transparent',
+components/main/ImplantFaqSection.tsx:98:                      color: isOpen(i) ? '#4fc3f7' : 'rgba(255,255,255,0.5)',
+components/main/ImplantFaqSection.tsx:106:                    className="flex-1 text-[17px] sm:text-[18px]"
+components/main/ImplantFaqSection.tsx:116:                    className="shrink-0 w-7 h-7 rounded-full flex items-center justify-center"
+components/main/ImplantFaqSection.tsx:122:                    <Plus size={12} style={{ color: isOpen(i) ? '#4fc3f7' : 'rgba(255,255,255,0.4)' }} />
+components/main/ImplantSection.tsx:14:      className="h-dvh md:h-screen w-full relative overflow-hidden flex flex-col items-center justify-center px-4"
+components/main/ImplantSection.tsx:25:              aria-hidden="true"
+components/main/ImplantSection.tsx:63:              color: '#0080C8',
+components/main/ImplantSection.tsx:91:          className={`inline-flex items-center gap-1.5 px-2.5 py-1 text-[12px] font-medium text-stone-300 rounded-full border border-stone-600 hover:border-stone-400 hover:text-white transition-all duration-300 group ${isVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}
+components/main/ImplantSection.tsx:95:          <Plus size={14} className="group-hover:rotate-90 transition-transform duration-300" aria-hidden="true" />
+components/main/MediaSection.tsx:9:  { id: 'notice',  label: '공지사항',       image: '/images/media-image/notice.webp',  href: '/notice',                                                    external: false, hoverColor: '#0080C8' },
+components/main/MediaSection.tsx:10:  { id: 'blog',    label: '원장님 칼럼',     image: '/images/media-image/blog.webp',    href: 'https://blog.naver.com/seoulegundc',                          external: true,  hoverColor: '#22C55E' },
+components/main/MediaSection.tsx:11:  { id: 'youtube', label: '이건TV',          image: '/images/media-image/youtube.webp', href: 'https://youtube.com/@seoulegun',                             external: true,  hoverColor: '#FF0000' },
+components/main/MediaSection.tsx:12:  { id: 'review',  label: '환자분 실제 후기', image: '/images/media-image/review.webp',  href: 'https://m.place.naver.com/restaurant/12872860',               external: true,  hoverColor: '#22C55E' },
+components/main/MediaSection.tsx:21:      className="h-screen w-full flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden"
+components/main/DoctorGroup.tsx:45:        <h2 className="text-white text-[28px] font-bold leading-tight tracking-tight">
+components/main/DoctorGroup.tsx:53:        <p className="text-white/75 text-[17px] font-light leading-snug mb-6">
+components/main/DoctorGroup.tsx:61:            h-[48px] px-7 rounded-full
+components/main/DoctorGroup.tsx:62:            bg-[#0080C8] text-white text-[15px] font-semibold
+components/main/DoctorGroup.tsx:64:            transition-all duration-200 active:bg-[#006EAA]"
+components/main/DoctorGroup.tsx:85:          className="text-[#2B2D42] font-bold leading-[1.15] tracking-tight"
+components/main/DoctorGroup.tsx:91:        <div className="w-12 h-px bg-[#2B2D42]/40 my-5" />
+components/main/DoctorGroup.tsx:94:          className="text-[#2B2D42]/75 font-light"
+components/main/DoctorGroup.tsx:106:            text-[14px] font-semibold
+components/main/DoctorGroup.tsx:108:            hover:bg-white/35 hover:border-[#0080C8] hover:text-[#0080C8]"
+components/main/MapSection.tsx:12:  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+components/main/MapSection.tsx:23:      className="w-full bg-[#0f1216] text-white"
+components/main/MapSection.tsx:24:      aria-label="오시는 길 · 진료 안내"
+components/main/MapSection.tsx:31:            <p className="text-[#38b6ff] text-[15px] font-bold tracking-[0.2em] uppercase mb-5">
+components/main/MapSection.tsx:36:              className="inline-flex items-center gap-2.5 text-[30px] lg:text-[34px] font-extrabold tracking-tight hover:text-[#38b6ff] transition-colors"
+components/main/MapSection.tsx:38:              <Phone size={22} className="text-[#38b6ff]" aria-hidden="true" />
+components/main/MapSection.tsx:44:                <div key={h.day} className="flex items-baseline text-[15px]">
+components/main/MapSection.tsx:48:                    <span className="ml-2 text-[12px] text-[#38b6ff] font-medium">{h.note}</span>
+components/main/MapSection.tsx:52:              <div className="flex items-baseline text-[15px]">
+components/main/MapSection.tsx:58:            <div className="mt-5 space-y-1 text-[13px] text-white/40 leading-relaxed">
+components/main/MapSection.tsx:68:            <p className="text-[#38b6ff] text-[15px] font-bold tracking-[0.2em] uppercase mb-5">
+components/main/MapSection.tsx:73:              <MapPin size={20} className="text-[#38b6ff] shrink-0 mt-1" aria-hidden="true" />
+components/main/MapSection.tsx:74:              <p className="text-[16px] lg:text-[17px] font-semibold leading-relaxed">
+components/main/MapSection.tsx:80:            <div className="mt-6 space-y-3 text-[14px] text-white/70 leading-relaxed">
+components/main/MapSection.tsx:82:                <span className="text-[#38b6ff] font-semibold">[ 위치 ]</span> 효원공원 인근,
+components/main/MapSection.tsx:86:                <span className="text-[#38b6ff] font-semibold">[ 주차 ]</span> 건물 및 인근 주차장 이용 가능
+components/main/MapSection.tsx:95:                className="inline-flex items-center gap-2 bg-[#FEE500] hover:bg-[#f5dc00] text-[#3C1E1E] font-bold text-[14px] px-5 py-3 rounded-full transition-colors"
+components/main/MapSection.tsx:104:                className="inline-flex items-center gap-2 border border-white/20 hover:border-[#38b6ff] hover:text-[#38b6ff] text-white/80 font-medium text-[14px] px-5 py-3 rounded-full transition-colors"
+components/main/MapSection.tsx:106:                <Navigation size={15} aria-hidden="true" />
+components/main/MapSection.tsx:120:              aria-label="카카오맵에서 서울이건치과 위치 보기"
+components/main/MapSection.tsx:130:              <span className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 bg-black/60 backdrop-blur-sm text-white text-[12px] font-medium px-3 py-1.5 rounded-full">
+components/main/MapSection.tsx:131:                <Navigation size={13} aria-hidden="true" />
+components/main/NaturalSolution.tsx:36:    <section className="h-screen w-full flex flex-col items-center justify-center px-4 py-12 overflow-hidden relative"
+components/main/NaturalSolution.tsx:37:      style={{ background: 'linear-gradient(160deg, #1a1f3a 0%, #0f142b 100%)' }}>
+components/main/NaturalSolution.tsx:49:          style={{ color: '#F8F7F9', ...(isVisible ? { animationDelay: '0.12s' } : {}) }}>
+components/main/NaturalSolution.tsx:88:                  자세히 보기 <ArrowRight size={12} aria-hidden="true" />
+components/main/NaturalSolution.tsx:100:        <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-200" aria-hidden="true" />
+components/main/TreatmentCarousel.tsx:14:    color: '#2563A8',
+components/main/TreatmentCarousel.tsx:22:    color: '#3B7DD8',
+components/main/TreatmentCarousel.tsx:30:    color: '#4A9FE0',
+components/main/TreatmentCarousel.tsx:38:    color: '#2563A8',
+components/main/TreatmentCarousel.tsx:46:    color: '#3B7DD8',
+components/main/TreatmentCarousel.tsx:106:    <section className="relative w-full bg-[#f8f9fb] py-20 overflow-hidden">
+components/main/TreatmentCarousel.tsx:191:                        className="mt-4 inline-flex items-center gap-1 text-xs font-semibold px-4 py-2 rounded-full"
+components/main/TreatmentCarousel.tsx:224:          aria-label="이전"
+components/main/TreatmentCarousel.tsx:225:          className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:border-blue-400 hover:text-blue-500 transition-all disabled:opacity-30"
+components/main/TreatmentCarousel.tsx:238:              aria-label={`${i + 1}번째 항목으로 이동`}
+components/main/TreatmentCarousel.tsx:239:              className="transition-all duration-300 rounded-full"
+components/main/TreatmentCarousel.tsx:243:                backgroundColor: i === active ? '#2563A8' : '#d1d5db',
+components/main/TreatmentCarousel.tsx:252:          aria-label="다음"
+components/main/TreatmentCarousel.tsx:253:          className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:border-blue-400 hover:text-blue-500 transition-all disabled:opacity-30"
+components/main/KakaoMap.tsx:38:        font-size:14px;
+components/main/KakaoMap.tsx:42:        border:2px solid #0080C8;
+components/main/KakaoMap.tsx:54:          border-top:8px solid #0080C8;
+components/main/KakaoMap.tsx:126:          className="flex items-center justify-center gap-2 bg-[#FEE500] hover:bg-[#F5DC00] text-[#3C1E1E] font-semibold text-sm py-3.5 rounded-xl transition-colors mt-3"
+components/main/KakaoMap.tsx:128:          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+components/main/KakaoMap.tsx:129:            <path d="M12 2C6.48 2 2 5.58 2 10c0 2.8 1.8 5.27 4.55 6.72L12 22l5.45-5.28C20.2 15.27 22 12.8 22 10c0-4.42-4.48-8-10-8z" fill="#3C1E1E"/>
+components/main/KakaoMap.tsx:130:            <circle cx="12" cy="10" r="3" fill="#FEE500"/>
+components/column/ColumnBoard.tsx:26:        <div className="overflow-hidden rounded-lg bg-[#F0F0F0] mb-3">
+components/column/ColumnBoard.tsx:35:            <div className="w-full aspect-[4/3] flex items-center justify-center bg-[#F8F7F9]">
+components/column/ColumnBoard.tsx:36:              <svg className="w-10 h-10 text-[#D0D0D0]" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+components/column/ColumnBoard.tsx:43:        <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-[#F0F7FF] text-[#0080C8] border border-[#CCE5F7] mb-2">
+components/column/ColumnBoard.tsx:47:        <h3 className="text-[15px] font-bold text-[#1a1a1a] leading-snug line-clamp-2 mb-1.5 group-hover:text-[#0080C8] transition-colors">
+components/column/ColumnBoard.tsx:51:        <p className="text-xs text-[#9CA3AF]">{formatDate(post.column_date)}</p>
+components/column/ColumnBoard.tsx:61:      <div className="h-5 bg-gray-100 rounded-full w-1/4 mb-2" />
+components/column/ColumnBoard.tsx:109:        <h1 className="text-xl font-bold text-[#1a1a1a]">Blog</h1>
+components/column/ColumnBoard.tsx:112:            <span className="text-[#D0D0D0] text-xl">|</span>
+components/column/ColumnBoard.tsx:113:            <span className="text-xl font-bold text-[#1a1a1a]">{selected}</span>
+components/column/ColumnBoard.tsx:126:              className={`border-r border-b border-gray-200 py-3.5 px-2 text-[14px] text-center transition-colors ${
+components/column/ColumnBoard.tsx:128:                  ? 'bg-[#6B7280] text-white font-bold'
+components/column/ColumnBoard.tsx:151:                      className={`w-full flex justify-between items-center text-[15px] py-0.5 transition-colors ${
+components/column/ColumnBoard.tsx:153:                          ? 'font-bold text-[#1a1a1a]'
+components/column/ColumnBoard.tsx:154:                          : 'font-medium text-[#9CA3AF] hover:text-[#1a1a1a]'
+components/column/ColumnBoard.tsx:158:                      <span className={isActive ? 'text-[#1a1a1a] font-bold' : 'text-[#9CA3AF]'}>
+components/column/ColumnBoard.tsx:171:              <p className="text-[13px] font-bold text-[#1a1a1a] mb-3">인기 태그 Top 10</p>
+components/column/ColumnBoard.tsx:176:                    className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-[#F0F7FF] text-[#0080C8] border border-[#CCE5F7] hover:bg-[#CCE5F7] transition-colors cursor-pointer"
+components/column/ColumnBoard.tsx:188:              <p className="text-[13px] font-bold text-[#1a1a1a] mb-3">인기 게시물</p>
+components/column/ColumnBoard.tsx:194:                      className="flex items-start gap-2.5 text-[13px] font-medium text-[#555] leading-snug hover:text-[#0080C8] transition-colors"
+components/column/ColumnBoard.tsx:196:                      <span className="flex-shrink-0 w-[20px] h-[20px] rounded-full bg-[#0080C8] text-white text-[11px] font-bold flex items-center justify-center mt-0.5">
+components/column/ColumnBoard.tsx:216:            <div className="text-center py-24 text-[#9CA3AF]">
+components/about/InteriorSection.tsx:114:              className="pointer-events-auto absolute -left-6 z-30 w-11 h-11 rounded-full bg-white/90 shadow-lg flex items-center justify-center hover:bg-white transition-colors"
+components/about/InteriorSection.tsx:115:              aria-label="이전 사진">
+components/about/InteriorSection.tsx:119:              className="pointer-events-auto absolute -right-6 z-30 w-11 h-11 rounded-full bg-white/90 shadow-lg flex items-center justify-center hover:bg-white transition-colors"
+components/about/InteriorSection.tsx:120:              aria-label="다음 사진">
+components/about/InteriorSection.tsx:130:            className={`rounded-full transition-all duration-300 ${i === current ? 'w-6 h-2 bg-[#0080C8]' : 'w-2 h-2 bg-gray-600 hover:bg-gray-500'}`}
+components/about/InteriorSection.tsx:131:            aria-label={`사진 ${i + 1}번으로 이동`} />
+components/about/InteriorSection.tsx:144:            aria-label="닫기"
+components/about/InteriorSection.tsx:166:    <section id="interior" className="py-20 sm:py-28 bg-gray-900 scroll-mt-36" aria-labelledby="interior-heading">
+components/about/InteriorSection.tsx:168:        <p className={`text-xs font-semibold tracking-[0.25em] uppercase text-[#0080C8] mb-4 ${headerVisible ? 'scroll-reveal-drop' : 'scroll-hidden'}`}>
+components/board/TreatmentPage.tsx:62:            aria-labelledby={`heading-${treatment.treatmentType}`}
+app/signup/page.tsx:13:    <main className="min-h-screen bg-stone-50 flex items-center justify-center py-16 px-4">
+components/IntroScreen.tsx:165:          font-size: 7vw;
+components/IntroScreen.tsx:173:          font-size: 4vw;
+components/IntroScreen.tsx:181:          text-shadow: #ffffff 0px 9vw 0px;
+components/IntroScreen.tsx:184:          text-shadow: #ffffff 0px 5vw 0px;
+components/IntroScreen.tsx:191:        /* 블루 강조 #0080C8 */
+components/IntroScreen.tsx:193:          text-shadow: #0080C8 0px 9vw 0px;
+components/IntroScreen.tsx:196:          text-shadow: #0080C8 0px 5vw 0px;
+components/IntroScreen.tsx:222:          .intro-line       { font-size: 10vw; }
+components/IntroScreen.tsx:223:          .intro-line.mini  { font-size: 6vw; }
+components/IntroScreen.tsx:224:          .intro-line span  { text-shadow: #ffffff 0px 12vw 0px; }
+components/IntroScreen.tsx:225:          .intro-line span.color-shadow { text-shadow: #0080C8 0px 12vw 0px; }
+components/IntroScreen.tsx:226:          .intro-line.mini span { text-shadow: #ffffff 0px 7vw 0px; }
+components/IntroScreen.tsx:227:          .intro-line.mini span.color-shadow { text-shadow: #0080C8 0px 7vw 0px; }
+components/about/AboutScrollSnap.tsx:33:      const anchorNav = document.querySelector('nav[aria-label="페이지 내 이동"]') as HTMLElement | null
+components/board/PediatricIdentity.tsx:39:      title={<>아이의 첫 치과,<br /><span className="text-[#0080C8]">평생 구강 건강의 시작</span></>}
+app/notice/page.tsx:161:                  aria-label="공지 이미지 페이지"
+app/notice/page.tsx:172:                        aria-current={isCurrent ? 'page' : undefined}
+app/notice/page.tsx:176:                            ? 'border-[#0080C8] bg-[#0080C8] text-white'
+app/notice/page.tsx:177:                            : 'border-gray-200 bg-white text-gray-700 hover:border-[#0080C8] hover:text-[#0080C8]',
+components/about/DoctorProfileSection.tsx:26:      className={`w-full scroll-mt-24 ${isReverse ? 'bg-[#F8F8F8]' : 'bg-white'}`}
+components/about/DoctorProfileSection.tsx:58:            <h2 className="text-[26px] lg:text-[38px] font-bold leading-[1.3] tracking-[-0.02em] text-[#2E2E2E]">
+components/about/DoctorProfileSection.tsx:69:            <span className="block text-[15px] lg:text-[24px] font-normal leading-[1.4] tracking-[-0.015em] text-[#1D458F] mb-4 lg:mb-6">
+components/about/DoctorProfileSection.tsx:77:                    className={`text-[13px] lg:text-[17px] leading-[28px] tracking-[-0.01em] ${
+components/about/DoctorProfileSection.tsx:78:                      i === 0 ? 'font-bold text-[#2E2E2E]' : 'font-normal text-[#5C5C5C]'
+components/about/DoctorProfileSection.tsx:88:                    <li key={i} className="text-[13px] lg:text-[17px] font-normal leading-[28px] tracking-[-0.01em] text-[#5C5C5C]">
+components/about/DoctorProfileSection.tsx:103:              <p className="mt-8 lg:mt-10 text-[14px] lg:text-[20px] font-bold leading-[1.8] tracking-[-0.01em] text-[#2E2E2E] whitespace-pre-line">
+components/about/DoctorProfileSection.tsx:125:      aria-labelledby="doctors-heading"
+components/about/DoctorProfileSection.tsx:130:        className="relative min-h-screen flex items-center max-md:items-end overflow-hidden scroll-mt-20"
+components/about/DoctorProfileSection.tsx:157:            className={`text-[18px] sm:text-[23px] font-semibold tracking-[0.25em] uppercase text-[#0080c8] mb-4 ${isVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}
+components/about/DoctorProfileSection.tsx:164:            className={`text-[31px] sm:text-[41px] lg:text-[49px] font-normal lg:font-bold text-white leading-tight ${isVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}
+components/about/DoctorProfileSection.tsx:168:            <span style={{ color: '#ffffff', textShadow: '0 0 20px rgba(0,128,200,0.9), 0 2px 12px rgba(0,0,0,0.95)' }}>변하지 않는 마음</span>
+components/about/DoctorProfileSection.tsx:171:            className={`mt-4 sm:mt-6 text-[20px] sm:text-[28px] lg:text-[30px] text-white/75 lg:text-white/90 max-w-2xl leading-relaxed ${isVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}
+components/about/LabSection.tsx:117:      aria-labelledby="lab-heading"
+components/about/LabSection.tsx:122:          <p className={`text-xs font-semibold tracking-[0.25em] uppercase text-[#0080C8] mb-3 ${headerVisible ? 'scroll-reveal-drop' : 'scroll-hidden'}`}>
+components/about/LabSection.tsx:132:          <p className={`text-base sm:text-lg text-[#0080C8] font-medium mb-3 ${headerVisible ? 'scroll-reveal-drop' : 'scroll-hidden'}`}
+components/about/LabSection.tsx:161:                <div className="w-16 h-16 rounded-full bg-white/80 flex items-center justify-center">
+components/about/LabSection.tsx:173:                className={`flex gap-4 p-4 rounded-2xl bg-gray-800 border border-gray-700 hover:border-[#0080C8]/50 transition-colors ${contentVisible ? 'scroll-reveal-right' : 'scroll-hidden'}`}
+components/about/LabSection.tsx:176:                <div className="w-8 h-8 rounded-full bg-[#0080C8]/20 flex items-center justify-center shrink-0">
+components/about/LabSection.tsx:177:                  <span className="text-xs font-bold text-[#0080C8]">
+components/about/LabSection.tsx:230:              className="pointer-events-auto absolute -left-6 z-30 w-11 h-11 rounded-full bg-white/90 shadow-lg flex items-center justify-center hover:bg-white transition-colors"
+components/about/LabSection.tsx:231:              aria-label="이전 사진"
+components/about/LabSection.tsx:237:              className="pointer-events-auto absolute -right-6 z-30 w-11 h-11 rounded-full bg-white/90 shadow-lg flex items-center justify-center hover:bg-white transition-colors"
+components/about/LabSection.tsx:238:              aria-label="다음 사진"
+components/about/LabSection.tsx:252:            className={`rounded-full transition-all duration-300 ${i === current ? 'w-6 h-2 bg-[#0080C8]' : 'w-2 h-2 bg-gray-600 hover:bg-gray-500'}`}
+components/about/LabSection.tsx:253:            aria-label={`사진 ${i + 1}번으로 이동`}
+components/about/LabSection.tsx:267:            aria-label="닫기"
+components/main/PhilosophyBanner.tsx:52:      className="h-screen w-full flex items-center overflow-hidden"
+components/main/PhilosophyBanner.tsx:76:            className={`w-14 h-1.5 mt-6 rounded-full ${isVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}
+components/board/NaturalToothIdentity.tsx:22:      title={<>내 치아를 최대한 살리는<br /><span className="text-[#0080C8]">이건치과의 원칙</span></>}
+components/about/AccessSection.tsx:56:      aria-labelledby="access-heading"
+components/about/AccessSection.tsx:60:        <p className="text-xs font-semibold tracking-[0.25em] uppercase text-[#0080C8] mb-4">
+components/about/AccessSection.tsx:87:              className="flex items-center justify-center gap-2 bg-[#FEE500] hover:bg-[#F5DC00] text-[#3C1E1E] font-semibold text-sm py-3.5 rounded-xl transition-colors mt-3"
+components/about/AccessSection.tsx:89:              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+components/about/AccessSection.tsx:90:                <path d="M12 2C6.48 2 2 5.58 2 10c0 2.8 1.8 5.27 4.55 6.72L12 22l5.45-5.28C20.2 15.27 22 12.8 22 10c0-4.42-4.48-8-10-8z" fill="#3C1E1E"/>
+components/about/AccessSection.tsx:91:                <circle cx="12" cy="10" r="3" fill="#FEE500"/>
+components/about/AccessSection.tsx:103:                  className="w-5 h-5 text-[#0080C8] mt-0.5 shrink-0"
+components/about/AccessSection.tsx:104:                  aria-hidden="true"
+components/about/AccessSection.tsx:124:                  className="w-5 h-5 text-[#0080C8] shrink-0"
+components/about/AccessSection.tsx:125:                  aria-hidden="true"
+components/about/AccessSection.tsx:133:                    className="text-base text-gray-800 hover:text-[#0080C8] transition-colors font-medium"
+components/about/AccessSection.tsx:144:                <Clock className="w-5 h-5 text-[#0080C8]" aria-hidden="true" />
+components/about/AccessSection.tsx:165:                      <span className="text-sm text-[#0080C8] font-medium">
+components/about/AccessSection.tsx:182:              className="flex items-center justify-center gap-2 bg-[#03C75A] text-white font-semibold py-3.5 rounded-xl hover:bg-[#02b34d] transition-colors text-sm lg:hidden"
+components/about/AccessSection.tsx:184:              <ExternalLink className="w-4 h-4" aria-hidden="true" />
+components/about/AccessSection.tsx:193:            <span className="text-xl" aria-hidden="true">🚌</span>
+components/about/AccessSection.tsx:203:                  <p className="text-base font-semibold text-[#0080C8] uppercase tracking-wider mb-1.5">
+components/about/AccessSection.tsx:208:                      <li key={i} className="text-[18px] text-gray-700 leading-relaxed">
+components/about/AccessSection.tsx:227:                <p className="text-base font-semibold text-[#0080C8] uppercase tracking-wider mb-3">
+components/about/AccessSection.tsx:232:                    <li key={i} className="flex items-start gap-2 text-[18px] text-gray-700">
+components/about/AccessSection.tsx:233:                      <span className="text-[#0080C8] mt-0.5 shrink-0">·</span>
+components/about/ScheduleSection.tsx:13:      aria-labelledby="schedule-heading"
+components/about/ScheduleSection.tsx:17:        <p className="text-xs font-semibold tracking-[0.25em] uppercase text-[#0080C8] mb-4">
+components/about/ScheduleSection.tsx:31:            <div className="bg-[#0080C8] px-6 py-4 flex items-center gap-2">
+components/about/ScheduleSection.tsx:32:              <Clock className="w-4 h-4 text-white" aria-hidden="true" />
+components/about/ScheduleSection.tsx:53:                    <span className="shrink-0 text-xs font-medium bg-[#0080C8]/10 text-[#0080C8] px-2 py-0.5 rounded-full whitespace-nowrap">
+components/about/ScheduleSection.tsx:66:            <div className="bg-[#0080C8]/5 border border-[#0080C8]/20 rounded-2xl p-6">
+components/about/ScheduleSection.tsx:67:              <h4 className="text-sm font-semibold text-[#0080C8] mb-4 flex items-center gap-2">
+components/about/ScheduleSection.tsx:68:                <span className="w-5 h-5 rounded-full bg-[#0080C8] text-white flex items-center justify-center text-xs">
+components/about/ScheduleSection.tsx:79:                    <span className="text-[#0080C8] mt-0.5">·</span>
+components/about/ScheduleSection.tsx:97:                className="flex-1 bg-[#0080C8] text-white text-center py-2.5 rounded-xl text-sm font-semibold hover:bg-[#A08968] transition-colors"
+components/about/ScheduleSection.tsx:105:                className="flex-1 bg-[#FEE500] text-[#3C1E1E] text-center py-2.5 rounded-xl text-sm font-semibold hover:bg-[#f5db00] transition-colors"
+components/cases/CasesView.tsx:52:    <main className="pt-20 pb-24 bg-[#F8F7F9] min-h-screen">
+components/cases/CasesView.tsx:57:            <p className="text-[11px] font-semibold tracking-[0.3em] uppercase text-[#0080C8] mb-2">Patient Cases</p>
+components/cases/CasesView.tsx:58:            <h1 className="text-3xl sm:text-4xl font-bold text-[#2B2D42] mb-2">환자사례</h1>
+components/cases/CasesView.tsx:67:                <p className="text-[11px] text-gray-400 mb-0.5">로그인 중</p>
+components/cases/CasesView.tsx:68:                <p className="text-sm font-semibold text-[#0080C8]">{memberName} 님</p>
+components/cases/CasesView.tsx:80:              className="shrink-0 text-sm font-semibold text-[#0080C8] border border-[#0080C8] rounded-lg px-5 py-2.5 hover:bg-[#EAF4FC] transition-colors"
+components/cases/CasesView.tsx:90:        <div className="flex overflow-x-auto border-b border-gray-200 bg-white -mx-4 sm:-mx-6 px-4 sm:px-6 mb-0 scrollbar-hide">
+components/cases/CasesView.tsx:95:              className={`relative py-4 px-3 sm:px-5 text-sm sm:text-[15px] font-semibold whitespace-nowrap transition-colors ${
+components/cases/CasesView.tsx:96:                mainCat === cat.key ? 'text-[#0080C8]' : 'text-gray-500 hover:text-gray-800'
+components/cases/CasesView.tsx:100:              {mainCat === cat.key && <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#0080C8] rounded-t" />}
+components/cases/CasesView.tsx:109:            className="flex gap-2 overflow-x-auto py-4 -mx-4 sm:-mx-6 px-4 sm:px-6 bg-white border-b border-gray-100 scrollbar-hide"
+components/cases/CasesView.tsx:115:                className={`shrink-0 px-4 py-1.5 rounded-full text-sm font-medium transition-colors border ${
+components/cases/CasesView.tsx:117:                    ? 'bg-[#2B2D42] text-white border-[#2B2D42]'
+components/cases/CasesView.tsx:118:                    : 'bg-white text-gray-600 border-gray-200 hover:border-[#2B2D42] hover:text-[#2B2D42]'
+components/cases/CasesView.tsx:143:            <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+components/cases/CasesView.tsx:162:            className="mt-12 rounded-2xl border border-[#D0E8F5] bg-white px-6 py-8 text-center cursor-pointer hover:bg-[#F0F7FD] transition-colors"
+components/cases/CasesView.tsx:165:            <div className="w-12 h-12 bg-[#EAF4FC] rounded-full flex items-center justify-center mx-auto mb-4">
+components/cases/CasesView.tsx:166:              <Lock className="w-5 h-5 text-[#0080C8]" />
+components/cases/CasesView.tsx:170:            <button className="bg-[#0080C8] text-white font-semibold text-sm px-8 py-3 rounded-lg hover:bg-[#006BA8] transition-colors">
+components/cases/CasesView.tsx:176:        <p className="mt-12 text-[11px] text-gray-400 text-center leading-relaxed">
+components/cases/CasesView.tsx:250:          <span className="absolute top-2.5 left-2.5 bg-black/55 text-white text-[10px] font-bold px-2 py-0.5 rounded tracking-wide z-10">BEFORE</span>
+components/cases/CasesView.tsx:253:              <div className="bg-white/85 backdrop-blur-sm rounded-full p-4 shadow-lg animate-pulse">
+components/cases/CasesView.tsx:254:                <Pointer className="w-7 h-7 text-[#0080C8]" />
+components/cases/CasesView.tsx:267:          <span className="absolute top-2.5 left-2.5 bg-[#0080C8]/85 text-white text-[10px] font-bold px-2 py-0.5 rounded tracking-wide z-10">AFTER</span>
+components/cases/CasesView.tsx:274:          <span className="text-[12px] font-semibold text-[#0080C8]">{item.board_category}</span>
+components/cases/CasesView.tsx:278:              <span className="text-[12px] text-gray-500 font-medium">{item.treatment_type}</span>
+components/cases/CasesView.tsx:282:        <p className="text-[17px] font-bold text-[#2B2D42] leading-snug mb-2.5">{item.title}</p>
+components/cases/CasesView.tsx:283:        <div className="flex items-center gap-3 text-[12px] text-gray-400">
+components/cases/CasesView.tsx:305:              className={`text-[13px] text-gray-500 leading-relaxed ${expanded ? 'whitespace-pre-line' : 'line-clamp-2'}`}
+components/cases/CasesView.tsx:313:                className="mt-1.5 text-[12px] font-semibold text-[#0080C8] hover:underline"
+components/cases/CasesView.tsx:331:            aria-label="닫기"
+components/cases/CasesView.tsx:344:              <figcaption className="bg-[#0080C8]/85 text-white text-xs font-bold px-3 py-1 rounded tracking-wide">AFTER</figcaption>
+components/about/PhilosophySection.tsx:34:      className="min-h-screen flex flex-col justify-center py-20 sm:py-28 bg-white scroll-mt-32"
+components/about/PhilosophySection.tsx:35:      aria-labelledby="philosophy-heading"
+components/about/PhilosophySection.tsx:39:        <p className={`text-sm font-semibold tracking-[0.25em] uppercase text-[#0080C8] mb-4 ${isVisible ? 'domino-rise' : 'domino-hidden'}`}>
+components/about/PhilosophySection.tsx:50:          <span className="text-[#0080C8]">정성을 다하여</span>
+components/about/PhilosophySection.tsx:54:        <p className={`text-base sm:text-[18px] text-gray-600 leading-[1.85] tracking-normal max-w-2xl mb-12 sm:mb-16 ${isVisible ? 'domino-rise' : 'domino-hidden'}`}
+components/about/PhilosophySection.tsx:69:                <div className="w-1 h-full min-h-16 bg-[#0080C8]/30 rounded-full group-hover:bg-[#0080C8] transition-colors mt-1" />
+components/about/PhilosophySection.tsx:71:                  <h3 className="font-bold text-gray-900 mb-3 text-[20px] sm:text-[21px] leading-[1.35] tracking-normal">
+components/about/PhilosophySection.tsx:74:                  <p className="text-[18px] sm:text-[19px] text-gray-600 leading-[1.85] tracking-normal whitespace-pre-line">
+components/about/AnchorNav.tsx:63:      aria-label="페이지 내 이동"
+components/about/AnchorNav.tsx:66:        <ul className="flex items-center overflow-x-auto scrollbar-hide gap-0">
+components/about/AnchorNav.tsx:71:                className={`relative px-3 sm:px-5 py-3.5 text-[17px] font-medium transition-colors whitespace-nowrap ${
+components/about/AnchorNav.tsx:73:                    ? 'text-[#0080C8]'
+components/about/AnchorNav.tsx:76:                aria-current={activeId === item.id ? 'location' : undefined}
+components/about/AnchorNav.tsx:80:                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#0080C8]" />
+components/about/DoctorTeamSection.tsx:67:    <section ref={ref} id="doctors" className="py-16 sm:py-24 bg-[#F8F7F9] border-b border-gray-100 scroll-mt-24">
+components/about/DoctorTeamSection.tsx:71:          <p className="text-xs tracking-[0.35em] uppercase text-[#0080C8] mb-2">Medical Team</p>
+components/about/DoctorTeamSection.tsx:73:          <div className="mt-3 w-10 h-0.5 bg-[#0080C8]" />
+components/about/DoctorTeamSection.tsx:91:                  className="relative rounded-2xl overflow-hidden cursor-pointer text-left group focus:outline-none"
+components/about/DoctorTeamSection.tsx:94:                  aria-label={`${doctor.name} ${doctor.role} 소개 보기`}
+components/about/DoctorTeamSection.tsx:112:                    <p className="text-white font-bold text-[18px] leading-tight">
+components/about/DoctorTeamSection.tsx:115:                    <p className="mt-1 text-white/75 text-[14px]">{doctor.role}</p>
+components/about/DoctorTeamSection.tsx:126:                    <p className="text-[11px] tracking-[0.2em] uppercase text-[#0080C8] font-medium mb-1">
+components/about/DoctorTeamSection.tsx:134:                        <li key={j} className="text-white/85 text-[11px] leading-snug flex items-start gap-1">
+components/about/DoctorTeamSection.tsx:135:                          <span className="text-[#0080C8] mt-0.5 shrink-0">·</span>
+components/about/DoctorTeamSection.tsx:140:                    <p className="mt-3 text-[11px] text-[#0080C8] font-medium tracking-wide">
+components/about/DoctorTeamSection.tsx:157:                  <p className="text-[18px] font-bold leading-tight text-gray-950">
+components/about/DoctorTeamSection.tsx:160:                  <p className="mt-1 text-[16px] font-extrabold leading-tight text-[#0080C8]">
+app/board/[slug]/page.tsx:82:    <main className="min-h-screen bg-[#F8F7F9] pt-24 pb-20">
+app/board/[slug]/page.tsx:89:        <nav className="mb-6 text-sm text-gray-500" aria-label="breadcrumb">
+app/board/[slug]/page.tsx:90:          <Link href="/" className="hover:text-[#0080C8]">홈</Link>
+app/board/[slug]/page.tsx:106:            <h1 className="text-3xl font-bold leading-tight text-[#2B2D42] sm:text-4xl">
+app/board/[slug]/page.tsx:112:            <p className="rounded-2xl bg-[#F8F7F9] p-5 text-base leading-7 text-gray-600">
+app/board/[slug]/page.tsx:118:              className="inline-flex rounded-full bg-[#0080C8] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#006EAA]"
+app/icon.svg:4:      <stop offset="0%" style="stop-color:#29B6D8;stop-opacity:1" />
+app/icon.svg:5:      <stop offset="100%" style="stop-color:#1A7EC8;stop-opacity:1" />
+app/icon.svg:9:  <text x="50" y="68" font-family="Arial, sans-serif" font-size="72" font-weight="bold" fill="url(#gGrad)" text-anchor="middle">G</text>
+app/privacy/page.tsx:17:        <div className="space-y-10 text-[15px] text-gray-700 leading-relaxed">
+app/privacy/page.tsx:202:                <ul className="list-disc list-inside pl-4 mt-1 space-y-1 text-gray-600 text-[14px]">
+app/privacy/page.tsx:217:            <div className="bg-gray-50 rounded-xl p-5 space-y-1.5 text-[15px]">
+app/privacy/page.tsx:223:                <a href="mailto:seoulegunpub@gmail.com" className="text-[#0080C8] hover:underline">
+app/privacy/page.tsx:237:            <div className="space-y-3 text-[14px]">
+components/cases/SignupGateModal.tsx:149:  const inputCls = 'w-full border border-gray-200 rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:border-[#0080C8] transition-colors'
+components/cases/SignupGateModal.tsx:153:    <div className="fixed inset-0 z-50 flex items-center justify-center p-4" role="dialog" aria-modal="true">
+components/cases/SignupGateModal.tsx:157:        <button onClick={onClose} className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors" aria-label="닫기">
+components/cases/SignupGateModal.tsx:163:            <div className="w-14 h-14 bg-[#0080C8]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+components/cases/SignupGateModal.tsx:164:              <svg className="w-7 h-7 text-[#0080C8]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+components/cases/SignupGateModal.tsx:177:              <Lock className="w-5 h-5 text-[#0080C8] shrink-0" />
+components/cases/SignupGateModal.tsx:180:                <p className="text-[12px] text-gray-500">회원 전용 — 치료 후 사진 확인 가능</p>
+components/cases/SignupGateModal.tsx:191:                    mode === m ? 'bg-white text-[#0080C8] shadow-sm' : 'text-gray-500 hover:text-gray-700'
+components/cases/SignupGateModal.tsx:272:                <p className="text-[11px] text-gray-400 leading-relaxed">
+components/cases/SignupGateModal.tsx:273:                  가입 시 <a href="/privacy" target="_blank" className="underline hover:text-[#0080C8]">개인정보처리방침</a>에 동의하는 것으로 간주합니다.
+components/cases/SignupGateModal.tsx:279:                  className="w-full bg-[#0080C8] text-white font-semibold text-sm py-3 rounded-lg hover:bg-[#006BA8] transition-colors disabled:opacity-50"
+components/cases/SignupGateModal.tsx:317:                  className="w-full bg-[#0080C8] text-white font-semibold text-sm py-3 rounded-lg hover:bg-[#006BA8] transition-colors disabled:opacity-50"
+components/cases/SignupGateModal.tsx:324:                  <button type="button" onClick={() => { setMode('signup'); setError('') }} className="text-[#0080C8] font-semibold hover:underline">
+components/board/TreatmentSection.tsx:115:      return <span key={i} className="font-semibold" style={{ color: '#0080C8' }}>{part.slice(2, -2)}</span>
+components/board/TreatmentSection.tsx:124:    <p className="text-gray-600 leading-[1.9] text-[16px] whitespace-pre-line">
+components/board/TreatmentSection.tsx:140:            aria-hidden="true"
+components/board/TreatmentSection.tsx:160:            <li key={i} className="flex items-start gap-2 text-gray-600 text-[16px] leading-relaxed">
+components/board/TreatmentSection.tsx:197:        <blockquote key={key++} className="border-l-2 pl-4 py-1 my-3 text-[15px] text-gray-500 italic leading-relaxed" style={{ borderColor: '#0080C8' }}>
+components/board/TreatmentSection.tsx:219:      <p key={key++} className="text-gray-600 text-[16px] leading-[1.85] my-1">
+components/board/TreatmentSection.tsx:248:          className={`rounded-xl overflow-hidden border border-[#D8E9F5] shadow-sm ${cardVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:251:          <div className="bg-[#EAF4FC] px-4 py-3 flex items-center gap-2.5">
+components/board/TreatmentSection.tsx:252:            <span className="text-[17px] font-black text-[#0080C8] leading-none tabular-nums shrink-0">
+components/board/TreatmentSection.tsx:255:            <span className="w-px h-4 bg-[#AACCE0] shrink-0" />
+components/board/TreatmentSection.tsx:256:            <h4 className="text-[13px] font-bold text-[#004A7A] leading-tight">{benefit.tag}</h4>
+components/board/TreatmentSection.tsx:259:            <p className="text-[12px] text-gray-500 leading-relaxed">{benefit.description}</p>
+components/board/TreatmentSection.tsx:278:          <div className={`inline-flex items-center gap-2 text-[#0080C8] font-semibold text-[14px] ${heroVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}>
+components/board/TreatmentSection.tsx:285:              className={`text-[42px] sm:text-[58px] lg:text-[66px] font-black leading-[1.06] tracking-normal text-gray-950 ${heroVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:289:              <span className="block text-[#0080C8]">임플란트</span>
+components/board/TreatmentSection.tsx:290:              <span className="block text-[21px] sm:text-[27px] lg:text-[32px] mt-3 font-black text-gray-400">
+components/board/TreatmentSection.tsx:295:              className={`text-[20px] sm:text-[24px] leading-relaxed text-gray-900 font-medium ${heroVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:304:            className={`rounded-2xl border border-[#D9E7F1] bg-white p-6 shadow-[0_14px_45px_rgba(16,55,91,0.06)] ${heroVisible ? 'scroll-reveal-drop' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:307:            <p className="text-[16px] sm:text-[17px] leading-[1.9] text-gray-700">
+components/board/TreatmentSection.tsx:318:          <div className="absolute inset-4 rounded-[34px] bg-[#EAF6FD]" />
+components/board/TreatmentSection.tsx:348:            className={`rounded-2xl border border-[#D9E7F1] bg-white p-7 shadow-[0_16px_50px_rgba(16,55,91,0.07)] ${cardVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:352:              <span className="w-12 h-12 rounded-full bg-[#E8F6FE] flex items-center justify-center">
+components/board/TreatmentSection.tsx:353:                <LucideIcon name={card.icon} size={25} className="text-[#0080C8]" />
+components/board/TreatmentSection.tsx:355:              <h3 className="text-[19px] font-bold text-gray-950">{card.title}</h3>
+components/board/TreatmentSection.tsx:357:            <p className="text-[16px] leading-[1.85] text-gray-700 whitespace-pre-line">{card.body}</p>
+components/board/TreatmentSection.tsx:362:          className={`rounded-2xl border border-[#D9E7F1] bg-white p-7 shadow-[0_16px_50px_rgba(16,55,91,0.07)] ${cardVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:366:            <span className="w-12 h-12 rounded-full bg-[#E8F6FE] flex items-center justify-center">
+components/board/TreatmentSection.tsx:367:              <LucideIcon name="TriangleAlert" size={25} className="text-[#0080C8]" />
+components/board/TreatmentSection.tsx:369:            <h3 className="text-[19px] font-bold text-gray-950">이런 분께 특히 필요합니다</h3>
+components/board/TreatmentSection.tsx:373:              <li key={item} className="flex items-start gap-3 text-[16px] leading-relaxed text-gray-700">
+components/board/TreatmentSection.tsx:374:                <span className="mt-1 w-5 h-5 rounded-full bg-[#0080C8] flex items-center justify-center shrink-0">
+components/board/TreatmentSection.tsx:387:          <h3 className="text-[25px] sm:text-[29px] font-black text-gray-950 text-center">
+components/board/TreatmentSection.tsx:400:            <h3 className="text-[25px] sm:text-[29px] font-black text-gray-950 text-center">
+components/board/TreatmentSection.tsx:406:          <div className="rounded-2xl overflow-hidden border border-[#DCE8F2] bg-white shadow-[0_16px_50px_rgba(16,55,91,0.07)]">
+components/board/TreatmentSection.tsx:408:              <div className="bg-[#AEB8C8] text-white text-center py-3 text-[17px] font-bold">
+components/board/TreatmentSection.tsx:411:              <div className="bg-white border-x border-[#E4EDF5]" />
+components/board/TreatmentSection.tsx:412:              <div className="bg-[#0080C8] text-white text-center py-3 text-[17px] font-bold">
+components/board/TreatmentSection.tsx:417:              <div key={row.label} className="grid grid-cols-[1fr_120px_1fr] sm:grid-cols-[1fr_180px_1fr] border-t border-[#E4EDF5] min-h-16">
+components/board/TreatmentSection.tsx:418:                <div className="flex items-center justify-center px-3 py-4 text-center text-[14px] sm:text-[15px] text-gray-600 leading-snug">
+components/board/TreatmentSection.tsx:421:                <div className="flex items-center justify-center gap-2 px-3 py-4 border-x border-[#E4EDF5] text-gray-900 font-bold text-[14px] sm:text-[15px]">
+components/board/TreatmentSection.tsx:422:                  {row.icon && <LucideIcon name={row.icon} size={22} className="text-[#0080C8] shrink-0" />}
+components/board/TreatmentSection.tsx:425:                <div className="flex items-center justify-center px-3 py-4 text-center text-[14px] sm:text-[15px] font-bold text-[#0080C8] leading-snug">
+components/board/TreatmentSection.tsx:435:        <div className="flex items-center justify-center gap-4 rounded-2xl border border-[#DCE8F2] bg-white px-6 py-5 shadow-[0_12px_40px_rgba(16,55,91,0.06)]">
+components/board/TreatmentSection.tsx:436:          <LucideIcon name="Tooth" size={34} className="text-[#0080C8] shrink-0" />
+components/board/TreatmentSection.tsx:437:          <p className="text-[19px] sm:text-[21px] font-bold text-[#0080C8] text-center leading-relaxed">
+components/board/TreatmentSection.tsx:458:          <div className={`inline-flex items-center gap-2 text-[#0080C8] font-semibold text-[14px] ${heroVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}>
+components/board/TreatmentSection.tsx:465:              className={`text-[42px] sm:text-[60px] lg:text-[72px] font-black leading-[1.02] tracking-normal text-gray-950 ${heroVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:468:              <span className="block text-[#0080C8]">상악동</span>
+components/board/TreatmentSection.tsx:472:              className={`text-[21px] sm:text-[26px] leading-relaxed text-gray-900 font-medium ${heroVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:489:              <div key={k} className="rounded-2xl border border-[#D9E7F1] bg-white px-4 py-4 text-center shadow-[0_10px_30px_rgba(16,55,91,0.06)]">
+components/board/TreatmentSection.tsx:490:                <p className="text-[#0080C8] text-[14px] font-black leading-none">{k}</p>
+components/board/TreatmentSection.tsx:491:                <p className="mt-2 text-[12px] font-semibold text-gray-600">{v}</p>
+components/board/TreatmentSection.tsx:502:          <div className="rounded-[28px] bg-[#EAF6FD] border border-[#D0E8F5] p-8 space-y-5 shadow-[0_24px_70px_rgba(15,71,110,0.10)]">
+components/board/TreatmentSection.tsx:503:            <p className="text-[12px] font-bold text-[#0080C8] uppercase tracking-widest">Sinus Lift Flow</p>
+components/board/TreatmentSection.tsx:511:                <span className="w-9 h-9 rounded-full bg-[#0080C8] text-white flex items-center justify-center text-[12px] font-black shrink-0 mt-0.5">
+components/board/TreatmentSection.tsx:515:                  <p className="text-[15px] font-black text-gray-950 leading-snug">{item.title}</p>
+components/board/TreatmentSection.tsx:516:                  <p className="text-[13px] text-gray-600 mt-1 leading-relaxed">{item.desc}</p>
+components/board/TreatmentSection.tsx:519:                  <div className="absolute left-[18px] mt-10 w-px h-5 bg-[#B8D8EE]" />
+components/board/TreatmentSection.tsx:532:            className={`rounded-2xl border border-[#D9E7F1] bg-white p-7 shadow-[0_16px_50px_rgba(16,55,91,0.07)] ${cardVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:536:              <span className="w-12 h-12 rounded-full bg-[#E8F6FE] flex items-center justify-center">
+components/board/TreatmentSection.tsx:537:                <LucideIcon name={card.icon} size={25} className="text-[#0080C8]" />
+components/board/TreatmentSection.tsx:539:              <h3 className="text-[17px] font-bold text-gray-950">{card.title}</h3>
+components/board/TreatmentSection.tsx:544:                  <li key={item} className="flex items-start gap-3 text-[14px] leading-relaxed text-gray-700">
+components/board/TreatmentSection.tsx:545:                    <span className="mt-1 w-5 h-5 rounded-full bg-[#0080C8] flex items-center justify-center shrink-0">
+components/board/TreatmentSection.tsx:553:              <p className="text-[15px] leading-[1.85] text-gray-700">{card.body}</p>
+components/board/TreatmentSection.tsx:562:        <h3 className="text-[25px] sm:text-[29px] font-black text-gray-950 text-center">
+components/board/TreatmentSection.tsx:584:      <div className="flex items-center justify-center gap-4 rounded-2xl border border-[#DCE8F2] bg-white px-6 py-5 shadow-[0_12px_40px_rgba(16,55,91,0.06)]">
+components/board/TreatmentSection.tsx:585:        <LucideIcon name="ArrowUpFromLine" size={34} className="text-[#0080C8] shrink-0" />
+components/board/TreatmentSection.tsx:586:        <p className="text-[19px] sm:text-[21px] font-bold text-[#0080C8] text-center leading-relaxed">
+components/board/TreatmentSection.tsx:606:          <div className={`inline-flex items-center gap-2 text-[#0080C8] font-semibold text-[14px] ${heroVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}>
+components/board/TreatmentSection.tsx:613:              className={`text-[42px] sm:text-[60px] lg:text-[72px] font-black leading-[1.02] tracking-normal text-gray-950 ${heroVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:617:              <span className="block text-[#0080C8]">임플란트</span>
+components/board/TreatmentSection.tsx:620:              className={`text-[21px] sm:text-[26px] leading-relaxed text-gray-900 font-medium ${heroVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:637:              <div key={k} className="rounded-2xl border border-[#D9E7F1] bg-white px-4 py-4 text-center shadow-[0_10px_30px_rgba(16,55,91,0.06)]">
+components/board/TreatmentSection.tsx:638:                <p className="text-[#0080C8] text-[17px] font-black leading-none">{k}</p>
+components/board/TreatmentSection.tsx:639:                <p className="mt-2 text-[13px] font-semibold text-gray-600">{v}</p>
+components/board/TreatmentSection.tsx:650:          <div className="absolute inset-4 rounded-[38px] bg-[#EAF6FD]" />
+components/board/TreatmentSection.tsx:651:          <div className="absolute -left-2 top-12 w-44 h-44 rounded-full bg-white/70 blur-2xl" />
+components/board/TreatmentSection.tsx:652:          <div className="absolute right-4 bottom-10 w-56 h-56 rounded-full bg-[#D8EFFB] blur-2xl" />
+components/board/TreatmentSection.tsx:656:              <div className="absolute left-4 top-4 rounded-full bg-gray-900/70 px-3 py-1 text-[12px] font-bold text-white">Before</div>
+components/board/TreatmentSection.tsx:662:              <div className="absolute left-4 top-4 rounded-full bg-[#0080C8] px-3 py-1 text-[12px] font-bold text-white">After</div>
+components/board/TreatmentSection.tsx:666:          <div className="absolute left-1/2 top-[46%] -translate-y-1/2 rounded-2xl bg-white/92 backdrop-blur px-5 py-4 border border-[#DCE8F2] shadow-[0_18px_50px_rgba(16,55,91,0.12)] whitespace-nowrap">
+components/board/TreatmentSection.tsx:668:              <span className="w-11 h-11 rounded-full bg-[#E8F6FE] flex items-center justify-center shrink-0">
+components/board/TreatmentSection.tsx:669:                <LucideIcon name="HeartPulse" size={23} className="text-[#0080C8]" />
+components/board/TreatmentSection.tsx:672:                <p className="text-[12px] font-bold text-gray-500">전신 건강 고려</p>
+components/board/TreatmentSection.tsx:673:                <p className="text-[17px] font-black text-gray-950">체계적 치료 계획</p>
+components/board/TreatmentSection.tsx:685:            className={`rounded-2xl border border-[#D9E7F1] bg-white p-7 shadow-[0_16px_50px_rgba(16,55,91,0.07)] ${cardVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:689:              <span className="w-12 h-12 rounded-full bg-[#E8F6FE] flex items-center justify-center">
+components/board/TreatmentSection.tsx:690:                <LucideIcon name={card.icon} size={25} className="text-[#0080C8]" />
+components/board/TreatmentSection.tsx:692:              <h3 className="text-[17px] font-bold text-gray-950">{card.title}</h3>
+components/board/TreatmentSection.tsx:697:                  <li key={item} className="flex items-start gap-3 text-[14px] leading-relaxed text-gray-700">
+components/board/TreatmentSection.tsx:698:                    <span className="mt-1 w-5 h-5 rounded-full bg-[#0080C8] flex items-center justify-center shrink-0">
+components/board/TreatmentSection.tsx:706:              <p className="text-[15px] leading-[1.85] text-gray-700">{card.body}</p>
+components/board/TreatmentSection.tsx:715:        <h3 className="text-[25px] sm:text-[29px] font-black text-gray-950 text-center">
+components/board/TreatmentSection.tsx:724:      <div className="flex items-center justify-center gap-4 rounded-2xl border border-[#DCE8F2] bg-white px-6 py-5 shadow-[0_12px_40px_rgba(16,55,91,0.06)]">
+components/board/TreatmentSection.tsx:725:        <LucideIcon name="HeartPulse" size={34} className="text-[#0080C8] shrink-0" />
+components/board/TreatmentSection.tsx:726:        <p className="text-[19px] sm:text-[21px] font-bold text-[#0080C8] text-center leading-relaxed">
+components/board/TreatmentSection.tsx:746:          <div className={`inline-flex items-center gap-2 text-[#0080C8] font-semibold text-[14px] ${heroVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}>
+components/board/TreatmentSection.tsx:753:              className={`text-[42px] sm:text-[60px] lg:text-[72px] font-black leading-[1.02] tracking-normal text-gray-950 ${heroVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:757:              <span className="block text-[#0080C8]">임플란트</span>
+components/board/TreatmentSection.tsx:760:              className={`text-[21px] sm:text-[26px] leading-relaxed text-gray-900 font-medium ${heroVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:777:              <div key={k} className="rounded-2xl border border-[#D9E7F1] bg-white px-4 py-4 text-center shadow-[0_10px_30px_rgba(16,55,91,0.06)]">
+components/board/TreatmentSection.tsx:778:                <p className="text-[#0080C8] text-[17px] font-black leading-none">{k}</p>
+components/board/TreatmentSection.tsx:779:                <p className="mt-2 text-[13px] font-semibold text-gray-600">{v}</p>
+components/board/TreatmentSection.tsx:790:          <div className="absolute inset-4 rounded-[38px] bg-[#EAF6FD]" />
+components/board/TreatmentSection.tsx:791:          <div className="absolute -left-2 top-12 w-44 h-44 rounded-full bg-white/70 blur-2xl" />
+components/board/TreatmentSection.tsx:792:          <div className="absolute right-4 bottom-10 w-56 h-56 rounded-full bg-[#D8EFFB] blur-2xl" />
+components/board/TreatmentSection.tsx:800:          <div className="absolute left-7 bottom-10 rounded-2xl bg-white/92 backdrop-blur px-5 py-4 border border-[#DCE8F2] shadow-[0_18px_50px_rgba(16,55,91,0.12)]">
+components/board/TreatmentSection.tsx:802:              <span className="w-11 h-11 rounded-full bg-[#E8F6FE] flex items-center justify-center">
+components/board/TreatmentSection.tsx:803:                <LucideIcon name="ShieldCheck" size={23} className="text-[#0080C8]" />
+components/board/TreatmentSection.tsx:806:                <p className="text-[12px] font-bold text-gray-500">신경 손상 위험</p>
+components/board/TreatmentSection.tsx:807:                <p className="text-[17px] font-black text-gray-950">최소화 목표</p>
+components/board/TreatmentSection.tsx:819:            className={`rounded-2xl border border-[#D9E7F1] bg-white p-7 shadow-[0_16px_50px_rgba(16,55,91,0.07)] ${cardVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:823:              <span className="w-12 h-12 rounded-full bg-[#E8F6FE] flex items-center justify-center">
+components/board/TreatmentSection.tsx:824:                <LucideIcon name={card.icon} size={25} className="text-[#0080C8]" />
+components/board/TreatmentSection.tsx:826:              <h3 className="text-[17px] font-bold text-gray-950">{card.title}</h3>
+components/board/TreatmentSection.tsx:828:            <p className="text-[15px] leading-[1.85] text-gray-700">{card.body}</p>
+components/board/TreatmentSection.tsx:833:          className={`rounded-2xl border border-[#D9E7F1] bg-white p-7 shadow-[0_16px_50px_rgba(16,55,91,0.07)] ${cardVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:837:            <span className="w-12 h-12 rounded-full bg-[#E8F6FE] flex items-center justify-center">
+components/board/TreatmentSection.tsx:838:              <LucideIcon name="TriangleAlert" size={25} className="text-[#0080C8]" />
+components/board/TreatmentSection.tsx:840:            <h3 className="text-[17px] font-bold text-gray-950">이런 분께 추천드립니다</h3>
+components/board/TreatmentSection.tsx:849:              <li key={item} className="flex items-start gap-3 text-[14px] leading-relaxed text-gray-700">
+components/board/TreatmentSection.tsx:850:                <span className="mt-1 w-5 h-5 rounded-full bg-[#0080C8] flex items-center justify-center shrink-0">
+components/board/TreatmentSection.tsx:875:        <h3 className="text-[25px] sm:text-[29px] font-black text-gray-950 text-center">
+components/board/TreatmentSection.tsx:884:      <div className="flex items-center justify-center gap-4 rounded-2xl border border-[#DCE8F2] bg-white px-6 py-5 shadow-[0_12px_40px_rgba(16,55,91,0.06)]">
+components/board/TreatmentSection.tsx:885:        <LucideIcon name="ScanLine" size={34} className="text-[#0080C8] shrink-0" />
+components/board/TreatmentSection.tsx:886:        <p className="text-[19px] sm:text-[21px] font-bold text-[#0080C8] text-center leading-relaxed">
+components/board/TreatmentSection.tsx:905:          <div className={`inline-flex items-center gap-2 text-[#0080C8] font-semibold text-[14px] ${heroVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}>
+components/board/TreatmentSection.tsx:911:              className={`text-[42px] sm:text-[60px] lg:text-[72px] font-black leading-[1.02] tracking-normal text-gray-950 ${heroVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:915:              <span className="block text-[#0080C8]">임플란트</span>
+components/board/TreatmentSection.tsx:918:              className={`text-[21px] sm:text-[26px] leading-relaxed text-gray-900 font-medium ${heroVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:935:              <div key={k} className="rounded-2xl border border-[#D9E7F1] bg-white px-4 py-4 text-center shadow-[0_10px_30px_rgba(16,55,91,0.06)]">
+components/board/TreatmentSection.tsx:936:                <p className="text-[#0080C8] text-[17px] font-black leading-none">{k}</p>
+components/board/TreatmentSection.tsx:937:                <p className="mt-2 text-[13px] font-semibold text-gray-600">{v}</p>
+components/board/TreatmentSection.tsx:947:          <div className="absolute inset-4 rounded-[38px] bg-[#EAF6FD]" />
+components/board/TreatmentSection.tsx:948:          <div className="absolute -left-2 top-12 w-44 h-44 rounded-full bg-white/70 blur-2xl" />
+components/board/TreatmentSection.tsx:949:          <div className="absolute right-4 bottom-10 w-56 h-56 rounded-full bg-[#D8EFFB] blur-2xl" />
+components/board/TreatmentSection.tsx:953:              <div className="absolute left-4 top-4 rounded-full bg-gray-900/70 px-3 py-1 text-[12px] font-bold text-white">Before</div>
+components/board/TreatmentSection.tsx:959:              <div className="absolute left-4 top-4 rounded-full bg-[#0080C8] px-3 py-1 text-[12px] font-bold text-white">After</div>
+components/board/TreatmentSection.tsx:962:          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 lg:left-7 lg:top-auto lg:translate-x-0 lg:translate-y-0 lg:bottom-20 rounded-2xl bg-white/92 backdrop-blur px-5 py-4 border border-[#DCE8F2] shadow-[0_18px_50px_rgba(16,55,91,0.12)] whitespace-nowrap">
+components/board/TreatmentSection.tsx:964:              <span className="w-11 h-11 rounded-full bg-[#E8F6FE] flex items-center justify-center shrink-0">
+components/board/TreatmentSection.tsx:965:                <LucideIcon name="ArrowRight" size={23} className="text-[#0080C8]" />
+components/board/TreatmentSection.tsx:968:                <p className="text-[12px] font-bold text-gray-500">치아 없는 기간</p>
+components/board/TreatmentSection.tsx:969:                <p className="text-[17px] font-black text-gray-950">최소화 목표</p>
+components/board/TreatmentSection.tsx:983:            className={`rounded-2xl border border-[#D9E7F1] bg-white p-7 shadow-[0_16px_50px_rgba(16,55,91,0.07)] ${cardVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:987:              <span className="w-12 h-12 rounded-full bg-[#E8F6FE] flex items-center justify-center">
+components/board/TreatmentSection.tsx:988:                <LucideIcon name={card.icon} size={25} className="text-[#0080C8]" />
+components/board/TreatmentSection.tsx:990:              <h3 className="text-[19px] font-bold text-gray-950">{card.title}</h3>
+components/board/TreatmentSection.tsx:992:            <p className="text-[16px] leading-[1.85] text-gray-700 whitespace-pre-line">{card.body}</p>
+components/board/TreatmentSection.tsx:997:          className={`rounded-2xl border border-[#D9E7F1] bg-white p-7 shadow-[0_16px_50px_rgba(16,55,91,0.07)] ${cardVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:1001:            <span className="w-12 h-12 rounded-full bg-[#E8F6FE] flex items-center justify-center">
+components/board/TreatmentSection.tsx:1002:              <LucideIcon name="TriangleAlert" size={25} className="text-[#0080C8]" />
+components/board/TreatmentSection.tsx:1004:            <h3 className="text-[19px] font-bold text-gray-950">이런 분께 특히 필요합니다</h3>
+components/board/TreatmentSection.tsx:1008:              <li key={item} className="flex items-start gap-3 text-[16px] leading-relaxed text-gray-700">
+components/board/TreatmentSection.tsx:1009:                <span className="mt-1 w-5 h-5 rounded-full bg-[#0080C8] flex items-center justify-center shrink-0">
+components/board/TreatmentSection.tsx:1020:        <div className="rounded-[28px] bg-[#F7FBFE] border border-[#DCE8F2] p-6 sm:p-8">
+components/board/TreatmentSection.tsx:1023:            <h3 className="text-[25px] sm:text-[29px] font-black text-gray-950 text-center">
+components/board/TreatmentSection.tsx:1032:                className={`relative rounded-2xl bg-white border border-[#E1EAF2] p-5 text-center shadow-[0_10px_30px_rgba(16,55,91,0.05)] ${cardVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:1035:                <span className="mx-auto mb-4 w-10 h-10 rounded-full bg-[#0080C8] text-white flex items-center justify-center text-[13px] font-black">
+components/board/TreatmentSection.tsx:1038:                {step.icon && <LucideIcon name={step.icon} size={30} className="text-[#0080C8] mx-auto mb-3" strokeWidth={1.8} />}
+components/board/TreatmentSection.tsx:1039:                <h4 className="text-[16px] font-black text-gray-950 leading-snug">{step.title}</h4>
+components/board/TreatmentSection.tsx:1040:                {step.desc && <p className="mt-3 text-[13px] text-gray-600 leading-[1.75]">{step.desc}</p>}
+components/board/TreatmentSection.tsx:1050:          <h3 className="text-[25px] sm:text-[29px] font-black text-gray-950 text-center">
+components/board/TreatmentSection.tsx:1063:            <h3 className="text-[25px] sm:text-[29px] font-black text-gray-950 text-center">
+components/board/TreatmentSection.tsx:1069:          <div className="rounded-2xl overflow-hidden border border-[#DCE8F2] bg-white shadow-[0_16px_50px_rgba(16,55,91,0.07)]">
+components/board/TreatmentSection.tsx:1071:              <div className="bg-[#AEB8C8] text-white text-center py-3 text-[17px] font-bold">
+components/board/TreatmentSection.tsx:1074:              <div className="bg-white border-x border-[#E4EDF5]" />
+components/board/TreatmentSection.tsx:1075:              <div className="bg-[#0080C8] text-white text-center py-3 text-[17px] font-bold">
+components/board/TreatmentSection.tsx:1080:              <div key={row.label} className="grid grid-cols-[1fr_120px_1fr] sm:grid-cols-[1fr_180px_1fr] border-t border-[#E4EDF5] min-h-16">
+components/board/TreatmentSection.tsx:1081:                <div className="flex items-center justify-center px-3 py-4 text-center text-[14px] sm:text-[15px] text-gray-600 leading-snug">
+components/board/TreatmentSection.tsx:1084:                <div className="flex items-center justify-center gap-2 px-3 py-4 border-x border-[#E4EDF5] text-gray-900 font-bold text-[14px] sm:text-[15px]">
+components/board/TreatmentSection.tsx:1085:                  {row.icon && <LucideIcon name={row.icon} size={22} className="text-[#0080C8] shrink-0" />}
+components/board/TreatmentSection.tsx:1088:                <div className="flex items-center justify-center px-3 py-4 text-center text-[14px] sm:text-[15px] font-bold text-[#0080C8] leading-snug">
+components/board/TreatmentSection.tsx:1098:        <div className="flex items-center justify-center gap-4 rounded-2xl border border-[#DCE8F2] bg-white px-6 py-5 shadow-[0_12px_40px_rgba(16,55,91,0.06)]">
+components/board/TreatmentSection.tsx:1099:          <LucideIcon name="CalendarCheck" size={34} className="text-[#0080C8] shrink-0" />
+components/board/TreatmentSection.tsx:1100:          <p className="text-[19px] sm:text-[21px] font-bold text-[#0080C8] text-center leading-relaxed">
+components/board/TreatmentSection.tsx:1138:          <div className={`inline-flex items-center gap-2 text-[#0080C8] font-semibold text-[14px] ${heroVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}>
+components/board/TreatmentSection.tsx:1145:              className={`text-[42px] sm:text-[58px] lg:text-[66px] font-black leading-[1.06] tracking-normal text-gray-950 ${heroVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:1149:              <span className="block text-[#0080C8]">레진치료</span>
+components/board/TreatmentSection.tsx:1150:              <span className="block text-[21px] sm:text-[27px] lg:text-[32px] mt-3 font-black text-gray-400">
+components/board/TreatmentSection.tsx:1155:              className={`text-[20px] sm:text-[24px] leading-relaxed text-gray-900 font-medium ${heroVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:1164:            className={`rounded-2xl border border-[#D9E7F1] bg-white p-6 shadow-[0_14px_45px_rgba(16,55,91,0.06)] ${heroVisible ? 'scroll-reveal-drop' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:1167:            <p className="text-[16px] sm:text-[17px] leading-[1.9] text-gray-700">
+components/board/TreatmentSection.tsx:1178:          <div className="absolute inset-4 rounded-[34px] bg-[#EAF6FD]" />
+components/board/TreatmentSection.tsx:1202:            className={`rounded-2xl border border-[#D9E7F1] bg-white p-7 shadow-[0_16px_50px_rgba(16,55,91,0.07)] ${cardVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:1206:              <span className="w-12 h-12 rounded-full bg-[#E8F6FE] flex items-center justify-center">
+components/board/TreatmentSection.tsx:1207:                <LucideIcon name={card.icon} size={25} className="text-[#0080C8]" />
+components/board/TreatmentSection.tsx:1209:              <h3 className="text-[19px] font-bold text-gray-950">{card.title}</h3>
+components/board/TreatmentSection.tsx:1211:            <p className="text-[15px] leading-[1.85] text-gray-700">{card.body}</p>
+components/board/TreatmentSection.tsx:1218:        <h3 className="text-[25px] sm:text-[29px] font-black text-gray-950 text-center">
+components/board/TreatmentSection.tsx:1226:      <div className="flex items-center justify-center gap-4 rounded-2xl border border-[#DCE8F2] bg-white px-6 py-5 shadow-[0_12px_40px_rgba(16,55,91,0.06)]">
+components/board/TreatmentSection.tsx:1227:        <LucideIcon name="Tooth" size={34} className="text-[#0080C8] shrink-0" />
+components/board/TreatmentSection.tsx:1228:        <p className="text-[18px] sm:text-[20px] font-bold text-[#0080C8] text-center leading-relaxed">
+components/board/TreatmentSection.tsx:1247:          <div className={`inline-flex items-center gap-2 text-[#0080C8] font-semibold text-[14px] ${heroVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}>
+components/board/TreatmentSection.tsx:1253:              className={`text-[42px] sm:text-[58px] lg:text-[66px] font-black leading-[1.04] tracking-normal text-gray-950 ${heroVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:1257:              <span className="block text-[#0080C8]">레진빌드업</span>
+components/board/TreatmentSection.tsx:1260:              className={`text-[20px] sm:text-[25px] leading-relaxed text-gray-900 font-medium ${heroVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:1277:              <div key={k} className="rounded-2xl border border-[#D9E7F1] bg-white px-4 py-4 text-center shadow-[0_10px_30px_rgba(16,55,91,0.06)]">
+components/board/TreatmentSection.tsx:1278:                <p className="text-[#0080C8] text-[15px] font-black leading-none">{k}</p>
+components/board/TreatmentSection.tsx:1279:                <p className="mt-2 text-[13px] font-semibold text-gray-600">{v}</p>
+components/board/TreatmentSection.tsx:1289:          <div className="absolute inset-4 rounded-[34px] bg-[#EAF6FD]" />
+components/board/TreatmentSection.tsx:1313:          className={`rounded-2xl border border-[#D9E7F1] bg-white p-7 shadow-[0_16px_50px_rgba(16,55,91,0.07)] ${cardVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:1316:            <span className="w-12 h-12 rounded-full bg-[#E8F6FE] flex items-center justify-center">
+components/board/TreatmentSection.tsx:1317:              <LucideIcon name="TriangleAlert" size={25} className="text-[#0080C8]" />
+components/board/TreatmentSection.tsx:1319:            <h3 className="text-[19px] font-bold text-gray-950">이런 분께 특히 필요합니다</h3>
+components/board/TreatmentSection.tsx:1323:              <li key={item} className="flex items-start gap-3 text-[16px] leading-relaxed text-gray-700">
+components/board/TreatmentSection.tsx:1324:                <span className="mt-1 w-5 h-5 rounded-full bg-[#0080C8] flex items-center justify-center shrink-0">
+components/board/TreatmentSection.tsx:1335:        <div className="rounded-[28px] bg-[#F7FBFE] border border-[#DCE8F2] p-6 sm:p-8">
+components/board/TreatmentSection.tsx:1338:            <h3 className="text-[25px] sm:text-[29px] font-black text-gray-950 text-center">
+components/board/TreatmentSection.tsx:1347:                className={`relative rounded-2xl bg-white border border-[#E1EAF2] p-5 text-center shadow-[0_10px_30px_rgba(16,55,91,0.05)] ${cardVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:1350:                <span className="mx-auto mb-4 w-10 h-10 rounded-full bg-[#0080C8] text-white flex items-center justify-center text-[13px] font-black">
+components/board/TreatmentSection.tsx:1353:                {step.icon && <LucideIcon name={step.icon} size={30} className="text-[#0080C8] mx-auto mb-3" strokeWidth={1.8} />}
+components/board/TreatmentSection.tsx:1354:                <h4 className="text-[16px] font-black text-gray-950 leading-snug">{step.title}</h4>
+components/board/TreatmentSection.tsx:1355:                {step.desc && <p className="mt-3 text-[13px] text-gray-600 leading-[1.75]">{step.desc}</p>}
+components/board/TreatmentSection.tsx:1364:        <h3 className="text-[25px] sm:text-[29px] font-black text-gray-950 text-center">
+components/board/TreatmentSection.tsx:1373:        <div className="flex items-center justify-center gap-4 rounded-2xl border border-[#DCE8F2] bg-white px-6 py-5 shadow-[0_12px_40px_rgba(16,55,91,0.06)]">
+components/board/TreatmentSection.tsx:1374:          <LucideIcon name="ShieldCheck" size={34} className="text-[#0080C8] shrink-0" />
+components/board/TreatmentSection.tsx:1375:          <p className="text-[18px] sm:text-[20px] font-bold text-[#0080C8] text-center leading-relaxed">
+components/board/TreatmentSection.tsx:1413:          <div className={`inline-flex items-center gap-2 text-[#0080C8] font-semibold text-[14px] ${heroVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}>
+components/board/TreatmentSection.tsx:1420:              className={`text-[42px] sm:text-[58px] lg:text-[66px] font-black leading-[1.06] tracking-normal text-gray-950 ${heroVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:1426:              <span className="block text-[#0080C8]">{treatment.heroTitle?.line2}</span>
+components/board/TreatmentSection.tsx:1429:              className={`text-[20px] sm:text-[24px] leading-relaxed text-gray-900 font-medium ${heroVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:1437:            className={`rounded-2xl border border-[#D9E7F1] bg-white p-6 shadow-[0_14px_45px_rgba(16,55,91,0.06)] ${heroVisible ? 'scroll-reveal-drop' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:1440:            <p className="text-[16px] sm:text-[17px] leading-[1.9] text-gray-700">
+components/board/TreatmentSection.tsx:1442:              <span className="font-semibold" style={{ color: '#0080C8' }}>얇은 세라믹을 접착</span>하여
+components/board/TreatmentSection.tsx:1452:          <div className="absolute inset-4 rounded-[34px] bg-[#EAF6FD]" />
+components/board/TreatmentSection.tsx:1476:            className={`rounded-2xl border border-[#D9E7F1] bg-white p-7 shadow-[0_16px_50px_rgba(16,55,91,0.07)] ${cardVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:1480:              <span className="w-12 h-12 rounded-full bg-[#E8F6FE] flex items-center justify-center">
+components/board/TreatmentSection.tsx:1481:                <LucideIcon name={card.icon} size={25} className="text-[#0080C8]" />
+components/board/TreatmentSection.tsx:1483:              <h3 className="text-[19px] font-bold text-gray-950">{card.title}</h3>
+components/board/TreatmentSection.tsx:1485:            <p className="text-[15px] leading-[1.85] text-gray-700">{card.body}</p>
+components/board/TreatmentSection.tsx:1492:        <h3 className="text-[25px] sm:text-[29px] font-black text-gray-950 text-center">
+components/board/TreatmentSection.tsx:1500:      <div className="flex items-center justify-center gap-4 rounded-2xl border border-[#DCE8F2] bg-white px-6 py-5 shadow-[0_12px_40px_rgba(16,55,91,0.06)]">
+components/board/TreatmentSection.tsx:1501:        <LucideIcon name="Gem" size={34} className="text-[#0080C8] shrink-0" />
+components/board/TreatmentSection.tsx:1502:        <p className="text-[18px] sm:text-[20px] font-bold text-[#0080C8] text-center leading-relaxed">
+components/board/TreatmentSection.tsx:1539:          <div className={`inline-flex items-center gap-2 text-[#0080C8] font-semibold text-[14px] ${heroVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}>
+components/board/TreatmentSection.tsx:1546:              className={`text-[42px] sm:text-[58px] lg:text-[66px] font-black leading-[1.06] tracking-normal text-gray-950 ${heroVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:1552:              <span className="block text-[#0080C8]">{treatment.heroTitle?.line2}</span>
+components/board/TreatmentSection.tsx:1555:              className={`text-[20px] sm:text-[24px] leading-relaxed text-gray-900 font-medium ${heroVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:1563:            className={`rounded-2xl border border-[#D9E7F1] bg-white p-6 shadow-[0_14px_45px_rgba(16,55,91,0.06)] ${heroVisible ? 'scroll-reveal-drop' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:1566:            <p className="text-[16px] sm:text-[17px] leading-[1.9] text-gray-700">
+components/board/TreatmentSection.tsx:1568:              <span className="font-semibold" style={{ color: '#0080C8' }}>눈에 잘 띄지 않아</span>{' '}
+components/board/TreatmentSection.tsx:1578:          <div className="absolute inset-4 rounded-[34px] bg-[#EAF6FD]" />
+components/board/TreatmentSection.tsx:1596:            className={`rounded-2xl border border-[#D9E7F1] bg-white p-7 shadow-[0_16px_50px_rgba(16,55,91,0.07)] ${cardVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:1600:              <span className="w-12 h-12 rounded-full bg-[#E8F6FE] flex items-center justify-center">
+components/board/TreatmentSection.tsx:1601:                <LucideIcon name={card.icon} size={25} className="text-[#0080C8]" />
+components/board/TreatmentSection.tsx:1603:              <h3 className="text-[19px] font-bold text-gray-950">{card.title}</h3>
+components/board/TreatmentSection.tsx:1605:            <p className="text-[15px] leading-[1.85] text-gray-700">{card.body}</p>
+components/board/TreatmentSection.tsx:1626:        <h3 className="text-[25px] sm:text-[29px] font-black text-gray-950 text-center">
+components/board/TreatmentSection.tsx:1634:      <div className="flex items-center justify-center gap-4 rounded-2xl border border-[#DCE8F2] bg-white px-6 py-5 shadow-[0_12px_40px_rgba(16,55,91,0.06)]">
+components/board/TreatmentSection.tsx:1635:        <LucideIcon name="SmilePlus" size={34} className="text-[#0080C8] shrink-0" />
+components/board/TreatmentSection.tsx:1636:        <p className="text-[18px] sm:text-[20px] font-bold text-[#0080C8] text-center leading-relaxed">
+components/board/TreatmentSection.tsx:1673:          <div className={`inline-flex items-center gap-2 text-[#0080C8] font-semibold text-[14px] ${heroVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}>
+components/board/TreatmentSection.tsx:1680:              className={`text-[42px] sm:text-[58px] lg:text-[66px] font-black leading-[1.06] tracking-normal text-gray-950 ${heroVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:1686:              <span className="block text-[#0080C8]">{treatment.heroTitle?.line2}</span>
+components/board/TreatmentSection.tsx:1689:              className={`text-[20px] sm:text-[24px] leading-relaxed text-gray-900 font-medium ${heroVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:1697:            className={`rounded-2xl border border-[#D9E7F1] bg-white p-6 shadow-[0_14px_45px_rgba(16,55,91,0.06)] ${heroVisible ? 'scroll-reveal-drop' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:1700:            <p className="text-[16px] sm:text-[17px] leading-[1.9] text-gray-700">
+components/board/TreatmentSection.tsx:1702:              <span className="font-semibold" style={{ color: '#0080C8' }}>골격 발육과 치아 배열을 함께 고려</span>하여
+components/board/TreatmentSection.tsx:1712:          <div className="absolute inset-4 rounded-[34px] bg-[#EAF6FD]" />
+components/board/TreatmentSection.tsx:1736:            className={`rounded-2xl border border-[#D9E7F1] bg-white p-7 shadow-[0_16px_50px_rgba(16,55,91,0.07)] ${cardVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:1740:              <span className="w-12 h-12 rounded-full bg-[#E8F6FE] flex items-center justify-center">
+components/board/TreatmentSection.tsx:1741:                <LucideIcon name={card.icon} size={25} className="text-[#0080C8]" />
+components/board/TreatmentSection.tsx:1743:              <h3 className="text-[19px] font-bold text-gray-950">{card.title}</h3>
+components/board/TreatmentSection.tsx:1745:            <p className="text-[15px] leading-[1.85] text-gray-700">{card.body}</p>
+components/board/TreatmentSection.tsx:1764:        <h3 className="text-[25px] sm:text-[29px] font-black text-gray-950 text-center">
+components/board/TreatmentSection.tsx:1772:      <div className="flex items-center justify-center gap-4 rounded-2xl border border-[#DCE8F2] bg-white px-6 py-5 shadow-[0_12px_40px_rgba(16,55,91,0.06)]">
+components/board/TreatmentSection.tsx:1773:        <LucideIcon name="ShieldCheck" size={34} className="text-[#0080C8] shrink-0" />
+components/board/TreatmentSection.tsx:1774:        <p className="text-[18px] sm:text-[20px] font-bold text-[#0080C8] text-center leading-relaxed">
+components/board/TreatmentSection.tsx:1811:          <div className={`inline-flex items-center gap-2 text-[#0080C8] font-semibold text-[14px] ${heroVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}>
+components/board/TreatmentSection.tsx:1818:              className={`text-[42px] sm:text-[58px] lg:text-[66px] font-black leading-[1.06] tracking-normal text-gray-950 ${heroVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:1821:              <span className="block text-[#0080C8]">소아충치치료</span>
+components/board/TreatmentSection.tsx:1822:              <span className="block text-[21px] sm:text-[27px] lg:text-[32px] mt-3 font-black text-gray-400">
+components/board/TreatmentSection.tsx:1827:              className={`text-[20px] sm:text-[24px] leading-relaxed text-gray-900 font-medium ${heroVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:1836:            className={`rounded-2xl border border-[#D9E7F1] bg-white p-6 shadow-[0_14px_45px_rgba(16,55,91,0.06)] ${heroVisible ? 'scroll-reveal-drop' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:1839:            <p className="text-[16px] sm:text-[17px] leading-[1.9] text-gray-700">
+components/board/TreatmentSection.tsx:1851:          <div className="absolute inset-4 rounded-[34px] bg-[#EAF6FD]" />
+components/board/TreatmentSection.tsx:1866:            className={`rounded-2xl border border-[#D9E7F1] bg-white p-7 shadow-[0_16px_50px_rgba(16,55,91,0.07)] ${cardVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:1870:              <span className="w-12 h-12 rounded-full bg-[#E8F6FE] flex items-center justify-center">
+components/board/TreatmentSection.tsx:1871:                <LucideIcon name={card.icon} size={25} className="text-[#0080C8]" />
+components/board/TreatmentSection.tsx:1873:              <h3 className="text-[19px] font-bold text-gray-950">{card.title}</h3>
+components/board/TreatmentSection.tsx:1875:            <p className="text-[15px] leading-[1.85] text-gray-700">{card.body}</p>
+components/board/TreatmentSection.tsx:1882:        <h3 className="text-[25px] sm:text-[29px] font-black text-gray-950 text-center">
+components/board/TreatmentSection.tsx:1900:      <div className="flex items-center justify-center gap-4 rounded-2xl border border-[#DCE8F2] bg-white px-6 py-5 shadow-[0_12px_40px_rgba(16,55,91,0.06)]">
+components/board/TreatmentSection.tsx:1901:        <LucideIcon name="Baby" size={34} className="text-[#0080C8] shrink-0" />
+components/board/TreatmentSection.tsx:1902:        <p className="text-[18px] sm:text-[20px] font-bold text-[#0080C8] text-center leading-relaxed">
+components/board/TreatmentSection.tsx:1984:              <div className={`flex items-center gap-1.5 text-[#0080C8] text-[12px] font-semibold ${textVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:1992:                  <span className="block text-[52px] sm:text-[64px] font-black text-gray-900 leading-[1.05]">
+components/board/TreatmentSection.tsx:1996:                <span className="block text-[52px] sm:text-[64px] font-black leading-[1.05]" style={{ color: '#0080C8' }}>
+components/board/TreatmentSection.tsx:2007:              <p className={`text-[21px] sm:text-[23px] text-[#0080C8] font-bold leading-snug ${textVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}
+components/board/TreatmentSection.tsx:2028:              <p className="text-[12px] font-bold text-gray-400 uppercase tracking-widest">치료 순서</p>
+components/board/TreatmentSection.tsx:2031:                  <span className="w-8 h-8 rounded-full bg-[#0080C8] flex items-center justify-center text-white text-sm font-bold shrink-0 mt-0.5">
+components/board/TreatmentSection.tsx:2035:                    <p className="font-bold text-[16px] text-gray-900 leading-tight">{step.title}</p>
+components/board/TreatmentSection.tsx:2036:                    {step.desc && <p className="text-[15px] text-gray-600 leading-relaxed mt-1">{step.desc}</p>}
+components/board/TreatmentSection.tsx:2049:                  <LucideIcon name={h.icon} size={26} className="text-[#0080C8]" />
+components/board/TreatmentSection.tsx:2050:                  <p className="font-bold text-[16px] text-gray-900 leading-tight">{h.label}</p>
+components/board/TreatmentSection.tsx:2051:                  <p className="text-[12px] text-gray-600 font-medium leading-relaxed whitespace-pre-line">{h.desc}</p>
+components/board/TreatmentSection.tsx:2061:              <p className="text-[12px] font-bold text-gray-800 mb-3 tracking-tight">
+components/board/TreatmentSection.tsx:2066:                <div className="text-center text-[12px] font-semibold text-gray-500 bg-gray-100 rounded-lg py-1.5">
+components/board/TreatmentSection.tsx:2069:                <div className="text-center text-[12px] font-semibold text-white rounded-lg py-1.5" style={{ backgroundColor: '#0080C8' }}>
+components/board/TreatmentSection.tsx:2077:                    <div className="bg-gray-50 border border-gray-200 rounded-lg px-3 py-2.5 text-[12px] text-gray-600 font-medium leading-snug">
+components/board/TreatmentSection.tsx:2080:                    <div className="rounded-lg px-3 py-2.5 text-[12px] font-semibold leading-snug" style={{ backgroundColor: '#EBF5FF', color: '#0060A0' }}>
+components/board/TreatmentSection.tsx:2099:                    <div className="absolute top-2 left-2 w-7 h-7 rounded-full bg-[#0080C8] flex items-center justify-center shadow">
+components/board/TreatmentSection.tsx:2100:                      <span className="text-white text-[12px] font-bold leading-none">{i + 1}</span>
+components/board/TreatmentSection.tsx:2103:                  <p className="text-center text-[14px] text-gray-700 font-semibold py-2 px-2 leading-tight">{item.caption}</p>
+components/board/TreatmentSection.tsx:2160:                <p className="font-bold text-[17px] text-gray-900 leading-tight">{h.label}</p>
+components/board/TreatmentSection.tsx:2161:                <p className="text-[14px] text-gray-600 font-medium leading-relaxed whitespace-pre-line">{h.desc}</p>
+components/board/TreatmentSection.tsx:2179:              <LucideIcon name="AlertTriangle" size={20} className="text-[#0080C8] shrink-0" />
+components/board/TreatmentSection.tsx:2180:              <p className="text-[16px] font-bold text-gray-900">이런 분께 특히 필요합니다</p>
+components/board/TreatmentSection.tsx:2185:                  <span className="w-6 h-6 rounded-full bg-[#0080C8] flex items-center justify-center shrink-0 mt-0.5">
+components/board/TreatmentSection.tsx:2188:                  <span className="text-[15px] text-gray-700 font-medium leading-relaxed">{ind}</span>
+components/board/TreatmentSection.tsx:2225:            <span className="text-xs font-semibold tracking-[0.2em] uppercase text-[#0080C8]">Treatment Process</span>
+components/board/TreatmentSection.tsx:2234:                <div className="flex-1 flex flex-col items-center text-center px-2 py-5 rounded-2xl border border-[#D8E9F5] bg-white hover:border-[#0080C8]/40 hover:bg-[#F0F7FD] transition-colors group">
+components/board/TreatmentSection.tsx:2235:                  <span className="text-[32px] font-black tabular-nums leading-none mb-3 text-[#0080C8] group-hover:scale-110 transition-transform">
+components/board/TreatmentSection.tsx:2238:                  <span className="text-[18px] sm:text-[20px] font-bold text-gray-900 leading-snug break-keep">
+components/board/TreatmentSection.tsx:2242:                    <span className="text-[13px] text-gray-500 mt-2 leading-relaxed break-keep">{step.desc}</span>
+components/board/TreatmentSection.tsx:2248:                    <svg className="w-4 h-4 text-[#0080C8]/50" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+components/board/TreatmentSection.tsx:2260:              <li key={i} className="flex items-start gap-2 bg-white border border-[#D8E9F5] rounded-xl p-3.5">
+components/board/TreatmentSection.tsx:2261:                <span className="text-[17px] font-black tabular-nums text-[#0080C8] leading-none shrink-0 mt-0.5">
+components/board/TreatmentSection.tsx:2265:                  <p className="text-[15px] font-bold text-gray-900 leading-snug break-keep">{step.title}</p>
+components/board/TreatmentSection.tsx:2266:                  {step.desc && <p className="text-[12px] text-gray-500 mt-1 leading-relaxed break-keep">{step.desc}</p>}
+components/board/TreatmentSection.tsx:2284:                <span className="mt-0.5 w-5 h-5 rounded-full bg-[#0080C8] flex items-center justify-center shrink-0">
+components/board/TreatmentSection.tsx:2287:                <span className="text-[16px] text-gray-700 leading-relaxed">
+components/board/TreatmentSection.tsx:2332:              <div className="bg-gray-100 text-center py-3 text-[14px] font-bold text-gray-500">
+components/board/TreatmentSection.tsx:2336:              <div className="py-3 text-center text-[14px] font-bold text-white" style={{ backgroundColor: '#0080C8' }}>
+components/board/TreatmentSection.tsx:2343:                <div className="flex items-center justify-center px-4 py-4 text-[15px] text-gray-500 text-center leading-snug border-r border-gray-100">
+components/board/TreatmentSection.tsx:2347:                  {row.icon && <LucideIcon name={row.icon} size={18} className="text-[#0080C8]" />}
+components/board/TreatmentSection.tsx:2348:                  <span className="text-[13px] font-semibold text-gray-700">{row.label}</span>
+components/board/TreatmentSection.tsx:2350:                <div className="flex items-center justify-center px-4 py-4 text-[15px] font-semibold text-center leading-snug" style={{ color: '#0080C8' }}>
+components/board/TreatmentSection.tsx:2363:          <LucideIcon name="Smile" size={28} className="text-[#0080C8] shrink-0" />
+components/board/TreatmentSection.tsx:2364:          <p className="text-[16px] text-gray-700 font-medium leading-relaxed">{treatment.bottomCta}</p>
+app/column/page.tsx:13:    <main className="bg-white min-h-screen pt-20">
+components/board/CaseGallery.tsx:83:                      <span className="absolute top-2 left-2 bg-black/60 text-white text-[10px] px-1.5 py-0.5 rounded">
+components/board/CaseGallery.tsx:95:                      <span className="absolute top-2 left-2 bg-[#0080C8] text-white text-[10px] px-1.5 py-0.5 rounded">
+components/board/CaseGallery.tsx:130:                className="flex items-center gap-2 p-3 rounded-xl border border-gray-200 hover:border-[#0080C8] hover:bg-stone-50 transition-colors group"
+components/board/CaseGallery.tsx:132:                <ExternalLink size={14} className="text-[#0080C8] shrink-0" />
+components/board/CaseGallery.tsx:133:                <span className="text-base text-gray-700 group-hover:text-[#0080C8] truncate">
+components/board/CaseGallery.tsx:136:                <span className="text-[10px] text-gray-400 shrink-0 ml-auto hidden sm:block truncate max-w-[200px]">
+components/board/CaseGallery.tsx:176:                    <span className="absolute top-3 left-3 bg-[#0080C8] text-white text-xs px-2 py-1 rounded">After</span>
+components/cases/CaseGrid.tsx:41:              <span className="inline-block text-[11px] font-semibold text-[#0080C8] bg-[#EAF4FC] rounded-full px-2.5 py-0.5">
+components/cases/CaseGrid.tsx:51:                <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider mb-1">Before</p>
+components/cases/CaseGrid.tsx:63:                <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider mb-1">After</p>
+components/cases/CaseGrid.tsx:67:                  role={isLoggedIn ? undefined : 'button'}
+components/cases/CaseGrid.tsx:68:                  aria-label={isLoggedIn ? undefined : '회원가입 후 확인 가능'}
+components/cases/CaseGrid.tsx:78:                      <span className="text-[11px] font-semibold text-white leading-tight text-center px-2">
+components/cases/CaseGrid.tsx:93:          className="mt-10 flex flex-col items-center gap-3 py-8 rounded-2xl bg-[#F0F7FD] border border-[#D0E8F5] cursor-pointer hover:bg-[#E6F2FB] transition-colors"
+components/cases/CaseGrid.tsx:96:          <Lock className="w-6 h-6 text-[#0080C8]" />
+components/cases/CaseGrid.tsx:99:          <button className="bg-[#0080C8] text-white text-sm font-semibold px-6 py-2.5 rounded-lg hover:bg-[#006BA8] transition-colors">
+components/board/BoardHero.tsx:16:      <section className="relative w-full overflow-hidden bg-black" style={{ paddingBottom: '56.25%' }} aria-label={`${title} 소개`}>
+components/board/BoardHero.tsx:47:      <section className="relative w-full overflow-hidden bg-black" style={{ paddingBottom: '56.25%' }} aria-label={`${title} 소개`}>
+components/board/BoardHero.tsx:69:      <section className="relative overflow-hidden" aria-label={`${title} 소개`}>
+components/board/BoardHero.tsx:85:      <section className="relative h-[72vh] min-h-[520px] overflow-hidden bg-black" aria-label={`${title} 소개`}>
+components/board/BoardHero.tsx:100:    <section className="relative flex items-center justify-center aspect-video sm:aspect-auto sm:min-h-[340px] overflow-hidden" aria-label={`${title} 소개`}>
+components/board/BoardHero.tsx:101:      <div className="absolute inset-0 bg-gradient-to-br from-[#2B2D42] via-[#0080C8] to-[#006EAA]" aria-hidden="true" />
+components/board/BoardHero.tsx:102:      <div className="absolute inset-0 opacity-10" aria-hidden="true"
+app/column/[id]/page.tsx:36:    <main className="min-h-screen bg-white pt-20 sm:pt-24">
+app/column/[id]/page.tsx:39:        <Link href="/column" className="inline-flex items-center gap-1.5 text-sm text-gray-400 hover:text-[#0080C8] transition-colors">
+app/column/[id]/page.tsx:59:            <span className="bg-[#0080C8]/10 text-[#0080C8] text-xs font-semibold px-2.5 py-0.5 rounded-full">
+app/column/[id]/page.tsx:82:              <span key={tag} className="text-xs px-3 py-1 rounded-full bg-gray-100 text-gray-500">
+app/column/[id]/page.tsx:92:        <section className="border-t border-gray-100 bg-[#FAFBFC]">
+app/column/[id]/page.tsx:95:              <h2 className="text-lg sm:text-xl font-bold text-[#1a1a1a]">다른 칼럼 더 보기</h2>
+app/column/[id]/page.tsx:96:              <Link href="/column" className="text-sm text-[#0080C8] hover:underline">
+app/column/[id]/page.tsx:103:                  <div className="overflow-hidden rounded-lg bg-[#F0F0F0] mb-3 aspect-[4/3]">
+app/column/[id]/page.tsx:112:                      <div className="w-full h-full flex items-center justify-center bg-[#F8F7F9]">
+app/column/[id]/page.tsx:113:                        <svg className="w-10 h-10 text-[#D0D0D0]" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+app/column/[id]/page.tsx:120:                    <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-[#F0F7FF] text-[#0080C8] border border-[#CCE5F7] mb-2">
+app/column/[id]/page.tsx:124:                  <h3 className="text-[15px] font-bold text-[#1a1a1a] leading-snug line-clamp-2 group-hover:text-[#0080C8] transition-colors">
+app/column/[id]/page.tsx:127:                  <p className="text-xs text-[#9CA3AF] mt-1.5">
+components/board/FaqAccordion.tsx:50:                  aria-expanded={isOpen}
+components/board/FaqAccordion.tsx:51:                  aria-controls={answerId}
+components/board/FaqAccordion.tsx:55:                    className="shrink-0 w-7 h-7 rounded-full bg-[#0080C8] flex items-center justify-center text-white text-xs font-bold"
+components/board/FaqAccordion.tsx:56:                    aria-hidden="true"
+components/board/FaqAccordion.tsx:60:                  <span className="flex-1 text-base sm:text-[18px] font-medium text-gray-800">
+components/board/FaqAccordion.tsx:68:                    aria-hidden="true"
+components/board/FaqAccordion.tsx:84:                    className="shrink-0 w-8 h-8 rounded-full object-cover mt-0.5"
+components/board/FaqAccordion.tsx:87:                    <span className="text-sm font-semibold text-[#0080C8] mb-1 block">원장 답변</span>
+components/board/FaqAccordion.tsx:88:                    <p className="text-base sm:text-[18px] text-gray-600 leading-relaxed">
+components/board/CosmeticIdentity.tsx:22:      title={<>자연스러운 아름다움,<br /><span className="text-[#0080C8]">기능까지 완벽하게</span></>}
+components/board/ImplantIdentity.tsx:22:      title={<>상실된 치아,<br /><span className="text-[#0080C8]">가장 자연스럽게 복원합니다</span></>}
+components/board/BoardAnchorNav.tsx:68:      aria-label="치료 섹션 이동"
+components/board/BoardAnchorNav.tsx:71:        <ul className="flex overflow-x-auto scrollbar-none gap-0" role="list">
+components/board/BoardAnchorNav.tsx:81:                      ? 'text-[#0080C8] border-[#0080C8]'
+components/board/BoardAnchorNav.tsx:82:                      : 'text-gray-500 border-transparent hover:text-[#0080C8] hover:border-[#0080C8]/40'
+components/board/BoardAnchorNav.tsx:84:                  aria-current={isActive ? 'true' : undefined}
+components/board/CtaSection.tsx:12:    bg: 'bg-[#FAE300]',
+components/board/CtaSection.tsx:22:    bg: 'bg-[#0080C8]',
+components/board/CtaSection.tsx:41:      className="bg-[#F8F7F9] rounded-3xl p-8 sm:p-12"
+components/board/CtaSection.tsx:42:      aria-labelledby="cta-heading"
+components/board/CtaSection.tsx:45:        <p className="text-[#0080C8] text-base font-semibold tracking-widest uppercase mb-2">
+components/board/CtaSection.tsx:54:        <p className="text-gray-500 text-[18px] leading-relaxed max-w-md mx-auto">
+components/board/CtaSection.tsx:68:              aria-label={label}
+components/board/CtaSection.tsx:70:              <Icon size={28} className={iconColor} aria-hidden="true" />
+components/board/CtaSection.tsx:83:          className="inline-block bg-[#0080C8] text-white font-semibold text-base px-10 py-4 rounded-full hover:bg-[#2B2D42] active:scale-[0.98] transition-all duration-200"
+components/board/CtaSection.tsx:84:          aria-label="상담 예약 페이지로 이동"
+components/board/BoardIdentityLayout.tsx:25:        <p className={`text-sm font-semibold tracking-[0.25em] uppercase text-[#0080C8] mb-4 ${isVisible ? 'domino-rise' : 'domino-hidden'}`}>
+components/board/BoardIdentityLayout.tsx:34:        <p className={`text-base sm:text-[18px] text-gray-600 leading-[1.85] tracking-normal max-w-2xl mb-12 sm:mb-16 ${isVisible ? 'domino-rise' : 'domino-hidden'}`}
+components/board/BoardIdentityLayout.tsx:46:                <div className="w-1 h-full min-h-16 bg-[#0080C8]/30 rounded-full group-hover:bg-[#0080C8] transition-colors mt-1" />
+components/board/BoardIdentityLayout.tsx:48:                  <h3 className="font-bold text-gray-900 mb-3 text-[20px] sm:text-[21px] leading-[1.35] tracking-normal">
+components/board/BoardIdentityLayout.tsx:51:                  <p className="text-base sm:text-[19px] text-gray-600 leading-[1.85] tracking-normal whitespace-pre-line">
+components/board/OrthodonticsIdentity.tsx:22:      <span className={`inline-block rounded-full bg-[#3F6FB5] text-white font-semibold tracking-wide ${center ? 'text-[12px] px-3.5 py-1 mb-2.5' : 'text-[13px] sm:text-[15px] px-4 py-1.5 mb-4'}`}>
+components/board/OrthodonticsIdentity.tsx:25:      <h1 className={`font-black leading-none tracking-tight text-[#1f2d4d] ${center ? 'text-[34px] mb-2' : 'text-[44px] sm:text-[64px] lg:text-[76px] mb-3'}`}>
+components/board/OrthodonticsIdentity.tsx:28:      <p className={`font-bold text-[#2b3a5c] leading-snug ${center ? 'text-[16px] mb-2' : 'text-[19px] sm:text-[24px] lg:text-[28px] mb-4 whitespace-nowrap'}`}>
+components/board/OrthodonticsIdentity.tsx:31:      <p className={`text-[#5b6b87] leading-relaxed ${center ? 'text-[13px]' : 'text-[14px] sm:text-[17px]'}`}>
+components/board/OrthodonticsIdentity.tsx:40:    <section className="pt-16 sm:pt-20 bg-gradient-to-br from-[#eef4fb] to-[#dde8f4]">
+components/board/OrthodonticsIdentity.tsx:71:      title={<>가지런한 치아,<br /><span className="text-[#0080C8]">건강한 교합을 만듭니다</span></>}
+app/admin/AdminDashboardCards.tsx:41:          className="relative bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md hover:border-[#0080C8]/30 transition-all group"
+app/admin/AdminDashboardCards.tsx:44:            <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center">
+app/admin/AdminDashboardCards.tsx:48:          <div className="w-12 h-12 rounded-lg bg-[#0080C8]/10 flex items-center justify-center mb-4 group-hover:bg-[#0080C8]/20 transition-colors">
+app/admin/AdminDashboardCards.tsx:49:            <card.icon size={24} className="text-[#0080C8]" />
+components/auth/SignupForm.tsx:97:        <div className="w-12 h-12 bg-[#0080C8]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+components/auth/SignupForm.tsx:98:          <svg className="w-6 h-6 text-[#0080C8]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+components/auth/SignupForm.tsx:104:        <Link href="/" className="inline-block bg-[#0080C8] text-white font-semibold text-sm py-3 px-8 rounded-lg hover:bg-[#006EAA] transition-colors">
+components/auth/SignupForm.tsx:123:          className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#0080C8] transition-colors"
+components/auth/SignupForm.tsx:137:          className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#0080C8] transition-colors"
+components/auth/SignupForm.tsx:151:          className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#0080C8] transition-colors"
+components/auth/SignupForm.tsx:165:          className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#0080C8] transition-colors"
+components/auth/SignupForm.tsx:177:          className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#0080C8] transition-colors"
+components/auth/SignupForm.tsx:191:          className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#0080C8] transition-colors"
+app/admin/login/page.tsx:41:    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+app/admin/login/page.tsx:61:                className="w-full h-11 px-4 rounded-lg border border-gray-300 text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-[#0080C8] focus:border-[#0080C8] transition"
+app/admin/login/page.tsx:67:              <p className="text-red-500 text-sm text-center" role="alert">
+app/admin/login/page.tsx:75:              className="w-full h-11 rounded-lg bg-[#0080C8] text-white font-semibold text-sm hover:bg-[#006aaa] disabled:opacity-60 disabled:cursor-not-allowed transition-colors"
+components/board/BenefitList.tsx:10:    <div className="bg-[#F8F7F9] rounded-2xl p-6 sm:p-8">
+components/board/BenefitList.tsx:14:      <ul className="space-y-3" role="list">
+components/board/BenefitList.tsx:18:              className="shrink-0 mt-0.5 text-[#0080C8]"
+components/board/BenefitList.tsx:20:              aria-hidden="true"
+components/board/BenefitList.tsx:22:            <span className="text-gray-700 text-base sm:text-[18px] leading-relaxed">
+components/layout/MobileNav.tsx:66:        aria-hidden="true"
+components/layout/MobileNav.tsx:71:        role="dialog"
+components/layout/MobileNav.tsx:72:        aria-modal="true"
+components/layout/MobileNav.tsx:73:        aria-label="메인 메뉴"
+components/layout/MobileNav.tsx:85:            aria-label="메뉴 닫기"
+components/layout/MobileNav.tsx:86:            className="w-10 h-10 flex items-center justify-center rounded-full text-gray-500 hover:bg-gray-100 hover:text-gray-800 transition-colors"
+components/layout/MobileNav.tsx:96:            <p className="px-6 pt-2 pb-1 text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+components/layout/MobileNav.tsx:109:                      ? 'text-[#0080C8] bg-[#0080C8]/5 border-r-2 border-[#0080C8]'
+components/layout/MobileNav.tsx:110:                      : 'text-gray-600 hover:text-[#0080C8] hover:bg-gray-50'
+components/layout/MobileNav.tsx:113:                  <span className="w-1.5 h-1.5 rounded-full bg-gray-300 shrink-0" />
+components/layout/MobileNav.tsx:133:                      ? 'text-[#0080C8] bg-[#0080C8]/5 border-r-2 border-[#0080C8]'
+components/layout/MobileNav.tsx:134:                      : 'text-gray-700 hover:text-[#0080C8] hover:bg-gray-50'
+components/layout/MobileNav.tsx:152:            className="text-lg font-bold text-[#0080C8] tracking-wide"
+components/layout/QuickConsultBar.tsx:92:    const t = window.setTimeout(() => firstFieldRef.current?.focus(), 120)
+components/layout/QuickConsultBar.tsx:145:          className={`fixed top-5 left-1/2 z-[70] -translate-x-1/2 px-4 py-2.5 rounded-lg text-[15px] font-medium shadow-lg transition-all ${
+components/layout/QuickConsultBar.tsx:148:          role="status"
+components/layout/QuickConsultBar.tsx:158:        aria-label="상담 신청 열기"
+components/layout/QuickConsultBar.tsx:159:        aria-haspopup="dialog"
+components/layout/QuickConsultBar.tsx:160:        aria-expanded={render}
+components/layout/QuickConsultBar.tsx:161:        className={`fixed right-4 bottom-4 sm:right-6 sm:bottom-6 z-[55] flex items-center gap-2 rounded-full bg-[#0080C8] pl-4 pr-5 h-12 sm:h-14 text-white font-semibold shadow-[0_10px_30px_rgba(0,128,200,0.45)] hover:bg-[#0a6fa8] hover:shadow-[0_14px_38px_rgba(0,128,200,0.55)] active:scale-95 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#0080C8]/40 focus:ring-offset-2 ${
+components/layout/QuickConsultBar.tsx:167:        <MessageSquareText size={20} aria-hidden="true" />
+components/layout/QuickConsultBar.tsx:168:        <span className="text-[15px] sm:text-[16px] whitespace-nowrap">상담신청</span>
+components/layout/QuickConsultBar.tsx:175:          role="dialog"
+components/layout/QuickConsultBar.tsx:176:          aria-modal="true"
+components/layout/QuickConsultBar.tsx:177:          aria-label="상담 신청"
+components/layout/QuickConsultBar.tsx:185:            aria-hidden="true"
+components/layout/QuickConsultBar.tsx:201:              aria-label="닫기"
+components/layout/QuickConsultBar.tsx:202:              className="absolute top-4 right-4 w-9 h-9 rounded-full flex items-center justify-center text-white/55 hover:text-white hover:bg-white/10 transition-colors"
+components/layout/QuickConsultBar.tsx:207:            <p className="text-[#4FC3F7] text-[13px] font-semibold tracking-widest uppercase">
+components/layout/QuickConsultBar.tsx:210:            <h2 className="text-[22px] font-bold mt-1 mb-1.5">빠른 상담 신청</h2>
+components/layout/QuickConsultBar.tsx:211:            <p className="text-white/55 text-[14px] mb-5 leading-relaxed">
+components/layout/QuickConsultBar.tsx:224:                  aria-label="이름"
+components/layout/QuickConsultBar.tsx:225:                  aria-invalid={!!errors.name}
+components/layout/QuickConsultBar.tsx:226:                  className={`h-12 w-full px-4 rounded-xl bg-white/10 text-white text-[16px] placeholder-white/40 border outline-none focus:ring-2 focus:ring-[#0080C8] transition ${
+components/layout/QuickConsultBar.tsx:227:                    errors.name ? 'border-red-400' : 'border-white/20 focus:border-[#0080C8]'
+components/layout/QuickConsultBar.tsx:231:                  <span role="alert" className="text-red-400 text-[13px] leading-none">
+components/layout/QuickConsultBar.tsx:244:                  aria-label="연락처"
+components/layout/QuickConsultBar.tsx:245:                  aria-invalid={!!errors.contact}
+components/layout/QuickConsultBar.tsx:246:                  className={`h-12 w-full px-4 rounded-xl bg-white/10 text-white text-[16px] placeholder-white/40 border outline-none focus:ring-2 focus:ring-[#0080C8] transition ${
+components/layout/QuickConsultBar.tsx:247:                    errors.contact ? 'border-red-400' : 'border-white/20 focus:border-[#0080C8]'
+components/layout/QuickConsultBar.tsx:251:                  <span role="alert" className="text-red-400 text-[13px] leading-none">
+components/layout/QuickConsultBar.tsx:264:                    aria-invalid={!!errors.agreed}
+components/layout/QuickConsultBar.tsx:265:                    className="w-4 h-4 accent-[#0080C8] cursor-pointer"
+components/layout/QuickConsultBar.tsx:267:                  <span className="text-[14px] text-white/65 group-hover:text-white/85 transition-colors">
+components/layout/QuickConsultBar.tsx:275:                    className="text-[13px] text-white/40 hover:text-[#4FC3F7] underline underline-offset-2 transition-colors"
+components/layout/QuickConsultBar.tsx:281:                  <span role="alert" className="text-red-400 text-[13px] leading-none">
+components/layout/QuickConsultBar.tsx:291:                className="h-12 mt-1 rounded-xl bg-[#0080C8] text-white text-[16px] font-semibold hover:bg-[#0a6fa8] disabled:opacity-60 disabled:cursor-not-allowed transition-colors focus:outline-none focus:ring-2 focus:ring-[#0080C8] focus:ring-offset-2 focus:ring-offset-gray-900"
+components/layout/QuickConsultBar.tsx:299:                className="h-12 rounded-xl bg-white/10 text-white text-[15px] font-medium flex items-center justify-center gap-2 hover:bg-white/15 transition-colors"
+components/layout/QuickConsultBar.tsx:300:                aria-label="전화로 빠른 상담하기 031-896-5512"
+components/layout/QuickConsultBar.tsx:302:                <Phone size={16} aria-hidden="true" />
+components/layout/CustomCursor.tsx:70:      aria-hidden="true"
+components/ui/ThemeSwitcher.tsx:9:    colors: ['#F8F7F9', '#2B2D42', '#0080C8', '#006EAA'],
+components/ui/ThemeSwitcher.tsx:14:    colors: ['#F8F7F9', '#2B2D42', '#0080C8', '#006EAA'],
+components/ui/ThemeSwitcher.tsx:19:    colors: ['#2B2D42', '#1a1c2e', '#0080C8', '#006EAA'],
+components/ui/ThemeSwitcher.tsx:24:    colors: ['#F8F7F9', '#0080C8', '#2B2D42', '#006EAA'],
+components/ui/ThemeSwitcher.tsx:59:          <p className="text-[10px] tracking-widest uppercase text-gray-400 mb-1 text-center">
+components/ui/ThemeSwitcher.tsx:68:                background: active === theme.id ? '#f0f9ff' : undefined,
+components/ui/ThemeSwitcher.tsx:69:                outline: active === theme.id ? '2px solid #0080C8' : '2px solid transparent',
+components/ui/ThemeSwitcher.tsx:77:                    className="rounded-full"
+components/ui/ThemeSwitcher.tsx:89:                style={{ color: active === theme.id ? '#0080C8' : '#374151' }}
+components/ui/ThemeSwitcher.tsx:94:                <span className="ml-auto text-[10px] text-blue-500">✓</span>
+components/ui/ThemeSwitcher.tsx:104:        className="w-12 h-12 rounded-full shadow-xl flex items-center justify-center transition-all duration-200 active:scale-95"
+components/ui/ThemeSwitcher.tsx:109:          {(['#0080C8', '#F8F7F9', '#2B2D42', '#006EAA'] as const).map((c, i) => (
+app/admin/AdminSidebar.tsx:58:                ? 'bg-[#0080C8] text-white font-semibold'
+app/admin/AdminSidebar.tsx:86:        aria-label="메뉴 토글"
+components/ui/BeforeAfterSlider.tsx:96:      <span className="absolute top-3 left-3 bg-black/50 text-white text-[10px] sm:text-xs font-semibold px-2.5 py-1 rounded-full tracking-wider uppercase pointer-events-none">
+components/ui/BeforeAfterSlider.tsx:101:      <span className="absolute top-3 right-3 bg-white/70 text-gray-900 text-[10px] sm:text-xs font-semibold px-2.5 py-1 rounded-full tracking-wider uppercase pointer-events-none">
+components/ui/BeforeAfterSlider.tsx:113:        className="absolute top-1/2 w-10 h-10 rounded-full bg-white shadow-xl flex items-center justify-center pointer-events-none"
+components/layout/ScrollToTopButton.tsx:21:      aria-label="맨 위로 이동"
+components/layout/ScrollToTopButton.tsx:22:      className={`sm:hidden fixed right-4 z-50 w-11 h-11 rounded-full bg-white/95 backdrop-blur-sm text-[#2B2D42] border border-gray-200 shadow-[0_4px_16px_rgba(0,0,0,0.18)] flex items-center justify-center transition-all duration-300 ${
+app/admin/patient-cases/page.tsx:165:          className="flex items-center gap-2 px-4 py-2 bg-[#0080C8] text-white text-sm font-medium rounded-lg hover:bg-[#006aaa] transition-colors"
+app/admin/patient-cases/page.tsx:212:                      className={`inline-block w-8 h-4 rounded-full transition-colors relative ${item.is_active ? 'bg-green-400' : 'bg-gray-300'}`}
+app/admin/patient-cases/page.tsx:214:                      <span className={`absolute top-0.5 w-3 h-3 rounded-full bg-white transition-all ${item.is_active ? 'left-4' : 'left-0.5'}`} />
+app/admin/patient-cases/page.tsx:255:                  className="w-full h-10 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#0080C8]"
+app/admin/patient-cases/page.tsx:267:                    className="w-full h-10 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#0080C8] bg-white"
+app/admin/patient-cases/page.tsx:277:                    className="w-full h-10 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#0080C8] bg-white"
+app/admin/patient-cases/page.tsx:300:                            className="absolute top-1 right-1 w-6 h-6 bg-black/60 rounded-full flex items-center justify-center text-white hover:bg-black/80"
+app/admin/patient-cases/page.tsx:307:                          className="h-32 border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center text-xs text-gray-400 cursor-pointer hover:border-[#0080C8] hover:text-[#0080C8] transition-colors"
+app/admin/patient-cases/page.tsx:308:                          onDragOver={(e) => { e.preventDefault(); e.currentTarget.classList.add('border-[#0080C8]', 'bg-blue-50', 'text-[#0080C8]') }}
+app/admin/patient-cases/page.tsx:309:                          onDragLeave={(e) => { e.currentTarget.classList.remove('border-[#0080C8]', 'bg-blue-50', 'text-[#0080C8]') }}
+app/admin/patient-cases/page.tsx:312:                            e.currentTarget.classList.remove('border-[#0080C8]', 'bg-blue-50', 'text-[#0080C8]')
+app/admin/patient-cases/page.tsx:321:                              <span className="text-[10px] mt-0.5 opacity-60">또는 드래그</span>
+app/admin/patient-cases/page.tsx:349:                    className="w-full h-10 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#0080C8]"
+app/admin/patient-cases/page.tsx:359:                    className="w-full h-10 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#0080C8]"
+app/admin/patient-cases/page.tsx:372:                  className="w-full px-3 py-2 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#0080C8] resize-none"
+app/admin/patient-cases/page.tsx:383:                  className="w-4 h-4 accent-[#0080C8]"
+app/admin/patient-cases/page.tsx:396:                className="px-6 py-2 text-sm bg-[#0080C8] text-white rounded-lg hover:bg-[#006aaa] disabled:opacity-60 transition-colors font-semibold"
+components/layout/Header.tsx:66:              aria-label="서울이건치과 홈으로 이동"
+components/layout/Header.tsx:89:              aria-label="주 메뉴"
+components/layout/Header.tsx:97:                    className={`relative px-1 py-2 text-[18px] font-medium whitespace-nowrap transition-colors duration-200 group ${
+components/layout/Header.tsx:98:                      isActive ? 'text-[#0080C8]' : 'text-gray-700 hover:text-gray-900'
+components/layout/Header.tsx:103:                      className={`absolute bottom-0 left-1 right-1 h-0.5 rounded-full transition-transform duration-200 origin-left ${
+components/layout/Header.tsx:106:                      style={{ backgroundColor: '#0080C8' }}
+components/layout/Header.tsx:115:                  className={`relative px-1 py-2 text-[18px] font-medium whitespace-nowrap transition-colors duration-200 group flex items-center gap-1 ${
+components/layout/Header.tsx:116:                    isBoardActive ? 'text-[#0080C8]' : 'text-gray-700 hover:text-gray-900'
+components/layout/Header.tsx:124:                    className={`absolute bottom-0 left-1 right-1 h-0.5 rounded-full transition-transform duration-200 origin-left ${
+components/layout/Header.tsx:127:                    style={{ backgroundColor: '#0080C8' }}
+components/layout/Header.tsx:131:                <div className="absolute top-full right-0 pt-1 z-50 hidden group-hover/board:block group-focus-within/board:block">
+components/layout/Header.tsx:137:                        className={`block px-5 py-2.5 text-[15px] font-medium transition-colors hover:bg-[#EAF4FC] hover:text-[#0080C8] ${
+components/layout/Header.tsx:138:                          pathname === item.href ? 'text-[#0080C8] bg-[#EAF4FC]' : 'text-gray-700'
+components/layout/Header.tsx:153:              style={{ backgroundColor: '#0080C8' }}
+components/layout/Header.tsx:165:                className="flex items-center justify-center w-9 h-9 rounded-full text-white"
+components/layout/Header.tsx:166:                style={{ backgroundColor: '#0080C8' }}
+components/layout/Header.tsx:167:                aria-label="전화 상담"
+components/layout/Header.tsx:175:                aria-label="메뉴 열기"
+components/layout/Header.tsx:176:                aria-expanded={navOpen}
+components/layout/Header.tsx:177:                aria-controls="mobile-nav"
+components/layout/Header.tsx:180:                <span className="block w-6 h-0.5 rounded-full bg-gray-700" />
+components/layout/Header.tsx:181:                <span className="block w-6 h-0.5 rounded-full bg-gray-700" />
+components/layout/Header.tsx:182:                <span className="block w-4 h-0.5 rounded-full self-start ml-[5px] bg-gray-700" />
+app/admin/notices/page.tsx:225:          className="flex items-center gap-2 px-4 py-2 bg-[#0080C8] text-white text-sm font-medium rounded-lg hover:bg-[#006aaa] transition-colors"
+app/admin/notices/page.tsx:283:                      className={`inline-block w-8 h-4 rounded-full transition-colors relative ${
+app/admin/notices/page.tsx:288:                        className={`absolute top-0.5 w-3 h-3 rounded-full bg-white transition-all ${
+app/admin/notices/page.tsx:346:                  className="w-full h-10 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#0080C8] focus:border-[#0080C8]"
+app/admin/notices/page.tsx:361:                  className="w-full px-3 py-2 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#0080C8] focus:border-[#0080C8] resize-none"
+app/admin/notices/page.tsx:393:                      ? 'border-[#0080C8] bg-[#0080C8]/5 text-[#0080C8]'
+app/admin/notices/page.tsx:394:                      : 'border-gray-300 text-gray-400 hover:border-[#0080C8] hover:text-[#0080C8]',
+app/admin/notices/page.tsx:427:                          className="absolute right-2 top-2 flex h-6 w-6 items-center justify-center rounded-full bg-black/60 text-white hover:bg-black/80"
+app/admin/notices/page.tsx:447:                      className="absolute right-2 top-2 flex h-6 w-6 items-center justify-center rounded-full bg-black/50 text-white hover:bg-black/70"
+app/admin/notices/page.tsx:480:                    className="w-full h-10 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#0080C8]"
+app/admin/notices/page.tsx:491:                      className="w-4 h-4 accent-[#0080C8]"
+app/admin/notices/page.tsx:509:                className="px-4 py-2 text-sm bg-[#0080C8] text-white rounded-lg hover:bg-[#006aaa] disabled:opacity-60 transition-colors"
+components/board/NoticeList.tsx:47:              <span className="w-10 flex-shrink-0 text-base font-semibold text-[#0080C8] tabular-nums">
+components/board/NoticeList.tsx:70:          className="w-full border-t border-gray-200 py-4 text-sm font-semibold text-[#0080C8] transition-colors hover:bg-[#EAF4FC]"
+app/admin/layout.tsx:19:    <div className="min-h-screen flex bg-gray-50">
+app/admin/cases/page.tsx:250:          className="flex items-center gap-2 px-4 py-2 bg-[#0080C8] text-white text-sm font-medium rounded-lg hover:bg-[#006aaa] transition-colors"
+app/admin/cases/page.tsx:289:                  className={`text-xs font-medium px-2.5 py-1 rounded-full ${CATEGORY_BADGE[item.board_category] || 'bg-gray-100 text-gray-600'}`}
+app/admin/cases/page.tsx:296:                    className="p-1.5 text-gray-400 hover:text-[#0080C8] transition-colors"
+app/admin/cases/page.tsx:360:                  className="w-full h-10 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#0080C8] focus:border-[#0080C8]"
+app/admin/cases/page.tsx:375:                  className="w-full px-3 py-2 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#0080C8] focus:border-[#0080C8] resize-none"
+app/admin/cases/page.tsx:394:                    className="w-full h-10 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#0080C8]"
+app/admin/cases/page.tsx:417:                    className="w-full h-10 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#0080C8]"
+app/admin/cases/page.tsx:458:                              className="absolute top-1 right-1 w-6 h-6 bg-black/60 rounded-full flex items-center justify-center text-white hover:bg-black/80"
+app/admin/cases/page.tsx:465:                            className="h-32 border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center text-xs text-gray-400 cursor-pointer hover:border-[#0080C8] hover:text-[#0080C8] transition-colors"
+app/admin/cases/page.tsx:468:                              e.currentTarget.classList.add('border-[#0080C8]', 'bg-blue-50', 'text-[#0080C8]')
+app/admin/cases/page.tsx:471:                              e.currentTarget.classList.remove('border-[#0080C8]', 'bg-blue-50', 'text-[#0080C8]')
+app/admin/cases/page.tsx:475:                              e.currentTarget.classList.remove('border-[#0080C8]', 'bg-blue-50', 'text-[#0080C8]')
+app/admin/cases/page.tsx:488:                                <span className="text-[10px] mt-0.5 opacity-60">또는 드래그해서 놓기</span>
+app/admin/cases/page.tsx:521:                      className="flex-1 h-9 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#0080C8]"
+app/admin/cases/page.tsx:530:                      className="w-32 h-9 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#0080C8]"
+app/admin/cases/page.tsx:544:                  className="text-xs text-[#0080C8] hover:underline"
+app/admin/cases/page.tsx:561:                className="px-4 py-2 text-sm bg-[#0080C8] text-white rounded-lg hover:bg-[#006aaa] disabled:opacity-60 transition-colors"
+components/layout/Footer.tsx:8:    <footer className="bg-[#0a0c0f] text-white/55 border-t border-white/10">
+components/layout/Footer.tsx:14:            <p className="text-white font-extrabold text-[18px] tracking-tight">서울이건치과</p>
+components/layout/Footer.tsx:15:            <p className="text-white/35 text-[11px] tracking-[0.25em] uppercase mt-0.5">
+components/layout/Footer.tsx:19:          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[13px]">
+components/layout/Footer.tsx:20:            <Link href="/privacy" className="text-white/60 hover:text-[#38b6ff] transition-colors">
+components/layout/Footer.tsx:28:              className="text-white/60 hover:text-[#38b6ff] transition-colors"
+components/layout/Footer.tsx:37:              className="text-white/60 hover:text-[#38b6ff] transition-colors"
+components/layout/Footer.tsx:45:        <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[12px] text-white/45 mt-6">
+components/layout/Footer.tsx:54:            <a href={`tel:${clinicInfo.phone}`} className="hover:text-[#38b6ff] transition-colors">
+components/layout/Footer.tsx:61:        <p className="text-[12px] text-white/45 mt-1.5">
+components/layout/Footer.tsx:66:        <p className="text-[11px] text-white/30 leading-relaxed mt-5">
+components/layout/Footer.tsx:69:        <p className="text-[11px] text-white/30 mt-1.5 tracking-wide">
+components/layout/FloatingSidebar.tsx:12:    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+components/layout/FloatingSidebar.tsx:20:    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+components/layout/FloatingSidebar.tsx:28:    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+components/layout/FloatingSidebar.tsx:36:    <svg width={size} height={size} viewBox="0 0 48 44" fill="none" aria-hidden="true">
+components/layout/FloatingSidebar.tsx:38:      <text x="24" y="23" textAnchor="middle" fontSize="13" fontWeight="800" fill="#1a1a1a" fontFamily="Arial, sans-serif" letterSpacing="0.5">TALK</text>
+components/layout/FloatingSidebar.tsx:107:  const labelClass = 'text-[10px] font-medium leading-none tracking-wide'
+components/layout/FloatingSidebar.tsx:114:        background: '#181818',
+components/layout/FloatingSidebar.tsx:120:      aria-label="빠른 링크"
+components/layout/FloatingSidebar.tsx:144:              aria-label={item.label}
+components/layout/FloatingSidebar.tsx:157:            aria-label={item.label}
+app/admin/consultations/page.tsx:182:                        className={`text-xs font-medium px-2.5 py-1 rounded-full border-0 cursor-pointer ${STATUS_BADGE[item.status] || 'bg-gray-100 text-gray-600'}`}
+app/admin/consultations/page.tsx:203:                            className="flex-1 text-sm px-2 py-1 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-[#0080C8]"
+app/admin/consultations/page.tsx:207:                            className="text-xs px-2 py-1 bg-[#0080C8] text-white rounded hover:bg-[#006aaa]"
+app/admin/consultations/page.tsx:252:                    className={`text-xs font-medium px-2.5 py-1 rounded-full border-0 ${STATUS_BADGE[item.status] || 'bg-gray-100'}`}
+app/admin/columns/page.tsx:6:const HTML_TEMPLATE = `<h1 style="font-size:26px; font-weight:700; color:#1a2b3c; border-bottom:2px solid #1a2b3c; padding-bottom:15px; margin-bottom:30px; line-height:1.4;">
+app/admin/columns/page.tsx:8:  <span style="font-size:0.7em; font-weight:400; color:#555;">[부제목]</span>
+app/admin/columns/page.tsx:20:  <span style="font-weight:700; color:#d35400; background:rgba(211,84,0,0.1); padding:0 4px;">[핵심 결론 문장]</span>
+app/admin/columns/page.tsx:24:<h2 style="font-size:22px; font-weight:700; color:#2c3e50; border-left:5px solid #d35400; padding-left:15px; margin-top:50px; margin-bottom:15px;">
+app/admin/columns/page.tsx:30:<div style="background:#eeeeee; border-radius:8px; text-align:center; margin-bottom:20px; overflow:hidden;">
+app/admin/columns/page.tsx:33:<p style="font-size:14px; color:#666; text-align:center; margin-top:-15px;">▲ [이미지 캡션]</p>
+app/admin/columns/page.tsx:37:<h2 style="font-size:22px; font-weight:700; color:#2c3e50; border-left:5px solid #d35400; padding-left:15px; margin-top:50px; margin-bottom:15px;">
+app/admin/columns/page.tsx:43:<div style="background:#f4f7fa; border:1px solid #e1e8ed; border-radius:10px; padding:20px; margin-bottom:20px;">
+app/admin/columns/page.tsx:51:  <p style="font-size:18px; font-weight:700; color:#1a2b3c; margin-bottom:15px;">
+app/admin/columns/page.tsx:293:      sel.style.outline = '3px solid #0080C8'
+app/admin/columns/page.tsx:326:    img.style.outline = '3px solid #0080C8'
+app/admin/columns/page.tsx:571:          className="flex items-center gap-2 px-4 py-2 bg-[#0080C8] text-white text-sm font-medium rounded-lg hover:bg-[#006aaa] transition-colors"
+app/admin/columns/page.tsx:607:                      className="text-sm font-medium text-gray-900 truncate max-w-[200px] hover:text-[#0080C8] transition-colors block">
+app/admin/columns/page.tsx:625:                      className={`inline-block w-8 h-4 rounded-full transition-colors relative ${item.is_active ? 'bg-green-400' : 'bg-gray-300'}`}
+app/admin/columns/page.tsx:627:                      <span className={`absolute top-0.5 w-3 h-3 rounded-full bg-white transition-all ${item.is_active ? 'left-4' : 'left-0.5'}`} />
+app/admin/columns/page.tsx:667:                  className="w-full h-10 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#0080C8]"
+app/admin/columns/page.tsx:678:                  className="w-full h-10 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#0080C8] bg-white"
+app/admin/columns/page.tsx:694:                  className="w-full h-10 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#0080C8]"
+app/admin/columns/page.tsx:709:                      className="flex items-center gap-1.5 text-xs px-3 py-1 rounded-lg border border-[#03C75A] text-[#03C75A] bg-white font-medium hover:bg-[#03C75A]/5 transition-colors disabled:opacity-50"
+app/admin/columns/page.tsx:719:                      className="flex items-center gap-1.5 text-xs px-3 py-1 rounded-lg border border-[#0080C8] text-[#0080C8] bg-white font-medium hover:bg-[#0080C8]/5 transition-colors disabled:opacity-50"
+app/admin/columns/page.tsx:740:                      className="flex items-center gap-1.5 text-xs px-3 py-1 rounded-lg bg-gradient-to-r from-[#7C3AED] to-[#0080C8] text-white font-medium hover:opacity-90 transition-opacity disabled:opacity-50"
+app/admin/columns/page.tsx:752:                        className={`px-3 py-1 transition-colors ${editorTab === 'edit' ? 'bg-[#0080C8] text-white' : 'text-gray-500 hover:bg-gray-50'}`}
+app/admin/columns/page.tsx:760:                        className={`px-3 py-1 transition-colors ${editorTab === 'preview' ? 'bg-[#0080C8] text-white' : 'text-gray-500 hover:bg-gray-50'}`}
+app/admin/columns/page.tsx:771:                      className="w-full min-h-[400px] px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0080C8] bg-white font-mono text-xs leading-relaxed"
+app/admin/columns/page.tsx:775:                      Word 파일은 <span className="font-semibold text-[#0080C8]">Word로 AI 변환</span>을 누르면 문서 속 이미지까지 업로드해 본문에 배치합니다. 메모하듯 쓴 글은 <span className="font-semibold text-[#7C3AED]">AI 변환</span>으로 템플릿을 입힐 수 있습니다. 미리보기 안에서 이미지를 드래그해 위치를 편집할 수 있습니다.
+app/admin/columns/page.tsx:782:                      <div className="flex items-center gap-2 mb-2 px-3 py-2 rounded-lg bg-[#0080C8]/5 border border-[#0080C8]/30">
+app/admin/columns/page.tsx:783:                        <span className="text-xs font-medium text-[#0080C8]">선택된 이미지</span>
+app/admin/columns/page.tsx:785:                          className="flex items-center gap-1 text-xs px-2 py-1 rounded border border-gray-300 bg-white text-gray-700 hover:border-[#0080C8] hover:text-[#0080C8]">
+app/admin/columns/page.tsx:789:                          className="flex items-center gap-1 text-xs px-2 py-1 rounded border border-gray-300 bg-white text-gray-700 hover:border-[#0080C8] hover:text-[#0080C8]">
+app/admin/columns/page.tsx:793:                          className="flex items-center gap-1 text-xs px-2 py-1 rounded border border-gray-300 bg-white text-gray-700 hover:border-[#0080C8] hover:text-[#0080C8]">
+app/admin/columns/page.tsx:808:                      className="post-wrap w-full min-h-[400px] px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0080C8] overflow-auto bg-white cursor-text"
+app/admin/columns/page.tsx:858:                        className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg border border-gray-300 text-gray-600 hover:border-[#0080C8] hover:text-[#0080C8] transition-colors disabled:opacity-50"
+app/admin/columns/page.tsx:893:                    dragActive ? 'border-[#0080C8] bg-[#0080C8]/5 text-[#0080C8]' : 'border-gray-300 text-gray-400 hover:border-[#0080C8] hover:text-[#0080C8]',
+app/admin/columns/page.tsx:913:                            className={`relative overflow-hidden rounded-lg border cursor-pointer transition-shadow ${isRep ? 'border-[#0080C8] ring-2 ring-[#0080C8]' : 'border-gray-200 hover:border-[#0080C8]'}`}
+app/admin/columns/page.tsx:917:                              <span className="absolute left-2 top-2 px-1.5 py-0.5 rounded bg-[#0080C8] text-white text-[10px] font-bold">대표</span>
+app/admin/columns/page.tsx:922:                              className="absolute right-2 top-2 flex h-6 w-6 items-center justify-center rounded-full bg-black/60 text-white hover:bg-black/80"
+app/admin/columns/page.tsx:937:                      className="absolute right-2 top-2 flex h-6 w-6 items-center justify-center rounded-full bg-black/50 text-white hover:bg-black/70"
+app/admin/columns/page.tsx:955:                    className="w-full h-10 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#0080C8]"
+app/admin/columns/page.tsx:964:                      className="w-4 h-4 accent-[#0080C8]"
+app/admin/columns/page.tsx:982:              className="px-6 py-2 text-sm bg-[#0080C8] text-white rounded-lg hover:bg-[#006aaa] disabled:opacity-60 transition-colors font-semibold"

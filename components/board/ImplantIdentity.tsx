@@ -22,6 +22,7 @@ export default function ImplantIdentity() {
       title={<>상실된 치아,<br /><span className="text-[#0080C8]">가장 자연스럽게 복원합니다</span></>}
       description={<>임플란트는 단순히 치아를 채우는 것이 아닙니다.<br />뼈와 하나가 되어 평생 함께할 수 있도록,<br />이건치과는 처음부터 끝까지 정확하게 접근합니다.</>}
       pillars={pillars}
+      fill
     />
   )
 }

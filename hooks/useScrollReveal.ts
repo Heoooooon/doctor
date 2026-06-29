@@ -16,7 +16,7 @@ function findScrollRoot(el: HTMLElement | null): HTMLElement | null {
 }
 
 /**
- * 스크롤 진입 시 페이드인(+살짝 상승). 위/아래 양방향 모두 매끄럽게 토글된다.
+ * 스크롤 진입 시 페이드인(+살짝 상승). 한 번 드러나면 계속 유지된다(되숨김 없음).
  * `threshold`(0~1)가 클수록 더 깊이 들어와야 드러난다.
  */
 export function useScrollReveal(threshold = 0.15) {
@@ -38,12 +38,18 @@ export function useScrollReveal(threshold = 0.15) {
 
     const observer = new IntersectionObserver(
       (entries) => {
-        for (const entry of entries) setIsVisible(entry.isIntersecting)
+        for (const entry of entries) {
+          // 한 번 드러나면 계속 보이게 한다(되숨김 방지).
+          if (entry.isIntersecting) {
+            setIsVisible(true)
+            observer.unobserve(entry.target)
+          }
+        }
       },
       {
         root,
-        // 하단을 threshold만큼 끌어올려 요소가 그 선을 넘어야 드러나게 한다.
-        rootMargin: `0px 0px -${margin}% 0px`,
+        // 뷰포트 하단을 threshold만큼 확장 → 요소가 들어오기 직전에 미리 드러난다.
+        rootMargin: `0px 0px ${margin}% 0px`,
         threshold: 0,
       },
     )

@@ -1,0 +1,231 @@
+{
+  "/ mobile": {
+    "title": "서울이건치과 | 수원치과 영통치과 매탄동치과 임플란트·교정",
+    "meta": "서울대 출신 2인 대표원장이 진료하는 수원 영통 치과. 디지털 네비게이션 임플란트, 의식하 진정(수면) 임플란트, 자연치아살리기, 교정, 소아치과. 수원시 영통구 인계로 위치.",
+    "canonical": "https://egundc.com",
+    "ogImage": "https://egundc.com/images/logo/egun-logo%20(1).png",
+    "jsonLd": [
+      "Dentist"
+    ],
+    "missingAlt": 14,
+    "smallTargets": 15,
+    "smallText": 35,
+    "overflow": false,
+    "screenshot": "/Users/cmore/workspace/seoulegun/.omo/ulw-loop/evidence/website-audit-screenshots/home-mobile-375x812.png"
+  },
+  "/ tablet": {
+    "title": "서울이건치과 | 수원치과 영통치과 매탄동치과 임플란트·교정",
+    "meta": "서울대 출신 2인 대표원장이 진료하는 수원 영통 치과. 디지털 네비게이션 임플란트, 의식하 진정(수면) 임플란트, 자연치아살리기, 교정, 소아치과. 수원시 영통구 인계로 위치.",
+    "canonical": "https://egundc.com",
+    "ogImage": "https://egundc.com/images/logo/egun-logo%20(1).png",
+    "jsonLd": [
+      "Dentist"
+    ],
+    "missingAlt": 14,
+    "smallTargets": 16,
+    "smallText": 35,
+    "overflow": false,
+    "screenshot": "/Users/cmore/workspace/seoulegun/.omo/ulw-loop/evidence/website-audit-screenshots/home-tablet-768x1024.png"
+  },
+  "/ desktop": {
+    "title": "서울이건치과 | 수원치과 영통치과 매탄동치과 임플란트·교정",
+    "meta": "서울대 출신 2인 대표원장이 진료하는 수원 영통 치과. 디지털 네비게이션 임플란트, 의식하 진정(수면) 임플란트, 자연치아살리기, 교정, 소아치과. 수원시 영통구 인계로 위치.",
+    "canonical": "https://egundc.com",
+    "ogImage": "https://egundc.com/images/logo/egun-logo%20(1).png",
+    "jsonLd": [
+      "Dentist"
+    ],
+    "missingAlt": 14,
+    "smallTargets": 29,
+    "smallText": 35,
+    "overflow": false,
+    "screenshot": "/Users/cmore/workspace/seoulegun/.omo/ulw-loop/evidence/website-audit-screenshots/home-desktop-1280x900.png"
+  },
+  "/about mobile": {
+    "title": "서울이건치과 소개 | 수원 영통 치과 의료진·진료철학",
+    "meta": "서울대 출신 2인 대표원장의 진료 철학과 의료진, 본관·별관 진료 공간을 안내합니다. 수원시 영통구 인계로 위치.",
+    "canonical": "https://egundc.com/about",
+    "ogImage": "https://egundc.com/images/logo/egun-logo%20(1).png",
+    "jsonLd": [
+      "Dentist"
+    ],
+    "missingAlt": 0,
+    "smallTargets": 38,
+    "smallText": 35,
+    "overflow": false,
+    "screenshot": "/Users/cmore/workspace/seoulegun/.omo/ulw-loop/evidence/website-audit-screenshots/about-mobile-375x812.png"
+  },
+  "/implant mobile": {
+    "title": "수원 임플란트 | 네비게이션·올온4·즉시로딩 - 서울이건치과",
+    "meta": "수원·영통 임플란트 - 디지털 네비게이션 가이드 임플란트, 올온4, 즉시로딩 임플란트를 안내합니다. 치료 계획은 잇몸뼈·교합·전신질환 여부에 따라 달라질 수 있습니다.",
+    "canonical": "https://egundc.com/implant",
+    "ogImage": "https://egundc.com/images/logo/egun-logo%20(1).png",
+    "jsonLd": [
+      "Dentist",
+      "FAQPage"
+    ],
+    "missingAlt": 0,
+    "smallTargets": 7,
+    "smallText": 35,
+    "overflow": false,
+    "screenshot": "/Users/cmore/workspace/seoulegun/.omo/ulw-loop/evidence/website-audit-screenshots/implant-mobile-375x812.png"
+  },
+  "/implant desktop": {
+    "title": "수원 임플란트 | 네비게이션·올온4·즉시로딩 - 서울이건치과",
+    "meta": "수원·영통 임플란트 - 디지털 네비게이션 가이드 임플란트, 올온4, 즉시로딩 임플란트를 안내합니다. 치료 계획은 잇몸뼈·교합·전신질환 여부에 따라 달라질 수 있습니다.",
+    "canonical": "https://egundc.com/implant",
+    "ogImage": "https://egundc.com/images/logo/egun-logo%20(1).png",
+    "jsonLd": [
+      "Dentist",
+      "FAQPage"
+    ],
+    "missingAlt": 0,
+    "smallTargets": 14,
+    "smallText": 35,
+    "overflow": false,
+    "screenshot": "/Users/cmore/workspace/seoulegun/.omo/ulw-loop/evidence/website-audit-screenshots/implant-desktop-1280x900.png"
+  },
+  "/natural-tooth mobile": {
+    "title": "자연치아 살리기 | 수원 신경치료·치아보존 - 서울이건치과",
+    "meta": "치아 상태에 따라 가능한 자연치아 보존(신경치료·치아살리기) 방향을 먼저 검토합니다. 정확한 치료 계획은 구강 상태 확인 후 결정됩니다.",
+    "canonical": "https://egundc.com/natural-tooth",
+    "ogImage": "https://egundc.com/images/logo/egun-logo%20(1).png",
+    "jsonLd": [
+      "Dentist",
+      "FAQPage"
+    ],
+    "missingAlt": 0,
+    "smallTargets": 7,
+    "smallText": 35,
+    "overflow": false,
+    "screenshot": "/Users/cmore/workspace/seoulegun/.omo/ulw-loop/evidence/website-audit-screenshots/natural-tooth-mobile-375x812.png"
+  },
+  "/orthodontic mobile": {
+    "title": "수원 교정치과 | 치아교정·교합 상담 - 서울이건치과",
+    "meta": "치아 배열뿐 아니라 교합, 얼굴형, 구강 상태를 함께 확인한 뒤 계획하는 교정치료를 안내합니다. 수원 영통 교정치과.",
+    "canonical": "https://egundc.com/orthodontic",
+    "ogImage": "https://egundc.com/images/logo/egun-logo%20(1).png",
+    "jsonLd": [
+      "Dentist",
+      "FAQPage"
+    ],
+    "missingAlt": 0,
+    "smallTargets": 7,
+    "smallText": 35,
+    "overflow": false,
+    "screenshot": "/Users/cmore/workspace/seoulegun/.omo/ulw-loop/evidence/website-audit-screenshots/orthodontic-mobile-375x812.png"
+  },
+  "/pediatric mobile": {
+    "title": "수원 소아치과 | 영통 어린이치과 - 서울이건치과",
+    "meta": "아이의 치아 성장, 충치 예방, 치열 발달 상태를 확인하고 연령에 맞는 진료 방향을 소아치과 전문의가 안내합니다.",
+    "canonical": "https://egundc.com/pediatric",
+    "ogImage": "https://egundc.com/images/logo/egun-logo%20(1).png",
+    "jsonLd": [
+      "Dentist",
+      "FAQPage"
+    ],
+    "missingAlt": 0,
+    "smallTargets": 7,
+    "smallText": 35,
+    "overflow": false,
+    "screenshot": "/Users/cmore/workspace/seoulegun/.omo/ulw-loop/evidence/website-audit-screenshots/pediatric-mobile-375x812.png"
+  },
+  "/cases mobile": {
+    "title": "환자사례 | 수원 임플란트·교정 치료 전후 - 서울이건치과",
+    "meta": "실제 내원 환자분의 치료 전·후 사례입니다. 치료 결과는 개인의 구강 상태에 따라 달라질 수 있습니다.",
+    "canonical": "https://egundc.com/cases",
+    "ogImage": "https://egundc.com/images/logo/egun-logo%20(1).png",
+    "jsonLd": [
+      "Dentist"
+    ],
+    "missingAlt": 0,
+    "smallTargets": 11,
+    "smallText": 35,
+    "overflow": false,
+    "screenshot": "/Users/cmore/workspace/seoulegun/.omo/ulw-loop/evidence/website-audit-screenshots/cases-mobile-375x812.png"
+  },
+  "/cases desktop": {
+    "title": "환자사례 | 수원 임플란트·교정 치료 전후 - 서울이건치과",
+    "meta": "실제 내원 환자분의 치료 전·후 사례입니다. 치료 결과는 개인의 구강 상태에 따라 달라질 수 있습니다.",
+    "canonical": "https://egundc.com/cases",
+    "ogImage": "https://egundc.com/images/logo/egun-logo%20(1).png",
+    "jsonLd": [
+      "Dentist"
+    ],
+    "missingAlt": 0,
+    "smallTargets": 15,
+    "smallText": 35,
+    "overflow": false,
+    "screenshot": "/Users/cmore/workspace/seoulegun/.omo/ulw-loop/evidence/website-audit-screenshots/cases-desktop-1280x900.png"
+  },
+  "/media mobile": {
+    "title": "이건미디어 | 환자후기·이건TV - 서울이건치과",
+    "meta": "카카오톡 상담, 환자후기, 원장칼럼, 이건TV를 통해 수원 영통 서울이건치과를 만나보세요.",
+    "canonical": "https://egundc.com/media",
+    "ogImage": "https://egundc.com/images/logo/egun-logo%20(1).png",
+    "jsonLd": [
+      "Dentist"
+    ],
+    "missingAlt": 0,
+    "smallTargets": 7,
+    "smallText": 35,
+    "overflow": false,
+    "screenshot": "/Users/cmore/workspace/seoulegun/.omo/ulw-loop/evidence/website-audit-screenshots/media-mobile-375x812.png"
+  },
+  "/location mobile": {
+    "title": "서울이건치과 오시는 길 | 수원 영통 매탄동 치과 위치·주차",
+    "meta": "서울이건치과 위치(수원시 영통구 인계로220번길), 진료시간, 본관·별관 안내, 주차 정보를 확인하실 수 있습니다.",
+    "canonical": "https://egundc.com/location",
+    "ogImage": "https://egundc.com/images/logo/egun-logo%20(1).png",
+    "jsonLd": [
+      "Dentist"
+    ],
+    "missingAlt": 0,
+    "smallTargets": 8,
+    "smallText": 35,
+    "overflow": false,
+    "screenshot": "/Users/cmore/workspace/seoulegun/.omo/ulw-loop/evidence/website-audit-screenshots/location-mobile-375x812.png"
+  },
+  "/signup mobile": {
+    "title": "회원가입 | 서울이건치과",
+    "meta": "서울이건치과 회원가입 - 온라인 상담 및 예약 서비스를 이용하실 수 있습니다.",
+    "canonical": "https://egundc.com",
+    "ogImage": "https://egundc.com/images/logo/egun-logo%20(1).png",
+    "jsonLd": [
+      "Dentist"
+    ],
+    "missingAlt": 0,
+    "smallTargets": 13,
+    "smallText": 35,
+    "overflow": false,
+    "screenshot": "/Users/cmore/workspace/seoulegun/.omo/ulw-loop/evidence/website-audit-screenshots/signup-mobile-375x812.png"
+  },
+  "/privacy mobile": {
+    "title": "개인정보처리방침 | 서울이건치과의원",
+    "meta": "서울이건치과의원 개인정보처리방침",
+    "canonical": "https://egundc.com",
+    "ogImage": "https://egundc.com/images/logo/egun-logo%20(1).png",
+    "jsonLd": [
+      "Dentist"
+    ],
+    "missingAlt": 0,
+    "smallTargets": 8,
+    "smallText": 35,
+    "overflow": false,
+    "screenshot": "/Users/cmore/workspace/seoulegun/.omo/ulw-loop/evidence/website-audit-screenshots/privacy-mobile-375x812.png"
+  },
+  "/admin/login mobile": {
+    "title": "서울이건치과 | 수원치과 영통치과 매탄동치과 임플란트·교정",
+    "meta": "서울대 출신 2인 대표원장이 진료하는 수원 영통 치과. 디지털 네비게이션 임플란트, 의식하 진정(수면) 임플란트, 자연치아살리기, 교정, 소아치과. 수원시 영통구 인계로 위치.",
+    "canonical": "https://egundc.com",
+    "ogImage": "https://egundc.com/images/logo/egun-logo%20(1).png",
+    "jsonLd": [
+      "Dentist"
+    ],
+    "missingAlt": 0,
+    "smallTargets": 1,
+    "smallText": 9,
+    "overflow": false,
+    "screenshot": "/Users/cmore/workspace/seoulegun/.omo/ulw-loop/evidence/website-audit-screenshots/admin-login-mobile-375x812.png"
+  }
+}

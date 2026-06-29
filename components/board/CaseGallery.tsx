@@ -69,6 +69,7 @@ export default function CaseGallery({
             <button
               key={item.id}
               onClick={() => setSelected(item)}
+              data-cursor-hint="자세히 보기"
               className="bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-md transition-shadow text-left"
             >
               {item.before_image_url || item.after_image_url ? (

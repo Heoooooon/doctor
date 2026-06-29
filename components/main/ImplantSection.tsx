@@ -35,18 +35,18 @@ export default function ImplantSection() {
 
       {/* ── 콘텐츠 ───────────────────────────────────────────── */}
       <div className="relative z-10 flex flex-col items-center text-center px-4">
-        <p className={`tracking-[0.4em] uppercase text-stone-500 mb-2 ${isVisible ? 'scroll-reveal-drop' : 'scroll-hidden'}`} style={{ fontSize: '12px' }}>
+        <p className={`tracking-[0.26em] uppercase text-stone-500 mb-2 ${isVisible ? 'scroll-reveal-drop' : 'scroll-hidden'}`} style={{ fontSize: '14px' }}>
           Implant Solution
         </p>
         <h2
           className={`text-stone-300 font-light text-center mb-1 leading-tight ${isVisible ? 'scroll-reveal-drop' : 'scroll-hidden'}`}
-          style={{ fontSize: 'clamp(16px, 2vw, 26px)', ...(isVisible ? { animationDelay: '0.12s' } : {}) }}
+          style={{ fontSize: 'clamp(18px, 2vw, 26px)', ...(isVisible ? { animationDelay: '0.12s' } : {}) }}
         >
           상실된 치아, 완벽한 복원
         </h2>
         <p
           className={`text-stone-500 mb-4 ${isVisible ? 'scroll-reveal-drop' : 'scroll-hidden'}`}
-          style={{ fontSize: '12px', ...(isVisible ? { animationDelay: '0.2s' } : {}) }}
+          style={{ fontSize: '18px', ...(isVisible ? { animationDelay: '0.2s' } : {}) }}
         >
           디지털 정밀 진단 기반 임플란트
         </p>
@@ -66,7 +66,7 @@ export default function ImplantSection() {
           >
             올온 임플란트
           </span>
-          <p className="text-stone-500 tracking-widest mt-1 uppercase" style={{ fontSize: '14px' }}>Full-Arch Rehabilitation</p>
+          <p className="text-stone-500 tracking-widest mt-1 uppercase" style={{ fontSize: '18px' }}>Full-Arch Rehabilitation</p>
         </div>
 
         {/* 특징 카드 */}
@@ -81,18 +81,18 @@ export default function ImplantSection() {
           ].map((feat) => (
             <div key={feat.label} className="flex flex-col items-center">
               <p className="font-bold mb-0.5" style={{ fontSize: '18px', color: 'var(--e-accent)' }}>{feat.label}</p>
-              <p style={{ fontSize: '16px', color: 'rgb(214 211 209)' }}>{feat.desc}</p>
+              <p style={{ fontSize: '18px', color: 'rgb(214 211 209)' }}>{feat.desc}</p>
             </div>
           ))}
         </div>
 
         <Link
           href="/implant"
-          className={`inline-flex items-center gap-1.5 px-2.5 py-1 text-[12px] font-medium text-stone-300 rounded-full border border-stone-600 hover:border-stone-400 hover:text-white transition-all duration-300 group ${isVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}
+          className={`inline-flex min-h-[44px] items-center gap-2 px-5 py-3 text-[18px] font-medium text-stone-300 rounded-full border border-stone-600 hover:border-stone-400 hover:text-white transition-all duration-300 group ${isVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}
           style={isVisible ? { animationDelay: '0.8s' } : undefined}
         >
           자세히 보기
-          <Plus size={14} className="group-hover:rotate-90 transition-transform duration-300" aria-hidden="true" />
+          <Plus size={18} className="group-hover:rotate-90 transition-transform duration-300" aria-hidden="true" />
         </Link>
       </div>
 

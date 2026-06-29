@@ -1,5 +1,28 @@
 @import "tailwindcss";
 
+/* ── Lenis 부드러운 스크롤 (하위 페이지) ── */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  [data-cursor-hint] {
+    cursor: none;
+  }
+}
+
 /* ── 원장칼럼 본문 렌더링 스타일 ── */
 .post-wrap {
   max-width: 800px;
@@ -245,26 +268,14 @@
   transform: none !important;
 }
 
-/* ── 스크롤 페이드인 (페이드 + 살짝 상승, 위/아래 양방향 매끄럽게) ── */
-.scroll-hidden,
-.scroll-reveal-up,
-.scroll-reveal-drop,
-.scroll-reveal-left,
-.scroll-reveal-right,
-.scroll-reveal-scale {
-  transition:
-    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+/* ── 스크롤 페이드인 (페이드 + 상승, animation-delay로 순차 등장) ── */
+.scroll-hidden {
+  opacity: 0;
+  transform: translateY(22px);
   will-change: opacity, transform;
 }
 
-/* 진입 전 / 이탈 후 */
-.scroll-hidden {
-  opacity: 0;
-  transform: translateY(16px);
-}
-
-/* 드러난 상태 */
+/* 드러난 상태 — 키프레임 애니메이션으로 재생 (inline animation-delay 적용됨) */
 .scroll-reveal-up,
 .scroll-reveal-drop,
 .scroll-reveal-left,
@@ -272,6 +283,13 @@
 .scroll-reveal-scale {
   opacity: 1;
   transform: none;
+  will-change: opacity, transform;
+  animation: scroll-reveal 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes scroll-reveal {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -281,7 +299,7 @@
   .scroll-reveal-left,
   .scroll-reveal-right,
   .scroll-reveal-scale {
-    transition: none;
+    animation: none;
     opacity: 1;
     transform: none;
   }

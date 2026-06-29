@@ -94,7 +94,7 @@ export default function Header() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`relative px-1 py-2 text-[18px] font-medium whitespace-nowrap transition-colors duration-200 group ${
+                    className={`relative flex min-h-[44px] items-center px-1 py-2 text-[18px] font-medium whitespace-nowrap transition-colors duration-200 group ${
                       isActive ? 'text-[#0080C8]' : 'text-gray-700 hover:text-gray-900'
                     }`}
                   >
@@ -112,7 +112,7 @@ export default function Header() {
               {/* 칼럼/증례 드롭다운 — 맨 오른쪽. 순수 CSS hover로 즉시 열림(하이드레이션과 무관) */}
               <div className="relative group/board">
                 <button
-                  className={`relative px-1 py-2 text-[18px] font-medium whitespace-nowrap transition-colors duration-200 group flex items-center gap-1 ${
+                  className={`relative min-h-[44px] px-1 py-2 text-[18px] font-medium whitespace-nowrap transition-colors duration-200 group flex items-center gap-1 ${
                     isBoardActive ? 'text-[#0080C8]' : 'text-gray-700 hover:text-gray-900'
                   }`}
                 >
@@ -134,7 +134,7 @@ export default function Header() {
                       <Link
                         key={item.href}
                         href={item.href}
-                        className={`block px-5 py-2.5 text-[15px] font-medium transition-colors hover:bg-[#EAF4FC] hover:text-[#0080C8] ${
+                        className={`flex min-h-[44px] items-center px-5 py-2.5 text-[18px] font-medium transition-colors hover:bg-[#EAF4FC] hover:text-[#0080C8] ${
                           pathname === item.href ? 'text-[#0080C8] bg-[#EAF4FC]' : 'text-gray-700'
                         }`}
                       >
@@ -162,7 +162,7 @@ export default function Header() {
             <div className="lg:hidden ml-auto flex items-center gap-3">
               <a
                 href={`tel:${PHONE}`}
-                className="flex items-center justify-center w-9 h-9 rounded-full text-white"
+                className="flex items-center justify-center w-11 h-11 rounded-full text-white"
                 style={{ backgroundColor: '#0080C8' }}
                 aria-label="전화 상담"
               >

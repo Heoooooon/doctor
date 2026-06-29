@@ -142,7 +142,7 @@ export default function QuickConsultBar() {
       {/* 토스트 메시지 (최상단 중앙) */}
       {toast && (
         <div
-          className={`fixed top-5 left-1/2 z-[70] -translate-x-1/2 px-4 py-2.5 rounded-lg text-[15px] font-medium shadow-lg transition-all ${
+          className={`fixed top-5 left-1/2 z-[70] -translate-x-1/2 px-4 py-3 rounded-lg text-[18px] font-medium shadow-lg transition-all ${
             toast.type === 'success' ? 'bg-green-600 text-white' : 'bg-red-600 text-white'
           }`}
           role="status"
@@ -165,7 +165,7 @@ export default function QuickConsultBar() {
         }`}
       >
         <MessageSquareText size={20} aria-hidden="true" />
-        <span className="text-[15px] sm:text-[16px] whitespace-nowrap">상담신청</span>
+        <span className="text-[18px] whitespace-nowrap">상담신청</span>
       </button>
 
       {/* 오버레이 모달 */}
@@ -199,16 +199,16 @@ export default function QuickConsultBar() {
               type="button"
               onClick={closeModal}
               aria-label="닫기"
-              className="absolute top-4 right-4 w-9 h-9 rounded-full flex items-center justify-center text-white/55 hover:text-white hover:bg-white/10 transition-colors"
+              className="absolute top-4 right-4 w-11 h-11 rounded-full flex items-center justify-center text-white/55 hover:text-white hover:bg-white/10 transition-colors"
             >
               <X size={20} />
             </button>
 
-            <p className="text-[#4FC3F7] text-[13px] font-semibold tracking-widest uppercase">
+            <p className="text-[#4FC3F7] text-[14px] font-semibold tracking-widest uppercase">
               Consulting
             </p>
             <h2 className="text-[22px] font-bold mt-1 mb-1.5">빠른 상담 신청</h2>
-            <p className="text-white/55 text-[14px] mb-5 leading-relaxed">
+            <p className="text-white/55 text-[18px] mb-5 leading-relaxed">
               이름과 연락처를 남겨주시면 빠른 시일 내에 연락드리겠습니다.
             </p>
 
@@ -223,12 +223,12 @@ export default function QuickConsultBar() {
                   placeholder="이름"
                   aria-label="이름"
                   aria-invalid={!!errors.name}
-                  className={`h-12 w-full px-4 rounded-xl bg-white/10 text-white text-[16px] placeholder-white/40 border outline-none focus:ring-2 focus:ring-[#0080C8] transition ${
+                  className={`h-12 w-full px-4 rounded-xl bg-white/10 text-white text-[18px] placeholder-white/40 border outline-none focus:ring-2 focus:ring-[#0080C8] transition ${
                     errors.name ? 'border-red-400' : 'border-white/20 focus:border-[#0080C8]'
                   }`}
                 />
                 {errors.name && (
-                  <span role="alert" className="text-red-400 text-[13px] leading-none">
+                  <span role="alert" className="text-red-400 text-[14px] leading-snug">
                     {errors.name}
                   </span>
                 )}
@@ -243,12 +243,12 @@ export default function QuickConsultBar() {
                   placeholder="연락처 (숫자만)"
                   aria-label="연락처"
                   aria-invalid={!!errors.contact}
-                  className={`h-12 w-full px-4 rounded-xl bg-white/10 text-white text-[16px] placeholder-white/40 border outline-none focus:ring-2 focus:ring-[#0080C8] transition ${
+                  className={`h-12 w-full px-4 rounded-xl bg-white/10 text-white text-[18px] placeholder-white/40 border outline-none focus:ring-2 focus:ring-[#0080C8] transition ${
                     errors.contact ? 'border-red-400' : 'border-white/20 focus:border-[#0080C8]'
                   }`}
                 />
                 {errors.contact && (
-                  <span role="alert" className="text-red-400 text-[13px] leading-none">
+                  <span role="alert" className="text-red-400 text-[14px] leading-snug">
                     {errors.contact}
                   </span>
                 )}
@@ -264,7 +264,7 @@ export default function QuickConsultBar() {
                     aria-invalid={!!errors.agreed}
                     className="w-4 h-4 accent-[#0080C8] cursor-pointer"
                   />
-                  <span className="text-[14px] text-white/65 group-hover:text-white/85 transition-colors">
+                  <span className="text-[18px] text-white/65 group-hover:text-white/85 transition-colors">
                     개인정보 수집 동의
                   </span>
                   <a
@@ -272,13 +272,13 @@ export default function QuickConsultBar() {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={(e) => e.stopPropagation()}
-                    className="text-[13px] text-white/40 hover:text-[#4FC3F7] underline underline-offset-2 transition-colors"
+                    className="text-[14px] text-white/40 hover:text-[#4FC3F7] underline underline-offset-2 transition-colors"
                   >
                     보기
                   </a>
                 </label>
                 {errors.agreed && (
-                  <span role="alert" className="text-red-400 text-[13px] leading-none">
+                  <span role="alert" className="text-red-400 text-[14px] leading-snug">
                     {errors.agreed}
                   </span>
                 )}
@@ -288,7 +288,7 @@ export default function QuickConsultBar() {
               <button
                 type="submit"
                 disabled={submitting}
-                className="h-12 mt-1 rounded-xl bg-[#0080C8] text-white text-[16px] font-semibold hover:bg-[#0a6fa8] disabled:opacity-60 disabled:cursor-not-allowed transition-colors focus:outline-none focus:ring-2 focus:ring-[#0080C8] focus:ring-offset-2 focus:ring-offset-gray-900"
+                className="h-12 mt-1 rounded-xl bg-[#0080C8] text-white text-[18px] font-semibold hover:bg-[#0a6fa8] disabled:opacity-60 disabled:cursor-not-allowed transition-colors focus:outline-none focus:ring-2 focus:ring-[#0080C8] focus:ring-offset-2 focus:ring-offset-gray-900"
               >
                 {submitting ? '신청 중...' : '상담 신청하기'}
               </button>
@@ -296,7 +296,7 @@ export default function QuickConsultBar() {
               {/* 전화 상담 */}
               <a
                 href="tel:031-896-5512"
-                className="h-12 rounded-xl bg-white/10 text-white text-[15px] font-medium flex items-center justify-center gap-2 hover:bg-white/15 transition-colors"
+                className="h-12 rounded-xl bg-white/10 text-white text-[18px] font-medium flex items-center justify-center gap-2 hover:bg-white/15 transition-colors"
                 aria-label="전화로 빠른 상담하기 031-896-5512"
               >
                 <Phone size={16} aria-hidden="true" />

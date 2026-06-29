@@ -1,0 +1,171 @@
+
+## home mobile /
+title: 서울이건치과 | 수원치과 영통치과 매탄동치과 임플란트·교정
+overflow: false size {"clientWidth":375,"scrollHeight":10249,"scrollWidth":375}
+smallText 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기 | 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기 | 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기 | 16px:Menu칼럼/증례공지사항원장칼럼환자사례01이건치과소개02자연치아살리기03임플란트04심미보철05교정치료06소아치과07오시는 길대표전화031-896-5512 | 16px:Menu
+smallTargets 36x36:전화 상담 | 40x40:메뉴 닫기 | 132x21:031-896-5512 | 155x18:수원 치과 | 서울이건치과 | 228x18:서울대 출신 대표원장 | 서울이건치과
+missingAlt 14
+httpLinks 
+logs 
+
+## home tablet /
+title: 서울이건치과 | 수원치과 영통치과 매탄동치과 임플란트·교정
+overflow: false size {"clientWidth":768,"scrollHeight":1080,"scrollWidth":768}
+smallText 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기 | 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기 | 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기 | 16px:Menu칼럼/증례공지사항원장칼럼환자사례01이건치과소개02자연치아살리기03임플란트04심미보철05교정치료06소아치과07오시는 길대표전화031-896-5512 | 16px:Menu
+smallTargets 36x36:전화 상담 | 40x40:메뉴 닫기 | 132x21:031-896-5512 | 155x18:수원 치과 | 서울이건치과 | 228x18:서울대 출신 대표원장 | 서울이건치과
+missingAlt 14
+httpLinks 
+logs 
+
+## home desktop /
+title: 서울이건치과 | 수원치과 영통치과 매탄동치과 임플란트·교정
+overflow: false size {"clientWidth":1280,"scrollHeight":956,"scrollWidth":1280}
+smallText 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기 | 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기 | 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기 | 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례 | 16px:칼럼/증례공지사항원장칼럼환자사례
+smallTargets 101x43:이건치과소개 | 117x43:자연치아살리기 | 70x43:임플란트 | 70x43:심미보철 | 70x43:교정치료
+missingAlt 14
+httpLinks 
+logs 
+
+## about mobile /about
+title: 서울이건치과 소개 | 수원 영통 치과 의료진·진료철학
+overflow: false size {"clientWidth":375,"scrollHeight":14514,"scrollWidth":375}
+smallText 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기 | 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기 | 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기 | 16px:Menu칼럼/증례공지사항원장칼럼환자사례01이건치과소개02자연치아살리기03임플란트04심미보철05교정치료06소아치과07오시는 길대표전화031-896-5512 | 16px:Menu
+smallTargets 36x36:전화 상담 | 40x40:메뉴 닫기 | 132x21:031-896-5512 | 295x40:031-896-5512 | 295x40:카카오로 예약
+missingAlt 0
+httpLinks 
+logs 
+
+## implant mobile /implant
+title: 수원 임플란트 | 네비게이션·올온4·즉시로딩 - 서울이건치과
+overflow: false size {"clientWidth":375,"scrollHeight":19600,"scrollWidth":375}
+smallText 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기 | 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기 | 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기 | 16px:Menu칼럼/증례공지사항원장칼럼환자사례01이건치과소개02자연치아살리기03임플란트04심미보철05교정치료06소아치과07오시는 길대표전화031-896-5512 | 16px:Menu
+smallTargets 36x36:전화 상담 | 40x40:메뉴 닫기 | 132x21:031-896-5512 | 90x20:개인정보처리방침 | 34x20:유튜브
+missingAlt 0
+httpLinks http://pf.kakao.com/_xmDDNxb 카카오 상담편하게 문자로 문의하세요
+logs 
+
+## implant desktop /implant
+title: 수원 임플란트 | 네비게이션·올온4·즉시로딩 - 서울이건치과
+overflow: false size {"clientWidth":1280,"scrollHeight":13909,"scrollWidth":1280}
+smallText 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기 | 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기 | 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기 | 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례 | 16px:칼럼/증례공지사항원장칼럼환자사례
+smallTargets 101x43:이건치과소개 | 117x43:자연치아살리기 | 70x43:임플란트 | 70x43:심미보철 | 70x43:교정치료
+missingAlt 0
+httpLinks http://pf.kakao.com/_xmDDNxb 카카오 상담편하게 문자로 문의하세요
+logs 
+
+## natural-tooth mobile /natural-tooth
+title: 자연치아 살리기 | 수원 신경치료·치아보존 - 서울이건치과
+overflow: false size {"clientWidth":375,"scrollHeight":17529,"scrollWidth":375}
+smallText 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기 | 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기 | 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기 | 16px:Menu칼럼/증례공지사항원장칼럼환자사례01이건치과소개02자연치아살리기03임플란트04심미보철05교정치료06소아치과07오시는 길대표전화031-896-5512 | 16px:Menu
+smallTargets 36x36:전화 상담 | 40x40:메뉴 닫기 | 132x21:031-896-5512 | 90x20:개인정보처리방침 | 34x20:유튜브
+missingAlt 0
+httpLinks http://pf.kakao.com/_xmDDNxb 카카오 상담편하게 문자로 문의하세요
+logs 
+
+## orthodontic mobile /orthodontic
+title: 수원 교정치과 | 치아교정·교합 상담 - 서울이건치과
+overflow: false size {"clientWidth":375,"scrollHeight":8558,"scrollWidth":375}
+smallText 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기 | 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기 | 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기 | 16px:Menu칼럼/증례공지사항원장칼럼환자사례01이건치과소개02자연치아살리기03임플란트04심미보철05교정치료06소아치과07오시는 길대표전화031-896-5512 | 16px:Menu
+smallTargets 36x36:전화 상담 | 40x40:메뉴 닫기 | 132x21:031-896-5512 | 90x20:개인정보처리방침 | 34x20:유튜브
+missingAlt 0
+httpLinks http://pf.kakao.com/_xmDDNxb 카카오 상담편하게 문자로 문의하세요
+logs 
+
+## pediatric mobile /pediatric
+title: 수원 소아치과 | 영통 어린이치과 - 서울이건치과
+overflow: false size {"clientWidth":375,"scrollHeight":6669,"scrollWidth":375}
+smallText 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기 | 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기 | 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기 | 16px:Menu칼럼/증례공지사항원장칼럼환자사례01이건치과소개02자연치아살리기03임플란트04심미보철05교정치료06소아치과07오시는 길대표전화031-896-5512 | 16px:Menu
+smallTargets 36x36:전화 상담 | 40x40:메뉴 닫기 | 132x21:031-896-5512 | 90x20:개인정보처리방침 | 34x20:유튜브
+missingAlt 0
+httpLinks http://pf.kakao.com/_xmDDNxb 카카오 상담편하게 문자로 문의하세요
+logs 
+
+## cases mobile /cases
+title: 환자사례 | 수원 임플란트·교정 치료 전후 - 서울이건치과
+overflow: false size {"clientWidth":375,"scrollHeight":3262,"scrollWidth":375}
+smallText 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기 | 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기 | 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기 | 16px:Menu칼럼/증례공지사항원장칼럼환자사례01이건치과소개02자연치아살리기03임플란트04심미보철05교정치료06소아치과07오시는 길대표전화031-896-5512 | 16px:Menu
+smallTargets 36x36:전화 상담 | 40x40:메뉴 닫기 | 132x21:031-896-5512 | 114x42:로그인 / 가입 | 34x18:더 보기
+missingAlt 0
+httpLinks 
+logs 
+
+## cases desktop /cases
+title: 환자사례 | 수원 임플란트·교정 치료 전후 - 서울이건치과
+overflow: false size {"clientWidth":1280,"scrollHeight":2058,"scrollWidth":1280}
+smallText 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기 | 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기 | 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기 | 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례 | 16px:칼럼/증례공지사항원장칼럼환자사례
+smallTargets 101x43:이건치과소개 | 117x43:자연치아살리기 | 70x43:임플란트 | 70x43:심미보철 | 70x43:교정치료
+missingAlt 0
+httpLinks 
+logs 
+
+## media mobile /media
+title: 이건미디어 | 환자후기·이건TV - 서울이건치과
+overflow: false size {"clientWidth":375,"scrollHeight":1975,"scrollWidth":375}
+smallText 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기 | 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기 | 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기 | 16px:Menu칼럼/증례공지사항원장칼럼환자사례01이건치과소개02자연치아살리기03임플란트04심미보철05교정치료06소아치과07오시는 길대표전화031-896-5512 | 16px:Menu
+smallTargets 36x36:전화 상담 | 40x40:메뉴 닫기 | 132x21:031-896-5512 | 90x20:개인정보처리방침 | 34x20:유튜브
+missingAlt 0
+httpLinks 
+logs 
+
+## location mobile /location
+title: 서울이건치과 오시는 길 | 수원 영통 매탄동 치과 위치·주차
+overflow: false size {"clientWidth":375,"scrollHeight":3188,"scrollWidth":375}
+smallText 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기 | 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기 | 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기 | 16px:Menu칼럼/증례공지사항원장칼럼환자사례01이건치과소개02자연치아살리기03임플란트04심미보철05교정치료06소아치과07오시는 길대표전화031-896-5512 | 16px:Menu
+smallTargets 36x36:전화 상담 | 40x40:메뉴 닫기 | 132x21:031-896-5512 | 109x18:031-896-5512 | 90x20:개인정보처리방침
+missingAlt 0
+httpLinks 
+logs 
+
+## signup mobile /signup
+title: 회원가입 | 서울이건치과
+overflow: false size {"clientWidth":375,"scrollHeight":1351,"scrollWidth":375}
+smallText 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기 | 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기 | 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기 | 16px:Menu칼럼/증례공지사항원장칼럼환자사례01이건치과소개02자연치아살리기03임플란트04심미보철05교정치료06소아치과07오시는 길대표전화031-896-5512 | 16px:Menu
+smallTargets 36x36:전화 상담 | 40x40:메뉴 닫기 | 132x21:031-896-5512 | 293x20:아이디 * | 293x20:비밀번호 *
+missingAlt 0
+httpLinks 
+logs 
+
+## privacy mobile /privacy
+title: 개인정보처리방침 | 서울이건치과의원
+overflow: false size {"clientWidth":375,"scrollHeight":5914,"scrollWidth":375}
+smallText 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기 | 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기 | 16px:이건치과소개자연치아살리기임플란트심미보철교정치료소아치과오시는 길칼럼/증례공지사항원장칼럼환자사례예약하기 | 16px:Menu칼럼/증례공지사항원장칼럼환자사례01이건치과소개02자연치아살리기03임플란트04심미보철05교정치료06소아치과07오시는 길대표전화031-896-5512 | 16px:Menu
+smallTargets 36x36:전화 상담 | 40x40:메뉴 닫기 | 132x21:031-896-5512 | 181x18:seoulegunpub@gmail.com | 90x20:개인정보처리방침
+missingAlt 0
+httpLinks 
+logs 
+
+## admin-login mobile /admin/login
+title: 서울이건치과 | 수원치과 영통치과 매탄동치과 임플란트·교정
+overflow: false size {"clientWidth":375,"scrollHeight":812,"scrollWidth":375}
+smallText 16px:서울이건치과관리자 로그인비밀번호로그인 | 16px:서울이건치과관리자 로그인비밀번호로그인 | 16px:서울이건치과관리자 로그인비밀번호로그인 | 16px:서울이건치과관리자 로그인 | 14px:관리자 로그인
+smallTargets 279x20:비밀번호
+missingAlt 0
+httpLinks 
+logs 
+
+## home mobile-menu-open /
+title: undefined
+overflow: undefined size undefined
+smallText 
+smallTargets 
+missingAlt 0
+httpLinks 
+logs 
+
+## home mobile-scrolled-fab /
+title: undefined
+overflow: undefined size undefined
+smallText 
+smallTargets 
+missingAlt 0
+httpLinks 
+logs 
+
+## home mobile-consult-modal /
+title: undefined
+overflow: undefined size undefined
+smallText 
+smallTargets 
+missingAlt 0
+httpLinks 
+logs 

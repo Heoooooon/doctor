@@ -77,13 +77,13 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
       >
         {/* 헤더 */}
         <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100">
-          <span className="text-sm font-semibold text-gray-500 tracking-widest uppercase">
+          <span className="text-[18px] font-semibold text-gray-500 tracking-widest uppercase">
             Menu
           </span>
           <button
             onClick={onClose}
             aria-label="메뉴 닫기"
-            className="w-10 h-10 flex items-center justify-center rounded-full text-gray-500 hover:bg-gray-100 hover:text-gray-800 transition-colors"
+            className="w-11 h-11 flex items-center justify-center rounded-full text-gray-500 hover:bg-gray-100 hover:text-gray-800 transition-colors"
           >
             <X size={20} />
           </button>
@@ -93,7 +93,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
         <ul className="flex-1 overflow-y-auto py-4">
           {/* 칼럼/증례 섹션 — 맨 위 */}
           <li>
-            <p className="px-6 pt-2 pb-1 text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+            <p className="px-6 pt-2 pb-1 text-[14px] font-bold text-gray-400 uppercase tracking-widest">
               칼럼/증례
             </p>
           </li>
@@ -104,7 +104,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
                 <Link
                   href={item.href}
                   onClick={onClose}
-                  className={`flex items-center gap-3 px-6 py-3 text-base font-medium transition-colors ${
+                  className={`flex min-h-[52px] items-center gap-3 px-6 py-3 text-[18px] font-medium transition-colors ${
                     isActive
                       ? 'text-[#0080C8] bg-[#0080C8]/5 border-r-2 border-[#0080C8]'
                       : 'text-gray-600 hover:text-[#0080C8] hover:bg-gray-50'
@@ -128,13 +128,13 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
                 <Link
                   href={item.href}
                   onClick={onClose}
-                  className={`flex items-center gap-3 px-6 py-4 text-base font-medium transition-colors ${
+                  className={`flex min-h-[56px] items-center gap-3 px-6 py-4 text-[18px] font-medium transition-colors ${
                     isActive
                       ? 'text-[#0080C8] bg-[#0080C8]/5 border-r-2 border-[#0080C8]'
                       : 'text-gray-700 hover:text-[#0080C8] hover:bg-gray-50'
                   }`}
                 >
-                  <span className="w-5 text-xs text-gray-400 font-normal tabular-nums">
+                  <span className="w-6 text-[14px] text-gray-400 font-normal tabular-nums">
                     {String(index + 1).padStart(2, '0')}
                   </span>
                   {item.label}
@@ -146,7 +146,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
 
         {/* 하단 연락처 */}
         <div className="px-6 py-5 border-t border-gray-100 bg-gray-50">
-          <p className="text-xs text-gray-500 mb-1">대표전화</p>
+          <p className="text-[14px] text-gray-500 mb-1">대표전화</p>
           <a
             href="tel:031-896-5512"
             className="text-lg font-bold text-[#0080C8] tracking-wide"

@@ -350,8 +350,7 @@ export default function HeroSlider() {
       {/* ── 히어로 카피: 상단 고정 영문 + 중앙 3줄 교체(무한) ── */}
       <div className="absolute inset-0 z-20 flex items-center justify-center px-6 pointer-events-none">
         <div className="text-center text-white" style={{ textShadow: '0 2px 16px rgba(0,0,0,0.55)' }}>
-          {/* 고정 영문 타이틀 (모바일 9px·한 줄) */}
-          <p className="text-[9px] sm:text-[13px] font-semibold tracking-[0.3em] sm:tracking-[0.35em] whitespace-nowrap text-white/75 mb-8 sm:mb-10">
+          <p className="text-[14px] sm:text-[18px] font-semibold tracking-[0.18em] sm:tracking-[0.25em] whitespace-nowrap text-white/75 mb-8 sm:mb-10">
             <span className="text-[#0080C8]">SEOUL EGUN</span> DENTAL CLINIC
           </p>
           {/* 교체되는 중앙 3줄 — 문구마다 0.5s 후 아래→위 30px + 페이드 인 (1.5s ease-in-out) */}
@@ -372,12 +371,16 @@ export default function HeroSlider() {
             key={i}
             onClick={() => goTo(i)}
             aria-label={`슬라이드 ${i + 1}로 이동`}
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${
-              i === current
-                ? 'bg-white scale-125'
-                : 'bg-white/45 hover:bg-white/70'
-            }`}
-          />
+            className="group flex h-11 w-11 items-center justify-center rounded-full transition-colors duration-300"
+          >
+            <span
+              className={`h-2 w-2 rounded-full transition-all duration-300 ${
+                i === current
+                  ? 'bg-white scale-125'
+                  : 'bg-white/45 group-hover:bg-white/70'
+              }`}
+            />
+          </button>
         ))}
       </div>
 
@@ -388,7 +391,7 @@ export default function HeroSlider() {
             key={s.id}
             onClick={() => goTo(i)}
             aria-label={`슬라이드 ${i + 1}로 이동`}
-            className="relative flex items-center justify-center w-10 h-10"
+            className="relative flex items-center justify-center w-11 h-11"
           >
             {i === current ? (
               <>
@@ -415,7 +418,7 @@ export default function HeroSlider() {
       </div>
 
       {/* ── 슬라이드 카운터 (데스크탑) ──────────────────────────────────────── */}
-      <div className="hidden md:block absolute bottom-20 right-6 md:right-10 text-white/50 text-xs tracking-widest font-mono">
+      <div className="hidden md:block absolute bottom-20 right-6 md:right-10 text-white/50 text-[18px] tracking-widest font-mono">
         {String(current + 1).padStart(2, '0')} / {String(slides.length).padStart(2, '0')}
       </div>
 

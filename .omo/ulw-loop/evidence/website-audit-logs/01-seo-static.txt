@@ -1,0 +1,133 @@
+app/cosmetic/page.tsx:7:export const metadata: Metadata = {
+app/cosmetic/page.tsx:13:    canonical: 'https://egundc.com/digital-prosthesis',
+components/seo/JsonLd.tsx:3:export function LocalBusinessJsonLd() {
+components/seo/JsonLd.tsx:93:export function FaqJsonLd({
+app/media/page.tsx:12:export const metadata: Metadata = {
+app/media/page.tsx:17:  alternates: { canonical: 'https://egundc.com/media' },
+components/cases/CasesView.tsx:244:              alt="치료 전"
+components/cases/CasesView.tsx:263:            <img src={item.after_image_url} alt="치료 후" className="w-full h-52 sm:h-64 object-cover block" />
+components/cases/CasesView.tsx:339:              <img src={item.before_image_url} alt="치료 전 원본" className="max-w-full max-h-[82vh] object-contain cursor-default" />
+components/cases/CasesView.tsx:345:              <img src={item.after_image_url} alt="치료 후 원본" className="max-w-full max-h-[82vh] object-contain cursor-default" />
+components/main/HeroSlider.tsx:261:              alt=""
+components/main/HeroSlider.tsx:317:            alt=""
+components/column/ColumnBoard.tsx:30:              alt={post.title}
+app/column/page.tsx:4:export const metadata: Metadata = {
+app/column/page.tsx:8:  alternates: { canonical: 'https://egundc.com/column' },
+app/location/page.tsx:4:export const metadata: Metadata = {
+app/location/page.tsx:10:    canonical: 'https://egundc.com/location',
+components/about/InteriorSection.tsx:104:              <img src={src} alt={`${altPrefix} ${i + 1}`} className="w-full h-full object-cover" draggable={false} />
+components/about/InteriorSection.tsx:150:            alt="확대 사진"
+components/cases/CaseGrid.tsx:55:                    alt={item.beforeAlt}
+components/cases/CaseGrid.tsx:72:                    alt={item.afterAlt}
+components/about/DoctorProfileSection.tsx:33:            alt={`${doctor.name} ${doctor.role}`}
+components/about/DoctorProfileSection.tsx:42:                  alt={`${doctor.name} 자격증 ${i + 1}`}
+app/pediatric/page.tsx:7:export const metadata: Metadata = {
+app/pediatric/page.tsx:13:    canonical: 'https://egundc.com/pediatric',
+app/robots.ts:5:export default function robots(): MetadataRoute.Robots {
+app/robots.ts:12:    sitemap: `${BASE_URL}/sitemap.xml`,
+lib/column-ai.ts:24:   <div class="img-box"><img src="이미지 URL 또는 [이미지 설명 URL]" alt="이미지 설명"></div>
+components/about/AccessSection.tsx:77:                alt="서울이건치과 위치 지도"
+components/about/AccessSection.tsx:221:              <Image src="/images/clinic/parking%20(1).jpg" alt="주차장 안내" width={4000} height={3000} className="w-4/5 h-auto rounded-xl mx-auto block" />
+components/about/AccessSection.tsx:239:              <Image src="/images/clinic/way-1.png" alt="오시는 길 안내 1" width={876} height={485} className="w-full h-auto rounded-xl block" />
+components/about/AccessSection.tsx:240:              <Image src="/images/clinic/way-2.png" alt="오시는 길 안내 2" width={1004} height={690} className="w-full h-auto rounded-xl block" />
+app/digital-prosthesis/page.tsx:6:export const metadata: Metadata = {
+app/digital-prosthesis/page.tsx:12:    canonical: 'https://egundc.com/digital-prosthesis',
+components/main/ImplantTypeSection.tsx:136:                  alt={`수원 영통 ${type.title}`}
+app/orthodontics/page.tsx:7:export const metadata: Metadata = {
+app/orthodontics/page.tsx:13:    canonical: 'https://egundc.com/orthodontic',
+app/column/[id]/page.tsx:49:            alt={post.title}
+app/column/[id]/page.tsx:107:                        alt={c.title}
+components/about/DoctorTeamSection.tsx:99:                    alt={`${doctor.name} ${doctor.role}`}
+components/about/LabSection.tsx:218:                <img src={src} alt={`서울이건치과 기공소 ${i + 1}`} className="w-full h-full object-cover" draggable={false} />
+components/about/LabSection.tsx:273:            alt="확대 사진"
+app/board/[slug]/page.tsx:26:    alternates: { canonical: url },
+app/board/[slug]/page.tsx:42:    robots: { index: true, follow: true },
+app/board/[slug]/page.tsx:100:            alt={item.alt}
+components/main/MediaSection.tsx:45:                <Image src={item.image} alt={item.label}
+app/cases/page.tsx:6:export const metadata: Metadata = {
+app/cases/page.tsx:10:  alternates: { canonical: 'https://egundc.com/cases' },
+app/page.tsx:43:              <Image src={item.image} alt={item.alt} width={1080} height={1080} />
+components/layout/CustomCursor.tsx:76:        alt=""
+components/main/NaturalSolution.tsx:78:                alt={card.title}
+app/privacy/page.tsx:3:export const metadata: Metadata = {
+app/privacy/page.tsx:6:  robots: { index: false },
+components/layout/Header.tsx:79:                alt="서울이건치과"
+components/main/ImplantSection.tsx:24:              alt=""
+components/main/MapSection.tsx:125:                alt="서울이건치과 위치 지도"
+components/main/NaturalBanner.tsx:8:        alt="가장 좋은 임플란트는 내 몸이 가진 자연치아입니다"
+components/main/CleanSection.tsx:19:          alt="멸균 소독 과정"
+components/main/CleanSection.tsx:76:            alt="개별 멸균 포장된 진료 기구"
+app/signup/page.tsx:5:export const metadata: Metadata = {
+app/signup/page.tsx:8:  robots: { index: false, follow: true },
+app/signup/page.tsx:18:            alt="서울이건치과"
+components/main/DoctorGroup.tsx:15:          alt="서울이건치과 의료진"
+components/main/DoctorGroup.tsx:32:        alt="서울이건치과 의료진"
+components/main/TreatmentCarousel.tsx:158:                    alt={item.title}
+app/implant/page.tsx:7:export const metadata: Metadata = {
+app/implant/page.tsx:13:    canonical: 'https://egundc.com/implant',
+app/admin/notices/page.tsx:265:                      <img src={item.image_url} alt="" className="w-12 h-12 rounded-lg object-cover" />
+app/admin/notices/page.tsx:418:                          alt={`첨부 이미지 ${index + 1}`}
+app/admin/notices/page.tsx:441:                      alt="미리보기"
+app/orthodontic/page.tsx:6:export const metadata: Metadata = {
+app/orthodontic/page.tsx:12:    canonical: 'https://egundc.com/orthodontic',
+app/invisalign/page.tsx:5:export const metadata: Metadata = {
+app/invisalign/page.tsx:11:    canonical: 'https://egundc.com/invisalign',
+app/about/page.tsx:11:export const metadata: Metadata = {
+app/about/page.tsx:17:    canonical: 'https://egundc.com/about',
+app/admin/patient-cases/page.tsx:194:                        <img src={item.before_image_url} alt="" className="w-10 h-10 rounded object-cover" />
+app/admin/patient-cases/page.tsx:197:                        <img src={item.after_image_url} alt="" className="w-10 h-10 rounded object-cover" />
+app/admin/patient-cases/page.tsx:296:                          <img src={form[field]} alt={label} className="w-full h-full object-cover" />
+app/sitemap.ts:4:export default function sitemap(): MetadataRoute.Sitemap {
+app/natural-tooth/page.tsx:7:export const metadata: Metadata = {
+app/natural-tooth/page.tsx:13:    canonical: 'https://egundc.com/natural-tooth',
+app/notice/page.tsx:52:export const metadata = {
+app/notice/page.tsx:56:  alternates: { canonical: 'https://egundc.com/notice' },
+app/notice/page.tsx:151:                        alt={notice.title}
+app/layout.tsx:10:import { LocalBusinessJsonLd } from '@/components/seo/JsonLd'
+app/layout.tsx:12:export const metadata: Metadata = {
+app/layout.tsx:20:  robots: { index: true, follow: true },
+app/layout.tsx:22:    canonical: 'https://egundc.com',
+app/layout.tsx:58:        <LocalBusinessJsonLd />
+app/admin/cases/page.tsx:450:                              alt={label}
+app/api/columns/generate-from-docx/route.ts:110:- 각 이미지는 반드시 <div class="img-box"><img src="제공된 URL" alt="내용 설명"></div>와 <p class="img-caption">▲ 캡션</p> 구조로 감쌉니다.
+app/api/columns/import-naver/route.ts:184:- 각 이미지는 <div class="img-box"><img src="제공된 URL" alt="내용 설명"></div>와 <p class="img-caption">▲ 캡션</p> 구조로 감쌉니다.
+app/api/columns/import-naver/route.ts:254:        if (up) lines.push(`<img src="${up.url}" alt="">`)
+app/admin/columns/page.tsx:31:  <img src="[이미지URL]" style="max-width:100%; display:block; margin:0 auto;" alt="[이미지 설명]">
+app/admin/columns/page.tsx:600:                      <img src={item.image_url} alt="" className="w-12 h-12 rounded-lg object-cover" />
+app/admin/columns/page.tsx:915:                            <img src={img.url} alt={`이미지 ${i + 1}`} className="h-28 w-full object-cover" />
+app/admin/columns/page.tsx:933:                    <img src={form.image_url} alt="미리보기" className="h-full w-full object-cover" />
+components/board/TreatmentPage.tsx:11:import { FaqJsonLd } from '@/components/seo/JsonLd'
+components/board/TreatmentPage.tsx:51:      <FaqJsonLd faqs={allFaqs} />
+components/board/TreatmentPage.tsx:92:                <img src={treatImage} alt="치료 안내" className="w-full h-auto rounded-2xl" />
+components/board/CaseGallery.tsx:80:                        alt={`${item.title} Before`}
+components/board/CaseGallery.tsx:92:                        alt={`${item.title} After`}
+components/board/CaseGallery.tsx:169:                    <img src={selected.before_image_url} alt="Before" className="w-full object-cover" />
+components/board/CaseGallery.tsx:175:                    <img src={selected.after_image_url} alt="After" className="w-full object-cover" />
+components/board/BoardHero.tsx:21:            alt={`${title} 소개`}
+components/board/BoardHero.tsx:70:        <img src={heroImage} alt={title} className="w-full h-auto" />
+components/board/BoardHero.tsx:86:        <img src={heroImage} alt={title} className="absolute inset-0 h-full w-full object-cover object-top" />
+components/board/FaqAccordion.tsx:81:                    alt="담당 원장"
+components/board/OrthodonticsIdentity.tsx:48:          alt="인비절라인 투명교정"
+components/board/PediatricIdentity.tsx:24:        alt="보건복지부 인증 소아치과전문의 백설아 원장"
+components/board/TreatmentSection.tsx:139:            alt=""
+components/board/TreatmentSection.tsx:322:              alt="올온 임플란트 보철"
+components/board/TreatmentSection.tsx:655:              <img src={treatment.beforeImage} alt="당뇨 환자 임플란트 치료 전" className="w-full aspect-[16/9] object-cover" />
+components/board/TreatmentSection.tsx:661:              <img src={treatment.afterImage} alt="당뇨 환자 임플란트 치료 후" className="w-full aspect-[16/9] object-cover" />
+components/board/TreatmentSection.tsx:796:              alt="네비게이션 임플란트"
+components/board/TreatmentSection.tsx:952:              <img src={treatment.beforeImage} alt="즉시로딩 임플란트 치료 전" className="w-full aspect-[16/9] object-cover" />
+components/board/TreatmentSection.tsx:958:              <img src={treatment.afterImage} alt="즉시로딩 임플란트 치료 후" className="w-full aspect-[16/9] object-cover" />
+components/board/TreatmentSection.tsx:1301:              <img src={treatment.image} alt={treatment.title} className="w-full h-auto" />
+components/board/TreatmentSection.tsx:1462:              <img src={treatment.image} alt={treatment.title} className="w-full h-auto" />
+components/board/TreatmentSection.tsx:1722:              <img src={treatment.image} alt={treatment.title} className="w-full h-auto" />
+components/board/TreatmentSection.tsx:1855:              alt={treatment.title}
+components/board/TreatmentSection.tsx:1894:            alt="소아충치치료"
+components/board/TreatmentSection.tsx:1976:              alt="수원치과 서울이건치과"
+components/board/TreatmentSection.tsx:2098:                    <img src={item.src} alt={item.caption} className="w-full aspect-[4/3] object-cover block" />
+components/board/TreatmentSection.tsx:2130:                <img src={treatment.image} alt={treatment.title} className="w-full h-auto rounded-2xl" />
+components/board/TreatmentSection.tsx:2131:                <img src={treatment.sideImage} alt={`${treatment.title} 사례`} className="w-full h-auto rounded-2xl" />
+components/board/TreatmentSection.tsx:2136:                alt={treatment.title}
+components/board/TreatmentSection.tsx:2202:            alt={treatment.title}
+components/board/TreatmentSection.tsx:2208:              alt={`${treatment.title} 사례`}
+components/board/TreatmentSection.tsx:2220:              <Image src="/images/treatments/natural-tooth/vpt.jpg" alt="VPT 신경보존술" width={1920} height={1080} className="w-full h-auto" />
+components/ui/BeforeAfterSlider.tsx:71:        alt={beforeAlt}
+components/ui/BeforeAfterSlider.tsx:89:          alt={afterAlt}
