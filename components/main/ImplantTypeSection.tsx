@@ -129,8 +129,8 @@ export default function ImplantTypeSection() {
                 </ul>
               </div>
 
-              {/* 이미지 영역 — 모바일은 낮게(한 화면 확보), 데스크탑은 크게 */}
-              <div className="relative h-[110px] sm:h-[200px] shrink-0 overflow-hidden">
+              {/* 이미지 영역 — 모바일은 3:2 비율 고정(잘림 방지), 데스크탑은 고정 높이 */}
+              <div className="relative aspect-[3/2] sm:aspect-auto sm:h-[200px] shrink-0 overflow-hidden">
                 <Image
                   src={type.img}
                   alt={`수원 영통 ${type.title}`}
