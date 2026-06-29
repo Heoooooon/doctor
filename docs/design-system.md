@@ -13,7 +13,7 @@
 font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
 ```
 
-CDN: `https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/woff2/`
+CDN: `https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css`
 
 | Weight | 이름 | 용도 |
 |--------|------|------|

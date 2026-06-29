@@ -1,3 +1,4 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css');
 @import "tailwindcss";
 
 /* ── Lenis 부드러운 스크롤 (하위 페이지) ── */
@@ -169,49 +170,6 @@ html.lenis body {
   display: none;
 }
 
-@font-face {
-  font-family: 'Pretendard';
-  font-weight: 400;
-  font-style: normal;
-  src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/woff2/Pretendard-Regular.woff2') format('woff2');
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Pretendard';
-  font-weight: 500;
-  font-style: normal;
-  src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/woff2/Pretendard-Medium.woff2') format('woff2');
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Pretendard';
-  font-weight: 600;
-  font-style: normal;
-  src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/woff2/Pretendard-SemiBold.woff2') format('woff2');
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Pretendard';
-  font-weight: 700;
-  font-style: normal;
-  src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/woff2/Pretendard-Bold.woff2') format('woff2');
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Pretendard';
-  font-weight: 800;
-  font-style: normal;
-  src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/woff2/Pretendard-ExtraBold.woff2') format('woff2');
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Pretendard';
-  font-weight: 900;
-  font-style: normal;
-  src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/woff2/Pretendard-Black.woff2') format('woff2');
-  font-display: swap;
-}
-
 /* ── 모바일 고정바 높이 변수 ── */
 :root {
   --mobile-header-height: 64px;
@@ -315,6 +273,11 @@ html.lenis body {
   animation: hero-text-rise 1.5s ease-in-out 0.5s forwards;
 }
 
+.hero-sequence {
+  opacity: 0;
+  animation: hero-text-rise 0.95s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
 /* ── 도미노 상승: 스크롤 페이드인과 동일하게 양방향 트랜지션 ── */
 .domino-hidden,
 .domino-rise {
@@ -359,7 +322,7 @@ html.lenis body {
 /* ── 모바일 전역 (768px 이하) ── */
 @media (max-width: 768px) {
   html, body {
-    overflow-x: hidden;
+    overflow-x: clip;
     width: 100%;
   }
 

@@ -50,7 +50,9 @@ export default function QuickConsultBar() {
     const compute = () => {
       const winY = window.scrollY || document.documentElement.scrollTop || 0
       const deskY = desktop ? desktop.scrollTop : 0
-      setScrolled(Math.max(winY, deskY) > window.innerHeight * 0.6)
+      const homeThreshold = window.innerHeight * 5.5
+      const pageThreshold = pathname === '/' ? homeThreshold : window.innerHeight * 0.6
+      setScrolled(Math.max(winY, deskY) > pageThreshold)
     }
     compute()
     window.addEventListener('scroll', compute, { passive: true })
@@ -73,6 +75,11 @@ export default function QuickConsultBar() {
     // 다음 프레임에 show=true → 진입 트랜지션 발동
     requestAnimationFrame(() => requestAnimationFrame(() => setShow(true)))
   }, [])
+
+  useEffect(() => {
+    window.addEventListener('egun:open-consult', openModal)
+    return () => window.removeEventListener('egun:open-consult', openModal)
+  }, [openModal])
 
   const closeModal = useCallback(() => {
     setShow(false)
@@ -158,6 +165,8 @@ export default function QuickConsultBar() {
         aria-label="상담 신청 열기"
         aria-haspopup="dialog"
         aria-expanded={render}
+        aria-hidden={!scrolled}
+        tabIndex={scrolled ? 0 : -1}
         className={`fixed right-4 bottom-4 sm:right-6 sm:bottom-6 z-[55] flex items-center gap-2 rounded-full bg-[#0080C8] pl-4 pr-5 h-12 sm:h-14 text-white font-semibold shadow-[0_10px_30px_rgba(0,128,200,0.45)] hover:bg-[#0a6fa8] hover:shadow-[0_14px_38px_rgba(0,128,200,0.55)] active:scale-95 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#0080C8]/40 focus:ring-offset-2 ${
           scrolled
             ? 'opacity-100 translate-y-0 pointer-events-auto'

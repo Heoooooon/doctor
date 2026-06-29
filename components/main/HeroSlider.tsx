@@ -1,63 +1,66 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
+import HeroForeground from './HeroForeground'
 
 type Slide = {
-  id: number
-  image: string
-  isVideo?: boolean
-  loopVideo?: boolean // gif처럼 무한 반복 재생하는 짧은 영상(타이머로 다음 슬라이드 전환)
-  interval?: number   // 이미지 슬라이드 유지(ms) — 없으면 IMAGE_INTERVAL
+  readonly id: number
+  readonly image: string
+  readonly isVideo?: boolean
+  readonly loopVideo?: boolean
+  readonly interval?: number
 }
 
-// 웹(데스크탑): 폴더 숫자순 6개 — 첫 슬라이드는 영상(0.7배속)
 const WEB_SLIDES: Slide[] = [
-  { id: 1, image: '/images/slides/slide-1.mp4', isVideo: true },
-  { id: 2, image: '/images/slides/main-02.mp4', loopVideo: true, interval: 2600 },
+  { id: 2, image: '/images/slides/main-02.mp4', isVideo: true },
   { id: 3, image: '/images/slides/slide-3.jpg', interval: 3000 },
   { id: 4, image: '/images/slides/slide-4.webp', interval: 3000 },
   { id: 5, image: '/images/slides/slide-5.png', interval: 3000 },
   { id: 6, image: '/images/slides/slide-6.jpg', interval: 3000 },
+  { id: 1, image: '/images/slides/slide-1.mp4', isVideo: true },
 ]
 
-// 모바일: 경량 영상(0.7배속) → slide-2 → slide-3
 const MOBILE_SLIDES: Slide[] = [
-  { id: 1, image: '/images/slides/slide-4-mobile.mp4', isVideo: true },
-  { id: 2, image: '/images/slides/main-02.mp4', loopVideo: true, interval: 2600 },
+  { id: 2, image: '/images/slides/main-02.mp4', isVideo: true },
   { id: 3, image: '/images/slides/slide-3.jpg', interval: 3000 },
   { id: 4, image: '/images/slides/slide-4.webp', interval: 3000 },
   { id: 5, image: '/images/slides/slide-5.png', interval: 3000 },
+  { id: 6, image: '/images/slides/slide-6.jpg', interval: 3000 },
+  { id: 1, image: '/images/slides/slide-4-mobile.mp4', isVideo: true },
 ]
 
-// 영상은 양쪽 모두 첫 슬라이드(index 0). 영상은 자체 길이만큼 재생.
-const VIDEO_INDEX    = 0
 const IMAGE_INTERVAL = 4700   // 이미지 슬라이드 1장 유지(ms)
+const LAST_SLIDE_SCROLL_DELAY = 3000
 
 const RADIUS        = 18
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS
 
-// 중앙 카피 4세트 (3줄씩) — 무한 반복
-const HERO_TEXT_SETS: string[][] = [
-  ['정성은 기본이 아니라', '진료의 시작이라고 믿습니다', '환자를 먼저 생각합니다'],
-  ['치료 전 충분한 설명', '원장이 직접 전하는 안내', '이해에서 시작되는 진료'],
-  ['자연스럽게 바뀌는 치열', '조금 더 편안한 일상', '조금 더 환한 웃음'],
-  ['익숙함에 머무르지 않고', '계속 배우고 깊이 고민하며', '더 좋은 진료를 만들어갑니다'],
-]
+function getVideoPoster(slide: Slide): string | undefined {
+  if (slide.image.includes('slide-1.mp4')) return '/images/slides/slide-1-poster.webp'
+  if (slide.image.includes('slide-4-mobile.mp4')) return '/images/slides/slide-4-poster.webp'
+  return undefined
+}
+
+function getVideoPlaybackRate(slide: Slide): number {
+  return slide.id === 1 ? 0.7 : 1
+}
 
 export default function HeroSlider() {
   const [current,  setCurrent]  = useState(0)
   const [progress, setProgress] = useState(0)
 
-  // 중앙 카피 로테이션 (슬라이드와 독립적으로 무한 반복)
-  const [textSet,  setTextSet]  = useState(0)
   const [isMobile, setIsMobile] = useState(false)
+  const heroDomId = useId()
 
   const startTimeRef     = useRef<number>(Date.now())
   const rafRef           = useRef<number | null>(null)
   const isPausedRef      = useRef(false)
   const currentRef       = useRef(0)
   const videoRef         = useRef<HTMLVideoElement | null>(null)
+  const sectionRef       = useRef<HTMLElement | null>(null)
   const videoAdvancedRef = useRef(false)
+  const nextSectionTimerRef = useRef<number | null>(null)
+  const nextSectionScrollRef = useRef(false)
 
   // 활성 슬라이드 셋(플랫폼별) — rAF 루프에서 참조하도록 ref로 보관
   const slidesRef = useRef<Slide[]>(WEB_SLIDES)
@@ -69,19 +72,63 @@ export default function HeroSlider() {
     setProgress(0)
     startTimeRef.current = Date.now()
     videoAdvancedRef.current = false
+    nextSectionScrollRef.current = false
   }
 
   const goTo = (index: number) => {
+    isPausedRef.current = false
     setCurrent(index)
     currentRef.current = index
     setProgress(0)
     startTimeRef.current = Date.now()
     videoAdvancedRef.current = false
-    if (index === VIDEO_INDEX && videoRef.current) {
-      videoRef.current.currentTime = 0
-      videoRef.current.playbackRate = 0.7
-      videoRef.current.play().catch(() => {})
+    nextSectionScrollRef.current = false
+    const targetSlide = slidesRef.current[index]
+    if (targetSlide?.isVideo) {
+      window.requestAnimationFrame(() => {
+        const video = videoRef.current
+        if (!video) return
+        video.currentTime = 0
+        video.playbackRate = getVideoPlaybackRate(targetSlide)
+        void video.play().catch(() => undefined)
+      })
     }
+  }
+
+  const openConsult = () => {
+    window.dispatchEvent(new Event('egun:open-consult'))
+  }
+
+  const scrollToNextLayout = () => {
+    const hero = sectionRef.current
+    const rect = hero?.getBoundingClientRect()
+    if (!hero || !rect || rect.width === 0 || rect.height === 0) return
+
+    const desktop = document.getElementById('home-desktop')
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const behavior: ScrollBehavior = reduceMotion ? 'auto' : 'smooth'
+
+    if (desktop && window.matchMedia('(min-width: 768px)').matches) {
+      const wrapper = hero?.parentElement
+      const target = wrapper?.nextElementSibling
+      const top = target instanceof HTMLElement ? target.offsetTop : desktop.clientHeight
+      desktop.scrollTo({ top, behavior })
+      return
+    }
+
+    const target = hero?.nextElementSibling
+    const top = target instanceof HTMLElement
+      ? target.getBoundingClientRect().top + window.scrollY
+      : window.innerHeight
+    window.scrollTo({ top, behavior })
+  }
+
+  const scrollPastLastSlide = () => {
+    if (nextSectionScrollRef.current) return
+    nextSectionScrollRef.current = true
+    isPausedRef.current = true
+    setProgress(1)
+    scrollToNextLayout()
   }
 
   // 스크롤/스와이프 핸들러가 최신 goTo를 참조하도록 ref로 보관
@@ -91,7 +138,12 @@ export default function HeroSlider() {
   const handleVideoEnded = () => {
     if (videoAdvancedRef.current) return
     videoAdvancedRef.current = true
-    advanceFrom(VIDEO_INDEX)
+    const last = slidesRef.current.length - 1
+    if (currentRef.current >= last) {
+      scrollPastLastSlide()
+      return
+    }
+    advanceFrom(currentRef.current)
   }
 
   useEffect(() => {
@@ -117,23 +169,45 @@ export default function HeroSlider() {
     setProgress(0)
     startTimeRef.current = Date.now()
     videoAdvancedRef.current = false
+    nextSectionScrollRef.current = false
   }, [isMobile])
 
-  // 중앙 카피: 문구 무한 로테이션 — 문구가 바뀔 때마다 hero-text-rise로 등장
-  // 한 문구 유지 주기: 데스크탑 6.6초 / 모바일 10초 (이전보다 1초 더 스테이)
   useEffect(() => {
-    const PERIOD = isMobile ? 10000 : 6600
-    const timer = setInterval(() => {
-      setTextSet((i) => (i + 1) % HERO_TEXT_SETS.length)
-    }, PERIOD)
-    return () => clearInterval(timer)
-  }, [isMobile])
+    if (nextSectionTimerRef.current !== null) {
+      window.clearTimeout(nextSectionTimerRef.current)
+      nextSectionTimerRef.current = null
+    }
+
+    const last = slidesRef.current.length - 1
+    const activeSlide = slidesRef.current[current]
+    if (current !== last) {
+      nextSectionScrollRef.current = false
+      return undefined
+    }
+
+    if (activeSlide?.isVideo) {
+      return undefined
+    }
+
+    nextSectionTimerRef.current = window.setTimeout(() => {
+      if (currentRef.current !== last || nextSectionScrollRef.current) return
+      scrollPastLastSlide()
+    }, LAST_SLIDE_SCROLL_DELAY)
+
+    return () => {
+      if (nextSectionTimerRef.current !== null) {
+        window.clearTimeout(nextSectionTimerRef.current)
+        nextSectionTimerRef.current = null
+      }
+    }
+  }, [current, isMobile])
 
   // 슬라이드 진행 루프
   useEffect(() => {
     const tick = () => {
       if (!isPausedRef.current) {
-        if (currentRef.current === VIDEO_INDEX) {
+        const activeSlide = slidesRef.current[currentRef.current]
+        if (activeSlide?.isVideo) {
           const vid = videoRef.current
           if (vid && vid.duration > 0) {
             setProgress(vid.currentTime / vid.duration)
@@ -145,11 +219,17 @@ export default function HeroSlider() {
           setProgress(p)
 
           if (p >= 1) {
-            const next = (currentRef.current + 1) % slidesRef.current.length
-            setCurrent(next)
-            currentRef.current = next
-            setProgress(0)
-            startTimeRef.current = Date.now()
+            const last = slidesRef.current.length - 1
+            if (currentRef.current >= last) {
+              scrollPastLastSlide()
+            } else {
+              const next = currentRef.current + 1
+              setCurrent(next)
+              currentRef.current = next
+              setProgress(0)
+              startTimeRef.current = Date.now()
+              nextSectionScrollRef.current = false
+            }
           }
         }
       }
@@ -166,7 +246,7 @@ export default function HeroSlider() {
   // 데스크탑은 #home-desktop 내부 스크롤(wheel), 모바일은 #main-hero 세로 스와이프(touch).
   useEffect(() => {
     const desktop = document.getElementById('home-desktop')
-    const hero = document.getElementById('main-hero')
+    const hero = sectionRef.current
     let resumeTimer: number | undefined
 
     const pauseAuto = () => {
@@ -192,7 +272,18 @@ export default function HeroSlider() {
     const onWheel = (e: WheelEvent) => {
       if (!desktop || desktop.scrollTop > 8) return
       const dir = e.deltaY > 0 ? 1 : e.deltaY < 0 ? -1 : 0
-      if (dir === 0 || !shouldHijack(dir)) return
+      if (dir === 0) return
+      if (!shouldHijack(dir)) {
+        const last = slidesRef.current.length - 1
+        if (dir > 0 && currentRef.current >= last) {
+          e.preventDefault()
+          if (wheelLock || Math.abs(e.deltaY) < 6) return
+          wheelLock = true
+          scrollPastLastSlide()
+          window.setTimeout(() => { wheelLock = false }, 720)
+        }
+        return
+      }
       e.preventDefault()
       if (wheelLock || Math.abs(e.deltaY) < 6) return
       wheelLock = true
@@ -212,7 +303,17 @@ export default function HeroSlider() {
       if ((window.scrollY || 0) > 8) return
       const dy = touchStartY - (e.touches[0]?.clientY ?? 0) // +면 위로 스와이프(다음)
       const dir = dy > 0 ? 1 : -1
-      if (Math.abs(dy) < 8 || !shouldHijack(dir)) return
+      if (Math.abs(dy) < 8) return
+      if (!shouldHijack(dir)) {
+        const last = slidesRef.current.length - 1
+        if (dir > 0 && currentRef.current >= last) {
+          e.preventDefault()
+          if (touchLock || Math.abs(dy) < 42) return
+          touchLock = true
+          scrollPastLastSlide()
+        }
+        return
+      }
       e.preventDefault()
       if (touchLock || Math.abs(dy) < 42) return
       touchLock = true
@@ -221,10 +322,12 @@ export default function HeroSlider() {
     }
 
     desktop?.addEventListener('wheel', onWheel, { passive: false })
+    window.addEventListener('wheel', onWheel, { passive: false })
     hero?.addEventListener('touchstart', onTouchStart, { passive: true })
     hero?.addEventListener('touchmove', onTouchMove, { passive: false })
     return () => {
       desktop?.removeEventListener('wheel', onWheel)
+      window.removeEventListener('wheel', onWheel)
       hero?.removeEventListener('touchstart', onTouchStart)
       hero?.removeEventListener('touchmove', onTouchMove)
       if (resumeTimer) window.clearTimeout(resumeTimer)
@@ -236,7 +339,8 @@ export default function HeroSlider() {
 
   return (
     <section
-      id="main-hero"
+      id={`main-hero-${heroDomId.replace(/:/g, '')}`}
+      ref={sectionRef}
       className={`relative h-dvh md:h-screen w-full overflow-hidden ${slide.isVideo ? 'bg-black' : 'bg-white'}`}
     >
       {/* ── 배경 이미지 (데스크탑) — 크로스페이드 + Ken Burns, GIF 재생 가능 ── */}
@@ -268,17 +372,20 @@ export default function HeroSlider() {
       </div>
 
       {/* ── 동영상 레이어 (데스크탑) ── */}
-      {slide.isVideo && (
+      {!isMobile && slide.isVideo && (
         <video
-          key="hero-video"
+          ref={videoRef}
+          key={`hero-video-${slide.id}`}
           className="hidden md:block absolute inset-0 w-full h-full object-cover"
-          src="/images/slides/slide-1.mp4"
-          poster="/images/slides/slide-1-poster.webp"
+          src={slide.image}
+          poster={getVideoPoster(slide)}
           preload="auto"
           autoPlay
           muted
           playsInline
-          onCanPlay={(e) => { (e.target as HTMLVideoElement).playbackRate = 0.7 }}
+          onCanPlay={(event) => {
+            event.currentTarget.playbackRate = getVideoPlaybackRate(slide)
+          }}
           onEnded={handleVideoEnded}
         />
       )}
@@ -286,19 +393,23 @@ export default function HeroSlider() {
       {/* ── 모바일 이미지/동영상 레이어 ─────────────────────────── */}
       <div className="md:hidden absolute inset-0">
         {slide.isVideo ? (
-          <video
-            ref={videoRef}
-            key="hero-video-m"
-            className="absolute inset-0 w-full h-full object-cover"
-            src="/images/slides/slide-4-mobile.mp4"
-            poster="/images/slides/slide-4-poster.webp"
-            preload="auto"
-            autoPlay
-            muted
-            playsInline
-            onCanPlay={(e) => { (e.target as HTMLVideoElement).playbackRate = 0.7 }}
-            onEnded={handleVideoEnded}
-          />
+          isMobile ? (
+            <video
+              ref={videoRef}
+              key={`hero-video-m-${slide.id}`}
+              className="absolute inset-0 w-full h-full object-cover"
+              src={slide.image}
+              poster={getVideoPoster(slide)}
+              preload="auto"
+              autoPlay
+              muted
+              playsInline
+              onCanPlay={(event) => {
+                event.currentTarget.playbackRate = getVideoPlaybackRate(slide)
+              }}
+              onEnded={handleVideoEnded}
+            />
+          ) : null
         ) : slide.loopVideo ? (
           <video
             key={`m-${current}`}
@@ -347,22 +458,10 @@ export default function HeroSlider() {
         }}
       />
 
-      {/* ── 히어로 카피: 상단 고정 영문 + 중앙 3줄 교체(무한) ── */}
-      <div className="absolute inset-0 z-20 flex items-center justify-center px-6 pointer-events-none">
-        <div className="text-center text-white" style={{ textShadow: '0 2px 16px rgba(0,0,0,0.55)' }}>
-          <p className="text-[14px] sm:text-[18px] font-semibold tracking-[0.18em] sm:tracking-[0.25em] whitespace-nowrap text-white/75 mb-8 sm:mb-10">
-            <span className="text-[#0080C8]">SEOUL EGUN</span> DENTAL CLINIC
-          </p>
-          {/* 교체되는 중앙 3줄 — 문구마다 0.5s 후 아래→위 30px + 페이드 인 (1.5s ease-in-out) */}
-          <div key={textSet} className="hero-text-rise">
-            {HERO_TEXT_SETS[textSet].map((line, i) => (
-              <p key={i} className="text-[19px] sm:text-[28px] font-bold leading-[1.55]">
-                {line}
-              </p>
-            ))}
-          </div>
-        </div>
-      </div>
+      <HeroForeground
+        current={current}
+        onConsultClick={openConsult}
+      />
 
       {/* ── 모바일 슬라이드 인디케이터 (하단 도트) ── */}
       <div className="md:hidden absolute bottom-10 inset-x-0 flex justify-center items-center gap-2.5 z-10">

@@ -5,6 +5,25 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react
 const useIsoLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 const INTRO_SEEN_KEY = 'egun:intro-seen';
 
+function hasSeenIntro() {
+  try {
+    return sessionStorage.getItem(INTRO_SEEN_KEY) === '1';
+  } catch (error) {
+    if (error instanceof DOMException) return false;
+    throw error;
+  }
+}
+
+function markIntroSeen() {
+  try {
+    sessionStorage.setItem(INTRO_SEEN_KEY, '1');
+    return true;
+  } catch (error) {
+    if (error instanceof DOMException) return false;
+    throw error;
+  }
+}
+
 const SplitText = ({ text, colorShadow = false }: { text: string; colorShadow?: boolean }) => {
   return (
     <>
@@ -31,9 +50,7 @@ export default function IntroScreen() {
 
   // 이미 본 인트로면(같은 세션) 페인트 전에 즉시 숨김 → 페이지 복귀 시 재생/깜빡임 방지
   useIsoLayoutEffect(() => {
-    try {
-      if (sessionStorage.getItem(INTRO_SEEN_KEY) === '1') setVisible(false);
-    } catch {}
+    if (hasSeenIntro()) setVisible(false);
   }, []);
 
   const handleClose = useCallback(() => {
@@ -52,10 +69,8 @@ export default function IntroScreen() {
 
   useEffect(() => {
     // 이미 본 인트로면 잠금/리스너 설정 없이 종료
-    try {
-      if (sessionStorage.getItem(INTRO_SEEN_KEY) === '1') return;
-      sessionStorage.setItem(INTRO_SEEN_KEY, '1');
-    } catch {}
+    if (hasSeenIntro()) return;
+    markIntroSeen();
 
     const html = document.documentElement;
     const body = document.body;
@@ -150,7 +165,10 @@ export default function IntroScreen() {
           touch-action: none;
           overscroll-behavior: contain;
         }
-        .intro.fade-out { opacity: 0; }
+        .intro.fade-out {
+          opacity: 0;
+          pointer-events: none;
+        }
 
         .intro-content {
           text-align: center;
