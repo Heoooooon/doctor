@@ -1,0 +1,21 @@
+[
+  {
+    "id": "local-1780043443634-jzwzis",
+    "title": "6월 별관 원장님 진료일정",
+    "content": "6월 본관 별관 원장님 진료일정입니다.\n참고하시어 내원에 착오 없으시길 바라겠습니다.",
+    "image_url": "/uploads/notices/1780043441613-1r3uqk.png",
+    "notice_date": "2026-05-29",
+    "is_active": true,
+    "created_at": "2026-05-29T08:30:43.634Z"
+  },
+  {
+    "id": "local-1780043363932-10jme9",
+    "title": "6월 원장님 본관 진료일정",
+    "content": "6월 본관 별관 원장님 진료일정입니다.\n참고하시어 내원에 착오 없으시길 바라겠습니다.",
+    "image_url": "/uploads/notices/1780043361035-lmyftd.png",
+    "notice_date": "2026-05-29",
+    "is_active": true,
+    "created_at": "2026-05-29T08:29:23.932Z",
+    "updated_at": "2026-05-29T09:59:51.759Z"
+  }
+]

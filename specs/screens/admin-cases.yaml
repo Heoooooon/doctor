@@ -1,0 +1,75 @@
+version: "2.0"
+
+screen:
+  name: 증례 관리
+  route: /admin/cases
+  layout: dashboard
+  auth: true
+  roles: [admin]
+
+data_requirements:
+  - resource: cases
+    needs: [id, board_category, treatment_type, title, description, before_image_url, after_image_url, sort_order]
+    auth_required: true
+
+  - resource: case_blogs
+    needs: [id, case_id, blog_url, blog_title]
+    auth_required: true
+
+  - resource: upload
+    auth_required: true
+
+components:
+  - id: category_filter
+    type: navigation
+    position: main
+    function: 게시판별 필터 (자연치아/임플란트/심미보철/교정/소아)
+    events:
+      - on: click:category
+        do: 해당 게시판의 증례만 표시
+
+  - id: case_list
+    type: list
+    position: main
+    function: 증례 목록 (썸네일 + 제목 + 카테고리)
+    data_source:
+      resource: cases
+    events:
+      - on: click:edit
+        do: 증례 편집 모달 열기
+      - on: click:delete
+        do: 확인 후 삭제
+      - on: drag:reorder
+        do: 정렬 순서 변경
+
+  - id: case_form
+    type: form
+    position: overlay
+    function: 증례 추가/수정 폼 (제목, 설명, before/after 이미지 업로드, 블로그 링크)
+    data_source:
+      resource: cases
+    events:
+      - on: submit
+        do: DB 저장 (이미지는 Supabase Storage 업로드)
+      - on: click:add_blog
+        do: 블로그 URL 입력 필드 추가
+
+connections:
+  shared_components: [admin_sidebar]
+
+tests:
+  - name: 게시판 필터
+    when: "임플란트" 카테고리 클릭
+    then:
+      - 임플란트 증례만 표시
+  - name: 증례 추가
+    when: 추가 버튼 → 폼 작성 → 저장
+    then:
+      - 이미지 Supabase Storage 업로드
+      - DB에 증례 저장
+      - 목록에 새 항목 표시
+  - name: 이미지 업로드
+    when: before/after 이미지 선택
+    then:
+      - 미리보기 표시
+      - 10MB 이하 이미지만 허용

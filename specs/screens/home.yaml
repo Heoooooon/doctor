@@ -1,0 +1,135 @@
+version: "2.0"
+
+screen:
+  name: 메인 페이지
+  route: /
+  layout: full-width
+  auth: false
+
+data_requirements:
+  - resource: doctors
+    needs: [id, name, role, specialty, photo_url]
+
+  - resource: cases
+    needs: [id, title, before_image_url, after_image_url, board_category, treatment_type]
+    filters: { board_category: natural-tooth, limit: 3 }
+
+  - resource: clinic_info
+    needs: [phone, kakao_url, youtube_url, blog_url, place_url]
+
+components:
+  # 1화면: 히어로 슬라이드
+  - id: hero_slider
+    type: carousel
+    position: main
+    function: 원장님 & 치과 대표 사진 슬라이드 (1920x937, 풀페이지)
+    events:
+      - on: click:indicator
+        do: 해당 슬라이드로 이동
+      - on: timer:auto
+        do: 자동 슬라이드 전환 (왼쪽 동그라미 인디케이터에 타이머 표시)
+
+  # 2화면: 의료진 소개
+  - id: doctor_group
+    type: interactive
+    position: main
+    function: 원장님 5명 단체사진, 각 인물 호버/클릭 인터랙션
+    data_source:
+      resource: doctors
+    events:
+      - on: hover:doctor
+        do: 해당 원장님 하이라이트 효과
+      - on: click:doctor
+        do: /about#doctors 의료진소개 섹션으로 이동
+
+  # 3화면: 자연치 보존 솔루션
+  - id: natural_solution
+    type: grid
+    position: main
+    function: 비포/애프터 3개 가로 배치 (원데이 레진빌드업, VPT, 최소삭제 온레이)
+    data_source:
+      resource: cases
+    events:
+      - on: hover:case_card
+        do: 치료 설명 텍스트 화면 중앙에 오버레이 표시
+      - on: click:case_card
+        do: /natural-tooth 게시판으로 이동
+
+  # 4화면: 올온 임플란트
+  - id: implant_section
+    type: detail
+    position: main
+    function: 검정 배경 + 보철물 사진 (서울권치과 스타일)
+    events:
+      - on: click:detail_link
+        do: /implant 게시판으로 이동
+
+  # 5화면: 의식하진정법
+  - id: sedation_section
+    type: media
+    position: main
+    function: 수술 영상 임베드 + 증례 숫자 카운팅 애니메이션
+    events:
+      - on: scroll:enter
+        do: 카운팅 숫자 0→목표값 애니메이션 시작
+      - on: click:video
+        do: 영상 재생
+
+  # 6화면: 서울이건 미디어
+  - id: media_section
+    type: grid
+    position: main
+    function: 블로그, 유튜브, 카톡상담, 환자실제후기(플레이스) 아이콘 카드 배치
+    data_source:
+      resource: clinic_info
+    events:
+      - on: click:media_icon
+        do: 해당 외부 링크로 이동 (새 탭)
+
+connections:
+  navigations:
+    - from: doctor_group
+      to: /about#doctors
+    - from: natural_solution
+      to: /natural-tooth
+    - from: implant_section
+      to: /implant
+    - from: media_section
+      to: external (kakao, youtube, blog, place)
+
+  shared_components:
+    - header
+    - footer
+    - quick_consult_bar
+    - floating_sidebar
+    - custom_cursor
+
+tests:
+  - name: 풀페이지 스크롤
+    when: 페이지 접속 후 스크롤
+    then:
+      - CSS scroll-snap으로 한 화면씩 전환
+      - 50% 넘어가면 다음 화면으로 스냅
+
+  - name: 히어로 슬라이드 자동재생
+    when: 페이지 접속
+    then:
+      - 슬라이드 자동 전환
+      - 왼쪽 인디케이터에 진행 타이머 표시
+
+  - name: 의료진 호버 인터랙션
+    when: 원장님 인물 위에 마우스 호버
+    then:
+      - 해당 인물 하이라이트
+      - 클릭 시 /about#doctors로 이동
+
+  - name: 카운팅 애니메이션
+    when: 5화면 스크롤 진입
+    then:
+      - 증례 숫자가 0에서 목표값까지 카운팅
+
+  - name: 모바일 반응형
+    when: 모바일 기기에서 접속
+    then:
+      - 일반 스크롤로 전환 (scroll-snap 비활성)
+      - 사이드바 숨김

@@ -1,0 +1,97 @@
+version: "2.0"
+
+shared_components:
+  # 글로벌 레이아웃
+  - id: header
+    type: navigation
+    position: fixed-top
+    function: |
+      고정 헤더 - 왼쪽 상단 서울대 로고 + "SEOUL EGUN DENTAL" 텍스트
+      우측 햄버거 메뉴 (7개 게시판 네비게이션)
+    events:
+      - on: click:hamburger
+        do: 메뉴 패널 토글
+      - on: click:menu_item
+        do: 해당 게시판 페이지로 이동
+
+  - id: footer
+    type: detail
+    position: footer
+    function: |
+      로고, 치과 정보 (주소, 전화, 팩스, 사업자번호)
+      진료시간표, 의료법 면책 문구
+      "본 페이지의 내용은 의료법에 따라 참고용 정보이며, 정확한 진단과 치료는 내원 상담을 통해 결정됩니다."
+
+  - id: quick_consult_bar
+    type: form
+    position: fixed-bottom
+    function: |
+      하단 고정 상담바 (모든 페이지)
+      - 이름 입력 (text)
+      - 연락처 입력 (tel, 010-0000-0000)
+      - 개인정보 수집 및 이용 동의 체크박스 (필수)
+      - 상담예약 버튼 → Supabase DB 저장
+      - 빠른상담 버튼 → tel:031-896-5512
+    data_source:
+      resource: consultations
+    events:
+      - on: submit:consult
+        do: 이름/연락처/동의 검증 → DB 저장 → "상담 신청이 완료되었습니다" 알림
+      - on: click:quick_call
+        do: tel:031-896-5512 전화 연결
+      - on: error:validation
+        do: 빈 필드 또는 미동의 시 경고 표시
+
+  - id: floating_sidebar
+    type: navigation
+    position: fixed-right
+    function: |
+      우측 플로팅 사이드바 (데스크톱 lg+ 전용)
+      1. 휴무일정 → /notice
+      2. 카톡상담 → http://pf.kakao.com/_xmDDNxb
+      3. 유튜브 → https://youtube.com/@seoulegun
+      4. 네이버 블로그 → https://blog.naver.com/seoulegundc
+      5. 네이버 플레이스 → https://m.place.naver.com/restaurant/12872860
+      6. 전화가기 → tel:031-896-5512
+    events:
+      - on: click:item
+        do: 해당 URL로 이동 (외부는 새 탭)
+
+  - id: custom_cursor
+    type: decorator
+    position: overlay
+    function: |
+      서울대 로고가 마우스 커서를 따라다님 (데스크톱 전용)
+      모바일에서는 비활성
+
+  # 게시판 공통
+  - id: anchor_nav
+    type: navigation
+    position: sticky-top
+    function: 게시판 서브메뉴 앵커 네비게이션 (클릭 시 해당 섹션으로 스크롤)
+
+  - id: treatment_section
+    type: detail
+    position: main
+    function: 치료 설명 블록 (지그재그 이미지+텍스트 교차 레이아웃)
+
+  - id: faq_accordion
+    type: accordion
+    position: main
+    function: FAQ 아코디언 (질문 클릭 시 답변 토글)
+
+  - id: case_gallery
+    type: gallery
+    position: main
+    function: 증례사진 갤러리 (DB 연동, 비포/애프터)
+
+  - id: cta_section
+    type: form
+    position: main
+    function: 상담 CTA 블록 (전화/카카오/상담예약)
+
+  # 관리자 공통
+  - id: admin_sidebar
+    type: navigation
+    position: sidebar
+    function: 관리자 사이드 네비게이션 (대시보드, 상담DB, 증례, 공지, 로그아웃)

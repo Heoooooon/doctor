@@ -1,0 +1,60 @@
+version: "2.0"
+
+screen:
+  name: 공지사항 관리
+  route: /admin/notices
+  layout: dashboard
+  auth: true
+  roles: [admin]
+
+data_requirements:
+  - resource: notices
+    needs: [id, title, content, image_url, notice_date, is_active]
+    auth_required: true
+
+  - resource: upload
+    auth_required: true
+
+components:
+  - id: notice_list
+    type: list
+    position: main
+    function: 공지사항 목록 (제목, 날짜, 활성 상태)
+    data_source:
+      resource: notices
+    events:
+      - on: click:edit
+        do: 공지 편집 모달 열기
+      - on: click:toggle_active
+        do: 활성/비활성 토글
+      - on: click:delete
+        do: 확인 후 삭제
+
+  - id: notice_form
+    type: form
+    position: overlay
+    function: 공지 추가/수정 폼 (제목, 내용, 날짜, 이미지)
+    data_source:
+      resource: notices
+    events:
+      - on: submit
+        do: DB 저장
+
+connections:
+  shared_components: [admin_sidebar]
+
+tests:
+  - name: 공지 추가
+    when: 추가 버튼 → 폼 작성 → 저장
+    then:
+      - DB에 공지 저장
+      - 목록에 표시
+  - name: 활성 토글
+    when: 활성 토글 클릭
+    then:
+      - is_active 값 변경
+      - 비활성 공지는 프론트에서 숨김
+  - name: 휴무일정 표시
+    when: 프론트엔드 /notice 페이지 접속
+    then:
+      - is_active=true인 공지만 표시

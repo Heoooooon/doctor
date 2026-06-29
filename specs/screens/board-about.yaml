@@ -1,0 +1,95 @@
+version: "2.0"
+
+screen:
+  name: 이건치과소개
+  route: /about
+  layout: full-width
+  auth: false
+
+data_requirements:
+  - resource: doctors
+    needs: [id, name, role, specialty, education, career, photo_url, handwriting_url, license_url]
+
+  - resource: notices
+    needs: [id, title, notice_date, is_active]
+    filters: { is_active: true }
+
+  - resource: clinic_info
+    needs: [name, phone, address, lat, lng, hours]
+
+components:
+  - id: anchor_nav
+    type: navigation
+    position: header
+    function: 서브메뉴 앵커 (진료철학|의료진소개|진료일정|내부전경|디지털기공소|오시는길)
+    events:
+      - on: click:anchor
+        do: 해당 섹션으로 스무스 스크롤
+
+  - id: philosophy_section
+    type: detail
+    position: main
+    function: 진료철학 텍스트 + 원장님 슬라이드 사진 (이재성, 유수현 교대)
+    events:
+      - on: auto:slide
+        do: 원장님 사진 슬라이드 전환
+
+  - id: doctor_profiles
+    type: list
+    position: main
+    function: 의료진 약력 (사진+손글씨편지+면허증+진료사진, 서울권치과 참고 레이아웃)
+    data_source:
+      resource: doctors
+    events:
+      - on: scroll:enter
+        do: 페이드인 애니메이션
+
+  - id: clinic_calendar
+    type: calendar
+    position: main
+    function: 진료일정 캘린더 (본관 일반 / 별관 소아치과 / 별관 교정과 구분)
+    data_source:
+      resource: notices
+    events:
+      - on: click:tab
+        do: 본관/별관/교정과 탭 전환
+
+  - id: interior_gallery
+    type: gallery
+    position: main
+    function: 본관 + 별관 내부전경 사진 갤러리
+
+  - id: lab_section
+    type: media
+    position: main
+    function: 디지털 기공소 영상 + 사진 + 구성원 소개
+
+  - id: map_section
+    type: map
+    position: main
+    function: 네이버 지도 (플레이스 연동) + 진료시간표 + 주차장/대중교통 실사진
+    data_source:
+      resource: clinic_info
+    events:
+      - on: click:map
+        do: 네이버 플레이스로 이동
+
+connections:
+  navigations:
+    - from: anchor_nav
+      to: "#philosophy, #doctors, #calendar, #interior, #lab, #access"
+  shared_components: [header, footer, quick_consult_bar, floating_sidebar]
+
+tests:
+  - name: 앵커 네비게이션
+    when: 서브메뉴 "의료진소개" 클릭
+    then:
+      - 의료진소개 섹션으로 스무스 스크롤
+  - name: 진료일정 탭
+    when: "별관 소아치과" 탭 클릭
+    then:
+      - 소아치과 진료일정만 표시
+  - name: 지도 연동
+    when: 지도 영역 클릭
+    then:
+      - 네이버 플레이스 페이지로 이동

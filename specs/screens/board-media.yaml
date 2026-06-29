@@ -1,0 +1,59 @@
+version: "2.0"
+
+screen:
+  name: 이건 미디어
+  route: /media
+  layout: full-width
+  auth: false
+
+data_requirements:
+  - resource: clinic_info
+    needs: [kakao_url, youtube_url, blog_url, place_url, phone]
+
+components:
+  - id: consult_cards
+    type: grid
+    position: main
+    function: 상단 큰 카드 2열 (카카오톡 상담 + 빠른상담 전화)
+    data_source:
+      resource: clinic_info
+    events:
+      - on: click:kakao_card
+        do: 카카오톡 채널로 이동
+      - on: click:phone_card
+        do: tel:031-896-5512 연결
+
+  - id: link_cards
+    type: grid
+    position: main
+    function: 하단 작은 카드 3열 (블로그 + 유튜브 + 가는길)
+    data_source:
+      resource: clinic_info
+    events:
+      - on: click:blog
+        do: 네이버 블로그로 이동 (새 탭)
+      - on: click:youtube
+        do: 유튜브 채널로 이동 (새 탭)
+      - on: click:access
+        do: /about#access 오시는길 섹션으로 이동
+
+connections:
+  navigations:
+    - from: link_cards
+      to: /about#access
+  shared_components: [header, footer, quick_consult_bar, floating_sidebar]
+  external: [kakao, youtube, blog, place]
+
+tests:
+  - name: 카카오톡 상담
+    when: 카카오톡 상담 카드 클릭
+    then:
+      - 카카오 채널 페이지로 이동
+  - name: 빠른상담 전화
+    when: 빠른상담 카드 클릭
+    then:
+      - tel:031-896-5512 전화 연결
+  - name: 가는길 이동
+    when: 가는길 카드 클릭
+    then:
+      - /about#access로 이동

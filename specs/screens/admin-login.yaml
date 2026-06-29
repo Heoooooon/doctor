@@ -1,0 +1,39 @@
+version: "2.0"
+
+screen:
+  name: 관리자 로그인
+  route: /admin/login
+  layout: full-width
+  auth: false
+
+data_requirements: []
+
+components:
+  - id: login_form
+    type: form
+    position: main
+    function: 관리자 로그인 (이메일 + 비밀번호)
+    events:
+      - on: submit
+        do: Supabase Auth 인증 → 성공 시 /admin으로 이동
+      - on: error:auth
+        do: "비밀번호가 틀렸습니다" 에러 표시
+
+connections:
+  navigations:
+    - from: login_form
+      to: /admin
+
+tests:
+  - name: 로그인 성공
+    when: 올바른 자격증명 입력 후 로그인
+    then:
+      - /admin 대시보드로 이동
+  - name: 로그인 실패
+    when: 잘못된 비밀번호 입력
+    then:
+      - 에러 메시지 표시
+  - name: 비인증 접근
+    when: 로그인 없이 /admin 접근
+    then:
+      - /admin/login으로 리다이렉트

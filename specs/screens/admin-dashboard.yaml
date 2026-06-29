@@ -1,0 +1,52 @@
+version: "2.0"
+
+screen:
+  name: 관리자 대시보드
+  route: /admin
+  layout: dashboard
+  auth: true
+  roles: [admin]
+
+data_requirements:
+  - resource: consultations
+    needs: [id, status]
+    filters: { status: pending }
+    auth_required: true
+
+components:
+  - id: menu_cards
+    type: grid
+    position: main
+    function: 관리 메뉴 카드 (상담DB, 증례관리, 공지사항)
+    data_source:
+      resource: consultations
+    events:
+      - on: click:consult_card
+        do: /admin/consultations로 이동
+      - on: click:cases_card
+        do: /admin/cases로 이동
+      - on: click:notices_card
+        do: /admin/notices로 이동
+
+  - id: pending_badge
+    type: badge
+    position: main
+    function: 미확인 상담 건수 배지 표시
+    data_source:
+      resource: consultations
+
+connections:
+  navigations:
+    - from: menu_cards
+      to: /admin/consultations, /admin/cases, /admin/notices
+
+tests:
+  - name: 대시보드 로드
+    when: 관리자 로그인 후 접속
+    then:
+      - 3개 메뉴 카드 표시
+      - 미확인 상담 건수 배지 표시
+  - name: 메뉴 이동
+    when: 상담DB 카드 클릭
+    then:
+      - /admin/consultations로 이동

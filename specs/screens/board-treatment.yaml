@@ -1,0 +1,148 @@
+# 공통 치료 게시판 명세 (자연치아, 임플란트, 심미보철, 교정, 소아)
+# 모든 치료 게시판은 동일한 패턴을 공유합니다.
+version: "2.0"
+
+# --- 자연치아살리기 ---
+screens:
+  - screen:
+      name: 자연치아살리기
+      route: /natural-tooth
+      layout: full-width
+    sub_sections: [충치치료, VPT 신경보존술, 근관치료, 잇몸치료]
+
+  - screen:
+      name: 임플란트
+      route: /implant
+      layout: full-width
+    sub_sections: [올온, 즉시로딩, 네비게이션, 전치부, 자가혈, 상악동거상술, 시니어, 당뇨]
+
+  - screen:
+      name: 심미보철
+      route: /cosmetic
+      layout: full-width
+    sub_sections: [최소삭제 라미네이트, 앞니 레진빌드업, 잇몸성형술]
+
+  - screen:
+      name: 서울이건 교정치료
+      route: /orthodontics
+      layout: full-width
+    sub_sections: [인비절라인 투명교정, 소아성장기교정]
+
+  - screen:
+      name: 소아치과 치료
+      route: /pediatric
+      layout: full-width
+    sub_sections: [소아충치치료, 웃음가스치료]
+
+# --- 공통 패턴 ---
+common_pattern:
+  data_requirements:
+    - resource: treatments
+      needs: [board_category, treatment_type, title, subtitle, description, benefits, faq]
+      filters: { board_category: "{current_board}" }
+
+    - resource: cases
+      needs: [id, title, description, before_image_url, after_image_url, treatment_type]
+      filters: { board_category: "{current_board}" }
+
+    - resource: case_blogs
+      needs: [blog_url, blog_title]
+
+  components:
+    - id: board_hero
+      type: detail
+      position: main
+      function: 게시판 히어로 (대제목 + 대표 이미지, 풀 와이드)
+
+    - id: anchor_nav
+      type: navigation
+      position: header
+      function: 서브메뉴 앵커 (서브섹션 목록, 클릭 시 해당 위치로 스크롤)
+      events:
+        - on: click:anchor
+          do: 해당 섹션으로 스무스 스크롤
+
+    - id: treatment_section
+      type: detail
+      position: main
+      function: |
+        치료 설명 블록 (서울권치과 레이아웃 패턴):
+        - 소개 블록: 이미지+텍스트 좌우 교차 (지그재그)
+        - 신뢰 배지: 자격/경력 강조 (중앙 정렬)
+        - 치료 장점: 체크리스트 5개
+      data_source:
+        resource: treatments
+
+    - id: case_gallery
+      type: gallery
+      position: main
+      function: 증례사진 비포/애프터 갤러리 (DB에서 동적 로드)
+      data_source:
+        resource: cases
+      events:
+        - on: scroll:enter
+          do: 페이드인 애니메이션
+
+    - id: faq_accordion
+      type: accordion
+      position: main
+      function: 자주 묻는 질문 (아코디언, 각 치료당 3개)
+      data_source:
+        resource: treatments
+      events:
+        - on: click:question
+          do: 답변 토글 (열기/닫기)
+
+    - id: blog_links
+      type: list
+      position: main
+      function: 관련 블로그 글 링크 카드
+      data_source:
+        resource: case_blogs
+      events:
+        - on: click:blog_card
+          do: 블로그 URL로 새 탭 이동
+
+    - id: cta_section
+      type: form
+      position: main
+      function: 상담 CTA (전화/카카오/상담예약 아이콘 + CTA 버튼)
+      events:
+        - on: click:phone
+          do: tel:031-896-5512 연결
+        - on: click:kakao
+          do: 카카오 채널로 이동
+        - on: click:consult
+          do: 하단 상담바로 포커스
+
+  connections:
+    shared_components: [header, footer, quick_consult_bar, floating_sidebar]
+
+  tests:
+    - name: 앵커 네비게이션
+      when: 서브메뉴 항목 클릭
+      then:
+        - 해당 치료 섹션으로 스무스 스크롤
+
+    - name: FAQ 아코디언
+      when: 질문 클릭
+      then:
+        - 답변 영역 토글 (열기/닫기)
+        - 다른 질문은 닫히지 않음 (다중 열기 허용)
+
+    - name: 증례사진 동적 로드
+      when: 페이지 접속
+      then:
+        - DB에서 해당 board_category의 증례사진 로드
+        - 증례가 없으면 "준비 중입니다" 표시
+
+    - name: 블로그 링크
+      when: 블로그 카드 클릭
+      then:
+        - 네이버 블로그 새 탭에서 열림
+
+    - name: 모바일 반응형
+      when: 모바일에서 접속
+      then:
+        - 지그재그 레이아웃이 세로 배치로 전환
+        - 이미지 풀 와이드

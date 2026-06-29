@@ -1,0 +1,67 @@
+version: "2.0"
+
+project:
+  name: 서울이건치과 홈페이지
+  tech_stack: Next.js 15 + Supabase + Tailwind CSS 4
+  deploy: Vercel
+
+screens:
+  # 메인
+  - file: home.yaml
+    route: /
+    name: 메인 페이지
+
+  # 게시판
+  - file: board-about.yaml
+    route: /about
+    name: 이건치과소개
+
+  - file: board-treatment.yaml
+    route: /natural-tooth
+    name: 자연치아살리기
+
+  - file: board-treatment.yaml
+    route: /implant
+    name: 임플란트
+
+  - file: board-treatment.yaml
+    route: /cosmetic
+    name: 심미보철
+
+  - file: board-treatment.yaml
+    route: /orthodontics
+    name: 서울이건 교정치료
+
+  - file: board-treatment.yaml
+    route: /pediatric
+    name: 소아치과 치료
+
+  - file: board-media.yaml
+    route: /media
+    name: 이건 미디어
+
+  # 기타
+  - file: notice.yaml
+    route: /notice
+    name: 공지사항(휴무일정)
+
+  # 관리자
+  - file: admin-login.yaml
+    route: /admin/login
+    name: 관리자 로그인
+
+  - file: admin-dashboard.yaml
+    route: /admin
+    name: 관리자 대시보드
+
+  - file: admin-consultations.yaml
+    route: /admin/consultations
+    name: 상담 DB 관리
+
+  - file: admin-cases.yaml
+    route: /admin/cases
+    name: 증례 관리
+
+  - file: admin-notices.yaml
+    route: /admin/notices
+    name: 공지사항 관리

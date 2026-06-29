@@ -1,0 +1,148 @@
+# 서울이건치과 도메인 리소스 정의
+version: "2.0"
+
+resources:
+  consultations:
+    description: 상담 신청 (환자 DB)
+    endpoints:
+      - method: POST
+        path: /api/consultations
+      - method: GET
+        path: /api/consultations
+        auth: true
+      - method: PATCH
+        path: /api/consultations/:id
+        auth: true
+      - method: DELETE
+        path: /api/consultations/:id
+        auth: true
+    fields:
+      id: { type: uuid, auto: true }
+      name: { type: string, required: true }
+      phone: { type: string, required: true }
+      privacy_agreed: { type: boolean, required: true }
+      status: { type: enum, values: [pending, contacted, completed], default: pending }
+      memo: { type: string }
+      created_at: { type: timestamptz, auto: true }
+
+  cases:
+    description: 증례 사진/글
+    endpoints:
+      - method: GET
+        path: /api/cases
+      - method: POST
+        path: /api/cases
+        auth: true
+      - method: PATCH
+        path: /api/cases/:id
+        auth: true
+      - method: DELETE
+        path: /api/cases/:id
+        auth: true
+    fields:
+      id: { type: uuid, auto: true }
+      board_category: { type: string, required: true }
+      treatment_type: { type: string, required: true }
+      title: { type: string, required: true }
+      description: { type: string }
+      before_image_url: { type: string }
+      after_image_url: { type: string }
+      sort_order: { type: number, default: 0 }
+      created_at: { type: timestamptz, auto: true }
+      updated_at: { type: timestamptz, auto: true }
+
+  case_blogs:
+    description: 증례 관련 블로그 링크
+    endpoints:
+      - method: GET
+        path: /api/cases/:case_id/blogs
+      - method: POST
+        path: /api/cases/:case_id/blogs
+        auth: true
+      - method: DELETE
+        path: /api/case-blogs/:id
+        auth: true
+    fields:
+      id: { type: uuid, auto: true }
+      case_id: { type: uuid, ref: cases.id }
+      blog_url: { type: string, required: true }
+      blog_title: { type: string }
+      created_at: { type: timestamptz, auto: true }
+
+  notices:
+    description: 공지사항/휴무일정
+    endpoints:
+      - method: GET
+        path: /api/notices
+      - method: POST
+        path: /api/notices
+        auth: true
+      - method: PATCH
+        path: /api/notices/:id
+        auth: true
+      - method: DELETE
+        path: /api/notices/:id
+        auth: true
+    fields:
+      id: { type: uuid, auto: true }
+      title: { type: string, required: true }
+      content: { type: string }
+      image_url: { type: string }
+      notice_date: { type: date }
+      is_active: { type: boolean, default: true }
+      created_at: { type: timestamptz, auto: true }
+      updated_at: { type: timestamptz, auto: true }
+
+  doctors:
+    description: 의료진 정보 (정적 데이터)
+    static: true
+    fields:
+      id: { type: string }
+      name: { type: string }
+      role: { type: string }
+      specialty: { type: string }
+      education: { type: string[] }
+      career: { type: string[] }
+      photo_url: { type: string }
+      handwriting_url: { type: string }
+      license_url: { type: string }
+
+  treatments:
+    description: 치료 콘텐츠 (정적 데이터)
+    static: true
+    fields:
+      board_category: { type: string }
+      treatment_type: { type: string }
+      title: { type: string }
+      subtitle: { type: string }
+      description: { type: string }
+      benefits: { type: string[] }
+      faq: { type: "array<{q: string, a: string}>" }
+
+  clinic_info:
+    description: 치과 기본 정보 (정적 데이터)
+    static: true
+    fields:
+      name: { type: string }
+      phone: { type: string }
+      fax: { type: string }
+      address: { type: string }
+      business_number: { type: string }
+      lat: { type: number }
+      lng: { type: number }
+      kakao_url: { type: string }
+      youtube_url: { type: string }
+      blog_url: { type: string }
+      place_url: { type: string }
+      hours: { type: "map<string, string>" }
+
+  upload:
+    description: 파일 업로드
+    endpoints:
+      - method: POST
+        path: /api/upload
+        auth: true
+    fields:
+      file: { type: file }
+      folder: { type: string }
+      url: { type: string, output: true }

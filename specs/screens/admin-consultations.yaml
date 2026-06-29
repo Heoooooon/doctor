@@ -1,0 +1,58 @@
+version: "2.0"
+
+screen:
+  name: 상담 DB 관리
+  route: /admin/consultations
+  layout: dashboard
+  auth: true
+  roles: [admin]
+
+data_requirements:
+  - resource: consultations
+    needs: [id, name, phone, status, memo, created_at]
+    auth_required: true
+
+components:
+  - id: consult_table
+    type: table
+    position: main
+    function: 상담 신청 목록 테이블 (이름, 연락처, 신청일, 상태, 메모)
+    data_source:
+      resource: consultations
+    events:
+      - on: click:status_toggle
+        do: 상태 변경 (pending→contacted→completed)
+      - on: click:memo_edit
+        do: 메모 인라인 편집
+      - on: click:delete
+        do: 확인 후 삭제
+
+  - id: filter_bar
+    type: navigation
+    position: main
+    function: 상태별 필터 (전체/미확인/연락완료/완료)
+    events:
+      - on: click:filter
+        do: 선택한 상태의 상담만 표시
+
+connections:
+  navigations:
+    - from: filter_bar
+      to: self (필터링)
+  shared_components: [admin_sidebar]
+
+tests:
+  - name: 목록 로드
+    when: 페이지 접속
+    then:
+      - 상담 신청 목록 최신순 표시
+  - name: 상태 변경
+    when: pending → contacted 변경
+    then:
+      - DB 업데이트
+      - 배지 색상 변경
+  - name: 삭제
+    when: 삭제 버튼 클릭
+    then:
+      - 확인 다이얼로그 표시
+      - 확인 시 DB에서 삭제

@@ -1,0 +1,109 @@
+version: "2.0"
+
+types:
+  Consultation:
+    description: 상담 신청 데이터
+    fields:
+      id: uuid
+      name: string
+      phone: string
+      privacy_agreed: boolean
+      status: "pending | contacted | completed"
+      memo: string | null
+      created_at: timestamptz
+
+  Case:
+    description: 증례 사진/글
+    fields:
+      id: uuid
+      board_category: BoardCategory
+      treatment_type: string
+      title: string
+      description: string | null
+      before_image_url: string | null
+      after_image_url: string | null
+      sort_order: number
+      created_at: timestamptz
+      updated_at: timestamptz
+
+  CaseBlog:
+    description: 증례 관련 블로그 링크
+    fields:
+      id: uuid
+      case_id: uuid
+      blog_url: string
+      blog_title: string | null
+      created_at: timestamptz
+
+  Notice:
+    description: 공지사항/휴무일정
+    fields:
+      id: uuid
+      title: string
+      content: string | null
+      image_url: string | null
+      notice_date: date | null
+      is_active: boolean
+      created_at: timestamptz
+      updated_at: timestamptz
+
+  Doctor:
+    description: 의료진 정보
+    fields:
+      id: string
+      name: string
+      role: string
+      specialty: string
+      education: string[]
+      career: string[]
+      photo_url: string
+      handwriting_url: string | null
+      license_url: string | null
+
+  TreatmentContent:
+    description: 치료 콘텐츠 (정적)
+    fields:
+      board_category: BoardCategory
+      treatment_type: string
+      title: string
+      subtitle: string
+      description: string
+      benefits: string[]
+      faq: FaqItem[]
+
+  FaqItem:
+    description: FAQ 항목
+    fields:
+      question: string
+      answer: string
+
+  ClinicInfo:
+    description: 치과 기본 정보
+    fields:
+      name: string
+      phone: string
+      fax: string
+      address: string
+      business_number: string
+      lat: number
+      lng: number
+      kakao_url: string
+      youtube_url: string
+      blog_url: string
+      place_url: string
+      hours: "Record<string, string>"
+
+enums:
+  BoardCategory:
+    values:
+      - natural-tooth
+      - implant
+      - cosmetic
+      - orthodontics
+      - pediatric
+
+  ConsultationStatus:
+    values:
+      - pending
+      - contacted
+      - completed
