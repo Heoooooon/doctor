@@ -48,3 +48,5 @@ media/videos/3-3 치과영상.mp4
 
 # claude worktrees (local only)
 .claude/worktrees/
+
+.env*

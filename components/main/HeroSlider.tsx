@@ -6,13 +6,14 @@ type Slide = {
   id: number
   image: string
   isVideo?: boolean
+  loopVideo?: boolean // gif처럼 무한 반복 재생하는 짧은 영상(타이머로 다음 슬라이드 전환)
   interval?: number   // 이미지 슬라이드 유지(ms) — 없으면 IMAGE_INTERVAL
 }
 
 // 웹(데스크탑): 폴더 숫자순 6개 — 첫 슬라이드는 영상(0.7배속)
 const WEB_SLIDES: Slide[] = [
   { id: 1, image: '/images/slides/slide-1.mp4', isVideo: true },
-  { id: 2, image: '/images/slides/slide-2.gif', interval: 3200 },
+  { id: 2, image: '/images/slides/main-02.mp4', loopVideo: true, interval: 2600 },
   { id: 3, image: '/images/slides/slide-3.jpg', interval: 3000 },
   { id: 4, image: '/images/slides/slide-4.webp', interval: 3000 },
   { id: 5, image: '/images/slides/slide-5.png', interval: 3000 },
@@ -22,7 +23,7 @@ const WEB_SLIDES: Slide[] = [
 // 모바일: 경량 영상(0.7배속) → slide-2 → slide-3
 const MOBILE_SLIDES: Slide[] = [
   { id: 1, image: '/images/slides/slide-4-mobile.mp4', isVideo: true },
-  { id: 2, image: '/images/slides/slide-2.gif', interval: 3200 },
+  { id: 2, image: '/images/slides/main-02.mp4', loopVideo: true, interval: 2600 },
   { id: 3, image: '/images/slides/slide-3.jpg', interval: 3000 },
   { id: 4, image: '/images/slides/slide-4.webp', interval: 3000 },
   { id: 5, image: '/images/slides/slide-5.png', interval: 3000 },
@@ -166,7 +167,19 @@ export default function HeroSlider() {
       {/* ── 배경 이미지 (데스크탑) — 크로스페이드 + Ken Burns, GIF 재생 가능 ── */}
       <div className="hidden md:block absolute inset-0">
         {slides.map((s, i) =>
-          s.isVideo ? null : (
+          s.isVideo ? null : s.loopVideo ? (
+            <video
+              key={s.id}
+              src={s.image}
+              muted
+              loop
+              autoPlay
+              playsInline
+              aria-hidden="true"
+              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-[2500ms] ease-in-out"
+              style={{ opacity: i === current ? 1 : 0 }}
+            />
+          ) : (
             <img
               key={s.id}
               src={s.image}
@@ -210,6 +223,17 @@ export default function HeroSlider() {
             playsInline
             onCanPlay={(e) => { (e.target as HTMLVideoElement).playbackRate = 0.7 }}
             onEnded={handleVideoEnded}
+          />
+        ) : slide.loopVideo ? (
+          <video
+            key={`m-${current}`}
+            src={slide.image}
+            muted
+            loop
+            autoPlay
+            playsInline
+            aria-hidden="true"
+            className="absolute inset-0 w-full h-full object-cover"
           />
         ) : (
           <img
