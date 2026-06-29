@@ -36,10 +36,10 @@ export default function ImplantFaqSection() {
   return (
     <section
       ref={ref}
-      className="min-h-screen w-full flex flex-col justify-center"
+      className="min-h-[620px] w-full flex flex-col justify-center py-16 md:min-h-[680px] md:py-20 lg:min-h-[720px]"
       style={{ backgroundColor: '#1a2035' }}
     >
-      <div className="w-full max-w-5xl mx-auto px-6 lg:px-8 py-12">
+      <div className="w-full max-w-5xl mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-[0.85fr_1.75fr] gap-8 sm:gap-7 lg:gap-14 items-center">
 
           {/* 왼쪽: 제목 */}

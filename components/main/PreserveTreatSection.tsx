@@ -74,7 +74,7 @@ export default function PreserveTreatSection() {
   return (
     <section
       ref={ref}
-      className="min-h-screen w-full flex flex-col lg:flex-row items-center relative overflow-hidden bg-white py-[clamp(90px,10vh,130px)]"
+      className="min-h-[720px] w-full flex flex-col lg:flex-row items-center relative overflow-hidden bg-white py-[clamp(72px,8vh,104px)] lg:min-h-[800px]"
     >
       {/* 라디알 그라디언트 오버레이 */}
       <div
@@ -167,34 +167,27 @@ export default function PreserveTreatSection() {
         </div>
       </div>
 
-      {/* ── 카드 영역 (모바일 전용 — 텍스트 없음, 2·2·1 배열) ── */}
       <div
-        className="md:hidden w-full px-4 pb-8 flex flex-col gap-3"
+        className="md:hidden w-full px-4 pb-8 flex flex-col gap-4"
         style={{ opacity: isVisible ? 1 : 0, transition: 'opacity 0.6s ease 0.4s' }}
       >
-        {/* 2개 */}
-        <div className="grid grid-cols-2 gap-3">
-          {CARDS.slice(0, 2).map((card) => (
-            <a key={card.href} href={card.href} className="relative rounded-xl overflow-hidden block aspect-[4/3]">
-              <div className="absolute inset-0" style={{ backgroundImage: `url(${card.img})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
-            </a>
-          ))}
-        </div>
-        {/* 2개 */}
-        <div className="grid grid-cols-2 gap-3">
-          {CARDS.slice(2, 4).map((card) => (
-            <a key={card.href} href={card.href} className="relative rounded-xl overflow-hidden block aspect-[4/3]">
-              <div className="absolute inset-0" style={{ backgroundImage: `url(${card.img})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
-            </a>
-          ))}
-        </div>
-        {/* 1개 */}
-        <div className="grid grid-cols-2 gap-3">
-          <a href={CARDS[4].href} className="relative rounded-xl overflow-hidden block aspect-[4/3]">
-            <div className="absolute inset-0" style={{ backgroundImage: `url(${CARDS[4].img})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
-          </a>
-          <div />
-        </div>
+        {CARDS.map((card) => (
+          <Link
+            key={card.href}
+            href={card.href}
+            aria-label={`${card.title} 자세히 보기`}
+            className="relative mx-auto block w-full max-w-[430px] aspect-[16/10] overflow-hidden rounded-xl shadow-[0_10px_24px_rgba(15,23,42,0.16)]"
+          >
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage: `url(${card.img})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
+            />
+          </Link>
+        ))}
       </div>
     </section>
   )

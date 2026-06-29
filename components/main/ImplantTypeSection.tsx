@@ -40,7 +40,7 @@ export default function ImplantTypeSection() {
   return (
     <section
       ref={ref}
-      className="min-h-screen w-full flex items-center justify-center bg-white px-4 pt-24 sm:pt-28 pb-8"
+      className="min-h-[760px] w-full flex items-center justify-center bg-white px-4 pt-20 pb-12 sm:pt-24 md:min-h-[780px] lg:min-h-[820px]"
     >
       <div className="w-full max-w-5xl mx-auto px-4 sm:px-5 lg:px-8 lg:origin-center lg:[transform:scale(clamp(0.864,calc(100vw/2222px),1.75))]">
         <div className={`mb-8 lg:mb-10 ${isVisible ? 'scroll-reveal-drop' : 'scroll-hidden'}`}>

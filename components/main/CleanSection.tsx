@@ -9,7 +9,7 @@ export default function CleanSection() {
   return (
     <section
       ref={ref}
-      className="relative h-screen w-full overflow-hidden"
+      className="relative min-h-[620px] w-full overflow-hidden md:min-h-[680px] lg:min-h-[720px]"
       style={{ backgroundColor: '#F8F7F9' }}
     >
       {/* ── 모바일: 배경 풀스크린 이미지 ─────────────────────── */}
@@ -29,7 +29,7 @@ export default function CleanSection() {
       </div>
 
       {/* ── 데스크탑: 2-column 레이아웃 ──────────────────────── */}
-      <div className="relative z-10 h-full max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-9 items-start md:items-center pt-[140px] md:py-24 pb-8">
+      <div className="relative z-10 max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-9 items-start md:items-center pt-28 md:py-24 lg:py-28 pb-16">
 
         {/* 텍스트 영역 */}
         <div>

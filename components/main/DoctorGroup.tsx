@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 export default function DoctorGroup() {
   return (
-    <section className="relative h-dvh w-full overflow-hidden bg-black">
+    <section className="relative h-dvh w-full overflow-hidden bg-[#F8F7F9]">
 
       {/* ── 모바일 이미지 (하단바 높이만큼 위로 올려 인물 전체 노출) ── */}
       <div
@@ -33,8 +33,14 @@ export default function DoctorGroup() {
         fill
         sizes="100vw"
         priority
-        className="hidden md:block object-cover object-[72%_center]"
+        className="hidden md:block object-cover"
+        style={{
+          objectPosition: '72% 58%',
+          transform: 'scale(1.06) translateY(-3%)',
+        }}
       />
+
+      <div className="hidden md:block absolute inset-y-0 left-0 z-[1] w-[44%] bg-gradient-to-r from-[#F8F7F9]/95 via-[#F8F7F9]/78 to-transparent" />
 
       {/* ── 모바일 텍스트 + 버튼 (상단 가운데 정렬) ── */}
       <div
@@ -42,7 +48,7 @@ export default function DoctorGroup() {
         style={{ top: 'calc(var(--mobile-header-height) + 50px)' }}
       >
         {/* 헤드라인 */}
-        <h2 className="text-white text-[28px] font-bold leading-tight tracking-tight">
+        <h2 className="text-white text-[28px] font-bold leading-tight tracking-normal">
           한자리에서<br />변하지 않는 마음
         </h2>
 
@@ -80,32 +86,33 @@ export default function DoctorGroup() {
       </div>
 
       {/* ── 데스크탑 텍스트 + 버튼 (왼쪽 여백) ── */}
-      <div className="hidden md:flex absolute left-[6.4%] top-1/2 -translate-y-1/2 z-10 flex-col items-start">
+      <div className="hidden md:flex absolute left-[clamp(56px,7vw,136px)] top-[clamp(150px,25vh,235px)] z-10 max-w-[390px] flex-col items-start">
         <h2
-          className="text-[#2B2D42] font-bold leading-[1.15] tracking-tight"
-          style={{ fontSize: 'clamp(34px, 3.6vw, 54px)' }}
+          className="text-[#2B2D42] font-bold leading-[1.16] tracking-normal"
+          style={{ fontSize: 'clamp(42px, 4vw, 58px)' }}
         >
           한자리에서<br />변하지 않는 마음
         </h2>
 
-        <div className="w-12 h-px bg-[#2B2D42]/40 my-5" />
+        <div className="w-14 h-px bg-[#2B2D42]/42 my-6" />
 
         <p
-          className="text-[#2B2D42]/75 font-light"
-          style={{ fontSize: 'clamp(16px, 1.4vw, 21px)' }}
+          className="break-keep text-[#2B2D42]/78 font-medium leading-[1.65]"
+          style={{ fontSize: 'clamp(20px, 1.55vw, 23px)' }}
         >
-          서울대학교 출신 2인 대표원장
+          서울대학교 출신 2인 대표원장이<br />
+          처음 상담부터 차분히 설명합니다
         </p>
 
         <Link
           href="/about#doctor-intro"
-          className="mt-8 inline-flex items-center justify-center gap-2
-            min-h-[44px] px-5 w-[150px]
-            rounded-none bg-white/10 text-gray-800
-            border border-gray-700/60 backdrop-blur-[2px]
+          className="mt-9 inline-flex items-center justify-center gap-2
+            min-h-[48px] px-6 w-[168px]
+            rounded-md bg-white/32 text-[#2B2D42]
+            border border-[#2B2D42]/45 backdrop-blur-[2px]
             text-[18px] font-semibold
             transition-all duration-200
-            hover:bg-white/35 hover:border-[#0080C8] hover:text-[#0080C8]"
+            hover:bg-white/48 hover:border-[#0080C8] hover:text-[#0080C8]"
         >
           자세히보기
         </Link>
