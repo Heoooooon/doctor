@@ -68,6 +68,9 @@ export default function Header() {
                 if (pathname === '/') {
                   e.preventDefault()
                   scrollToHomeHero()
+                } else {
+                  // 로고로 홈 진입 시 저장된 스크롤 위치를 비워 최상단부터 시작
+                  try { sessionStorage.removeItem('egun:home-scroll') } catch {}
                 }
               }}
             >
