@@ -59,10 +59,8 @@ export default function IntroScreen() {
     // 더 이상 스크롤을 가로채지 않도록 리스너 즉시 제거 (해제 후 스크롤 정상화)
     removeListenersRef.current();
     setFadeOut(true);
-    // 페이드(0.8s) 동안엔 overflow:hidden으로 배경 잠금 유지, 끝난 뒤 최상단에서 해제
     window.setTimeout(() => {
       restoreScrollRef.current();
-      window.scrollTo(0, 0);
       setVisible(false);
     }, 800);
   }, []);
