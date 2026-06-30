@@ -40,9 +40,9 @@ function canControlSlide(direction: -1 | 1, current: number, total: number): boo
 function getMobileSlideIndex(hero: HTMLElement, total: number): number {
   const viewportHeight = window.innerHeight || hero.clientHeight
   const scrollableDistance = Math.max(1, hero.offsetHeight - viewportHeight)
+  const slideDistance = Math.max(1, scrollableDistance / Math.max(1, total))
   const offset = Math.min(Math.max(-hero.getBoundingClientRect().top, 0), scrollableDistance)
-  const progress = offset / scrollableDistance
-  return Math.min(total - 1, Math.max(0, Math.round(progress * (total - 1))))
+  return Math.min(total - 1, Math.max(0, Math.floor(offset / slideDistance)))
 }
 
 export function useHeroScrollControls({
@@ -121,7 +121,7 @@ export function useHeroScrollControls({
       if (!isMobile || !hero) return
 
       const rect = hero.getBoundingClientRect()
-      const isInHeroRange = rect.bottom > window.innerHeight && rect.top <= 0
+      const isInHeroRange = rect.bottom > 0 && rect.top <= 0
       isPausedRef.current = isInHeroRange
       if (!isInHeroRange) return
 

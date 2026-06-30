@@ -74,7 +74,7 @@ export default function HeroSlider() {
 
     const viewportHeight = window.innerHeight || hero.clientHeight
     const scrollableDistance = Math.max(0, hero.offsetHeight - viewportHeight)
-    const segment = scrollableDistance / Math.max(1, slidesRef.current.length - 1)
+    const segment = scrollableDistance / Math.max(1, slidesRef.current.length)
     const top = hero.getBoundingClientRect().top + window.scrollY + segment * index
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     window.scrollTo({ top, behavior: reduceMotion ? 'auto' : 'smooth' })
@@ -215,7 +215,7 @@ export default function HeroSlider() {
   const slides = isMobile ? MOBILE_SLIDES : WEB_SLIDES
   const slide  = slides[current] ?? slides[0]
   const mobileScrollStyle: CSSProperties | undefined = isMobile
-    ? { height: `${slides.length * 100}dvh` }
+    ? { height: `${(slides.length + 1) * 100}dvh` }
     : undefined
   const mobileViewportStyle: CSSProperties | undefined = isMobile
     ? { height: '100dvh' }
