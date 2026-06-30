@@ -76,6 +76,12 @@
     .summary{grid-template-columns:repeat(2,1fr)}
     body{padding:20px 12px}
   }
+  .detail{margin:10px 0 4px;padding-left:0;list-style:none}
+  .detail>li{position:relative;padding:3px 0 3px 26px;font-size:13.7px;color:#3a3b4d;border-top:1px dashed var(--line)}
+  .detail>li:first-child{border-top:none}
+  .detail>li::before{content:"▸";position:absolute;left:6px;top:3px;color:var(--cta);font-weight:700}
+  .detail>li b{color:var(--navy);font-weight:700}
+  .detail .sub{display:block;color:var(--muted);font-size:12.8px;margin-top:2px}
 </style>
 </head>
 <body>
@@ -107,7 +113,14 @@
     <div class="commit">
       <div class="top"><div class="title">소아치과·교정 모바일 히어로 신규 이미지 적용</div><div class="time">20:38 · 0f16cc9</div></div>
       <div class="tags"><span class="tag feat">기능/콘텐츠</span><span class="tag">모바일</span><span class="tag">반응형</span></div>
-      <div class="desc">소아치과(/pediatric) 모바일을 새 이미지(의료진+자격증)로 교체하고 배지·"소아치과"·자막·원장 정보를 중앙정렬 텍스트로 분리, 텍스트 블록 배경을 교정 모바일과 동일한 그라데이션(#eef4fb→#dde8f4)으로 통일. 교정치료(/orthodontic) 모바일 히어로에 새 인비절라인 이미지를 추가하고, 데스크탑 "인비절라인" 제목은 min(76px,4.8vw)+nowrap으로 넓은 화면 고정·좁은 화면 비율 축소하여 항상 한 줄 유지. 데스크탑(웹) 합성 배너는 두 페이지 모두 변경 없음.</div>
+      <ul class="detail">
+        <li><b>소아치과(/pediatric) 모바일 히어로 교체</b> — 베이크된 텍스트가 없는 새 사진(의료진+자격증)으로 교체<span class="sub">사진에 박혀 있던 "소아치과"·자막·원장 정보를 별도 HTML 텍스트로 재현해 화질·가독성·수정 용이성 확보</span></li>
+        <li><b>중앙정렬 텍스트 블록 분리</b> — 배지("아이를 위한 따뜻한 진료") → "소아치과" 대제목 → 자막 → "원장 백설아 · 소아치과전문의" 순으로 재구성</li>
+        <li><b>텍스트 블록 배경 통일</b> — 교정 모바일과 동일한 그라데이션(#eef4fb → #dde8f4) 적용으로 페이지 간 톤 일관성 확보</li>
+        <li><b>교정치료(/orthodontic) 모바일 히어로</b> — 텍스트 전용이던 영역에 새 인비절라인 이미지(의료진+투명교정장치) 추가</li>
+        <li><b>데스크탑 "인비절라인" 제목 한 줄 보장</b> — min(76px, 4.8vw) + nowrap 처리로 넓은 화면은 76px 고정, 좁은 화면은 비율 축소해 어떤 폭에서도 2줄로 안 떨어지게 처리</li>
+        <li><b>데스크탑(웹) 무변경 원칙 준수</b> — 두 페이지 모두 기존 PC 합성 배너·오버레이는 그대로 유지하고 모바일만 교체</li>
+      </ul>
       <div class="stats-inline"><span class="add">+74</span> / <span class="del">−11</span> · 5개 파일(이미지 3 포함)</div>
       <div class="files"><code>components/board/PediatricIdentity.tsx</code><code>components/board/OrthodonticsIdentity.tsx</code><code>public/images/doctors/baek-child-cert.jpg</code><code>public/images/board/invisalign-doctor.jpg</code></div>
     </div>
@@ -115,7 +128,18 @@
     <div class="commit">
       <div class="top"><div class="title">모바일 반응형·콘텐츠 정리 (메인/어바웃/진료안내/레이아웃)</div><div class="time">20:38 · 91b1576</div></div>
       <div class="tags"><span class="tag feat">기능/콘텐츠</span><span class="tag">모바일</span><span class="tag">반응형</span></div>
-      <div class="desc">메인 히어로 슬라이더 모바일 동작 분리(스와이프·오토플레이)·높이 svh 고정·비디오 크로스페이드로 스크롤 끊김/흰 여백 제거, 히어로 텍스트·타이밍 및 임플란트·수면 진정·지도 섹션 모바일 정리. 어바웃 스크롤 스냅 제거 및 의료진 헤더·캐러셀 정리. 진료안내 CTA 카드형 재구성, FAQ 높이 예약, 앵커 내비 스크롤바 숨김, 라미네이트 카드 문구 변경 및 본문 break-keep 적용, BoardHero 비율 정리. 헤더/푸터/인트로 정리, globals.css overflow clip 모바일 흰 영역 버그 수정, 약관 페이지·분석 리포트 문서 추가.</div>
+      <ul class="detail">
+        <li><b>메인 · 히어로 슬라이더 모바일 재설계</b> — 페이지 스크롤과 분리해 스와이프 + 오토플레이로 독립 구동, 높이 svh 고정<span class="sub">비디오를 항상 마운트한 채 opacity/z-index 크로스페이드로 전환해 흰 배경 누출·디코드 끊김 제거, 카카오톡 툴바 리사이즈 흔들림 방지 위해 높이를 JS로 고정</span></li>
+        <li><b>메인 · 히어로 텍스트/타이밍</b> — 폰트·위치 미세조정, 슬라이드별 줄바꿈, 슬라이드 제목/문구 수정, pan 속도·전환 간격 조정</li>
+        <li><b>메인 · 섹션 정리</b> — 임플란트(높이·오버레이·마퀴 속도·CTA 버튼), 임플란트 종류, 수면 진정, 지도, 의료진 그룹 비율 고정, 로고 클릭 시 인트로 재생</li>
+        <li><b>어바웃 · 모바일 레이아웃</b> — 스크롤 스냅 제거, 패딩 축소, 의료진 헤더(이미지+텍스트 적층) 재배치, 캐러셀 반응형 높이·화살표 클리핑 수정, 기공소 시설 제목 확대</li>
+        <li><b>진료안내 · 상담/CTA</b> — CtaSection 2카드(카카오·전화)로 재작성하고 상담 예약 이벤트 연결</li>
+        <li><b>진료안내 · 콘텐츠</b> — BenefitsGrid 모바일 1열, FAQ 아코디언 높이 예약, 앵커 내비 스크롤바 숨김, 라미네이트 카드 문구 변경, 본문 break-keep 전역 적용, BoardHero 비율(center-crop/16:9) 정리</li>
+        <li><b>레이아웃·공통</b> — 헤더/푸터/SiteShell/인트로 화면 정리</li>
+        <li><b>버그 · 모바일 히어로 흰 영역</b> — globals.css <code>overflow-x: hidden → clip</code>으로 모바일 우측 흰 여백 제거</li>
+        <li><b>신규 · 약관 페이지</b> 추가, 자연치아 진료 데이터 보정</li>
+        <li><b>문서</b> — 디자인 시스템 갱신, 네이버 캐러셀·SEO 경쟁/제안 분석 리포트(HTML) 추가</li>
+      </ul>
       <div class="stats-inline"><span class="add">+1,957</span> / <span class="del">−406</span> · 38개 파일</div>
       <div class="files"><code>components/main/HeroSlider.tsx</code><code>components/board/TreatmentSection.tsx</code><code>components/board/CtaSection.tsx</code><code>app/about/page.tsx</code><code>app/globals.css</code><code>app/terms/page.tsx</code><span class="note"> 외 32개 파일</span></div>
     </div>
