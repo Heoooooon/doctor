@@ -22,7 +22,7 @@ function HeroText({ center = false }: { center?: boolean }) {
       <span className={`inline-block rounded-full bg-[#3F6FB5] text-white font-semibold tracking-wide ${center ? 'text-[12px] px-3.5 py-1 mb-2.5' : 'text-[13px] sm:text-[15px] px-4 py-1.5 mb-4'}`}>
         이건교정
       </span>
-      <h1 className={`font-black leading-none tracking-tight text-[#1f2d4d] ${center ? 'text-[34px] mb-2' : 'text-[44px] sm:text-[64px] lg:text-[76px] mb-3'}`}>
+      <h1 className={`font-black leading-none tracking-tight text-[#1f2d4d] ${center ? 'text-[34px] mb-2' : 'text-[min(76px,4.8vw)] whitespace-nowrap mb-3'}`}>
         인비절라인
       </h1>
       <p className={`font-bold text-[#2b3a5c] leading-snug ${center ? 'text-[16px] mb-2' : 'text-[19px] sm:text-[24px] lg:text-[28px] mb-4 whitespace-nowrap'}`}>
@@ -56,9 +56,21 @@ export function OrthodonticsHeroBanner() {
         </div>
       </div>
 
-      {/* ── 모바일: 텍스트만 (합성 배너 이미지는 모바일에서 미노출) ── */}
-      <div className="md:hidden px-6 pt-8 pb-6">
-        <HeroText center />
+      {/* ── 모바일: 새 합성 이미지 + 텍스트 (데스크탑 배너는 변경 금지) ── */}
+      <div className="md:hidden">
+        <div className="relative w-full overflow-hidden">
+          <Image
+            src="/images/board/invisalign-doctor.jpg"
+            alt="인비절라인 투명교정"
+            width={2200}
+            height={1320}
+            className="w-full h-auto block"
+            priority
+          />
+        </div>
+        <div className="px-6 pt-7 pb-6">
+          <HeroText center />
+        </div>
       </div>
     </section>
   )
