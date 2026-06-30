@@ -162,8 +162,9 @@ export default function HeroSlider() {
     }
   }, [current, isMobile])
 
-  // 슬라이드 진행 루프
+  // 슬라이드 진행 루프 (모바일은 스크롤 위치로 슬라이드를 구동하므로 불필요)
   useEffect(() => {
+    if (isMobile) return
     const tick = () => {
       if (!isPausedRef.current) {
         const activeSlide = slidesRef.current[currentRef.current]
@@ -198,7 +199,7 @@ export default function HeroSlider() {
 
     rafRef.current = requestAnimationFrame(tick)
     return () => { if (rafRef.current !== null) cancelAnimationFrame(rafRef.current) }
-  }, [])
+  }, [isMobile])
 
   useHeroScrollControls({
     currentRef,

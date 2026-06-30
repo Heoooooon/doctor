@@ -67,44 +67,60 @@ export function HeroSlideMedia({
       )}
 
       <div className="md:hidden absolute inset-0">
-        {slide.isVideo ? (
-          isMobile ? (
-            <video
-              ref={videoRef}
-              key={`hero-video-m-${slide.id}`}
-              className="absolute inset-0 w-full h-full object-cover"
-              src={slide.image}
-              poster={getVideoPoster(slide)}
-              preload="auto"
-              autoPlay
-              muted
-              playsInline
-              onCanPlay={(event) => {
-                event.currentTarget.playbackRate = getVideoPlaybackRate(slide)
-              }}
-              onEnded={onVideoEnded}
-            />
-          ) : null
-        ) : slide.loopVideo ? (
-          <video
-            key={`m-${current}`}
-            src={slide.image}
-            muted
-            loop
-            autoPlay
-            playsInline
-            aria-hidden="true"
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-        ) : (
-          <img
-            key={current}
-            src={slide.image}
-            alt=""
-            aria-hidden="true"
-            className={`absolute inset-0 w-full h-full object-cover mobile-pan-${current}`}
-          />
-        )}
+        {isMobile
+          ? slides.map((item, index) => {
+              const active = index === current
+
+              if (item.isVideo) {
+                return active ? (
+                  <video
+                    ref={videoRef}
+                    key={`hero-video-m-${item.id}`}
+                    className="absolute inset-0 w-full h-full object-cover"
+                    src={item.image}
+                    poster={getVideoPoster(item)}
+                    preload="auto"
+                    autoPlay
+                    muted
+                    playsInline
+                    onCanPlay={(event) => {
+                      event.currentTarget.playbackRate = getVideoPlaybackRate(item)
+                    }}
+                    onEnded={onVideoEnded}
+                  />
+                ) : null
+              }
+
+              if (item.loopVideo) {
+                return (
+                  <video
+                    key={item.id}
+                    src={item.image}
+                    muted
+                    loop
+                    autoPlay
+                    playsInline
+                    aria-hidden="true"
+                    className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out"
+                    style={{ opacity: active ? 1 : 0 }}
+                  />
+                )
+              }
+
+              return (
+                <img
+                  key={item.id}
+                  src={item.image}
+                  alt=""
+                  aria-hidden="true"
+                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out ${
+                    active ? `mobile-pan-${index}` : ''
+                  }`}
+                  style={{ opacity: active ? 1 : 0 }}
+                />
+              )
+            })
+          : null}
       </div>
 
       <div
