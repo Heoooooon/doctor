@@ -113,7 +113,7 @@ export default function LabSection() {
   return (
     <section
       id="lab"
-      className="py-20 sm:py-28 bg-gray-900 scroll-mt-36"
+      className="py-12 sm:py-28 bg-gray-900 scroll-mt-36"
       aria-labelledby="lab-heading"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -193,15 +193,15 @@ export default function LabSection() {
 
         {/* 기공소 시설 라벨 */}
         <div id="lab-facilities" className="flex items-center gap-4 mb-10 scroll-mt-36">
-          <h3 className="text-lg font-semibold text-white">기공소 시설</h3>
+          <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">기공소 시설</h3>
           <div className="flex-1 h-px bg-gray-700" />
         </div>
       </div>
 
       {/* 3D 캐러셀 */}
       <div
-        className="relative w-full overflow-hidden"
-        style={{ perspective: '1800px', height: '448px' }}
+        className="relative w-full overflow-hidden h-[260px] sm:h-[360px] lg:h-[448px]"
+        style={{ perspective: '1800px' }}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >

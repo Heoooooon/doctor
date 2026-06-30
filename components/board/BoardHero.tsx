@@ -12,16 +12,18 @@ export default function BoardHero({ title, subtitle, videoId, localVideo, heroIm
   // 로컬 영상 히어로 (GIF는 video로 재생 불가 → img로 렌더)
   if (localVideo) {
     const isGif = /\.gif(\?|$)/i.test(localVideo)
-    const sectionClassName = 'relative w-full overflow-hidden bg-black'
+    // heroFull(임플란트): 세로 확보(모바일 4:5 / 데스크탑 16:9) + 가운데 크롭
+    // 그 외(자연치아 등): 16:9 가로 유지 — 영상 잘리지 않게
+    const sectionClassName = heroFull
+      ? 'relative w-full overflow-hidden bg-black aspect-[4/5] sm:aspect-video'
+      : 'relative w-full overflow-hidden bg-black aspect-video'
     const mediaClassName = heroFull
-      ? 'absolute inset-0 w-full h-full object-contain'
+      ? 'absolute inset-0 w-full h-full object-cover object-center'
       : 'absolute inset-0 w-full h-full object-cover'
-    const overlayClassName = heroFull
-      ? 'absolute inset-0 bg-black/70'
-      : 'absolute inset-0 bg-gradient-to-t from-black/95 via-black/55 to-black/10'
+    const overlayClassName = 'absolute inset-0 bg-gradient-to-t from-black/95 via-black/55 to-black/10'
 
     return (
-      <section className={sectionClassName} style={{ paddingBottom: '56.25%' }} aria-label={`${title} 소개`}>
+      <section className={sectionClassName} aria-label={`${title} 소개`}>
         {isGif ? (
           <img
             className={mediaClassName}

@@ -52,7 +52,7 @@ export default function AccessSection() {
   return (
     <section
       id="access"
-      className="py-20 sm:py-28 bg-white scroll-mt-36"
+      className="py-12 sm:py-28 bg-white scroll-mt-36"
       aria-labelledby="access-heading"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -62,13 +62,13 @@ export default function AccessSection() {
         </p>
         <h2
           id="access-heading"
-          className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-12"
+          className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-6 sm:mb-12"
         >
           오시는길
         </h2>
 
         {/* 지도 + 정보 레이아웃 */}
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 sm:gap-10 lg:gap-12">
           {/* 지도 영역 (3/5) */}
           <div className="lg:col-span-3">
             <div className="relative w-full aspect-[4/3] sm:aspect-video lg:aspect-auto lg:h-[calc(100%-56px)] min-h-64 rounded-2xl overflow-hidden border border-gray-200">
@@ -188,7 +188,7 @@ export default function AccessSection() {
         </div>
 
         {/* 하단: 교통 · 주차 통합 안내 */}
-        <div className="mt-10 rounded-2xl bg-stone-50 border border-stone-200 p-6 sm:p-8">
+        <div className="mt-8 sm:mt-10 rounded-2xl bg-stone-50 border border-stone-200 p-6 sm:p-8">
           <h3 className="font-semibold text-gray-900 mb-6 flex items-center gap-2 text-xl">
             <span className="text-xl" aria-hidden="true">🚌</span>
             교통 · 주차 안내

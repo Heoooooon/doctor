@@ -250,7 +250,7 @@ export const naturalToothTreatments: TreatmentContent[] = [
       '앞니 형태나\n색이\n신경쓰이는 경우',
       '치아 삭제 없이\n당일 치료를\n원하는 경우',
     ],
-    bottomCta: '과잉 진료 없이 꼭 필요한 치료만, 서울이건치과가 지켜드립니다.',
+    bottomCta: '과잉 진료 없이 꼭 필요한 치료만,\n서울이건치과가 지켜드립니다.',
     benefits: [
       { tag: '치아 삭제 없거나 최소화', description: '치아 삭제 없이 또는 최소한의 삭제로 치료할 수 있습니다.' },
       { tag: '당일 치료로 내원 횟수 절감', description: '당일 치료가 가능한 경우가 있어 내원 횟수를 줄일 수 있습니다.' },

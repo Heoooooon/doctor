@@ -76,7 +76,7 @@ export default function SedationSection() {
             Sedation Dentistry
           </p>
           <h2
-            className={`text-[28px] sm:text-3xl md:text-4xl lg:text-5xl font-black leading-tight mb-2 ${visible ? 'scroll-reveal-drop' : 'scroll-hidden'}`}
+            className={`text-[30px] sm:text-3xl md:text-4xl lg:text-5xl font-black leading-tight mb-2 ${visible ? 'scroll-reveal-drop' : 'scroll-hidden'}`}
             style={{
               color: '#4fc3f7',
               textShadow: '0 2px 6px rgba(0,0,0,0.7)',

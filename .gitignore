@@ -50,3 +50,6 @@ media/videos/3-3 치과영상.mp4
 .claude/worktrees/
 
 .env*
+
+# 내부 에이전트 작업 상태 (로컬 전용)
+.omo/

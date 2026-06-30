@@ -2,7 +2,6 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { Plus } from 'lucide-react'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
 
 export default function ImplantSection() {
@@ -11,12 +10,12 @@ export default function ImplantSection() {
   return (
     <section
       ref={ref}
-      className="h-dvh md:h-screen w-full relative overflow-hidden flex flex-col items-center justify-center px-4"
+      className="h-svh md:h-screen w-full relative overflow-hidden flex flex-col items-center justify-center px-4"
       style={{ backgroundColor: '#000' }}
     >
       {/* 배경 이미지 — 수평 마퀴 슬라이드 */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="all-on-marquee-track flex h-full">
+        <div className="all-on-marquee-track flex h-full" style={{ animationDuration: '8.35s' }}>
           {[1,2,3,4,5,6,7,1,2,3,4,5,6,7].map((n, i) => (
             <Image
               key={i}
@@ -31,7 +30,7 @@ export default function ImplantSection() {
         </div>
       </div>
       {/* 다크 오버레이 — 텍스트 가독성 */}
-      <div className="absolute inset-0 bg-black/80 pointer-events-none" />
+      <div className="absolute inset-0 bg-black/60 pointer-events-none" />
 
       {/* ── 콘텐츠 ───────────────────────────────────────────── */}
       <div className="relative z-10 flex flex-col items-center text-center px-4">
@@ -88,11 +87,10 @@ export default function ImplantSection() {
 
         <Link
           href="/implant"
-          className={`inline-flex min-h-[44px] items-center gap-2 px-5 py-3 text-[18px] font-medium text-stone-300 rounded-full border border-stone-600 hover:border-stone-400 hover:text-white transition-all duration-300 group ${isVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}
+          className={`inline-flex min-h-[44px] items-center gap-2 px-7 py-3 text-[18px] font-semibold text-white bg-[#0080C8] rounded-full shadow-[0_4px_20px_rgba(0,128,200,0.4)] transition-all duration-300 group hover:bg-[#006EAA] ${isVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}
           style={isVisible ? { animationDelay: '0.8s' } : undefined}
         >
           자세히 보기
-          <Plus size={18} className="group-hover:rotate-90 transition-transform duration-300" aria-hidden="true" />
         </Link>
       </div>
 

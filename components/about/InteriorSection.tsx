@@ -88,8 +88,8 @@ function Carousel3D({ images, altPrefix }: { images: string[]; altPrefix: string
   return (
     <>
       <div
-        className="relative w-full overflow-hidden"
-        style={{ perspective: '1800px', height: '448px' }}
+        className="relative w-full overflow-hidden h-[260px] sm:h-[360px] lg:h-[448px]"
+        style={{ perspective: '1800px' }}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
@@ -163,7 +163,7 @@ export default function InteriorSection() {
   const { ref: annexRef, isVisible: annexVisible } = useScrollReveal(0.15)
 
   return (
-    <section id="interior" className="py-20 sm:py-28 bg-gray-900 scroll-mt-36" aria-labelledby="interior-heading">
+    <section id="interior" className="py-12 sm:py-28 bg-gray-900 scroll-mt-36" aria-labelledby="interior-heading">
       <div ref={headerRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <p className={`text-xs font-semibold tracking-[0.25em] uppercase text-[#0080C8] mb-4 ${headerVisible ? 'scroll-reveal-drop' : 'scroll-hidden'}`}>
           Interior
@@ -186,7 +186,7 @@ export default function InteriorSection() {
       </div>
 
       {/* 본관 3D 캐러셀 */}
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+      <div className="max-w-7xl mx-auto sm:px-10 lg:px-16">
         <Carousel3D images={MAIN_IMAGES} altPrefix="서울이건치과 본관 내부" />
       </div>
 
@@ -194,7 +194,7 @@ export default function InteriorSection() {
       <div
         ref={annexRef}
         id="interior-annex"
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20 scroll-mt-36"
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 sm:mt-20 scroll-mt-36"
       >
         <div className={`flex items-center gap-4 mb-4 ${annexVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}>
           <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">별관</h3>
@@ -206,7 +206,7 @@ export default function InteriorSection() {
       </div>
 
       {/* 별관 3D 캐러셀 */}
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+      <div className="max-w-7xl mx-auto sm:px-10 lg:px-16">
         <Carousel3D images={ANNEX_IMAGES} altPrefix="서울이건치과 별관 내부" />
       </div>
     </section>

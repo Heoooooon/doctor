@@ -9,7 +9,7 @@ export default function ScheduleSection() {
   return (
     <section
       id="schedule"
-      className="py-20 sm:py-28 bg-white scroll-mt-36"
+      className="py-12 sm:py-28 bg-white scroll-mt-36"
       aria-labelledby="schedule-heading"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

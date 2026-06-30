@@ -101,7 +101,7 @@ export default function BoardAnchorNav({ items }: BoardAnchorNavProps) {
       aria-label="치료 섹션 이동"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <ul ref={listRef} className="flex overflow-x-auto scrollbar-none gap-0 pr-4" role="list">
+        <ul ref={listRef} className="flex overflow-x-auto scrollbar-hide gap-0 pr-4" role="list">
           {items.map((item) => {
             const isActive = activeId === item.id
             return (

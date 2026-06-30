@@ -71,7 +71,7 @@ export default function MapSection() {
 
             <div className="flex items-start gap-2.5">
               <MapPin size={20} className="text-[#38b6ff] shrink-0 mt-1" aria-hidden="true" />
-              <p className="text-[18px] lg:text-[20px] font-semibold leading-relaxed">
+              <p className="text-[18px] lg:text-[19px] font-semibold leading-relaxed">
                 경기도 수원시 영통구<br />
                 인계로220번길 6-3 미산빌딩 2층
               </p>
@@ -79,11 +79,13 @@ export default function MapSection() {
 
             <div className="mt-6 space-y-3 text-[18px] text-white/70 leading-relaxed">
               <p>
-                <span className="text-[#38b6ff] font-semibold">[ 위치 ]</span> 효원공원 인근,
-                수원영통경찰서 매탄지구대 방면
+                <span className="text-[#38b6ff] font-semibold">[ 본관 ]</span> 매탄위브하늘채 후문상가 파리바게트 2층
               </p>
               <p>
-                <span className="text-[#38b6ff] font-semibold">[ 주차 ]</span> 건물 및 인근 주차장 이용 가능
+                <span className="text-[#38b6ff] font-semibold">[ 별관 ]</span> 뜰커피, GS마트 3층
+              </p>
+              <p>
+                <span className="text-[#38b6ff] font-semibold">[ 주차 ]</span> 위브하늘채 B상가 주차장 (진료후 주차등록)
               </p>
             </div>
 

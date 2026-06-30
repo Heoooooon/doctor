@@ -34,8 +34,12 @@ CDN: `https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/
 | 본문 Large | 18px | 18px | 400 | 1.65 |
 | 본문 | 16px | 16px | 400 | 1.65 |
 | 캡션 / 주석 | 14px | 14px | 400 | 1.5 |
+| 푸터 링크 | 18px | 13–14px | 400 | 1.55 |
+| 푸터 사업자 정보 | 18px | 12–13px | 400 | 1.7 |
+| 푸터 저작권 | 18px | 11px | 400 | 1.6 |
 
 **홈페이지 최소 폰트 크기: 18px** (`globals.css` readability 규칙 적용)
+단, 푸터의 사업자 정보·주소·저작권처럼 반복 확인용 보조 정보는 모바일에서 위 푸터 전용 스케일을 적용합니다.
 
 ---
 
@@ -134,6 +138,8 @@ Ghost:         text-[#0080C8] underline-offset-4 hover:underline
 **모바일 특이사항**
 - 우측 플로팅 사이드바: 모바일 숨김 (`hidden md:flex`)
 - 하단 고정바 높이: `--mobile-bottom-bar-height: 60px`
+- 푸터 하단 여백: `calc(112px + env(safe-area-inset-bottom))` (모바일·태블릿 고정 상담 버튼과 겹침 방지)
+- 태블릿 푸터 우측 여백: `144px` (우측 플로팅 사이드바와 겹침 방지)
 - 헤더 높이: `--mobile-header-height: 64px`
 - 가로 스크롤 금지: `overflow-x: hidden`
 
@@ -148,7 +154,7 @@ Ghost:         text-[#0080C8] underline-offset-4 hover:underline
 |------|--------|------|
 | 마퀴 | `.all-on-marquee-track` | 올온 섹션 로고 슬라이드 |
 | 배경 팬 | `.implant-bg-img` | 임플란트 섹션 배경 |
-| 모바일 슬라이드 팬 | `.mobile-pan-0~3` | 히어로 슬라이드별 |
+| 모바일 슬라이드 팬 | `.mobile-pan-0~5` | 히어로 슬라이드별 |
 
 새 애니메이션 추가 시: 필요 최소한으로, `globals.css`에 추가하고 이 파일에 기록.
 

@@ -31,7 +31,7 @@ export default function PhilosophySection() {
   return (
     <section
       id="philosophy"
-      className="min-h-screen flex flex-col justify-center py-20 sm:py-28 bg-white scroll-mt-32"
+      className="py-12 sm:py-28 md:min-h-screen md:flex md:flex-col md:justify-center bg-white scroll-mt-32"
       aria-labelledby="philosophy-heading"
     >
       <div ref={ref} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

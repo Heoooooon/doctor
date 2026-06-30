@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 export default function DoctorGroup() {
   return (
-    <section className="relative h-dvh w-full overflow-hidden bg-[#F8F7F9]">
+    <section className="relative w-full overflow-hidden bg-[#F8F7F9] aspect-[390/640] md:aspect-auto md:h-dvh">
 
       {/* ── 모바일 이미지 (하단바 높이만큼 위로 올려 인물 전체 노출) ── */}
       <div
@@ -45,7 +45,7 @@ export default function DoctorGroup() {
       {/* ── 모바일 텍스트 + 버튼 (상단 가운데 정렬) ── */}
       <div
         className="md:hidden absolute inset-x-0 z-10 flex flex-col items-center text-center px-7"
-        style={{ top: 'calc(var(--mobile-header-height) + 50px)' }}
+        style={{ top: 'calc(var(--mobile-header-height) + 80px)' }}
       >
         {/* 헤드라인 */}
         <h2 className="text-white text-[28px] font-bold leading-tight tracking-normal">

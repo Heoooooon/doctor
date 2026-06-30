@@ -378,64 +378,122 @@ html.lenis body {
   font-size: 18px !important;
 }
 
+@media (max-width: 1023px) {
+  .site-footer {
+    padding-bottom: calc(112px + env(safe-area-inset-bottom));
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .site-footer-inner {
+    padding-right: 144px;
+  }
+}
+
+@media (max-width: 767px) {
+  .site-footer .footer-brand-ko {
+    font-size: 15px !important;
+    line-height: 1.45;
+  }
+
+  .site-footer .footer-brand-en {
+    font-size: 11px !important;
+    line-height: 1.45;
+    letter-spacing: 0.16em;
+  }
+
+  .site-footer .footer-links {
+    font-size: 14px !important;
+    line-height: 1.55;
+  }
+
+  .site-footer .footer-meta,
+  .site-footer .footer-address {
+    font-size: 13px !important;
+    line-height: 1.7;
+  }
+
+  .site-footer .footer-disclaimer {
+    font-size: 12px !important;
+    line-height: 1.7;
+  }
+
+  .site-footer .footer-copyright {
+    font-size: 11px !important;
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+  }
+}
+
+@media (max-width: 375px) {
+  .site-footer .footer-links {
+    font-size: 13px !important;
+  }
+
+  .site-footer .footer-meta,
+  .site-footer .footer-address,
+  .site-footer .footer-disclaimer {
+    font-size: 12px !important;
+  }
+}
+
 /* ── 모바일 히어로 슬라이드별 Pan 효과 ── */
 
-/* Slide 0: 정가운데(50%) → 살짝 왼쪽으로 (14s) */
 @keyframes mobile-pan-0 {
+  0%   { object-position: 100% center; }
+  100% { object-position: 30% center; }
+}
+.mobile-pan-0 {
+  object-position: 100% center;
+  animation: mobile-pan-0 1s cubic-bezier(0.22, 0.72, 0.18, 1) forwards;
+}
+
+@keyframes mobile-pan-1 {
+  0%   { object-position: 100% center; }
+  100% { object-position: 0% center; }
+}
+.mobile-pan-1 {
+  object-position: 100% center;
+  animation: mobile-pan-1 27.2s cubic-bezier(0.25, 0, 0.08, 1) 0.5s forwards;
+}
+
+@keyframes mobile-pan-2 {
   0%   { object-position: 50% center; }
   100% { object-position: 42% center; }
 }
-.mobile-pan-0 {
-  object-position: 50% center;
-  animation: mobile-pan-0 14s cubic-bezier(0.25, 0, 0.08, 1) forwards;
-}
-
-/* Slide 1 (서울대): 중앙(50%) → 살짝 왼쪽(45%) 5% 이동 */
-@keyframes mobile-pan-1 {
-  0%   { object-position: 40% center; }
-  100% { object-position: 33% center; }
-}
-.mobile-pan-1 {
-  object-position: 40% center;
-  animation: mobile-pan-1 6.7s cubic-bezier(0.25, 0, 0.08, 1) forwards;
-}
-
-/* Slide 2 (자연치아): 오른쪽 → 살짝 왼쪽으로 천천히 */
-@keyframes mobile-pan-2 {
-  0%   { object-position: 100% center; }
-  100% { object-position: 85% center; }
-}
 .mobile-pan-2 {
-  object-position: 100% center;
-  animation: mobile-pan-2 6.7s cubic-bezier(0.25, 0, 0.08, 1) forwards;
+  object-position: 50% center;
+  animation: mobile-pan-2 14s linear forwards;
 }
 
-/* 4번째 슬라이드(slide-4): 중앙(50%) → 오른쪽(63%)으로 천천히 */
 @keyframes mobile-pan-3 {
-  0%   { object-position: 50% center; }
-  100% { object-position: 63% center; }
+  0%   { object-position: 100% center; }
+  100% { object-position: 0% center; }
 }
 .mobile-pan-3 {
-  object-position: 50% center;
-  animation: mobile-pan-3 6.7s cubic-bezier(0.25, 0, 0.08, 1) forwards;
+  object-position: 100% center;
+  animation: mobile-pan-3 26.8s cubic-bezier(0.25, 0, 0.08, 1) forwards;
 }
 
-/* 5번째 슬라이드(slide-5): 맨 왼쪽(0%) → 중심(50%)으로 서서히 */
 @keyframes mobile-pan-4 {
-  0%   { object-position: 0% center; }
-  100% { object-position: 50% center; }
+  0%   { object-position: 50% center; }
+  100% { object-position: 66% center; }
 }
 .mobile-pan-4 {
-  object-position: 0% center;
+  object-position: 50% center;
   animation: mobile-pan-4 6.7s cubic-bezier(0.25, 0, 0.08, 1) forwards;
+}
+
+.mobile-pan-5 {
+  object-position: 50% center;
 }
 
 /* ── 데스크탑 히어로 Ken Burns: 느린 좌우 드리프트(살아있는 느낌) ── */
 @keyframes hero-kenburns {
-  0%   { transform: scale(1.07) translateX(2%); }
-  100% { transform: scale(1.07) translateX(-2%); }
+  0%   { object-position: 52% center; }
+  100% { object-position: 48% center; }
 }
 .hero-kenburns {
   animation: hero-kenburns 18s ease-in-out infinite alternate;
-  will-change: transform;
+  will-change: object-position;
 }

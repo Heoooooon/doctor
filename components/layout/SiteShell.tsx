@@ -23,7 +23,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
       {smoothEnabled && <SmoothScroll />}
       <HoverHintCursor />
       <Header />
-      <main className="pb-16 sm:pb-14">{children}</main>
+      <main className={pathname === '/' ? undefined : 'pb-16 sm:pb-14'}>{children}</main>
       {pathname !== '/' && <Footer />}
       <FloatingSidebar />
       <ScrollToTopButton />

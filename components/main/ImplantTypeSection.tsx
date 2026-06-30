@@ -53,15 +53,18 @@ export default function ImplantTypeSection() {
           >
             IMPLANT{' '}
             <span style={{
+              position: 'relative',
+              display: 'inline-block',
               background: 'linear-gradient(135deg, #0080C8 0%, #38b6ff 50%, #0080C8 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
               filter: 'drop-shadow(0 0 16px rgba(0,128,200,0.5))',
-            }}>SOLUTION</span>{' '}
-            <span style={{ color: '#0f172a' }}>TYPES</span>
+            }}>
+              SOLUTION
+              <span className="absolute left-0 -bottom-2 h-1.5 w-full rounded-full bg-[#0080C8] shadow-[0_0_24px_rgba(0,128,200,0.35)]" aria-hidden="true" />
+            </span>
           </p>
-          <div className="mt-3 h-1.5 w-28 rounded-full bg-[#0080C8] shadow-[0_0_24px_rgba(0,128,200,0.35)]" />
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 lg:gap-8">

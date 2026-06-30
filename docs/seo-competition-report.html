@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>서울이건치과 · 검색 상위노출 경쟁 분석 보고서</title>
+<style>
+  :root{
+    --bg:#F8F7F9; --navy:#2B2D42; --cta:#0080C8; --accent:#38b6ff;
+    --line:#e4e3e8; --muted:#6b6c7e; --card:#fff;
+    --good:#1a7f37; --bad:#cf222e; --warn:#9a6b00;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:"Pretendard","Pretendard Variable",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Segoe UI",Roboto,"Noto Sans KR",sans-serif;
+    background:var(--bg); color:var(--navy); line-height:1.7; padding:40px 20px;
+  }
+  .wrap{max-width:940px;margin:0 auto}
+  header.doc{background:var(--navy);color:#fff;border-radius:18px;padding:38px 40px;margin-bottom:26px}
+  header.doc .kicker{font-size:13px;letter-spacing:.2em;color:#9fb8ff;text-transform:uppercase}
+  header.doc h1{font-size:28px;font-weight:800;margin:10px 0 8px}
+  header.doc p{font-size:15px;color:#cfd2e6}
+
+  /* 핵심 결론 배너 */
+  .verdict{background:linear-gradient(135deg,#0d4f86,#0080C8);color:#fff;border-radius:16px;padding:26px 30px;margin-bottom:26px}
+  .verdict .tag{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#bfe0ff}
+  .verdict h2{font-size:21px;font-weight:800;margin:6px 0 10px;color:#fff;border:0;padding:0}
+  .verdict p{font-size:15.5px;color:#eaf4ff}
+  .verdict b{color:#fff}
+
+  section.block{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px 32px;margin-bottom:22px}
+  h2{font-size:20px;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:11px}
+  h2 .n{display:inline-flex;width:30px;height:30px;border-radius:9px;background:var(--cta);color:#fff;font-size:15px;align-items:center;justify-content:center;flex:0 0 auto}
+  .lead{color:var(--muted);font-size:14.5px;margin-bottom:18px}
+
+  /* 시나리오 2장 */
+  .scen{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .sc{border-radius:14px;padding:20px 22px;border:2px solid}
+  .sc.a{border-color:#bfe3cc;background:#f1faf4}
+  .sc.b{border-color:#f2c0c5;background:#fdf2f3}
+  .sc .lab{font-size:12px;font-weight:800;letter-spacing:.08em;padding:3px 10px;border-radius:999px;display:inline-block;margin-bottom:10px}
+  .sc.a .lab{background:#1a7f37;color:#fff}
+  .sc.b .lab{background:#cf222e;color:#fff}
+  .sc h3{font-size:16px;font-weight:800;margin-bottom:8px}
+  .sc p{font-size:14px;color:#3a3b4d}
+  .sc .res{margin-top:12px;font-weight:800;font-size:14.5px}
+  .sc.a .res{color:var(--good)}
+  .sc.b .res{color:var(--bad)}
+
+  ul.clean{margin:4px 0 0 0;list-style:none}
+  ul.clean li{position:relative;padding-left:22px;margin-bottom:11px;font-size:15px}
+  ul.clean li::before{content:"";position:absolute;left:0;top:10px;width:8px;height:8px;border-radius:50%;background:var(--cta)}
+  ul.clean li b{color:var(--navy)}
+  .src{color:var(--muted);font-size:12.5px}
+  .src a{color:var(--cta);text-decoration:none}
+
+  /* 진단 체크리스트 */
+  .check{background:#fff8e6;border:1px solid #f0e0a8;border-radius:14px;padding:20px 24px}
+  .check h3{font-size:16px;color:var(--warn);margin-bottom:6px}
+  .check ol{margin:8px 0 0 20px}
+  .check li{margin-bottom:9px;font-size:14.5px}
+  .check li .danger{color:var(--bad);font-weight:700;font-size:13px}
+
+  /* 로드맵 스텝 */
+  .steps{counter-reset:s}
+  .step{position:relative;padding:16px 18px 16px 58px;border:1px solid var(--line);border-radius:12px;margin-bottom:12px;background:#fafbfd}
+  .step::before{counter-increment:s;content:counter(s);position:absolute;left:16px;top:16px;width:28px;height:28px;border-radius:50%;background:var(--cta);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:14px}
+  .step .t{font-weight:800;font-size:15px;margin-bottom:3px}
+  .step .d{font-size:14px;color:#3a3b4d}
+
+  .pill{display:inline-block;background:#eef4ff;color:#2952b3;font-weight:700;font-size:12.5px;padding:2px 9px;border-radius:7px;margin:1px 2px}
+  .timeline{background:#eef4ff;border-radius:12px;padding:16px 20px;font-size:14.5px;color:#2952b3;margin-top:6px}
+  footer.doc{text-align:center;color:var(--muted);font-size:12.5px;margin-top:24px;line-height:1.6}
+  @media print{body{background:#fff;padding:0}section.block,header.doc,.verdict{break-inside:avoid}}
+  @media(max-width:660px){body{padding:20px 12px}header.doc,section.block{padding:22px 18px}.scen{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="doc">
+    <div class="kicker">서울이건치과 · 디지털 마케팅 분석</div>
+    <h1>"기존 업체가 선점해서 못 이긴다"는 말, 사실일까?</h1>
+    <p>검색 상위노출 경쟁 구도 진단과 우리가 이기는 방법 — 원장님 보고용 요약</p>
+  </header>
+
+  <div class="verdict">
+    <div class="tag">한 줄 결론</div>
+    <h2>순수 검색 경쟁이라면, 못 이긴다는 건 사실이 아닙니다.</h2>
+    <p>도메인 선점·나이는 구글 순위 요인이 <b>아닙니다.</b> 지역검색은 독점이 아니라 상대순위라, 잘 최적화한 신규 병원이 <b>3~6개월 내 기존 업체를 추월</b>할 수 있습니다. 단, 업체가 <b>병원의 도메인·홈페이지·네이버 플레이스 자산 자체를 쥐고 있다면</b> 그건 실력이 아니라 '소유권' 문제이므로 먼저 회수해야 합니다.</p>
+  </div>
+
+  <!-- 1 -->
+  <section class="block">
+    <h2><span class="n">1</span> 업체의 주장은 두 가지 중 하나입니다</h2>
+    <p class="lead">완전히 다른 문제이고, 대응법도 정반대입니다. 먼저 어느 쪽인지 가려야 합니다.</p>
+    <div class="scen">
+      <div class="sc a">
+        <span class="lab">시나리오 A</span>
+        <h3>"키워드/도메인을 선점해서 못 이긴다"</h3>
+        <p>검색 경쟁에서 우리가 먼저라 신규는 안 된다는 주장. 계약을 유지하려는 <b>엄포(블러프)</b>인 경우가 많습니다.</p>
+        <div class="res">→ 우리가 이길 수 있음</div>
+      </div>
+      <div class="sc b">
+        <span class="lab">시나리오 B</span>
+        <h3>업체가 실제 자산을 쥐고 있다</h3>
+        <p>도메인·호스팅·네이버 플레이스·광고계정·블로그를 <b>업체 명의로</b> 보유. 검색 실력이 아니라 '열쇠'를 쥔 상황.</p>
+        <div class="res">→ 소유권부터 회수해야 함</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="block">
+    <h2><span class="n">2</span> 왜 "선점했다"는 엄포인가 (근거)</h2>
+    <ul class="clean">
+      <li><b>도메인 선점·나이는 구글 순위 요인이 아닙니다.</b> 구글이 공식적으로 "도메인 연령은 순위에 영향 없다"고 밝혔습니다. 오래된 도메인이 유리해 보이는 건 그동안 쌓인 콘텐츠·추천링크 때문이지 '먼저 했다'는 사실 자체가 아닙니다.</li>
+      <li><b>지역검색은 독점이 아니라 상대순위입니다.</b> 관련성·근접성·신뢰도로 정해져서, 잘 최적화한 신규 병원이 기존 대형/선점 업체를 충분히 추월합니다.</li>
+      <li><b>선점의 진짜 무기인 '신뢰 누적'은 따라잡힙니다.</b> 리뷰는 총량보다 <b>최신성</b>이 핵심 — "이번 달 새 리뷰 10개 &gt; 2년 전 50개". 새 리뷰를 꾸준히 쌓으면 과거 누적과 무관하게 순위가 뒤집힙니다.</li>
+      <li><b>네이버도 2026년엔 '실제 이용자 행동 데이터' 중심</b>(클릭·전화·체류·재방문)으로 바뀌었습니다. 오래된 선점 자산보다 <b>지금 실제 환자가 찾는 신호</b>가 이깁니다.</li>
+      <li><b>업체가 인위적 트래픽(어뷰징)으로 올렸다면 오히려 취약합니다.</b> 네이버는 검색량 대비 비정상 유입을 감지하면 노출을 제한·하락시킵니다. 어뷰징 기반 순위는 페널티 한 번에 무너집니다.</li>
+    </ul>
+    <p class="src" style="margin-top:14px">출처: Google 도메인 나이 가이드(Ranktracker), 미국 치과 로컬SEO 가이드(MedFlowX·Inception·Olly Olly), 네이버 플레이스 2026 알고리즘(파인애드), 네이버 C-Rank/DIA(SERP Wizard·The Egg)</p>
+  </section>
+
+  <!-- 3 -->
+  <section class="block">
+    <h2><span class="n">3</span> 먼저 확인할 것 — 진짜 위험(시나리오 B) 점검</h2>
+    <div class="check">
+      <h3>⚠ 아래 중 하나라도 '업체 명의'면, 검색으로 못 이기는 게 맞습니다</h3>
+      <ol>
+        <li>병원 <b>도메인(egundc.com 등) 등록자 명의</b>가 누구인가? <span class="danger">업체 명의면 위험</span></li>
+        <li>홈페이지 <b>호스팅·서버 계정</b> 소유주는?</li>
+        <li><b>네이버 스마트플레이스 관리 권한</b>이 병원 사업자 계정인가, 업체 계정인가?</li>
+        <li>네이버/구글 <b>광고 계정·블로그</b>(blog.naver.com/seoulegundc) 소유주는?</li>
+        <li>업체가 순위를 올린 게 <b>병원 도메인</b>인가, 아니면 <b>업체 소유 위성 사이트</b>인가? <span class="danger">위성이면 우리가 작업해도 그 자산은 못 가져옴</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="block">
+    <h2><span class="n">4</span> 이기는 로드맵</h2>
+
+    <p class="lead" style="margin-bottom:8px"><b>① 만약 시나리오 B(자산 통제)라면 — 최우선으로 소유권 회수</b></p>
+    <div class="steps" style="margin-bottom:22px">
+      <div class="step"><div class="t">도메인 명의 이전</div><div class="d">WHOIS 등록자를 병원/원장 명의로. 거부하면 새 공식 도메인으로 정면 구축.</div></div>
+      <div class="step"><div class="t">네이버 플레이스 소유권 귀속</div><div class="d">병원 사업자등록 계정으로 스마트플레이스 권한 100% 회수.</div></div>
+      <div class="step"><div class="t">호스팅·광고·블로그 계정 인수</div><div class="d">안 되면 전부 신규 개설하여 우리 통제 하에 둠.</div></div>
+      <div class="step"><div class="t">공식 홈페이지에 자산 집중</div><div class="d">홈페이지는 의료법 광고심의 제약이 가장 적고 병원이 100% 통제하는 유일한 채널 → 업체 의존도 제거.</div></div>
+    </div>
+
+    <p class="lead" style="margin-bottom:8px"><b>② 시나리오 A(검색 경쟁) — 정공법으로 추월</b></p>
+    <div class="steps">
+      <div class="step"><div class="t">홈페이지 온페이지 최적화</div><div class="d">제목·설명·본문에 지역+진료 키워드 자연 삽입(과다반복 금지), 구조화데이터(Dentist), NAP(상호·주소·전화) 전 채널 완전 일치.</div></div>
+      <div class="step"><div class="t">네이버 블로그(C-Rank·DIA)</div><div class="d">치과 한 주제로 일관되게, 실제 경험·전문성 중심 꾸준한 발행으로 신뢰·신선도 신호 축적.</div></div>
+      <div class="step"><div class="t">네이버 플레이스 행동데이터 + 별점</div><div class="d">별점 4.5 이상 유지, 사장님 답글 100%, 자연스러운 유입(인위적 폭주 금지).</div></div>
+      <div class="step"><div class="t">리뷰 시스템화</div><div class="d">진료 후 당일 감사문자 → 48~72시간 뒤 리뷰요청. 최신 리뷰를 끊임없이 생성.</div></div>
+      <div class="step"><div class="t">구글 비즈니스 프로필(GBP)</div><div class="d">로컬의 가장 강력한 단일 레버. 정보 100% 입력 + 정기 포스팅.</div></div>
+      <div class="step"><div class="t">하이퍼로컬 키워드 선점</div><div class="d">업체가 놓친 동네 단위(매탄동 임플란트·영통 교정 등)부터 점유 → 전환율 높고 경쟁 낮음 → 상위 키워드로 확장.</div></div>
+      <div class="step"><div class="t">의료법 준수 자체가 경쟁력</div><div class="d">보장·최상급·과장 금지(네거티브 규제 준수). 안정적 신뢰 자산이 장기 상위노출로 이어짐.</div></div>
+    </div>
+
+    <div class="timeline">⏱ <b>현실적 기대치:</b> 로컬 SEO는 3~6개월 후 효과가 나오지만, 한 번 자리잡으면 신규 환자 획득단가가 크게 낮아집니다. <b>꾸준함이 선점을 이깁니다.</b></div>
+  </section>
+
+  <!-- 5 -->
+  <section class="block">
+    <h2><span class="n">5</span> 지금 필요한 것</h2>
+    <p class="lead" style="margin-bottom:10px">아래 5가지(3번 항목) 중 <b>현재 누가 무엇을 쥐고 있는지</b>만 알려주시면, "엄포냐 진짜냐"를 확정하고 정확한 반격 플랜을 확정하겠습니다.</p>
+    <p>
+      <span class="pill">도메인 등록자</span>
+      <span class="pill">호스팅 계정</span>
+      <span class="pill">플레이스 권한</span>
+      <span class="pill">광고·블로그 계정</span>
+      <span class="pill">병원 도메인 vs 위성 사이트</span>
+    </p>
+  </section>
+
+  <footer class="doc">
+    서울이건치과 검색 경쟁 분석 보고서 · 2026-06-30<br>
+    근거: Google 도메인 가이드 · 한국·미국 로컬SEO/치과SEO 자료 · 네이버 C-Rank/DIA·플레이스 2026 알고리즘 · 의료광고법 가이드
+  </footer>
+
+</div>
+</body>
+</html>

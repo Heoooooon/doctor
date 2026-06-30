@@ -38,7 +38,9 @@ export default function FaqAccordion({ faq }: FaqAccordionProps) {
         (m, el) => Math.max(m, el ? el.scrollHeight : 0),
         0,
       )
-      setReserve(max)
+      // 하단 예약 공간을 가장 큰 답변의 절반만 확보 → 여백을 최대한 줄이되,
+      // 펼칠 때 아래 섹션 이동량도 절반으로 줄여 부드럽게 유지
+      setReserve(Math.round(max * 0.5))
     }
     measure()
     window.addEventListener('resize', measure)

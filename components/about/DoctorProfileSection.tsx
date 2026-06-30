@@ -114,6 +114,7 @@ function DoctorCard({
 
 export default function DoctorProfileSection() {
   const { ref, isVisible } = useScrollReveal(0.15)
+  const { ref: mRef, isVisible: mVisible } = useScrollReveal(0.18)
   const displayDoctors = [...doctors].sort(
     (a, b) => DOCTOR_ORDER.indexOf(a.id) - DOCTOR_ORDER.indexOf(b.id)
   )
@@ -125,55 +126,97 @@ export default function DoctorProfileSection() {
       aria-labelledby="doctors-heading"
     >
       {/* 섹션 헤더 — 풀페이지 */}
-      <div
-        id="doctor-intro"
-        className="relative min-h-screen flex items-center max-md:items-end overflow-hidden scroll-mt-20"
-      >
-        {/* 배경 이미지 */}
-        <div
-          className="absolute inset-x-0"
-          style={{
-            top: '-80px',
-            bottom: '-10px',
-            backgroundImage: "url('/images/clinic/egun-outerior.jpg')",
-            backgroundSize: 'cover',
-            backgroundPosition: 'calc(50% + 220px) 0%',
-            backgroundRepeat: 'no-repeat',
-          }}
-        />
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.45) 100%)' }} />
+      <div id="doctor-intro" className="scroll-mt-20">
 
-        {/* 텍스트 오버레이 — 모바일 + 데스크탑 공통 */}
-        {/* 모바일: -110px 위, 아이패드(lg): 6cm 아래 + 2cm 우, 데스크탑(xl+): 0 */}
-        <div
-          ref={ref}
-          className="relative z-10 w-full max-w-6xl mx-auto px-6 sm:px-8 lg:px-8 py-16 sm:py-20
-            -translate-y-[110px]
-            max-md:translate-y-0 max-md:pb-[calc(var(--mobile-bottom-bar-height)+32px)]
-            lg:translate-y-[117px] lg:translate-x-[76px]
-            xl:translate-y-0 xl:translate-x-0"
-        >
-          <p
-            className={`text-[18px] sm:text-[23px] font-semibold tracking-[0.25em] uppercase text-[#0080c8] mb-4 ${isVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}
-            style={{ textShadow: '0 2px 8px rgba(0,0,0,0.85), 0 1px 3px rgba(0,0,0,0.95), 0 0 15px rgba(0,128,200,0.5)' }}
+        {/* 모바일: 사진(전체) 위 + 흰 배경 텍스트 아래(간격 없이), 글자 순차 등장 */}
+        <div ref={mRef} className="md:hidden bg-white">
+          <img
+            src="/images/clinic/egun-outerior.jpg"
+            alt="서울이건치과 외관"
+            className="block w-full h-auto"
+          />
+          <div className="px-6 pt-6 pb-10">
+            <p
+              className={`mb-3 text-[18px] font-semibold uppercase tracking-[0.25em] text-[#0080C8] ${mVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}
+            >
+              OUR DOCTORS
+            </p>
+            <h2 className="text-[31px] font-bold leading-tight text-gray-900">
+              <span
+                className={`block ${mVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}
+                style={mVisible ? { animationDelay: '0.12s' } : undefined}
+              >
+                한자리에서
+              </span>
+              <span
+                className={`block text-[#0080C8] ${mVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}
+                style={mVisible ? { animationDelay: '0.24s' } : undefined}
+              >
+                변하지 않는 마음
+              </span>
+            </h2>
+            <p className="mt-4 text-[20px] leading-relaxed text-gray-600">
+              <span
+                className={`block ${mVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}
+                style={mVisible ? { animationDelay: '0.36s' } : undefined}
+              >
+                각자의 전문 분야에서 최선을 다하며
+              </span>
+              <span
+                className={`block ${mVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}
+                style={mVisible ? { animationDelay: '0.48s' } : undefined}
+              >
+                언제나 같은 자리에서 기다리고 있습니다.
+              </span>
+            </p>
+          </div>
+        </div>
+
+        {/* 데스크탑: 기존 풀스크린 오버레이 */}
+        <div className="hidden md:flex relative min-h-screen items-center overflow-hidden">
+          {/* 배경 이미지 */}
+          <div
+            className="absolute inset-x-0"
+            style={{
+              top: '-80px',
+              bottom: '-10px',
+              backgroundImage: "url('/images/clinic/egun-outerior.jpg')",
+              backgroundSize: 'cover',
+              backgroundPosition: 'calc(50% + 220px) 0%',
+              backgroundRepeat: 'no-repeat',
+            }}
+          />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.45) 100%)' }} />
+
+          <div
+            ref={ref}
+            className="relative z-10 w-full max-w-6xl mx-auto px-8 py-20
+              -translate-y-[110px]
+              lg:translate-y-[117px] lg:translate-x-[76px]
+              xl:translate-y-0 xl:translate-x-0"
           >
-            Our Doctors
-          </p>
-          <h2
-            id="doctors-heading"
-            className={`text-[31px] sm:text-[41px] lg:text-[49px] font-normal lg:font-bold text-white leading-tight ${isVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}
-            style={isVisible ? { animationDelay: '0.1s' } : undefined}
-          >
-            한자리에서<br />
-            <span style={{ color: '#ffffff', textShadow: '0 0 20px rgba(0,128,200,0.9), 0 2px 12px rgba(0,0,0,0.95)' }}>변하지 않는 마음</span>
-          </h2>
-          <p
-            className={`mt-4 sm:mt-6 text-[20px] sm:text-[28px] lg:text-[30px] text-white/75 lg:text-white/90 max-w-2xl leading-relaxed ${isVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}
-            style={isVisible ? { animationDelay: '0.2s' } : undefined}
-          >
-            각자의 전문 분야에서 최선을 다하며<br />
-            언제나 같은 자리에서 기다리고 있습니다.
-          </p>
+            <p
+              className={`text-[23px] font-semibold tracking-[0.25em] uppercase text-[#0080c8] mb-4 ${isVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}
+              style={{ textShadow: '0 2px 8px rgba(0,0,0,0.85), 0 1px 3px rgba(0,0,0,0.95), 0 0 15px rgba(0,128,200,0.5)' }}
+            >
+              Our Doctors
+            </p>
+            <h2
+              id="doctors-heading"
+              className={`text-[41px] lg:text-[49px] font-bold text-white leading-tight ${isVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}
+              style={isVisible ? { animationDelay: '0.1s' } : undefined}
+            >
+              한자리에서<br />
+              <span style={{ color: '#ffffff', textShadow: '0 0 20px rgba(0,128,200,0.9), 0 2px 12px rgba(0,0,0,0.95)' }}>변하지 않는 마음</span>
+            </h2>
+            <p
+              className={`mt-6 text-[28px] lg:text-[30px] text-white/90 max-w-2xl leading-relaxed ${isVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}
+              style={isVisible ? { animationDelay: '0.2s' } : undefined}
+            >
+              각자의 전문 분야에서 최선을 다하며<br />
+              언제나 같은 자리에서 기다리고 있습니다.
+            </p>
+          </div>
         </div>
       </div>
 

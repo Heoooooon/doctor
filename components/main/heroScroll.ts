@@ -20,7 +20,3 @@ export function scrollHeroToNextLayout(hero: HTMLElement): void {
     : window.innerHeight
   window.scrollTo({ top, behavior })
 }
-
-export function isMobileHeroViewport(): boolean {
-  return window.matchMedia('(max-width: 767px)').matches
-}

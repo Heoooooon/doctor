@@ -6,6 +6,7 @@ type HeroSlideMediaProps = {
   readonly slides: readonly HeroSlide[]
   readonly slide: HeroSlide
   readonly current: number
+  readonly prev: number
   readonly isMobile: boolean
   readonly videoRef: RefObject<HTMLVideoElement | null>
   readonly onVideoEnded: () => void
@@ -15,6 +16,7 @@ export function HeroSlideMedia({
   slides,
   slide,
   current,
+  prev,
   isMobile,
   videoRef,
   onVideoEnded,
@@ -70,26 +72,30 @@ export function HeroSlideMedia({
         {isMobile
           ? slides.map((item, index) => {
               const active = index === current
+              const isPrev = index === prev
+              const visible = active || isPrev
+              const panClass = active || isPrev ? `mobile-pan-${index}` : ''
+              const zIndex = active ? 2 : isPrev ? 1 : 0
 
               if (item.isVideo) {
-                return active ? (
+                return (
                   <video
-                    ref={videoRef}
+                    ref={active ? videoRef : undefined}
                     key={`hero-video-m-${item.id}`}
-                    className="absolute inset-0 w-full h-full object-cover"
-                    style={{ objectPosition: item.mobileObjectPosition }}
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out ${panClass}`}
+                    style={{ opacity: visible ? 1 : 0, zIndex }}
                     src={item.image}
                     poster={getVideoPoster(item)}
                     preload="auto"
-                    autoPlay
                     muted
                     playsInline
+                    autoPlay={active}
                     onCanPlay={(event) => {
                       event.currentTarget.playbackRate = getVideoPlaybackRate(item)
                     }}
-                    onEnded={onVideoEnded}
+                    onEnded={active ? onVideoEnded : undefined}
                   />
-                ) : null
+                )
               }
 
               if (item.loopVideo) {
@@ -102,11 +108,8 @@ export function HeroSlideMedia({
                     autoPlay
                     playsInline
                     aria-hidden="true"
-                    className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out"
-                    style={{
-                      opacity: active ? 1 : 0,
-                      objectPosition: item.mobileObjectPosition,
-                    }}
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out ${panClass}`}
+                    style={{ opacity: visible ? 1 : 0, zIndex }}
                   />
                 )
               }
@@ -117,13 +120,8 @@ export function HeroSlideMedia({
                   src={item.image}
                   alt=""
                   aria-hidden="true"
-                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out ${
-                    active && !item.mobileObjectPosition ? `mobile-pan-${index}` : ''
-                  }`}
-                  style={{
-                    opacity: active ? 1 : 0,
-                    objectPosition: item.mobileObjectPosition,
-                  }}
+                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out ${panClass}`}
+                  style={{ opacity: visible ? 1 : 0, zIndex }}
                 />
               )
             })

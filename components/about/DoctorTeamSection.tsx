@@ -64,7 +64,7 @@ export default function DoctorTeamSection() {
   }
 
   return (
-    <section ref={ref} id="doctors" className="py-16 sm:py-24 bg-[#F8F7F9] border-b border-gray-100 scroll-mt-24">
+    <section ref={ref} id="doctors" className="py-10 sm:py-24 bg-[#F8F7F9] border-b border-gray-100 scroll-mt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* 타이틀 */}
         <div className={`mb-10 sm:mb-14 ${isVisible ? 'scroll-reveal-drop' : 'scroll-hidden'}`}>

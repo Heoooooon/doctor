@@ -24,34 +24,33 @@ const BOARD_ITEMS = [
 
 const PHONE = '031-896-5512'
 
+function clearSavedHomeScroll() {
+  try {
+    window.sessionStorage.removeItem('egun:home-scroll')
+  } catch (error) {
+    if (error instanceof DOMException) {
+      return
+    }
+    throw error
+  }
+}
+
+function clearIntroSeen() {
+  try {
+    window.sessionStorage.removeItem('egun:intro-seen')
+  } catch (error) {
+    if (error instanceof DOMException) {
+      return
+    }
+    throw error
+  }
+}
+
 export default function Header() {
   const [navOpen, setNavOpen] = useState(false)
   const pathname = usePathname()
 
   const isBoardActive = BOARD_ITEMS.some(b => pathname === b.href)
-
-  const scrollToHomeHero = () => {
-    window.dispatchEvent(new Event('egun:hero-reset'))
-
-    if (window.innerWidth >= 768) {
-      const desktop = document.getElementById('home-desktop')
-      if (desktop) {
-        desktop.scrollTo({ top: 0, behavior: 'smooth' })
-        return
-      }
-    }
-
-    const mobile = document.getElementById('home-mobile')
-    if (mobile) {
-      window.scrollTo({
-        top: mobile.getBoundingClientRect().top + window.scrollY,
-        behavior: 'smooth',
-      })
-      return
-    }
-
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
 
   return (
     <>
@@ -65,13 +64,15 @@ export default function Header() {
               className="flex items-center shrink-0"
               aria-label="서울이건치과 홈으로 이동"
               onClick={(e) => {
+                clearSavedHomeScroll()
+                clearIntroSeen()
                 if (pathname === '/') {
+                  // 같은 홈 페이지에선 리마운트가 없으므로 이벤트로 온보딩 재생
                   e.preventDefault()
-                  scrollToHomeHero()
-                } else {
-                  // 로고로 홈 진입 시 저장된 스크롤 위치를 비워 최상단부터 시작
-                  try { sessionStorage.removeItem('egun:home-scroll') } catch {}
+                  window.dispatchEvent(new Event('egun:hero-reset'))
+                  window.dispatchEvent(new Event('egun:intro-replay'))
                 }
+                // 다른 페이지 → 홈: intro-seen을 비웠으므로 홈 진입 시 온보딩 재생
               }}
             >
               <Image
@@ -79,7 +80,7 @@ export default function Header() {
                 alt="서울이건치과"
                 width={1000}
                 height={400}
-                className="h-[60px] sm:h-[72px] w-auto"
+                className="h-auto w-[150px] sm:w-[180px]"
               />
             </Link>
 

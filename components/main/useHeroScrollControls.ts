@@ -5,8 +5,9 @@ import type { HeroSlide } from './heroSlides'
 
 const HERO_TOP_TOLERANCE = 8
 const WHEEL_STEP_THRESHOLD = 6
-const INPUT_LOCK_MS = 720
+const INPUT_LOCK_MS = 460
 const RESUME_AUTO_MS = 1600
+const SWIPE_THRESHOLD = 40
 
 type HeroScrollState = {
   readonly currentRef: RefObject<number>
@@ -37,14 +38,6 @@ function canControlSlide(direction: -1 | 1, current: number, total: number): boo
   return true
 }
 
-function getMobileSlideIndex(hero: HTMLElement, total: number): number {
-  const viewportHeight = window.innerHeight || hero.clientHeight
-  const scrollableDistance = Math.max(1, hero.offsetHeight - viewportHeight)
-  const slideDistance = Math.max(1, scrollableDistance / Math.max(1, total))
-  const offset = Math.min(Math.max(-hero.getBoundingClientRect().top, 0), scrollableDistance)
-  return Math.min(total - 1, Math.max(0, Math.floor(offset / slideDistance)))
-}
-
 export function useHeroScrollControls({
   currentRef,
   goTo,
@@ -65,8 +58,61 @@ export function useHeroScrollControls({
   }
 
   useEffect(() => {
-    const desktop = document.getElementById('home-desktop')
     const hero = sectionRef.current
+
+    // ── 모바일: 가로 스와이프로만 슬라이드 전환 (세로 스크롤은 페이지에 그대로 위임) ──
+    // window 스크롤값을 전혀 읽지 않으므로 주소창/하단바 출몰로 스크롤이 튀어도 영향 없음.
+    if (isMobile) {
+      if (!hero) return
+
+      let startX: number | null = null
+      let startY: number | null = null
+      let swiped = false
+
+      const onTouchStart = (event: TouchEvent) => {
+        const touch = event.touches[0]
+        if (!touch) return
+        startX = touch.clientX
+        startY = touch.clientY
+        swiped = false
+      }
+
+      const onTouchMove = (event: TouchEvent) => {
+        if (startX === null || startY === null || swiped) return
+        const touch = event.touches[0]
+        if (!touch) return
+        const dx = touch.clientX - startX
+        const dy = touch.clientY - startY
+        // 가로 이동이 충분하고 세로보다 우세할 때만 슬라이드 전환
+        if (Math.abs(dx) < SWIPE_THRESHOLD || Math.abs(dx) <= Math.abs(dy)) return
+        swiped = true
+        const total = slidesRef.current.length
+        const direction = dx < 0 ? 1 : -1 // 왼쪽으로 밀면 다음
+        const nextIndex = (currentRef.current + direction + total) % total
+        actionsRef.current.goTo(nextIndex)
+      }
+
+      const onTouchEnd = () => {
+        startX = null
+        startY = null
+        swiped = false
+      }
+
+      hero.addEventListener('touchstart', onTouchStart, { passive: true })
+      hero.addEventListener('touchmove', onTouchMove, { passive: true })
+      hero.addEventListener('touchend', onTouchEnd, { passive: true })
+      hero.addEventListener('touchcancel', onTouchEnd, { passive: true })
+
+      return () => {
+        hero.removeEventListener('touchstart', onTouchStart)
+        hero.removeEventListener('touchmove', onTouchMove)
+        hero.removeEventListener('touchend', onTouchEnd)
+        hero.removeEventListener('touchcancel', onTouchEnd)
+      }
+    }
+
+    // ── 데스크탑: 휠로 슬라이드 전환, 마지막 슬라이드 이후 다음 섹션으로 스크롤 ──
+    const desktop = document.getElementById('home-desktop')
     let resumeTimer: number | undefined
 
     const pauseAuto = () => {
@@ -92,7 +138,6 @@ export function useHeroScrollControls({
     }
 
     const onWheel = (event: WheelEvent) => {
-      if (isMobile) return
       if (!desktop || desktop.scrollTop > HERO_TOP_TOLERANCE) return
       const direction = getDirection(event.deltaY)
       if (direction === 0) return
@@ -115,38 +160,12 @@ export function useHeroScrollControls({
       moveSlide(direction)
     }
 
-    let mobileScrollRaf = 0
-    const syncMobileSlide = () => {
-      mobileScrollRaf = 0
-      if (!isMobile || !hero) return
-
-      const rect = hero.getBoundingClientRect()
-      const isInHeroRange = rect.bottom > 0 && rect.top <= 0
-      isPausedRef.current = isInHeroRange
-      if (!isInHeroRange) return
-
-      const next = getMobileSlideIndex(hero, slidesRef.current.length)
-      if (next !== currentRef.current) actionsRef.current.goTo(next)
-      isPausedRef.current = true
-    }
-
-    const onMobileScroll = () => {
-      if (!isMobile || mobileScrollRaf) return
-      mobileScrollRaf = window.requestAnimationFrame(syncMobileSlide)
-    }
-
     desktop?.addEventListener('wheel', onWheel, { passive: false })
     window.addEventListener('wheel', onWheel, { passive: false })
-    window.addEventListener('scroll', onMobileScroll, { passive: true })
-    window.addEventListener('resize', onMobileScroll, { passive: true })
-    syncMobileSlide()
 
     return () => {
       desktop?.removeEventListener('wheel', onWheel)
       window.removeEventListener('wheel', onWheel)
-      window.removeEventListener('scroll', onMobileScroll)
-      window.removeEventListener('resize', onMobileScroll)
-      if (mobileScrollRaf) window.cancelAnimationFrame(mobileScrollRaf)
       if (resumeTimer) window.clearTimeout(resumeTimer)
     }
   }, [

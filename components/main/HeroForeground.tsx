@@ -18,31 +18,31 @@ const HERO_COPY: readonly HeroCopy[] = [
   {
     eyebrow: 'SEOUL EGUN DENTAL CLINIC',
     title: ['처음 상담부터', '차분히 설명합니다'],
-    description: '현재 상태를 함께 확인하고 필요한 치료 방향을 알기 쉽게 안내합니다.',
+    description: '현재 상태를 함께 확인하고 필요한\n치료 방향을 알기 쉽게 안내합니다.',
     points: ['정확한 진단', '충분한 설명', '부담 없는 상담'],
   },
   {
     eyebrow: 'DIGITAL EXPLANATION',
     title: ['보이는 자료로', '이해를 돕습니다'],
-    description: '구강 사진과 디지털 자료를 보며 치료 과정을 천천히 설명합니다.',
+    description: '구강 사진과 디지털 자료를 보며\n치료 과정을 천천히 설명합니다.',
     points: ['치료 전 안내', '원장 직접 설명', '이해에서 시작'],
   },
   {
     eyebrow: 'NATURAL TOOTH CARE',
     title: ['가능한 경우', '자연치아 보존을 먼저'],
-    description: '치아를 오래 사용할 수 있는 방향을 우선 검토하고 필요한 치료를 제안합니다.',
+    description: '치아를 오래 사용할 수 있는 방향을\n우선 검토하고 필요한 치료를 제안합니다.',
     points: ['보존 중심', '필요한 치료만', '정직한 계획'],
   },
   {
     eyebrow: 'ORTHODONTIC CARE',
-    title: ['치열과 교합까지', '함께 살핍니다'],
-    description: '웃는 모습과 생활 습관까지 고려해 교정 상담 방향을 안내합니다.',
+    title: ['더 나은 진료를 위해', '오늘도 공부합니다'],
+    description: '정확한 판단과 세심한 치료를 위해\n원장님이 직접 공부하고 고민하며 진료합니다.',
     points: ['교정 상담', '생활까지 고려', '차분한 계획'],
   },
   {
     eyebrow: 'COMFORT CARE',
     title: ['편안한 진료를 위해', '불안을 줄입니다'],
-    description: '통증과 수술 걱정이 큰 분도 충분히 설명을 듣고 결정할 수 있습니다.',
+    description: '통증과 수술 걱정이 큰 분도\n충분히 설명을 듣고 결정할 수 있습니다.',
     points: ['불안감 배려', '진정치료 상담', '개인별 안내'],
   },
   {
@@ -88,7 +88,9 @@ export default function HeroForeground({
 
             <div key={`desktop-copy-${current}`}>
               <h2
-                className="mt-5 break-keep text-[46px] font-extrabold leading-[1.16] tracking-normal lg:text-[54px] xl:text-[62px] 2xl:text-[68px]"
+                className={`mt-5 break-keep text-[46px] font-extrabold tracking-normal lg:text-[54px] xl:text-[62px] 2xl:text-[68px] ${
+                  showConsultActions ? 'leading-[0.95]' : 'leading-[1.16]'
+                }`}
                 style={{ textShadow: '0 3px 22px rgba(0,0,0,0.6)' }}
               >
                 {copy.title.map((line, index) => (
@@ -111,23 +113,6 @@ export default function HeroForeground({
               >
                 {copy.description}
               </p>
-
-              {!showConsultActions && (
-                <div
-                  className="mx-auto mt-5 flex max-w-[820px] flex-wrap justify-center gap-x-4 gap-y-2 text-[22px] font-semibold leading-relaxed text-white/82 lg:text-[24px]"
-                  style={{ textShadow: '0 2px 14px rgba(0,0,0,0.52)' }}
-                >
-                  {copy.points.map((line, index) => (
-                    <span
-                      key={line}
-                      className="hero-sequence break-keep"
-                      style={{ animationDelay: `${820 + index * 110}ms` }}
-                    >
-                      {line}
-                    </span>
-                  ))}
-                </div>
-              )}
 
               {showConsultActions && (
                 <>
@@ -181,10 +166,10 @@ export default function HeroForeground({
 
       <div className="absolute inset-0 z-20 flex items-center justify-center px-6 pointer-events-none md:hidden">
         <div
-          className="text-center text-white"
+          className="text-center text-white translate-y-[80px]"
           style={{ textShadow: '0 2px 16px rgba(0,0,0,0.55)' }}
         >
-          <p className="mb-6 text-[19px] font-semibold tracking-normal text-white/75 sm:mb-8">
+          <p className="mb-6 text-[18px] font-semibold tracking-normal text-white/75 sm:mb-8">
             <span className="block text-[var(--e-primary)]">SEOUL EGUN</span>
             <span
               key={`mobile-eyebrow-${current}`}
@@ -198,31 +183,23 @@ export default function HeroForeground({
             {copy.title.map((line, index) => (
               <p
                 key={line}
-                className="hero-sequence break-keep text-[32px] font-extrabold leading-[1.23] sm:text-[36px]"
-                style={{ animationDelay: `${220 + index * 140}ms` }}
+                className={`hero-sequence break-keep text-[31px] font-extrabold sm:text-[35px] ${
+                  showConsultActions ? 'leading-[1.15]' : 'leading-[1.05]'
+                }`}
+                style={{
+                  animationDelay: `${220 + index * 140}ms`,
+                  lineHeight: showConsultActions ? 1.15 : 1.05,
+                }}
               >
                 {line}
               </p>
             ))}
             <p
-              className="hero-sequence mx-auto mt-5 max-w-[330px] break-keep text-[19px] font-medium leading-[1.58] text-white/84"
+              className="hero-sequence mx-auto mt-5 max-w-[330px] whitespace-pre-line break-keep text-[18px] font-medium leading-[1.58] text-white/84"
               style={{ animationDelay: '560ms' }}
             >
               {copy.description}
             </p>
-            {!showConsultActions && (
-              <div className="mx-auto mt-5 flex max-w-[340px] flex-wrap justify-center gap-x-3 gap-y-1 text-[21px] font-semibold text-white/78">
-                {copy.points.map((line, index) => (
-                  <span
-                    key={line}
-                    className="hero-sequence break-keep"
-                    style={{ animationDelay: `${760 + index * 110}ms` }}
-                  >
-                    {line}
-                  </span>
-                ))}
-              </div>
-            )}
             {showConsultActions && (
               <div
                 className="hero-sequence pointer-events-auto mx-auto mt-6 flex max-w-[310px] items-center justify-center gap-2"
@@ -231,7 +208,7 @@ export default function HeroForeground({
                 <button
                   type="button"
                   onClick={onConsultClick}
-                  className="inline-flex min-h-[48px] flex-1 items-center justify-center gap-1.5 rounded-md bg-[var(--e-primary)] px-4 py-3 text-[18px] font-semibold text-white shadow-[0_12px_26px_rgba(0,128,200,0.34)] transition-all duration-200 active:translate-y-px"
+                  className="inline-flex min-h-[48px] flex-1 items-center justify-center gap-1.5 rounded-md bg-[var(--e-primary)] px-4 py-3 text-[17px] font-semibold text-white shadow-[0_12px_26px_rgba(0,128,200,0.34)] transition-all duration-200 active:translate-y-px"
                 >
                   상담 신청
                   <ArrowRight size={18} aria-hidden="true" />

@@ -53,7 +53,7 @@ export default function TreatmentPage({
       {extraSection}
       <BoardAnchorNav items={navItems} />
 
-      <div className={`max-w-5xl mx-auto ${frostedContent ? 'bg-white/70 backdrop-blur-md rounded-2xl my-6 px-5 sm:px-8' : 'px-4 sm:px-6 lg:px-0'}`}>
+      <div className={`max-w-5xl mx-auto break-keep ${frostedContent ? 'bg-white/70 backdrop-blur-md rounded-2xl my-6 px-5 sm:px-8' : 'px-4 sm:px-6 lg:px-0'}`}>
         {treatments.map((treatment, index) => (
           <section
             key={treatment.treatmentType}

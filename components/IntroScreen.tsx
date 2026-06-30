@@ -47,6 +47,8 @@ export default function IntroScreen() {
   const closingRef = useRef(false);
   const restoreScrollRef = useRef<() => void>(() => {});
   const removeListenersRef = useRef<() => void>(() => {});
+  const teardownRef = useRef<() => void>(() => {});
+  const closeTimerRef = useRef<number | null>(null);
 
   // 이미 본 인트로면(같은 세션) 페인트 전에 즉시 숨김 → 페이지 복귀 시 재생/깜빡임 방지
   useIsoLayoutEffect(() => {
@@ -59,16 +61,21 @@ export default function IntroScreen() {
     // 더 이상 스크롤을 가로채지 않도록 리스너 즉시 제거 (해제 후 스크롤 정상화)
     removeListenersRef.current();
     setFadeOut(true);
-    window.setTimeout(() => {
+    closeTimerRef.current = window.setTimeout(() => {
       restoreScrollRef.current();
       setVisible(false);
     }, 800);
   }, []);
 
-  useEffect(() => {
-    // 이미 본 인트로면 잠금/리스너 설정 없이 종료
-    if (hasSeenIntro()) return;
-    markIntroSeen();
+  // 인트로 재생: 스크롤 잠금 + 해제 제스처 리스너 + 자동 해제 타이머 설정
+  const runIntro = useCallback(() => {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+    closingRef.current = false;
+    setFadeOut(false);
+    setVisible(true);
 
     const html = document.documentElement;
     const body = document.body;
@@ -107,12 +114,31 @@ export default function IntroScreen() {
     // 입력이 없으면 3초 후 자동 해제
     const timer = window.setTimeout(handleClose, 3000);
 
-    return () => {
+    teardownRef.current = () => {
       removeListenersRef.current();
       clearTimeout(timer);
       restoreScrollRef.current();
     };
   }, [handleClose]);
+
+  // 최초 진입: 아직 안 본 세션이면 인트로 재생
+  useEffect(() => {
+    if (hasSeenIntro()) return;
+    markIntroSeen();
+    runIntro();
+    return () => teardownRef.current();
+  }, [runIntro]);
+
+  // 로고 클릭 등으로 온보딩 재생 요청(egun:intro-replay) 시 다시 표시
+  useEffect(() => {
+    const replay = () => {
+      teardownRef.current();
+      markIntroSeen();
+      runIntro();
+    };
+    window.addEventListener('egun:intro-replay', replay);
+    return () => window.removeEventListener('egun:intro-replay', replay);
+  }, [runIntro]);
 
   if (!visible) return null;
 

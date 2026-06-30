@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useId, useRef, useState, type CSSProperties } from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
 import HeroForeground from './HeroForeground'
 import { HeroSlideMedia } from './HeroSlideMedia'
 import { HeroSliderIndicators } from './HeroSliderIndicators'
@@ -15,11 +15,16 @@ import {
 } from './heroSlides'
 import { useHeroScrollControls } from './useHeroScrollControls'
 
+// 모바일 영상 슬라이드 자동재생이 막힌 인앱 브라우저 대비 강제 전환 한계 시간
+const VIDEO_FALLBACK_MS = 14000
+
 export default function HeroSlider() {
   const [current,  setCurrent]  = useState(0)
   const [progress, setProgress] = useState(0)
 
   const [isMobile, setIsMobile] = useState(false)
+  const [heroInView, setHeroInView] = useState(true)
+  const [mobileVh, setMobileVh] = useState<number | null>(null)
   const heroDomId = useId()
 
   const startTimeRef     = useRef<number>(Date.now())
@@ -31,6 +36,8 @@ export default function HeroSlider() {
   const videoAdvancedRef = useRef(false)
   const nextSectionTimerRef = useRef<number | null>(null)
   const nextSectionScrollRef = useRef(false)
+  const prevRef          = useRef(-1)
+  const lastCurrentRef   = useRef(0)
 
   const slidesRef = useRef<readonly HeroSlide[]>(WEB_SLIDES)
 
@@ -52,6 +59,16 @@ export default function HeroSlider() {
     startTimeRef.current = Date.now()
     videoAdvancedRef.current = false
     nextSectionScrollRef.current = false
+    // 캐러셀로 점프 시 대상 이미지 팬을 처음(오른쪽)부터 다시 시작
+    if (isMobile) {
+      window.requestAnimationFrame(() => {
+        const el = sectionRef.current?.querySelector<HTMLElement>('.mobile-pan-' + index)
+        if (!el) return
+        el.style.animation = 'none'
+        void el.offsetHeight
+        el.style.animation = ''
+      })
+    }
     const targetSlide = slidesRef.current[index]
     if (targetSlide?.isVideo) {
       window.requestAnimationFrame(() => {
@@ -68,23 +85,6 @@ export default function HeroSlider() {
     window.dispatchEvent(new Event('egun:open-consult'))
   }
 
-  const scrollToMobileSlide = (index: number) => {
-    const hero = sectionRef.current
-    if (!isMobile || !hero) return
-
-    const viewportHeight = window.innerHeight || hero.clientHeight
-    const scrollableDistance = Math.max(0, hero.offsetHeight - viewportHeight)
-    const segment = scrollableDistance / Math.max(1, slidesRef.current.length)
-    const top = hero.getBoundingClientRect().top + window.scrollY + segment * index
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    window.scrollTo({ top, behavior: reduceMotion ? 'auto' : 'smooth' })
-  }
-
-  const goToFromIndicator = (index: number) => {
-    goTo(index)
-    scrollToMobileSlide(index)
-  }
-
   const scrollPastLastSlide = () => {
     if (nextSectionScrollRef.current) return
     nextSectionScrollRef.current = true
@@ -98,12 +98,20 @@ export default function HeroSlider() {
     if (videoAdvancedRef.current) return
     videoAdvancedRef.current = true
     const last = slidesRef.current.length - 1
-    if (currentRef.current >= last) {
-      if (isMobile) return
+    // 데스크탑은 마지막 슬라이드 영상 종료 후 다음 섹션으로, 모바일은 처음으로 순환
+    if (!isMobile && currentRef.current >= last) {
       scrollPastLastSlide()
       return
     }
-    advanceFrom(currentRef.current)
+    const idx = currentRef.current
+    const hold = slidesRef.current[idx]?.endHoldMs ?? 0
+    if (isMobile && hold > 0) {
+      window.setTimeout(() => {
+        if (currentRef.current === idx) advanceFrom(idx)
+      }, hold)
+      return
+    }
+    advanceFrom(idx)
   }
 
   useEffect(() => {
@@ -121,6 +129,29 @@ export default function HeroSlider() {
     return () => mq.removeEventListener('change', update)
   }, [])
 
+  // 모바일 히어로 높이 고정: 주소창/하단바 토글(세로 변화)은 무시, 회전(가로 변화) 시에만 갱신
+  // → 카카오톡 등 인앱 브라우저에서 슬라이드 중 화면 리사이즈로 미디어가 커졌다 줄어드는 현상 방지
+  useEffect(() => {
+    if (!isMobile) {
+      setMobileVh(null)
+      return undefined
+    }
+    let lastWidth = window.innerWidth
+    setMobileVh(window.innerHeight)
+    const onResize = () => {
+      if (window.innerWidth !== lastWidth) {
+        lastWidth = window.innerWidth
+        setMobileVh(window.innerHeight)
+      }
+    }
+    window.addEventListener('resize', onResize)
+    window.addEventListener('orientationchange', onResize)
+    return () => {
+      window.removeEventListener('resize', onResize)
+      window.removeEventListener('orientationchange', onResize)
+    }
+  }, [isMobile])
+
   // 플랫폼 전환 시 슬라이드 셋 교체 + 첫 슬라이드로 리셋
   useEffect(() => {
     slidesRef.current = isMobile ? MOBILE_SLIDES : WEB_SLIDES
@@ -132,11 +163,14 @@ export default function HeroSlider() {
     nextSectionScrollRef.current = false
   }, [isMobile])
 
+  // 데스크탑: 마지막 이미지 슬라이드 후 일정 시간 뒤 다음 섹션으로 스크롤
   useEffect(() => {
     if (nextSectionTimerRef.current !== null) {
       window.clearTimeout(nextSectionTimerRef.current)
       nextSectionTimerRef.current = null
     }
+
+    if (isMobile) return undefined
 
     const last = slidesRef.current.length - 1
     const activeSlide = slidesRef.current[current]
@@ -162,7 +196,7 @@ export default function HeroSlider() {
     }
   }, [current, isMobile])
 
-  // 슬라이드 진행 루프 (모바일은 스크롤 위치로 슬라이드를 구동하므로 불필요)
+  // 데스크탑 슬라이드 진행 루프 (인디케이터 프로그레스 링 + 자동 전환)
   useEffect(() => {
     if (isMobile) return
     const tick = () => {
@@ -201,6 +235,44 @@ export default function HeroSlider() {
     return () => { if (rafRef.current !== null) cancelAnimationFrame(rafRef.current) }
   }, [isMobile])
 
+  // 모바일: 자동재생. 이미지=인터벌, 영상=onEnded(자동재생 차단 인앱 브라우저 대비 폴백 타이머).
+  // window 스크롤과 무관하며, 히어로가 화면 밖이면 일시정지.
+  useEffect(() => {
+    if (!isMobile || !heroInView) return undefined
+    const activeSlide = slidesRef.current[current]
+    if (!activeSlide) return undefined
+    const duration = activeSlide.isVideo
+      ? VIDEO_FALLBACK_MS
+      : (activeSlide.interval ?? IMAGE_INTERVAL)
+    const id = window.setTimeout(() => {
+      advanceFrom(currentRef.current)
+    }, duration)
+    return () => window.clearTimeout(id)
+  }, [current, isMobile, heroInView])
+
+  // 모바일: 히어로 가시성 추적 (화면 밖이면 자동재생 정지)
+  useEffect(() => {
+    if (!isMobile) return undefined
+    const hero = sectionRef.current
+    if (!hero) return undefined
+    const io = new IntersectionObserver(
+      ([entry]) => setHeroInView(entry?.isIntersecting ?? true),
+      { threshold: 0.35 },
+    )
+    io.observe(hero)
+    return () => io.disconnect()
+  }, [isMobile])
+
+  // 슬라이드 변경 시 활성 영상 재생 (영상 슬라이드를 항상 마운트하므로 명시적 재생 필요)
+  useEffect(() => {
+    const activeSlide = slidesRef.current[current]
+    const video = videoRef.current
+    if (!activeSlide?.isVideo || !video) return
+    video.currentTime = 0
+    video.playbackRate = getVideoPlaybackRate(activeSlide)
+    void video.play().catch(() => undefined)
+  }, [current])
+
   useHeroScrollControls({
     currentRef,
     goTo,
@@ -214,45 +286,42 @@ export default function HeroSlider() {
 
   const slides = isMobile ? MOBILE_SLIDES : WEB_SLIDES
   const slide  = slides[current] ?? slides[0]
-  const mobileScrollStyle: CSSProperties | undefined = isMobile
-    ? { height: `${(slides.length + 1) * 100}dvh` }
-    : undefined
-  const mobileViewportStyle: CSSProperties | undefined = isMobile
-    ? { height: '100dvh' }
-    : undefined
+
+  // 직전 슬라이드 인덱스를 렌더 중 동기적으로 추적 (크로스페이드 시 배경 노출 방지용)
+  if (lastCurrentRef.current !== current) {
+    prevRef.current = lastCurrentRef.current
+    lastCurrentRef.current = current
+  }
+  const prev = prevRef.current
 
   return (
     <section
       id={`main-hero-${heroDomId.replace(/:/g, '')}`}
       ref={sectionRef}
-      className="relative h-screen md:h-screen"
-      style={mobileScrollStyle}
+      className={`relative w-full overflow-hidden h-svh md:h-screen ${slide.isVideo ? 'bg-black' : 'bg-white'}`}
+      style={isMobile && mobileVh ? { height: `${mobileVh}px` } : undefined}
     >
-      <div
-        className={`sticky top-0 h-screen w-full overflow-hidden md:static md:h-full relative ${slide.isVideo ? 'bg-black' : 'bg-white'}`}
-        style={mobileViewportStyle}
-      >
-        <HeroSlideMedia
-          slides={slides}
-          slide={slide}
-          current={current}
-          isMobile={isMobile}
-          videoRef={videoRef}
-          onVideoEnded={handleVideoEnded}
-        />
+      <HeroSlideMedia
+        slides={slides}
+        slide={slide}
+        current={current}
+        prev={prev}
+        isMobile={isMobile}
+        videoRef={videoRef}
+        onVideoEnded={handleVideoEnded}
+      />
 
-        <HeroForeground
-          current={current}
-          onConsultClick={openConsult}
-        />
+      <HeroForeground
+        current={current}
+        onConsultClick={openConsult}
+      />
 
-        <HeroSliderIndicators
-          slides={slides}
-          current={current}
-          progress={progress}
-          onGoTo={goToFromIndicator}
-        />
-      </div>
+      <HeroSliderIndicators
+        slides={slides}
+        current={current}
+        progress={progress}
+        onGoTo={goTo}
+      />
     </section>
   )
 }

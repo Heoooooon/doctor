@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import AnchorNav from '@/components/about/AnchorNav'
-import AboutScrollSnap from '@/components/about/AboutScrollSnap'
 import PhilosophySection from '@/components/about/PhilosophySection'
 import DoctorProfileSection from '@/components/about/DoctorProfileSection'
 import ScheduleSection from '@/components/about/ScheduleSection'
@@ -23,8 +22,6 @@ export default function AboutPage() {
     <div className="about-page">
       {/* SEO h1 */}
       <h1 className="sr-only">서울이건치과 소개</h1>
-
-      <AboutScrollSnap />
 
       {/* 앵커 내비게이션 (sticky) */}
       <AnchorNav />

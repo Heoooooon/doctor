@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>서울이건치과 · 메인 키워드 캐러셀 기획안</title>
+<style>
+  :root{
+    --bg:#F8F7F9; --navy:#2B2D42; --cta:#0080C8; --accent:#38b6ff;
+    --line:#e4e3e8; --muted:#6b6c7e; --card:#fff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:"Pretendard","Pretendard Variable",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Segoe UI",Roboto,"Noto Sans KR",sans-serif;
+    background:var(--bg); color:var(--navy); line-height:1.65; padding:40px 20px;
+  }
+  .wrap{max-width:960px;margin:0 auto}
+  header.doc{background:var(--navy);color:#fff;border-radius:18px;padding:36px 38px;margin-bottom:30px}
+  header.doc .kicker{font-size:14px;letter-spacing:.18em;color:#9fb8ff;text-transform:uppercase}
+  header.doc h1{font-size:27px;font-weight:800;margin:8px 0 6px}
+  header.doc p{font-size:15px;color:#cfd2e6}
+  section.block{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px 30px;margin-bottom:22px}
+  h2{font-size:20px;font-weight:800;margin-bottom:6px;display:flex;align-items:center;gap:10px}
+  h2 .n{display:inline-flex;width:28px;height:28px;border-radius:8px;background:var(--cta);color:#fff;font-size:15px;align-items:center;justify-content:center;flex:0 0 auto}
+  .lead{color:var(--muted);font-size:14.5px;margin-bottom:18px}
+  table{width:100%;border-collapse:collapse;margin-top:8px;font-size:14.5px}
+  th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:#f4f6fb;font-weight:700;font-size:13.5px;color:#3a3b4d}
+  td .kw{font-weight:800;color:var(--navy)}
+  td .menu{display:inline-block;background:#eef4ff;color:#2952b3;font-weight:700;font-size:13px;padding:2px 9px;border-radius:7px}
+  td code{background:#f4f4f7;border:1px solid var(--line);border-radius:6px;padding:1px 6px;font-family:Menlo,Consolas,monospace;font-size:12.5px}
+  /* 캐러셀 목업 */
+  .mock-wrap{margin-top:6px;padding:26px 18px;background:#0f1216;border-radius:16px;overflow:hidden}
+  .mock-title{text-align:center;color:#fff;margin-bottom:20px}
+  .mock-title .ey{font-size:12px;letter-spacing:.3em;color:var(--accent);text-transform:uppercase}
+  .mock-title .h{font-size:22px;font-weight:800;margin-top:4px}
+  .strip{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+  .ccard{
+    position:relative;width:170px;height:230px;border-radius:18px;overflow:hidden;
+    box-shadow:0 16px 40px rgba(0,0,0,.35);display:flex;align-items:flex-end;
+  }
+  .ccard .ph{position:absolute;inset:0;background-size:cover;background-position:center}
+  .ccard .grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.78) 0%,rgba(0,0,0,.12) 60%,transparent 100%)}
+  .ccard .txt{position:relative;padding:16px;color:#fff;z-index:2}
+  .ccard .txt .eg{font-size:10px;letter-spacing:.18em;text-transform:uppercase;opacity:.7}
+  .ccard .txt .kw{font-size:19px;font-weight:800;margin-top:2px}
+  .ccard .txt .go{display:inline-flex;align-items:center;gap:5px;margin-top:9px;font-size:11px;font-weight:700;background:var(--cta);padding:5px 12px;border-radius:999px}
+  .c0 .ph{background:linear-gradient(135deg,#2b3a55,#4a6890)}
+  .c1 .ph{background:linear-gradient(135deg,#37506b,#5b86b0)}
+  .c2 .ph{background:linear-gradient(135deg,#27506b,#3f86a8)}
+  .c3 .ph{background:linear-gradient(135deg,#2563A8,#5aa0e0)}
+  .c4 .ph{background:linear-gradient(135deg,#1f4f8a,#3b7dd8)}
+  .note{margin-top:16px;padding:13px 16px;border-radius:10px;background:#fff8e6;border:1px solid #f0e0a8;font-size:13.5px;color:#7a5c12}
+  .note b{color:#9a6b00}
+  ul.clean{margin:6px 0 0 2px;list-style:none}
+  ul.clean li{position:relative;padding-left:18px;margin-bottom:7px;font-size:14.5px}
+  ul.clean li::before{content:"";position:absolute;left:0;top:9px;width:7px;height:7px;border-radius:50%;background:var(--cta)}
+  .decide{background:#eef4ff;border:1px solid #c9dbff}
+  .decide h2 .n{background:#2952b3}
+  .q{margin-bottom:14px}
+  .q .qt{font-weight:700;font-size:15px;margin-bottom:4px}
+  .q .qo{font-size:14px;color:#3a3b4d}
+  footer.doc{text-align:center;color:var(--muted);font-size:12.5px;margin-top:24px}
+  @media print{body{background:#fff;padding:0}section.block,header.doc{break-inside:avoid}}
+  @media(max-width:640px){body{padding:20px 12px}header.doc,section.block{padding:22px 18px}.ccard{width:46%;height:200px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="doc">
+    <div class="kicker">서울이건치과 · 메인 페이지 기획안</div>
+    <h1>지역·진료 키워드 캐러셀 제안</h1>
+    <p>메인 화면에 5개 핵심 키워드를 이미지 카드로 노출하고, 각 카드를 알맞은 메뉴로 연결합니다.</p>
+  </header>
+
+  <!-- 1 -->
+  <section class="block">
+    <h2><span class="n">1</span> 무엇을 만드나요</h2>
+    <p class="lead">아래 5개 키워드를 한 줄의 이미지 카드(캐러셀)로 보여드립니다. 클릭하면 키워드에 맞는 안내 페이지로 이동합니다.</p>
+    <div class="strip" style="gap:10px;flex-wrap:wrap">
+      <span style="background:#eef4ff;color:#2952b3;font-weight:800;padding:8px 16px;border-radius:999px">수원치과</span>
+      <span style="background:#eef4ff;color:#2952b3;font-weight:800;padding:8px 16px;border-radius:999px">영통치과</span>
+      <span style="background:#eef4ff;color:#2952b3;font-weight:800;padding:8px 16px;border-radius:999px">매탄동치과</span>
+      <span style="background:#eef4ff;color:#2952b3;font-weight:800;padding:8px 16px;border-radius:999px">수원교정치과</span>
+      <span style="background:#eef4ff;color:#2952b3;font-weight:800;padding:8px 16px;border-radius:999px">수원임플란트</span>
+    </div>
+  </section>
+
+  <!-- 2: 미리보기 -->
+  <section class="block">
+    <h2><span class="n">2</span> 디자인 미리보기 <span style="font-size:13px;font-weight:500;color:var(--muted)">(실제 사진 적용 전 시안)</span></h2>
+    <p class="lead">각 카드는 사진 위에 키워드 텍스트가 얹히고, 하단에 "자세히 보기" 버튼이 들어갑니다. 데스크톱은 가운데 카드가 커지는 입체형, 모바일은 좌우로 넘기는 형태입니다.</p>
+    <div class="mock-wrap">
+      <div class="mock-title">
+        <div class="ey">Seoul Egun Dental</div>
+        <div class="h">수원 영통, 가까운 치과를 찾으세요</div>
+      </div>
+      <div class="strip">
+        <div class="ccard c0"><div class="ph"></div><div class="grad"></div><div class="txt"><div class="eg">Seoul Egun</div><div class="kw">수원치과</div><div class="go">자세히 보기 →</div></div></div>
+        <div class="ccard c1"><div class="ph"></div><div class="grad"></div><div class="txt"><div class="eg">Seoul Egun</div><div class="kw">영통치과</div><div class="go">자세히 보기 →</div></div></div>
+        <div class="ccard c2"><div class="ph"></div><div class="grad"></div><div class="txt"><div class="eg">Seoul Egun</div><div class="kw">매탄동치과</div><div class="go">자세히 보기 →</div></div></div>
+        <div class="ccard c3"><div class="ph"></div><div class="grad"></div><div class="txt"><div class="eg">Seoul Egun</div><div class="kw">수원교정치과</div><div class="go">자세히 보기 →</div></div></div>
+        <div class="ccard c4"><div class="ph"></div><div class="grad"></div><div class="txt"><div class="eg">Seoul Egun</div><div class="kw">수원임플란트</div><div class="go">자세히 보기 →</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3: 매핑 -->
+  <section class="block">
+    <h2><span class="n">3</span> 키워드별 연결 메뉴 · 이미지</h2>
+    <p class="lead">각 키워드를 가장 적합한 안내 페이지로 연결하고, 그에 맞는 사진을 사용합니다.</p>
+    <table>
+      <thead><tr><th style="width:18%">키워드</th><th style="width:22%">연결 메뉴</th><th>사용 이미지(안)</th></tr></thead>
+      <tbody>
+        <tr><td><span class="kw">수원치과</span></td><td><span class="menu">병원소개 /about</span></td><td>병원 외관 <code>egun-outerior.jpg</code></td></tr>
+        <tr><td><span class="kw">영통치과</span></td><td><span class="menu">병원소개 /about</span></td><td>진료실 내부 <code>clinic 인테리어</code></td></tr>
+        <tr><td><span class="kw">매탄동치과</span></td><td><span class="menu">오시는 길 /location</span></td><td>위치 지도 <code>map.png</code></td></tr>
+        <tr><td><span class="kw">수원교정치과</span></td><td><span class="menu">교정치과 /orthodontics</span></td><td>교정 진료 <code>orthodontics/ortho.jpg</code></td></tr>
+        <tr><td><span class="kw">수원임플란트</span></td><td><span class="menu">임플란트 /implant</span></td><td>네비게이션 임플란트 <code>implant/navigation.jpg</code></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 4: SEO -->
+  <section class="block">
+    <h2><span class="n">4</span> 검색 노출(SEO) 고려</h2>
+    <ul class="clean">
+      <li>키워드 글자는 <b>이미지에 그려 넣지 않고</b>, 사진 위에 실제 텍스트로 얹습니다. → 네이버·구글이 글자를 읽어 검색 노출에 유리합니다.</li>
+      <li>모든 사진에 한국어 대체텍스트(alt)를 키워드 포함해 작성합니다. (예: "수원 네비게이션 임플란트 안내")</li>
+      <li>SEO 가이드의 핵심 키워드(수원 임플란트 · 수원 교정치과 · 수원 영통 치과 · 수원 소아치과)와 정렬됩니다.</li>
+      <li>의료법 준수: 치료 결과 보장·최상급 표현은 사용하지 않습니다.</li>
+    </ul>
+  </section>
+
+  <!-- 5: 결정 필요 -->
+  <section class="block decide">
+    <h2><span class="n">?</span> 확인 부탁드립니다</h2>
+    <p class="lead">아래만 정해주시면 바로 적용해 드리겠습니다.</p>
+
+    <div class="q">
+      <div class="qt">① "영통치과 / 매탄동치과" 연결 위치</div>
+      <div class="qo">두 키워드는 지역 키워드라 진료 페이지가 따로 없습니다. 기본안은 <b>영통치과 → 병원소개</b>, <b>매탄동치과 → 오시는 길</b>입니다. 다른 페이지를 원하시면 알려주세요.</div>
+    </div>
+
+    <div class="q">
+      <div class="qt">② "매탄동치과" 대신 "수원소아치과"로 교체할까요?</div>
+      <div class="qo">SEO 핵심 키워드에는 <b>수원 소아치과</b>가 포함되어 있습니다. 매탄동치과 대신 수원소아치과(→ 소아치과 /pediatric)를 넣으면 검색 타겟이 더 강해집니다. (현재 5개 그대로 갈지 / 교체할지)</div>
+    </div>
+
+    <div class="q">
+      <div class="qt">③ 노출 위치</div>
+      <div class="qo">메인 페이지의 어느 위치에 배치할지(예: 첫 화면 아래 / 진료분야 섹션 근처). 지정 없으면 진료 안내 흐름에 맞춰 배치합니다.</div>
+    </div>
+
+    <div class="q">
+      <div class="qt">④ 사진</div>
+      <div class="qo">위 "사용 이미지(안)"은 현재 보유 사진 기준입니다. 키워드별 전용 사진을 따로 주시면 교체해 드립니다.</div>
+    </div>
+  </section>
+
+  <footer class="doc">서울이건치과 메인 캐러셀 기획안 · 2026-06-30 · 시안(미리보기)은 실제 사진 적용 전 디자인 참고용입니다.</footer>
+
+</div>
+</body>
+</html>
