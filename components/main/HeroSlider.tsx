@@ -1,10 +1,10 @@
 'use client'
 
-import { useEffect, useId, useRef, useState } from 'react'
+import { useEffect, useId, useRef, useState, type CSSProperties } from 'react'
 import HeroForeground from './HeroForeground'
 import { HeroSlideMedia } from './HeroSlideMedia'
 import { HeroSliderIndicators } from './HeroSliderIndicators'
-import { isMobileHeroViewport, scrollHeroToNextLayout } from './heroScroll'
+import { scrollHeroToNextLayout } from './heroScroll'
 import {
   IMAGE_INTERVAL,
   LAST_SLIDE_SCROLL_DELAY,
@@ -13,6 +13,7 @@ import {
   getVideoPlaybackRate,
   type HeroSlide,
 } from './heroSlides'
+import { useHeroScrollControls } from './useHeroScrollControls'
 
 export default function HeroSlider() {
   const [current,  setCurrent]  = useState(0)
@@ -67,12 +68,24 @@ export default function HeroSlider() {
     window.dispatchEvent(new Event('egun:open-consult'))
   }
 
-  const scrollPastLastSlide = () => {
-    if (isMobileHeroViewport()) {
-      advanceFrom(currentRef.current)
-      return
-    }
+  const scrollToMobileSlide = (index: number) => {
+    const hero = sectionRef.current
+    if (!isMobile || !hero) return
 
+    const viewportHeight = window.innerHeight || hero.clientHeight
+    const scrollableDistance = Math.max(0, hero.offsetHeight - viewportHeight)
+    const segment = scrollableDistance / Math.max(1, slidesRef.current.length - 1)
+    const top = hero.getBoundingClientRect().top + window.scrollY + segment * index
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    window.scrollTo({ top, behavior: reduceMotion ? 'auto' : 'smooth' })
+  }
+
+  const goToFromIndicator = (index: number) => {
+    goTo(index)
+    scrollToMobileSlide(index)
+  }
+
+  const scrollPastLastSlide = () => {
     if (nextSectionScrollRef.current) return
     nextSectionScrollRef.current = true
     isPausedRef.current = true
@@ -81,15 +94,12 @@ export default function HeroSlider() {
     if (hero) scrollHeroToNextLayout(hero)
   }
 
-  // 스크롤/스와이프 핸들러가 최신 goTo를 참조하도록 ref로 보관
-  const goToRef = useRef(goTo)
-  goToRef.current = goTo
-
   const handleVideoEnded = () => {
     if (videoAdvancedRef.current) return
     videoAdvancedRef.current = true
     const last = slidesRef.current.length - 1
     if (currentRef.current >= last) {
+      if (isMobile) return
       scrollPastLastSlide()
       return
     }
@@ -190,92 +200,58 @@ export default function HeroSlider() {
     return () => { if (rafRef.current !== null) cancelAnimationFrame(rafRef.current) }
   }, [])
 
-  useEffect(() => {
-    const desktop = document.getElementById('home-desktop')
-    let resumeTimer: number | undefined
-
-    const pauseAuto = () => {
-      isPausedRef.current = true
-      if (resumeTimer) window.clearTimeout(resumeTimer)
-      resumeTimer = window.setTimeout(() => {
-        isPausedRef.current = false
-        startTimeRef.current = Date.now()
-      }, 1600)
-    }
-
-    // 경계가 아니면 가로채야 하는지 판정
-    const shouldHijack = (dir: number) => {
-      const last = slidesRef.current.length - 1
-      const cur = currentRef.current
-      if (dir > 0 && cur >= last) return false // 마지막 → 다음 섹션
-      if (dir < 0 && cur <= 0) return false    // 첫 슬라이드 위로 → 그대로
-      return true
-    }
-
-    // 데스크탑: wheel
-    let wheelLock = false
-    const onWheel = (e: WheelEvent) => {
-      if (!desktop || desktop.scrollTop > 8) return
-      const dir = e.deltaY > 0 ? 1 : e.deltaY < 0 ? -1 : 0
-      if (dir === 0) return
-      if (!shouldHijack(dir)) {
-        const last = slidesRef.current.length - 1
-        if (dir > 0 && currentRef.current >= last) {
-          e.preventDefault()
-          if (wheelLock || Math.abs(e.deltaY) < 6) return
-          wheelLock = true
-          scrollPastLastSlide()
-          window.setTimeout(() => { wheelLock = false }, 720)
-        }
-        return
-      }
-      e.preventDefault()
-      if (wheelLock || Math.abs(e.deltaY) < 6) return
-      wheelLock = true
-      pauseAuto()
-      goToRef.current(currentRef.current + dir)
-      window.setTimeout(() => { wheelLock = false }, 720)
-    }
-
-    desktop?.addEventListener('wheel', onWheel, { passive: false })
-    window.addEventListener('wheel', onWheel, { passive: false })
-    return () => {
-      desktop?.removeEventListener('wheel', onWheel)
-      window.removeEventListener('wheel', onWheel)
-      if (resumeTimer) window.clearTimeout(resumeTimer)
-    }
-  }, [isMobile])
+  useHeroScrollControls({
+    currentRef,
+    goTo,
+    isMobile,
+    isPausedRef,
+    scrollPastLastSlide,
+    sectionRef,
+    slidesRef,
+    startTimeRef,
+  })
 
   const slides = isMobile ? MOBILE_SLIDES : WEB_SLIDES
   const slide  = slides[current] ?? slides[0]
+  const mobileScrollStyle: CSSProperties | undefined = isMobile
+    ? { height: `${slides.length * 100}dvh` }
+    : undefined
+  const mobileViewportStyle: CSSProperties | undefined = isMobile
+    ? { height: '100dvh' }
+    : undefined
 
   return (
     <section
       id={`main-hero-${heroDomId.replace(/:/g, '')}`}
       ref={sectionRef}
-      className={`relative h-dvh md:h-screen w-full overflow-hidden ${slide.isVideo ? 'bg-black' : 'bg-white'}`}
+      className="relative h-screen md:h-screen"
+      style={mobileScrollStyle}
     >
-      <HeroSlideMedia
-        slides={slides}
-        slide={slide}
-        current={current}
-        isMobile={isMobile}
-        videoRef={videoRef}
-        onVideoEnded={handleVideoEnded}
-      />
+      <div
+        className={`sticky top-0 h-screen w-full overflow-hidden md:static md:h-full relative ${slide.isVideo ? 'bg-black' : 'bg-white'}`}
+        style={mobileViewportStyle}
+      >
+        <HeroSlideMedia
+          slides={slides}
+          slide={slide}
+          current={current}
+          isMobile={isMobile}
+          videoRef={videoRef}
+          onVideoEnded={handleVideoEnded}
+        />
 
-      <HeroForeground
-        current={current}
-        onConsultClick={openConsult}
-      />
+        <HeroForeground
+          current={current}
+          onConsultClick={openConsult}
+        />
 
-      <HeroSliderIndicators
-        slides={slides}
-        current={current}
-        progress={progress}
-        onGoTo={goTo}
-      />
-
+        <HeroSliderIndicators
+          slides={slides}
+          current={current}
+          progress={progress}
+          onGoTo={goToFromIndicator}
+        />
+      </div>
     </section>
   )
 }
