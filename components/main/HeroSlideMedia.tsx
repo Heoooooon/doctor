@@ -77,6 +77,7 @@ export function HeroSlideMedia({
                     ref={videoRef}
                     key={`hero-video-m-${item.id}`}
                     className="absolute inset-0 w-full h-full object-cover"
+                    style={{ objectPosition: item.mobileObjectPosition }}
                     src={item.image}
                     poster={getVideoPoster(item)}
                     preload="auto"
@@ -102,7 +103,10 @@ export function HeroSlideMedia({
                     playsInline
                     aria-hidden="true"
                     className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out"
-                    style={{ opacity: active ? 1 : 0 }}
+                    style={{
+                      opacity: active ? 1 : 0,
+                      objectPosition: item.mobileObjectPosition,
+                    }}
                   />
                 )
               }
@@ -114,9 +118,12 @@ export function HeroSlideMedia({
                   alt=""
                   aria-hidden="true"
                   className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out ${
-                    active ? `mobile-pan-${index}` : ''
+                    active && !item.mobileObjectPosition ? `mobile-pan-${index}` : ''
                   }`}
-                  style={{ opacity: active ? 1 : 0 }}
+                  style={{
+                    opacity: active ? 1 : 0,
+                    objectPosition: item.mobileObjectPosition,
+                  }}
                 />
               )
             })

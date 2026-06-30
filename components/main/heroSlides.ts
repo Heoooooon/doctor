@@ -4,6 +4,7 @@ export type HeroSlide = {
   readonly isVideo?: boolean
   readonly loopVideo?: boolean
   readonly interval?: number
+  readonly mobileObjectPosition?: string
 }
 
 export const WEB_SLIDES: readonly HeroSlide[] = [
@@ -16,8 +17,8 @@ export const WEB_SLIDES: readonly HeroSlide[] = [
 ]
 
 export const MOBILE_SLIDES: readonly HeroSlide[] = [
-  { id: 2, image: '/images/slides/main-02.mp4', isVideo: true },
-  { id: 3, image: '/images/slides/slide-3.jpg', interval: 3000 },
+  { id: 2, image: '/images/slides/main-02.mp4', isVideo: true, mobileObjectPosition: '30% center' },
+  { id: 3, image: '/images/slides/slide-3.jpg', interval: 3000, mobileObjectPosition: '78% center' },
   { id: 4, image: '/images/slides/slide-4.webp', interval: 3000 },
   { id: 5, image: '/images/slides/slide-5.png', interval: 3000 },
   { id: 6, image: '/images/slides/slide-6.jpg', interval: 3000 },
