@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>서울이건치과 작업 보고 · 2026-06-29 ~ 06-30</title>
+<style>
+  :root{
+    --bg:#F8F7F9; --navy:#2B2D42; --cta:#0080C8;
+    --line:#e4e3e8; --muted:#6b6c7e; --add:#1a7f37; --del:#cf222e;
+    --card:#ffffff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    font-family:"Pretendard","Pretendard Variable",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Segoe UI",Roboto,"Noto Sans KR",sans-serif;
+    background:var(--bg); color:var(--navy); line-height:1.6;
+    padding:40px 20px;
+  }
+  .wrap{max-width:920px;margin:0 auto}
+  header.report{
+    background:var(--navy); color:#fff; border-radius:18px;
+    padding:34px 36px; margin-bottom:28px;
+  }
+  header.report .kicker{font-size:14px;letter-spacing:.18em;color:#9fb8ff;text-transform:uppercase}
+  header.report h1{font-size:28px;font-weight:800;margin:8px 0 6px}
+  header.report .period{font-size:16px;color:#cfd2e6}
+  .summary{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:32px;
+  }
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 16px;text-align:center}
+  .stat .num{font-size:30px;font-weight:800;color:var(--cta);line-height:1.1}
+  .stat .lbl{font-size:13px;color:var(--muted);margin-top:6px}
+  .daysec{margin-bottom:36px}
+  .dayhead{
+    display:flex;align-items:baseline;gap:12px;
+    border-bottom:2px solid var(--navy);padding-bottom:10px;margin-bottom:18px;
+  }
+  .dayhead h2{font-size:21px;font-weight:800}
+  .dayhead .count{font-size:14px;color:var(--muted)}
+  .commit{
+    background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:18px 20px;margin-bottom:14px;
+  }
+  .commit .top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap}
+  .commit .title{font-size:17px;font-weight:700;flex:1;min-width:240px}
+  .commit .time{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .tags{margin:10px 0 4px;display:flex;gap:8px;flex-wrap:wrap}
+  .tag{font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px;background:#eef4ff;color:#2952b3}
+  .tag.infra{background:#f0f0f3;color:#555}
+  .tag.fix{background:#fdeef0;color:#b3293a}
+  .tag.feat{background:#e9f7ee;color:#1a7f37}
+  .stats-inline{font-size:13px;color:var(--muted);margin-top:8px;font-variant-numeric:tabular-nums}
+  .stats-inline .add{color:var(--add);font-weight:600}
+  .stats-inline .del{color:var(--del);font-weight:600}
+  .files{margin-top:10px;font-size:13.5px;color:#3a3b4d}
+  .files code{
+    background:#f4f4f7;border:1px solid var(--line);border-radius:6px;
+    padding:1px 6px;font-family:"SFMono-Regular",Menlo,Consolas,monospace;font-size:12.5px;
+    display:inline-block;margin:2px 4px 2px 0;
+  }
+  .files .note{color:var(--muted);font-style:italic}
+  .desc{margin-top:8px;font-size:14px;color:#444}
+  .deploy{
+    background:#e9f7ee;border:1px solid #bfe3cc;border-radius:14px;padding:18px 20px;margin-bottom:32px;
+  }
+  .deploy h3{font-size:16px;margin-bottom:8px;color:var(--add)}
+  .deploy a{color:var(--cta);font-weight:600;word-break:break-all}
+  footer.report{text-align:center;color:var(--muted);font-size:12.5px;margin-top:24px}
+  @media print{
+    body{background:#fff;padding:0}
+    .commit,.stat,.deploy{break-inside:avoid}
+    header.report{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+  @media (max-width:640px){
+    .summary{grid-template-columns:repeat(2,1fr)}
+    body{padding:20px 12px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="report">
+    <div class="kicker">서울이건치과 · Work Report</div>
+    <h1>홈페이지 작업 보고서</h1>
+    <div class="period">2026년 6월 29일(월) ~ 6월 30일(화) · 커밋 기준 내역</div>
+  </header>
+
+  <section class="summary">
+    <div class="stat"><div class="num">18</div><div class="lbl">총 커밋</div></div>
+    <div class="stat"><div class="num">7</div><div class="lbl">오늘(06-30)</div></div>
+    <div class="stat"><div class="num">11</div><div class="lbl">어제(06-29)</div></div>
+    <div class="stat"><div class="num">배포</div><div class="lbl">Vercel 프로덕션 반영</div></div>
+  </section>
+
+  <div class="deploy">
+    <h3>✔ 배포 완료 (Vercel 프로덕션)</h3>
+    <div>운영 도메인: <a href="https://doctor-weld-omega.vercel.app">https://doctor-weld-omega.vercel.app</a></div>
+    <div style="margin-top:4px;font-size:13px;color:#555">최종 반영 커밋: <code>0d642b7</code> · 빌드/타입체크 통과 · READY</div>
+  </div>
+
+  <!-- ===================== 오늘 ===================== -->
+  <section class="daysec">
+    <div class="dayhead"><h2>오늘 · 2026-06-30 (화)</h2><span class="count">7건</span></div>
+
+    <div class="commit">
+      <div class="top"><div class="title">모바일 메인 스크롤 끊김 수정</div><div class="time">10:46 · 0d642b7</div></div>
+      <div class="tags"><span class="tag fix">버그수정</span><span class="tag">모바일</span><span class="tag">성능</span></div>
+      <div class="desc">모바일에서 히어로 진행 rAF 루프를 비활성화(스크롤 위치로 슬라이드 구동)하여 히어로 통과 후 전 구간 60fps 리렌더 제거. 슬라이드 미디어를 단일 img 리마운트 → 전체 스택 + opacity 크로스페이드로 변경해 스크롤 중 메인스레드 이미지 디코드 끊김 해소.</div>
+      <div class="stats-inline"><span class="add">+57</span> / <span class="del">−40</span> · 2개 파일</div>
+      <div class="files"><code>components/main/HeroSlider.tsx</code><code>components/main/HeroSlideMedia.tsx</code></div>
+    </div>
+
+    <div class="commit">
+      <div class="top"><div class="title">모바일 히어로 스크롤 안정화</div><div class="time">10:18 · 7c7c583</div></div>
+      <div class="tags"><span class="tag fix">버그수정</span><span class="tag">모바일</span></div>
+      <div class="desc">히어로 스크롤 제어 로직(스크롤↔슬라이드 동기화) 재정비로 모바일 슬라이드 전환 안정성 향상.</div>
+      <div class="stats-inline"><span class="add">+224</span> / <span class="del">−88</span> · 2개 파일</div>
+      <div class="files"><code>components/main/HeroSlider.tsx</code><code>components/main/useHeroScrollControls.ts</code></div>
+    </div>
+
+    <div class="commit">
+      <div class="top"><div class="title">모바일 히어로 스크롤 간섭 수정</div><div class="time">08:27 · d592679</div></div>
+      <div class="tags"><span class="tag fix">버그수정</span><span class="tag">모바일</span></div>
+      <div class="desc">히어로 슬라이더 미디어·인디케이터·스크롤 유틸·슬라이드 데이터 전반 정리로 스크롤 간섭 제거.</div>
+      <div class="stats-inline"><span class="add">+317</span> / <span class="del">−275</span> · 5개 파일</div>
+      <div class="files"><code>HeroSlideMedia.tsx</code><code>HeroSlider.tsx</code><code>HeroSliderIndicators.tsx</code><code>heroScroll.ts</code><code>heroSlides.ts</code></div>
+    </div>
+
+    <div class="commit">
+      <div class="top"><div class="title">임플란트·수면 섹션 로컬 영상 적용</div><div class="time">03:03 · 0e03575</div></div>
+      <div class="tags"><span class="tag feat">콘텐츠</span><span class="tag">영상</span></div>
+      <div class="desc">외부 영상 → 로컬 영상 자산으로 교체(수면 히어로 영상 추가).</div>
+      <div class="stats-inline"><span class="add">+26</span> / <span class="del">−25</span> · 4개 파일</div>
+      <div class="files"><code>app/implant/page.tsx</code><code>components/board/BoardHero.tsx</code><code>components/main/SedationSection.tsx</code><code>public/images/video/sedation-hero.mp4</code></div>
+    </div>
+
+    <div class="commit">
+      <div class="top"><div class="title">게시판 앵커·공지 스크롤 보정</div><div class="time">03:03 · bc9b7b0</div></div>
+      <div class="tags"><span class="tag fix">버그수정</span><span class="tag">게시판</span></div>
+      <div class="desc">게시판 앵커 네비게이션과 공지 목록 스크롤 동작 보정.</div>
+      <div class="stats-inline"><span class="add">+102</span> / <span class="del">−53</span> · 3개 파일</div>
+      <div class="files"><code>app/notice/page.tsx</code><code>components/board/BoardAnchorNav.tsx</code><code>components/board/NoticeList.tsx</code></div>
+    </div>
+
+    <div class="commit">
+      <div class="top"><div class="title">메인 섹션 레이아웃 밀도 조정</div><div class="time">03:02 · 98d83d6</div></div>
+      <div class="tags"><span class="tag">레이아웃</span><span class="tag">UI</span></div>
+      <div class="desc">메인 주요 섹션(의료진·임플란트·미디어·자연치아 보존 등) 간격·밀도 통일.</div>
+      <div class="stats-inline"><span class="add">+73</span> / <span class="del">−84</span> · 6개 파일</div>
+      <div class="files"><code>CleanSection.tsx</code><code>DoctorGroup.tsx</code><code>ImplantFaqSection.tsx</code><code>ImplantTypeSection.tsx</code><code>MediaSection.tsx</code><code>PreserveTreatSection.tsx</code></div>
+    </div>
+
+    <div class="commit">
+      <div class="top"><div class="title">메인 히어로 상담 흐름 개선</div><div class="time">03:02 · c4d118c</div></div>
+      <div class="tags"><span class="tag feat">기능</span><span class="tag">상담CTA</span></div>
+      <div class="desc">히어로 전경(텍스트·CTA)·인트로 화면·상담 바 연동 개선, 디자인 시스템 문서 갱신.</div>
+      <div class="stats-inline"><span class="add">+477</span> / <span class="del">−135</span> · 6개 파일</div>
+      <div class="files"><code>app/globals.css</code><code>components/IntroScreen.tsx</code><code>components/layout/QuickConsultBar.tsx</code><code>components/main/HeroForeground.tsx</code><code>components/main/HeroSlider.tsx</code><code>docs/design-system.md</code></div>
+    </div>
+  </section>
+
+  <!-- ===================== 어제 ===================== -->
+  <section class="daysec">
+    <div class="dayhead"><h2>어제 · 2026-06-29 (월)</h2><span class="count">11건</span></div>
+
+    <div class="commit">
+      <div class="top"><div class="title">.vercelignore 추가</div><div class="time">23:24 · eead7f8</div></div>
+      <div class="tags"><span class="tag infra">인프라</span></div>
+      <div class="desc">.codegraph 심링크 / .omo 작업 산출물 배포 제외 설정.</div>
+      <div class="stats-inline"><span class="add">+9</span> / <span class="del">−7</span> · 1개 파일</div>
+      <div class="files"><code>.vercelignore</code></div>
+    </div>
+
+    <div class="commit">
+      <div class="top"><div class="title">자연치아 살리기 페이지 스크롤 reveal 개선 + 배너 영상 교체</div><div class="time">23:20 · 02e6173</div></div>
+      <div class="tags"><span class="tag feat">기능</span><span class="tag">스크롤연출</span><span class="tag">QA</span></div>
+      <div class="desc">자연치아 페이지 스크롤 리빌 연출·배너 영상 교체. 사이트 전반 컴포넌트(레이아웃/보드/메인) 정리. 다수 변경은 사이트 감사 로그·스크린샷 등 검수 산출물.</div>
+      <div class="stats-inline"><span class="add">+12,323</span> / <span class="del">−170</span> · 78개 파일</div>
+      <div class="files">
+        <code>app/natural-tooth/page.tsx</code><code>app/globals.css</code><code>RevealLines.tsx</code><code>ScrollFillText.tsx</code><code>SmoothScroll.tsx</code><code>HoverHintCursor.tsx</code><code>hooks/useScrollReveal.ts</code><code>board/*</code><code>layout/*</code><code>main/*</code><code>public/images/video/natural-banner.mp4</code>
+        <div class="note">+ .omo 감사 로그·스크린샷 등 검수 산출물 다수</div>
+      </div>
+    </div>
+
+    <div class="commit">
+      <div class="top"><div class="title">에이전트 라우팅 문서/설정 추가</div><div class="time">18:45 · 67a280d</div></div>
+      <div class="tags"><span class="tag infra">문서/설정</span></div>
+      <div class="desc">AGENTS.md 및 네이버 블로그 임포트 스킬 설정 추가.</div>
+      <div class="stats-inline"><span class="add">+193</span> · 4개 파일</div>
+      <div class="files"><code>AGENTS.md</code><code>.agents/skills/import-naver-blog/SKILL.md</code><code>.agents/skills/import-naver-blog/batch-import.mjs</code></div>
+    </div>
+
+    <div class="commit">
+      <div class="top"><div class="title">홈 스크롤 복원: 뒤로가기 시 위치 복원</div><div class="time">18:41 · d45f4c1</div></div>
+      <div class="tags"><span class="tag feat">기능</span><span class="tag">UX</span></div>
+      <div class="desc">항상 위치 복원, 로고 진입은 최상단으로 시작하도록 처리.</div>
+      <div class="stats-inline"><span class="add">+24</span> / <span class="del">−41</span> · 2개 파일</div>
+      <div class="files"><code>components/HomeScrollRestore.tsx</code><code>components/layout/Header.tsx</code></div>
+    </div>
+
+    <div class="commit">
+      <div class="top"><div class="title">SiteShell 중복 import 제거 (빌드 수정)</div><div class="time">18:36 · 3d93226</div></div>
+      <div class="tags"><span class="tag fix">빌드수정</span></div>
+      <div class="stats-inline"><span class="add">+1</span> / <span class="del">−10</span> · 2개 파일</div>
+      <div class="files"><code>components/HomeScrollRestore.tsx</code><code>components/layout/SiteShell.tsx</code></div>
+    </div>
+
+    <div class="commit">
+      <div class="top"><div class="title">홈 스크롤 복원/인트로/푸터/맵·임플란트 섹션 추가 작업</div><div class="time">18:14 · 3965d0d</div></div>
+      <div class="tags"><span class="tag feat">기능</span><span class="tag">UI</span></div>
+      <div class="stats-inline"><span class="add">+291</span> / <span class="del">−164</span> · 8개 파일</div>
+      <div class="files"><code>app/page.tsx</code><code>IntroScreen.tsx</code><code>HomeScrollRestore.tsx</code><code>layout/Footer.tsx</code><code>layout/SiteShell.tsx</code><code>main/ImplantTypeSection.tsx</code><code>main/MapSection.tsx</code></div>
+    </div>
+
+    <div class="commit">
+      <div class="top"><div class="title">히어로 스크롤/스와이프 캐러셀 제어 + 상담 FAB 히어로 이후 노출</div><div class="time">17:38 · 4dfa7e7</div></div>
+      <div class="tags"><span class="tag feat">기능</span><span class="tag">상담CTA</span></div>
+      <div class="desc">히어로 휠/스와이프 캐러셀 제어, 상담 플로팅 버튼을 히어로 이후 노출.</div>
+      <div class="stats-inline"><span class="add">+104</span> / <span class="del">−2</span> · 2개 파일</div>
+      <div class="files"><code>components/main/HeroSlider.tsx</code><code>components/layout/QuickConsultBar.tsx</code></div>
+    </div>
+
+    <div class="commit">
+      <div class="top"><div class="title">메인 히어로 2번째 슬라이드 영상(main-02) 1회 재생 후 전환</div><div class="time">17:05 · b974658</div></div>
+      <div class="tags"><span class="tag feat">콘텐츠</span><span class="tag">영상</span></div>
+      <div class="stats-inline"><span class="add">+29</span> / <span class="del">−3</span> · 3개 파일</div>
+      <div class="files"><code>components/main/HeroSlider.tsx</code><code>public/images/slides/main-02.mp4</code><code>.gitignore</code></div>
+    </div>
+
+    <div class="commit">
+      <div class="top"><div class="title">상담 신청: 하단 고정바 → 우측 하단 플로팅 버튼 + 오버레이 팝업</div><div class="time">17:02 · 9f3abce</div></div>
+      <div class="tags"><span class="tag feat">기능</span><span class="tag">상담CTA</span></div>
+      <div class="desc">상담 신청 UI를 하단 고정바에서 플로팅 버튼 + 애니메이션 오버레이 팝업으로 전환.</div>
+      <div class="stats-inline"><span class="add">+187</span> / <span class="del">−173</span> · 2개 파일</div>
+      <div class="files"><code>components/layout/QuickConsultBar.tsx</code><code>components/layout/ScrollToTopButton.tsx</code></div>
+    </div>
+
+    <div class="commit">
+      <div class="top"><div class="title">메인 임플란트 솔루션 카드 모바일 이미지 3:2 비율 고정</div><div class="time">17:02 · 7b3c300</div></div>
+      <div class="tags"><span class="tag fix">버그수정</span><span class="tag">모바일</span></div>
+      <div class="desc">모바일 이미지 잘림 방지.</div>
+      <div class="stats-inline"><span class="add">+2</span> / <span class="del">−2</span> · 1개 파일</div>
+      <div class="files"><code>components/main/ImplantTypeSection.tsx</code></div>
+    </div>
+
+    <div class="commit">
+      <div class="top"><div class="title">서울이건치과 홈페이지 초기 구축</div><div class="time">16:17 · 9c509f1</div></div>
+      <div class="tags"><span class="tag infra">초기구축</span><span class="tag">베이스라인</span></div>
+      <div class="desc">전체 페이지(메인·소개·진료 게시판·관리자·API)·컴포넌트·데이터·디자인 시스템·SEO·이미지/영상 에셋·DB 마이그레이션·스펙 문서 일괄 커밋. 스크롤 페이드인, 인트로 스크롤락, 의료진 사진 교체 등 포함.</div>
+      <div class="stats-inline"><span class="add">+25,930</span> · 670개 파일 (프로젝트 베이스라인)</div>
+      <div class="files"><span class="note">app/ · components/ · data/ · lib/ · hooks/ · docs/ · specs/ · supabase/ · public 에셋 전체</span></div>
+    </div>
+  </section>
+
+  <!-- ===================== Codex 병행 작업 ===================== -->
+  <section class="daysec">
+    <div class="dayhead"><h2>Codex 병행 작업 · 2026-06-29 ~ 06-30</h2><span class="count">구조화 리서치·검증 루프 (ULW) · 미커밋 산출물</span></div>
+
+    <div class="commit" style="border-left:4px solid #0080C8">
+      <div class="top"><div class="title">치과 홈페이지 디자인 레퍼런스 리서치</div><div class="time">06-29 18:57</div></div>
+      <div class="tags"><span class="tag">리서치</span><span class="tag">디자인</span></div>
+      <div class="desc">홈페이지 개선용 외부 레퍼런스 수집·정리.</div>
+      <div class="files"><code>.omo/ultraresearch/20260629-185720-dental-homepage-refs/REFERENCES.md</code></div>
+    </div>
+
+    <div class="commit" style="border-left:4px solid #0080C8">
+      <div class="top"><div class="title">전체 웹사이트 감사 (SEO·의료법·개인정보·접근성·성능)</div><div class="time">06-29</div></div>
+      <div class="tags"><span class="tag">QA</span><span class="tag">감사</span></div>
+      <div class="desc">SEO 정적 점검, 의료법 카피 스캔, 개인정보/보안, 디자인·접근성, HTTP 상태/헤더, 자산 크기, 라우트 매트릭스 + 페이지별 스크린샷 일괄 수집. (커밋 02e6173에 포함되어 반영됨)</div>
+      <div class="files"><code>.omo/ulw-loop/evidence/website-audit-logs/40-website-audit-report.md</code><code>…/website-audit-screenshots/*</code></div>
+    </div>
+
+    <div class="commit" style="border-left:4px solid #0080C8">
+      <div class="top"><div class="title">모바일 히어로 스크롤 — 버그프리 검증 루프</div><div class="time">06-30 (PASS)</div></div>
+      <div class="tags"><span class="tag feat">검증완료</span><span class="tag">모바일</span><span class="tag">QA</span></div>
+      <div class="desc">모바일 스크롤이 네이티브처럼 부드럽게, 슬라이드 1~6이 스크롤 위치에 맞춰 전환, 6번 이후 진료진 섹션 진입, 데스크톱 휠·고정 UI·가로 overflow·타입/빌드 무손상까지 검증. Playwright(390×844 터치) + Safari Computer-Use GUI 스크롤 양쪽 증거, 코드 스캔(터치 하이재킹 없음)·프로덕션 빌드 통과 기록.</div>
+      <div class="files"><code>.omo/ulw-loop/mobile-hero-scroll-20260630/brief.md</code><code>.omo/plans/mobile-hero-scroll-20260630.md</code><code>.omo/ulw-loop/evidence/mobile-hero-scroll-20260630/final-evidence-index.md</code></div>
+    </div>
+
+    <div class="commit" style="border-left:4px solid #0080C8">
+      <div class="top"><div class="title">백오피스(관리자) CMS 기획 — 울트라리서치 + 기획서</div><div class="time">06-30 08:58</div></div>
+      <div class="tags"><span class="tag feat">기획</span><span class="tag">CMS</span><span class="tag">아키텍처</span></div>
+      <div class="desc">워커 7개 병렬 리서치(관리자 코드 표면·정적 콘텐츠 모델·문서/디자인 정합·CMS UX·의료광고법·개인정보/보안·Next/Supabase)로 합의안 도출. 핵심: 인증/RBAC·감사로그 우선 구축, 전면 자유편집이 아닌 구조화 CMS, 히어로는 자산/노출만 CMS화(동작은 코드 소유), 의료광고/개인정보 가드레일, draft→in_review→approved→published 발행 워크플로우. 산출물 39KB 기획서.</div>
+      <div class="files"><code>docs/backoffice-cms.md</code><code>.omo/ulw-research/20260630-085833-backoffice-cms/SYNTHESIS.md</code><code>.omo/plans/backoffice-cms.md</code></div>
+    </div>
+
+    <div class="commit" style="border-left:4px solid #0080C8">
+      <div class="top"><div class="title">백오피스 CMS 버그프리 감사 + 보안/데이터 취약점 감사(G002)</div><div class="time">06-30</div></div>
+      <div class="tags"><span class="tag fix">감사/보강</span><span class="tag">보안</span></div>
+      <div class="desc">기획서·플랜·증거의 논리 모순·낡은 라인 참조·QA 누락·위험 표현·플레이스홀더·증거 드리프트 점검 및 수정. 보안 감사로 공유 비밀번호(<code>egun2024</code> 하드코딩 fallback)·고정 세션 쿠키·개발모드 인증 우회·service-role 노출·업로드 경로/공개 읽기 정책·AI 라우트 등 취약 클래스를 인벤토리화하고 제거/서버전용 처리 방향을 명시.</div>
+      <div class="files"><code>.omo/plans/g002-security-data-vulnerability-audit.md</code><code>.omo/ulw-loop/backoffice-cms-bug-free-audit-20260630/brief.md</code><code>.omo/evidence/backoffice-cms-bug-free-audit-20260630-gate-review.md</code></div>
+    </div>
+
+    <div class="desc" style="margin-top:14px;padding:12px 16px;background:#eef4ff;border-radius:10px;font-size:13px;color:#2952b3">
+      ※ Codex 산출물은 현재 git 미커밋 상태(<code>.omo/</code>, <code>docs/backoffice-cms.md</code>)입니다. 모바일 스크롤 구현은 코드로 반영·배포 완료되었고, 백오피스 CMS는 <b>기획·감사 단계</b>(구현 대기)입니다.
+    </div>
+  </section>
+
+  <footer class="report">
+    생성: 2026-06-30 · 출처: git 커밋 로그(main) + Codex ULW 산출물(.omo/) · 서울이건치과 홈페이지
+  </footer>
+
+</div>
+</body>
+</html>
