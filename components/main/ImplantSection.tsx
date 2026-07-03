@@ -3,15 +3,18 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
+import { useLockedMobileVh } from '@/hooks/useLockedMobileVh'
 
 export default function ImplantSection() {
   const { ref, isVisible } = useScrollReveal(0.2)
+  // 인앱 브라우저(카톡 등) 툴바 토글로 인한 스크롤 튐 방지 — 모바일 높이를 px로 고정
+  const lockedVh = useLockedMobileVh()
 
   return (
     <section
       ref={ref}
       className="h-svh md:h-screen w-full relative overflow-hidden flex flex-col items-center justify-center px-4"
-      style={{ backgroundColor: '#000' }}
+      style={{ backgroundColor: '#000', ...(lockedVh ? { height: `${lockedVh}px` } : {}) }}
     >
       {/* 배경 이미지 — 수평 마퀴 슬라이드 */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">

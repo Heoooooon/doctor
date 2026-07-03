@@ -14,6 +14,7 @@ import {
   type HeroSlide,
 } from './heroSlides'
 import { useHeroScrollControls } from './useHeroScrollControls'
+import { useLockedMobileVh } from '@/hooks/useLockedMobileVh'
 
 // 모바일 영상 슬라이드 자동재생이 막힌 인앱 브라우저 대비 강제 전환 한계 시간
 const VIDEO_FALLBACK_MS = 14000
@@ -24,7 +25,7 @@ export default function HeroSlider() {
 
   const [isMobile, setIsMobile] = useState(false)
   const [heroInView, setHeroInView] = useState(true)
-  const [mobileVh, setMobileVh] = useState<number | null>(null)
+  const mobileVh = useLockedMobileVh()
   const heroDomId = useId()
 
   const startTimeRef     = useRef<number>(Date.now())
@@ -128,29 +129,6 @@ export default function HeroSlider() {
     mq.addEventListener('change', update)
     return () => mq.removeEventListener('change', update)
   }, [])
-
-  // 모바일 히어로 높이 고정: 주소창/하단바 토글(세로 변화)은 무시, 회전(가로 변화) 시에만 갱신
-  // → 카카오톡 등 인앱 브라우저에서 슬라이드 중 화면 리사이즈로 미디어가 커졌다 줄어드는 현상 방지
-  useEffect(() => {
-    if (!isMobile) {
-      setMobileVh(null)
-      return undefined
-    }
-    let lastWidth = window.innerWidth
-    setMobileVh(window.innerHeight)
-    const onResize = () => {
-      if (window.innerWidth !== lastWidth) {
-        lastWidth = window.innerWidth
-        setMobileVh(window.innerHeight)
-      }
-    }
-    window.addEventListener('resize', onResize)
-    window.addEventListener('orientationchange', onResize)
-    return () => {
-      window.removeEventListener('resize', onResize)
-      window.removeEventListener('orientationchange', onResize)
-    }
-  }, [isMobile])
 
   // 플랫폼 전환 시 슬라이드 셋 교체 + 첫 슬라이드로 리셋
   useEffect(() => {
