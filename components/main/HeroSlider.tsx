@@ -277,7 +277,14 @@ export default function HeroSlider() {
       id={`main-hero-${heroDomId.replace(/:/g, '')}`}
       ref={sectionRef}
       className={`relative w-full overflow-hidden h-svh md:h-screen ${slide.isVideo ? 'bg-black' : 'bg-white'}`}
-      style={isMobile && mobileVh ? { height: `${mobileVh}px` } : undefined}
+      style={{
+        ...(isMobile && mobileVh ? { height: `${mobileVh}px` } : undefined),
+        // 마지막 슬라이드 전까지는 세로 네이티브 스크롤을 차단해 스와이프로 슬라이드 전환.
+        // 브라우저가 스크롤을 먼저 시작하면 preventDefault가 무시되므로 CSS로 원천 차단해야 함.
+        ...(isMobile
+          ? { touchAction: current < slides.length - 1 ? 'pan-x' : 'auto' }
+          : undefined),
+      }}
     >
       <HeroSlideMedia
         slides={slides}
