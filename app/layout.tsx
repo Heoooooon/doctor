@@ -8,6 +8,8 @@ export const viewport: Viewport = {
 
 import SiteShell from '@/components/layout/SiteShell'
 import { LocalBusinessJsonLd } from '@/components/seo/JsonLd'
+import { TrackingScripts, GtmNoScript } from '@/components/seo/Tracking'
+import { tracking } from '@/data/tracking'
 
 export const metadata: Metadata = {
   title: '서울이건치과 | 수원치과 영통치과 매탄동치과 임플란트·교정',
@@ -16,6 +18,14 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://egundc.com'),
   verification: {
     google: 'p_FSsHqSLTp0KO8n3FpFMOKytCiScgpMXBaZtF55ibE',
+    other: {
+      ...(tracking.naverSiteVerification && {
+        'naver-site-verification': tracking.naverSiteVerification,
+      }),
+      ...(tracking.bingSiteVerification && {
+        'msvalidate.01': tracking.bingSiteVerification,
+      }),
+    },
   },
   robots: { index: true, follow: true },
   alternates: {
@@ -55,6 +65,8 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className="antialiased">
+        <GtmNoScript />
+        <TrackingScripts />
         <LocalBusinessJsonLd />
         <SiteShell>{children}</SiteShell>
       </body>
