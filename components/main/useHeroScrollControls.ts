@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, type RefObject } from 'react'
-import type { HeroSlide } from './heroSlides'
+import type { HeroPhase, HeroSlide } from './heroSlides'
 
 const HERO_TOP_TOLERANCE = 8
 const WHEEL_STEP_THRESHOLD = 6
@@ -13,12 +13,14 @@ type HeroScrollState = {
   readonly currentRef: RefObject<number>
   readonly isMobile: boolean
   readonly isPausedRef: RefObject<boolean>
+  readonly phaseRef: RefObject<HeroPhase>
   readonly sectionRef: RefObject<HTMLElement | null>
   readonly slidesRef: RefObject<readonly HeroSlide[]>
   readonly startTimeRef: RefObject<number>
 }
 
 type HeroScrollActions = {
+  readonly enterSlides: () => void
   readonly goTo: (index: number) => void
   readonly scrollPastLastSlide: () => void
 }
@@ -40,19 +42,23 @@ function canControlSlide(direction: -1 | 1, current: number, total: number): boo
 
 export function useHeroScrollControls({
   currentRef,
+  enterSlides,
   goTo,
   isMobile,
   isPausedRef,
+  phaseRef,
   scrollPastLastSlide,
   sectionRef,
   slidesRef,
   startTimeRef,
 }: HeroScrollControlsOptions): void {
   const actionsRef = useRef<HeroScrollActions>({
+    enterSlides,
     goTo,
     scrollPastLastSlide,
   })
   actionsRef.current = {
+    enterSlides,
     goTo,
     scrollPastLastSlide,
   }
@@ -97,6 +103,10 @@ export function useHeroScrollControls({
         // 가로 이동이 충분하고 세로보다 우세하면 좌우 순환 전환
         if (Math.abs(dx) >= SWIPE_THRESHOLD && Math.abs(dx) > Math.abs(dy)) {
           swiped = true
+          if (phaseRef.current === 'intro') {
+            actionsRef.current.enterSlides()
+            return
+          }
           const total = slidesRef.current.length
           const direction = dx < 0 ? 1 : -1 // 왼쪽으로 밀면 다음
           const nextIndex = (currentRef.current + direction + total) % total
@@ -109,6 +119,15 @@ export function useHeroScrollControls({
         // 히어로가 화면 상단에 있을 때만 개입 (아래 섹션에서 되돌아오는 중이면 통과)
         if (hero.getBoundingClientRect().top < -HERO_TOP_TOLERANCE) return
         const direction = dy < 0 ? 1 : -1 // 위로 밀면 다음
+        // 인트로 중 위로 스와이프 → 진짜 1번 슬라이드로 진입
+        if (phaseRef.current === 'intro') {
+          if (direction < 0) return
+          swiped = true
+          consumingScroll = true
+          if (event.cancelable) event.preventDefault()
+          actionsRef.current.enterSlides()
+          return
+        }
         if (!canControlSlide(direction, currentRef.current, slidesRef.current.length)) return
         swiped = true
         consumingScroll = true
@@ -166,6 +185,16 @@ export function useHeroScrollControls({
       if (!desktop || desktop.scrollTop > HERO_TOP_TOLERANCE) return
       const direction = getDirection(event.deltaY)
       if (direction === 0) return
+
+      // 인트로 중 아래로 휠 → 진짜 1번 슬라이드로 진입
+      if (phaseRef.current === 'intro') {
+        event.preventDefault()
+        if (direction < 0 || wheelLock || Math.abs(event.deltaY) < WHEEL_STEP_THRESHOLD) return
+        lockWheel()
+        actionsRef.current.enterSlides()
+        pauseAuto()
+        return
+      }
 
       const current = currentRef.current
       const total = slidesRef.current.length
