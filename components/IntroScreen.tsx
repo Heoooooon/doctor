@@ -3,26 +3,11 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 const useIsoLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
-const INTRO_SEEN_KEY = 'egun:intro-seen';
 
-function hasSeenIntro() {
-  try {
-    return sessionStorage.getItem(INTRO_SEEN_KEY) === '1';
-  } catch (error) {
-    if (error instanceof DOMException) return false;
-    throw error;
-  }
-}
-
-function markIntroSeen() {
-  try {
-    sessionStorage.setItem(INTRO_SEEN_KEY, '1');
-    return true;
-  } catch (error) {
-    if (error instanceof DOMException) return false;
-    throw error;
-  }
-}
+// 새로고침/최초 진입에는 항상 인트로를 재생하고, 같은 페이지 로드 안에서
+// 다른 페이지 갔다 홈으로 복귀할 때만 스킵한다.
+// (모듈 스코프 변수는 전체 페이지 로드마다 초기화되므로 새로고침 = 항상 재생)
+let introPlayedThisPageLoad = false;
 
 const SplitText = ({ text, colorShadow = false }: { text: string; colorShadow?: boolean }) => {
   return (
@@ -50,9 +35,9 @@ export default function IntroScreen() {
   const teardownRef = useRef<() => void>(() => {});
   const closeTimerRef = useRef<number | null>(null);
 
-  // 이미 본 인트로면(같은 세션) 페인트 전에 즉시 숨김 → 페이지 복귀 시 재생/깜빡임 방지
+  // 이번 페이지 로드에서 이미 재생했으면 페인트 전에 즉시 숨김 → 내부 이동 복귀 시 재생/깜빡임 방지
   useIsoLayoutEffect(() => {
-    if (hasSeenIntro()) setVisible(false);
+    if (introPlayedThisPageLoad) setVisible(false);
   }, []);
 
   const handleClose = useCallback(() => {
@@ -121,10 +106,10 @@ export default function IntroScreen() {
     };
   }, [handleClose]);
 
-  // 최초 진입: 아직 안 본 세션이면 인트로 재생
+  // 최초 진입·새로고침: 이번 페이지 로드에서 아직 재생 전이면 인트로 재생
   useEffect(() => {
-    if (hasSeenIntro()) return;
-    markIntroSeen();
+    if (introPlayedThisPageLoad) return;
+    introPlayedThisPageLoad = true;
     runIntro();
     return () => teardownRef.current();
   }, [runIntro]);
@@ -133,7 +118,7 @@ export default function IntroScreen() {
   useEffect(() => {
     const replay = () => {
       teardownRef.current();
-      markIntroSeen();
+      introPlayedThisPageLoad = true;
       runIntro();
     };
     window.addEventListener('egun:intro-replay', replay);
