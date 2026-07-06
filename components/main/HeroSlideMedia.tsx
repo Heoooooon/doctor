@@ -1,6 +1,6 @@
 import type { RefObject } from 'react'
 import type { HeroSlide } from './heroSlides'
-import { getVideoPlaybackRate, getVideoPoster } from './heroSlides'
+import { getSlideMedia, getVideoPlaybackRate, getVideoPoster } from './heroSlides'
 
 type HeroSlideMediaProps = {
   readonly slides: readonly HeroSlide[]
@@ -56,7 +56,7 @@ export function HeroSlideMedia({
           key={`hero-video-${slide.id}`}
           className="hidden md:block absolute inset-0 w-full h-full object-cover"
           src={slide.image}
-          poster={getVideoPoster(slide)}
+          poster={getVideoPoster(slide.image)}
           preload="auto"
           autoPlay
           muted
@@ -68,64 +68,66 @@ export function HeroSlideMedia({
         />
       )}
 
+      {/* 모바일 미디어 — 데스크탑과 같은 슬라이드 소스를 SSR부터 렌더해
+          새로고침 첫 페인트에서도 데스크탑과 동일한 첫 슬라이드가 보인다.
+          (md:hidden으로 데스크탑에서는 숨김. ref/이벤트는 모바일에서만 연결) */}
       <div className="md:hidden absolute inset-0">
-        {isMobile
-          ? slides.map((item, index) => {
-              const active = index === current
-              const isPrev = index === prev
-              const visible = active || isPrev
-              const panClass = active || isPrev ? `mobile-pan-${index}` : ''
-              const zIndex = active ? 2 : isPrev ? 1 : 0
+        {slides.map((item, index) => {
+          const active = index === current
+          const isPrev = index === prev
+          const visible = active || isPrev
+          const panClass = active || isPrev ? `mobile-pan-${index}` : ''
+          const zIndex = active ? 2 : isPrev ? 1 : 0
+          const src = getSlideMedia(item, true)
 
-              if (item.isVideo) {
-                return (
-                  <video
-                    ref={active ? videoRef : undefined}
-                    key={`hero-video-m-${item.id}`}
-                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out ${panClass}`}
-                    style={{ opacity: visible ? 1 : 0, zIndex }}
-                    src={item.image}
-                    poster={getVideoPoster(item)}
-                    preload="auto"
-                    muted
-                    playsInline
-                    autoPlay={active}
-                    onCanPlay={(event) => {
-                      event.currentTarget.playbackRate = getVideoPlaybackRate(item)
-                    }}
-                    onEnded={active ? onVideoEnded : undefined}
-                  />
-                )
-              }
+          if (item.isVideo) {
+            return (
+              <video
+                ref={isMobile && active ? videoRef : undefined}
+                key={`hero-video-m-${item.id}`}
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out ${panClass}`}
+                style={{ opacity: visible ? 1 : 0, zIndex }}
+                src={src}
+                poster={getVideoPoster(src)}
+                preload={active ? 'auto' : 'metadata'}
+                muted
+                playsInline
+                autoPlay={active}
+                onCanPlay={(event) => {
+                  event.currentTarget.playbackRate = getVideoPlaybackRate(item)
+                }}
+                onEnded={isMobile && active ? onVideoEnded : undefined}
+              />
+            )
+          }
 
-              if (item.loopVideo) {
-                return (
-                  <video
-                    key={item.id}
-                    src={item.image}
-                    muted
-                    loop
-                    autoPlay
-                    playsInline
-                    aria-hidden="true"
-                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out ${panClass}`}
-                    style={{ opacity: visible ? 1 : 0, zIndex }}
-                  />
-                )
-              }
+          if (item.loopVideo) {
+            return (
+              <video
+                key={item.id}
+                src={src}
+                muted
+                loop
+                autoPlay
+                playsInline
+                aria-hidden="true"
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out ${panClass}`}
+                style={{ opacity: visible ? 1 : 0, zIndex }}
+              />
+            )
+          }
 
-              return (
-                <img
-                  key={item.id}
-                  src={item.image}
-                  alt=""
-                  aria-hidden="true"
-                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out ${panClass}`}
-                  style={{ opacity: visible ? 1 : 0, zIndex }}
-                />
-              )
-            })
-          : null}
+          return (
+            <img
+              key={item.id}
+              src={src}
+              alt=""
+              aria-hidden="true"
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out ${panClass}`}
+              style={{ opacity: visible ? 1 : 0, zIndex }}
+            />
+          )
+        })}
       </div>
 
       <div

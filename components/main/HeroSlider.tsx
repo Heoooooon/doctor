@@ -6,10 +6,9 @@ import { HeroSlideMedia } from './HeroSlideMedia'
 import { HeroSliderIndicators } from './HeroSliderIndicators'
 import { scrollHeroToNextLayout } from './heroScroll'
 import {
-  IMAGE_INTERVAL,
+  HERO_SLIDES,
   LAST_SLIDE_SCROLL_DELAY,
-  MOBILE_SLIDES,
-  WEB_SLIDES,
+  getSlideInterval,
   getVideoPlaybackRate,
   type HeroSlide,
 } from './heroSlides'
@@ -40,7 +39,7 @@ export default function HeroSlider() {
   const prevRef          = useRef(-1)
   const lastCurrentRef   = useRef(0)
 
-  const slidesRef = useRef<readonly HeroSlide[]>(WEB_SLIDES)
+  const slidesRef = useRef<readonly HeroSlide[]>(HERO_SLIDES)
 
   const advanceFrom = (from: number) => {
     const next = (from + 1) % slidesRef.current.length
@@ -130,17 +129,6 @@ export default function HeroSlider() {
     return () => mq.removeEventListener('change', update)
   }, [])
 
-  // 플랫폼 전환 시 슬라이드 셋 교체 + 첫 슬라이드로 리셋
-  useEffect(() => {
-    slidesRef.current = isMobile ? MOBILE_SLIDES : WEB_SLIDES
-    setCurrent(0)
-    currentRef.current = 0
-    setProgress(0)
-    startTimeRef.current = Date.now()
-    videoAdvancedRef.current = false
-    nextSectionScrollRef.current = false
-  }, [isMobile])
-
   // 데스크탑: 마지막 이미지 슬라이드 후 일정 시간 뒤 다음 섹션으로 스크롤
   useEffect(() => {
     if (nextSectionTimerRef.current !== null) {
@@ -186,7 +174,8 @@ export default function HeroSlider() {
             setProgress(vid.currentTime / vid.duration)
           }
         } else {
-          const slideInterval = slidesRef.current[currentRef.current]?.interval ?? IMAGE_INTERVAL
+          const active = slidesRef.current[currentRef.current]
+          const slideInterval = active ? getSlideInterval(active, false) : 0
           const elapsed = Date.now() - startTimeRef.current
           const p = Math.min(elapsed / slideInterval, 1)
           setProgress(p)
@@ -221,7 +210,7 @@ export default function HeroSlider() {
     if (!activeSlide) return undefined
     const duration = activeSlide.isVideo
       ? VIDEO_FALLBACK_MS
-      : (activeSlide.interval ?? IMAGE_INTERVAL)
+      : getSlideInterval(activeSlide, true)
     const id = window.setTimeout(() => {
       advanceFrom(currentRef.current)
     }, duration)
@@ -262,7 +251,7 @@ export default function HeroSlider() {
     startTimeRef,
   })
 
-  const slides = isMobile ? MOBILE_SLIDES : WEB_SLIDES
+  const slides = HERO_SLIDES
   const slide  = slides[current] ?? slides[0]
 
   // 직전 슬라이드 인덱스를 렌더 중 동기적으로 추적 (크로스페이드 시 배경 노출 방지용)
