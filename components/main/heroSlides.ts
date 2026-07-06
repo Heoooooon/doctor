@@ -1,5 +1,3 @@
-export type HeroPhase = 'intro' | 'slides'
-
 export type HeroSlide = {
   readonly id: number
   readonly image: string
@@ -13,17 +11,10 @@ export type HeroSlide = {
   readonly endHoldMs?: number
 }
 
-// 인트로 프리슬라이드 — 넘버링 캐러셀에 포함되지 않는다.
-// 새로고침/로고 클릭 시 항상 이것부터 재생되고, 끝나면 HERO_SLIDES[0](진짜 1번)로 진입.
-export const INTRO_SLIDE: HeroSlide = {
-  id: 2,
-  image: '/images/slides/main-02.mp4',
-  isVideo: true,
-}
-
 // 데스크탑/모바일 공용 단일 소스 — 슬라이드 순서·첫 슬라이드·텍스트 인덱스가
 // 항상 동일하게 유지되고, 미디어/인터벌만 슬라이드별 모바일 변형으로 오버라이드한다.
 export const HERO_SLIDES: readonly HeroSlide[] = [
+  { id: 2, image: '/images/slides/main-02.mp4', isVideo: true },
   { id: 3, image: '/images/slides/slide-3.jpg', interval: 3000, mobileInterval: 4000 },
   { id: 4, image: '/images/slides/slide-4.webp', interval: 3000, mobileInterval: 5000 },
   { id: 5, image: '/images/slides/slide-5.png', interval: 3000, mobileInterval: 5000 },
