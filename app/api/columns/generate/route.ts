@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from 'next/server'
 import { isAdminAuthenticated } from '@/lib/admin-auth'
 import { generateColumnWithOpenAI } from '@/lib/column-ai'
 
+// AI 변환이 30~40초 이상 걸려도 잘리지 않도록 실행시간 상한 확장
+export const maxDuration = 300
+
 export async function POST(request: NextRequest) {
   try {
     if (!(await isAdminAuthenticated())) {

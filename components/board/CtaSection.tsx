@@ -2,12 +2,13 @@
 
 // @TASK Board - 상담 CTA 블록
 import { Phone, MessageCircle } from 'lucide-react'
+import { clinicInfo } from '@/data/clinic-info'
 
 const CTA_ITEMS = [
   {
     icon: MessageCircle,
     label: '카카오 상담',
-    href: 'http://pf.kakao.com/_xmDDNxb',
+    href: clinicInfo.socialLinks.kakao,
     external: true,
     bg: 'bg-[#FAE300]',
     text: 'text-gray-900',

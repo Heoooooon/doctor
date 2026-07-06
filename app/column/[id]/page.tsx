@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation'
 import { createAdminClient } from '@/lib/supabase/server'
+import { isAdminAuthenticated } from '@/lib/admin-auth'
 import Link from 'next/link'
 
 interface Props {
@@ -10,12 +11,11 @@ export default async function ColumnDetailPage({ params }: Props) {
   const { id } = await params
   const supabase = createAdminClient()
 
-  const { data: post } = await supabase
-    .from('columns')
-    .select('*')
-    .eq('id', id)
-    .eq('is_active', true)
-    .single()
+  // 비공개 초안(is_active=false)도 로그인한 관리자는 미리보기 가능
+  const isAdmin = await isAdminAuthenticated()
+  let postQuery = supabase.from('columns').select('*').eq('id', id)
+  if (!isAdmin) postQuery = postQuery.eq('is_active', true)
+  const { data: post } = await postQuery.single()
 
   if (!post) notFound()
 

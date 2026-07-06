@@ -6,6 +6,9 @@ import { isAdminAuthenticated } from '@/lib/admin-auth'
 import { COLUMN_SYSTEM_PROMPT, generateColumnWithOpenAI } from '@/lib/column-ai'
 import { createAdminClient } from '@/lib/supabase/server'
 
+// AI 변환이 30~40초 이상 걸려도 잘리지 않도록 실행시간 상한 확장
+export const maxDuration = 300
+
 const MAX_DOCX_SIZE = 30 * 1024 * 1024 // 30MB
 const BUCKET = 'images'
 

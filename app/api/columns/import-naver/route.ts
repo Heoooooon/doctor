@@ -6,6 +6,8 @@ import { createAdminClient } from '@/lib/supabase/server'
 import { hasSupabaseConfig } from '@/lib/supabase/config'
 
 export const runtime = 'nodejs'
+// AI 변환이 30~40초 이상 걸려도 잘리지 않도록 실행시간 상한 확장
+export const maxDuration = 300
 
 const BUCKET = 'images'
 const MAX_IMAGES = 12
