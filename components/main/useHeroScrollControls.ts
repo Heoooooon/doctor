@@ -60,14 +60,18 @@ export function useHeroScrollControls({
   useEffect(() => {
     const hero = sectionRef.current
 
-    // ── 모바일: 가로 스와이프로만 슬라이드 전환 (세로 스크롤은 페이지에 그대로 위임) ──
-    // window 스크롤값을 전혀 읽지 않으므로 주소창/하단바 출몰로 스크롤이 튀어도 영향 없음.
+    // ── 모바일: 터치 제스처로 슬라이드 전환 ──
+    // 가로 스와이프 = 좌우 순환, 세로(위로 밀기) 스와이프 = 다음 슬라이드.
+    // window 스크롤값을 전혀 읽지 않으므로(제스처만 사용) 카톡 인앱 브라우저의
+    // 주소창/하단바 출몰로 스크롤이 튀어도 영향 없음. 마지막 슬라이드에서 위로
+    // 밀면 소비하지 않고 페이지 스크롤에 그대로 위임한다.
     if (isMobile) {
       if (!hero) return
 
       let startX: number | null = null
       let startY: number | null = null
       let swiped = false
+      let consumingScroll = false
 
       const onTouchStart = (event: TouchEvent) => {
         const touch = event.touches[0]
@@ -75,31 +79,52 @@ export function useHeroScrollControls({
         startX = touch.clientX
         startY = touch.clientY
         swiped = false
+        consumingScroll = false
       }
 
       const onTouchMove = (event: TouchEvent) => {
-        if (startX === null || startY === null || swiped) return
+        if (startX === null || startY === null) return
+        // 이번 제스처에서 이미 슬라이드를 넘겼으면 남은 드래그 동안 페이지 스크롤만 막음
+        if (swiped) {
+          if (consumingScroll && event.cancelable) event.preventDefault()
+          return
+        }
         const touch = event.touches[0]
         if (!touch) return
         const dx = touch.clientX - startX
         const dy = touch.clientY - startY
-        // 가로 이동이 충분하고 세로보다 우세할 때만 슬라이드 전환
-        if (Math.abs(dx) < SWIPE_THRESHOLD || Math.abs(dx) <= Math.abs(dy)) return
+
+        // 가로 이동이 충분하고 세로보다 우세하면 좌우 순환 전환
+        if (Math.abs(dx) >= SWIPE_THRESHOLD && Math.abs(dx) > Math.abs(dy)) {
+          swiped = true
+          const total = slidesRef.current.length
+          const direction = dx < 0 ? 1 : -1 // 왼쪽으로 밀면 다음
+          const nextIndex = (currentRef.current + direction + total) % total
+          actionsRef.current.goTo(nextIndex)
+          return
+        }
+
+        // 세로 이동이 충분하고 가로보다 우세하면 위로 밀기 = 다음 슬라이드
+        if (Math.abs(dy) < SWIPE_THRESHOLD || Math.abs(dy) <= Math.abs(dx)) return
+        // 히어로가 화면 상단에 있을 때만 개입 (아래 섹션에서 되돌아오는 중이면 통과)
+        if (hero.getBoundingClientRect().top < -HERO_TOP_TOLERANCE) return
+        const direction = dy < 0 ? 1 : -1 // 위로 밀면 다음
+        if (!canControlSlide(direction, currentRef.current, slidesRef.current.length)) return
         swiped = true
-        const total = slidesRef.current.length
-        const direction = dx < 0 ? 1 : -1 // 왼쪽으로 밀면 다음
-        const nextIndex = (currentRef.current + direction + total) % total
-        actionsRef.current.goTo(nextIndex)
+        consumingScroll = true
+        if (event.cancelable) event.preventDefault()
+        actionsRef.current.goTo(currentRef.current + direction)
       }
 
       const onTouchEnd = () => {
         startX = null
         startY = null
         swiped = false
+        consumingScroll = false
       }
 
       hero.addEventListener('touchstart', onTouchStart, { passive: true })
-      hero.addEventListener('touchmove', onTouchMove, { passive: true })
+      hero.addEventListener('touchmove', onTouchMove, { passive: false })
       hero.addEventListener('touchend', onTouchEnd, { passive: true })
       hero.addEventListener('touchcancel', onTouchEnd, { passive: true })
 
