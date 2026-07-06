@@ -42,6 +42,8 @@ export function getSlideInterval(slide: HeroSlide, isMobile: boolean): number {
 }
 
 export function getVideoPoster(src: string): string | undefined {
+  // 첫 슬라이드 영상: 로드 전 검정 화면 대신 첫 프레임 정지 이미지를 즉시 표시
+  if (src.includes('main-02.mp4')) return '/images/slides/main-02-poster.jpg'
   if (src.includes('slide-1.mp4')) return '/images/slides/slide-1-poster.webp'
   if (src.includes('slide-4-mobile.mp4')) return '/images/slides/slide-4-poster.webp'
   return undefined
