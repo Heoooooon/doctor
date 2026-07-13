@@ -10,6 +10,7 @@ import {
   Users,
   Megaphone,
   BookOpen,
+  PanelsTopLeft,
   LogOut,
   Menu,
   X,
@@ -21,6 +22,7 @@ const navItems = [
   { href: '/admin/cases', label: '증례 관리', icon: Images },
   { href: '/admin/patient-cases', label: '환자사례 관리', icon: Users },
   { href: '/admin/notices', label: '공지사항', icon: Megaphone },
+  { href: '/admin/popups', label: '슬라이드 팝업', icon: PanelsTopLeft },
   { href: '/admin/columns', label: '원장칼럼', icon: BookOpen },
 ]
 

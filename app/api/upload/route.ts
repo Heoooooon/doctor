@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
     }
 
     // 안전한 폴더 이름 검증
-    const allowedFolders = ['cases', 'notices', 'clinic', 'columns', 'general']
+    const allowedFolders = ['cases', 'notices', 'clinic', 'columns', 'popups', 'general']
     const safeFolder = allowedFolders.includes(folder) ? folder : 'general'
 
     const ext = file.name.split('.').pop()?.toLowerCase() || 'jpg'

@@ -24,6 +24,34 @@ html.lenis body {
   }
 }
 
+/* ── 인트로 이후 슬라이드 팝업 ── */
+@keyframes slide-popup-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.animate-slide-popup-in {
+  animation: slide-popup-in 0.35s ease-out both;
+}
+
+/* 팝업 장 넘김: 트랙 translate (이미지 remount/opacity 없음 → 깜빡임 방지) */
+.slide-popup-track {
+  transition: transform 0.32s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-slide-popup-in {
+    animation: none;
+  }
+  .slide-popup-track {
+    transition: none;
+  }
+}
+
 /* ── 인트로 스플래시 (IntroScreen) ──
    SSR 첫 페인트부터 화면을 덮어야 하므로 styled-jsx가 아닌 전역 CSS로 관리.
    (styled-jsx는 JS 로드 후 적용되어 캐러셀이 먼저 보이는 깜빡임이 생김) */

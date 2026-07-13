@@ -11,6 +11,7 @@ import MediaSection from '@/components/main/MediaSection'
 import MapSection from '@/components/main/MapSection'
 import Footer from '@/components/layout/Footer'
 import IntroScreen from '@/components/IntroScreen'
+import SlidePopup from '@/components/SlidePopup'
 import HomeScrollRestore from '@/components/HomeScrollRestore'
 import { boardCarouselItems } from '@/lib/board-carousel'
 
@@ -31,6 +32,7 @@ export default function Home() {
   return (
     <>
       <IntroScreen />
+      <SlidePopup />
       <HomeScrollRestore />
 
       <h1 className="sr-only">서울이건치과 — 수원치과·영통치과 임플란트·교정·수면치과 | 서울대 출신 2인 대표원장</h1>

@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { markIntroEnded, startPopupPrefetch } from '@/lib/slide-popup-prefetch';
 
 const useIsoLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 
@@ -30,6 +31,7 @@ export default function IntroScreen() {
   const [fadeOut, setFadeOut] = useState(false);
 
   const closingRef = useRef(false);
+  const isReplayRef = useRef(false);
   const restoreScrollRef = useRef<() => void>(() => {});
   const removeListenersRef = useRef<() => void>(() => {});
   const teardownRef = useRef<() => void>(() => {});
@@ -46,6 +48,12 @@ export default function IntroScreen() {
     // 더 이상 스크롤을 가로채지 않도록 리스너 즉시 제거 (해제 후 스크롤 정상화)
     removeListenersRef.current();
     setFadeOut(true);
+    // fade 시작 시점에 팝업 트리거 → 인트로가 사라지는 동안 이미 프리페치된 팝업 표시
+    // sticky 플래그로 리스너 remount 시 이벤트 유실 방지
+    if (!isReplayRef.current) {
+      markIntroEnded();
+      window.dispatchEvent(new Event('egun:intro-end'));
+    }
     closeTimerRef.current = window.setTimeout(() => {
       restoreScrollRef.current();
       setVisible(false);
@@ -53,14 +61,20 @@ export default function IntroScreen() {
   }, []);
 
   // 인트로 재생: 스크롤 잠금 + 해제 제스처 리스너 + 자동 해제 타이머 설정
-  const runIntro = useCallback(() => {
+  const runIntro = useCallback((opts?: { replay?: boolean }) => {
     if (closeTimerRef.current) {
       clearTimeout(closeTimerRef.current);
       closeTimerRef.current = null;
     }
     closingRef.current = false;
+    isReplayRef.current = Boolean(opts?.replay);
     setFadeOut(false);
     setVisible(true);
+
+    // 인트로 시작과 동시에 팝업 API·이미지 프리페치 (종료 시 지연 제거)
+    if (!opts?.replay) {
+      void startPopupPrefetch();
+    }
 
     const html = document.documentElement;
     const body = document.body;
@@ -110,7 +124,7 @@ export default function IntroScreen() {
   useEffect(() => {
     if (introPlayedThisPageLoad) return;
     introPlayedThisPageLoad = true;
-    runIntro();
+    runIntro({ replay: false });
     return () => teardownRef.current();
   }, [runIntro]);
 
@@ -119,7 +133,7 @@ export default function IntroScreen() {
     const replay = () => {
       teardownRef.current();
       introPlayedThisPageLoad = true;
-      runIntro();
+      runIntro({ replay: true });
     };
     window.addEventListener('egun:intro-replay', replay);
     return () => window.removeEventListener('egun:intro-replay', replay);
