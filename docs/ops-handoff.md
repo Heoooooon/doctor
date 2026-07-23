@@ -76,3 +76,61 @@ curl -s https://egundc.com/api/popups
   - 구버전 파일 보존: `/var/www/seoulegun` (안정화 확인 후 삭제 예정)
   - 롤백: 백업 conf 복원 + `nginx -t && systemctl reload nginx` + `/var/www/seoulegun/current`에서 구앱 재기동
 - **2026-07-06 첫 배포**: 함정 목록은 `scripts/deploy-vps.sh` 주석 참조.
+
+## 인수인계 온보딩 (새 담당자용)
+
+이 저장소를 clone한 뒤, 아래 순서대로 진행하면 개발·배포·서버 운영 전부 가능해진다.
+
+### 1) 이전 담당자에게 받아야 할 것
+
+| 항목 | 전달 방법 |
+|---|---|
+| GitHub 저장소 권한 | `Heoooooon/doctor` collaborator 초대 |
+| `.env.local` 내용 | **보안 채널로만** (1Password, 시그널 등. 카톡/이메일/git 금지) |
+| Supabase 프로젝트 권한 | Supabase 대시보드 → 프로젝트 멤버 초대 |
+| VPS 호스팅 계정 | `172.237.29.96` 콘솔 접근 계정 (재부팅·방화벽·과금 관리용) |
+| 도메인 관리 권한 | egundc.com DNS 등록기관 계정 |
+| 관리자 비밀번호 | `.env.local`의 `ADMIN_PASSWORD` (사이트 /admin 로그인) |
+
+`.env.local` 필수 키: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `DATABASE_URL`, `OPENAI_API_KEY`, `OPENAI_COLUMN_MODEL`, `ADMIN_PASSWORD`
+
+### 2) 로컬 셋업
+
+```bash
+git clone https://github.com/Heoooooon/doctor.git seoulegun && cd seoulegun
+pnpm install
+# 전달받은 .env.local을 프로젝트 루트에 저장
+pnpm dev   # http://localhost:3000 확인
+```
+
+### 3) SSH 접근 등록
+
+새 담당자 머신에서 키 생성(이미 있으면 생략):
+
+```bash
+ssh-keygen -t ed25519
+cat ~/.ssh/id_ed25519.pub   # 이 한 줄을 기존 담당자에게 전달
+```
+
+**기존 담당자**(서버 접근 가능한 사람)가 실행:
+
+```bash
+ssh root@172.237.29.96 "echo '<새 담당자 공개키 한 줄>' >> /root/.ssh/authorized_keys"
+```
+
+### 4) 인수 검증 체크리스트
+
+```bash
+ssh -o BatchMode=yes root@172.237.29.96 "hostname"                      # SSH 접속
+ssh -o BatchMode=yes root@172.237.29.96 "su - appuser -c 'pm2 ls'"      # 앱 상태
+pnpm build                                                              # 로컬 빌드
+./scripts/deploy-vps.sh                                                 # 배포 1회 성공
+```
+
+네 개 모두 통과하면 인수 완료.
+
+### 5) AI 에이전트(Claude 등) 연동
+
+- 이 저장소의 `AGENTS.md`가 매 세션 자동 로드되어 에이전트가 서버 구조·배포 방법을 즉시 인지한다.
+- 에이전트가 실제로 서버 작업을 하려면 그 머신에 **3)의 SSH 키**와 **`.env.local`**만 있으면 된다. 별도 설정 불필요.
+- 에이전트에게 "배포해줘", "서버 로그 확인해줘"라고 하면 이 문서 기준으로 실행한다.
