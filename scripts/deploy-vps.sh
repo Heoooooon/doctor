@@ -30,6 +30,8 @@ rsync -az --delete \
   --exclude ".env*" \
   --exclude .vercel \
   --exclude .claude \
+  --exclude .omo \
+  --exclude .gjc \
   --exclude .codegraph \
   --exclude .DS_Store \
   --exclude ".pm2" \
