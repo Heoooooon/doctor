@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, type RefObject } from 'react'
-import type { HeroSlide } from './heroSlides'
+import { HERO_SCROLL_CONTROLS_ENABLED, type HeroSlide } from './heroSlides'
 
 const HERO_TOP_TOLERANCE = 8
 const WHEEL_STEP_THRESHOLD = 6
@@ -58,6 +58,8 @@ export function useHeroScrollControls({
   }
 
   useEffect(() => {
+    // 플래그가 꺼져 있으면 리스너를 등록하지 않음 → 페이지 스크롤이 히어로를 그대로 통과
+    if (!HERO_SCROLL_CONTROLS_ENABLED) return
     const hero = sectionRef.current
 
     // ── 모바일: 터치 제스처로 슬라이드 전환 ──

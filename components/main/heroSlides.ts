@@ -27,6 +27,18 @@ export const HERO_SLIDES: readonly HeroSlide[] = [
   },
 ]
 
+/**
+ * 히어로 "스크롤 연동 슬라이드 전환" 기능 활성화 플래그.
+ *
+ * - true : 히어로 구간에서 휠(데스크탑)·세로 스와이프(모바일)가 페이지 스크롤 대신
+ *   슬라이드를 한 장씩 넘기고, 마지막 슬라이드가 끝나면 다음 섹션으로 자동 스크롤한다.
+ * - false(현재): 히어로가 일반 자동재생 캐러셀처럼 스스로 순환하고,
+ *   페이지 스크롤은 아무 방해 없이 그대로 흐른다.
+ *
+ * 기능을 다시 켜려면 이 값만 `true`로 바꾸면 된다. (관련 코드 전부 유지되어 있음)
+ */
+export const HERO_SCROLL_CONTROLS_ENABLED = false
+
 export const IMAGE_INTERVAL = 4700
 export const LAST_SLIDE_SCROLL_DELAY = 3000
 export const INDICATOR_RADIUS = 18

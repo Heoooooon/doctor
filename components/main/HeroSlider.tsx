@@ -6,6 +6,7 @@ import { HeroSlideMedia } from './HeroSlideMedia'
 import { HeroSliderIndicators } from './HeroSliderIndicators'
 import { scrollHeroToNextLayout } from './heroScroll'
 import {
+  HERO_SCROLL_CONTROLS_ENABLED,
   HERO_SLIDES,
   LAST_SLIDE_SCROLL_DELAY,
   getSlideInterval,
@@ -98,8 +99,9 @@ export default function HeroSlider() {
     if (videoAdvancedRef.current) return
     videoAdvancedRef.current = true
     const last = slidesRef.current.length - 1
-    // 데스크탑은 마지막 슬라이드 영상 종료 후 다음 섹션으로, 모바일은 처음으로 순환
-    if (!isMobile && currentRef.current >= last) {
+    // 데스크탑: 마지막 슬라이드 영상 종료 후 다음 섹션으로 자동 스크롤
+    // (스크롤 연동 전환이 꺼져 있으면 캐러셀처럼 처음으로 순환)
+    if (HERO_SCROLL_CONTROLS_ENABLED && !isMobile && currentRef.current >= last) {
       scrollPastLastSlide()
       return
     }
@@ -136,7 +138,7 @@ export default function HeroSlider() {
       nextSectionTimerRef.current = null
     }
 
-    if (isMobile) return undefined
+    if (isMobile || !HERO_SCROLL_CONTROLS_ENABLED) return undefined
 
     const last = slidesRef.current.length - 1
     const activeSlide = slidesRef.current[current]
@@ -182,15 +184,11 @@ export default function HeroSlider() {
 
           if (p >= 1) {
             const last = slidesRef.current.length - 1
-            if (currentRef.current >= last) {
+            if (HERO_SCROLL_CONTROLS_ENABLED && currentRef.current >= last) {
               scrollPastLastSlide()
             } else {
-              const next = currentRef.current + 1
-              setCurrent(next)
-              currentRef.current = next
-              setProgress(0)
-              startTimeRef.current = Date.now()
-              nextSectionScrollRef.current = false
+              // 마지막 슬라이드면 처음으로 순환 (advanceFrom이 모듈로 처리)
+              advanceFrom(currentRef.current)
             }
           }
         }
@@ -268,9 +266,9 @@ export default function HeroSlider() {
       className={`relative w-full overflow-hidden h-svh md:h-screen ${slide.isVideo ? 'bg-black' : 'bg-white'}`}
       style={{
         ...(isMobile && mobileVh ? { height: `${mobileVh}px` } : undefined),
-        // 마지막 슬라이드 전까지는 세로 네이티브 스크롤을 차단해 스와이프로 슬라이드 전환.
-        // 브라우저가 스크롤을 먼저 시작하면 preventDefault가 무시되므로 CSS로 원천 차단해야 함.
-        ...(isMobile
+        // 스크롤 연동 전환이 켜져 있을 때만 마지막 슬라이드 전까지 세로 스크롤을 차단.
+        // (브라우저가 스크롤을 먼저 시작하면 preventDefault가 무시되므로 CSS로 원천 차단)
+        ...(isMobile && HERO_SCROLL_CONTROLS_ENABLED
           ? { touchAction: current < slides.length - 1 ? 'pan-x' : 'auto' }
           : undefined),
       }}
