@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import {
   LayoutDashboard,
+  LayoutGrid,
   MessageSquare,
   Images,
   Users,
@@ -24,6 +25,7 @@ const navItems = [
   { href: '/admin/notices', label: '공지사항', icon: Megaphone },
   { href: '/admin/popups', label: '슬라이드 팝업', icon: PanelsTopLeft },
   { href: '/admin/columns', label: '원장칼럼', icon: BookOpen },
+  { href: '/admin/sections', label: '메인 섹션', icon: LayoutGrid },
 ]
 
 export default function AdminSidebar() {

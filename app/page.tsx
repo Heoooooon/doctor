@@ -15,6 +15,9 @@ import SlidePopup from '@/components/SlidePopup'
 import HomeScrollRestore from '@/components/HomeScrollRestore'
 import { boardCarouselItems } from '@/lib/board-carousel'
 
+// 메인 섹션 설정(의료진 등)을 Supabase에서 읽으므로 ISR로 주기적 재검증
+export const revalidate = 60
+
 const SECTIONS = [
   HeroSlider,
   DoctorGroup,

@@ -1,7 +1,64 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { createAdminClient } from '@/lib/supabase/server'
+import { hasSupabaseConfig } from '@/lib/supabase/config'
 
-export default function DoctorGroup() {
+interface DoctorGroupSettings {
+  desktop_image: string
+  mobile_image: string
+  headline: string
+  subcopy: string
+  button_text: string
+  /** 비우면 subcopy 사용 */
+  mobile_subcopy: string
+  /** 비우면 button_text 사용 */
+  mobile_button_text: string
+}
+
+const DEFAULTS: DoctorGroupSettings = {
+  desktop_image: '/images/doctors/doctors-team-desktop.webp',
+  mobile_image: '/images/doctors/doctor-team-mobile.webp',
+  headline: '한자리에서\n변하지 않는 마음',
+  subcopy: '서울대학교 출신 2인 대표원장이\n처음 상담부터 차분히 설명합니다',
+  button_text: '자세히보기',
+  mobile_subcopy: '마음을 담아 정성을 다하여',
+  mobile_button_text: '이건진료진 소개',
+}
+
+async function getSettings(): Promise<DoctorGroupSettings> {
+  if (!hasSupabaseConfig()) return DEFAULTS
+  try {
+    const supabase = createAdminClient()
+    const { data, error } = await supabase
+      .from('section_settings')
+      .select('value')
+      .eq('key', 'doctor-group')
+      .single()
+    if (error || !data?.value) return DEFAULTS
+    return { ...DEFAULTS, ...(data.value as Partial<DoctorGroupSettings>) }
+  } catch {
+    return DEFAULTS
+  }
+}
+
+/** 줄바꿈(\n)을 <br />로 렌더 */
+function BrText({ text }: { text: string }) {
+  const lines = text.split('\n')
+  return (
+    <>
+      {lines.map((line, i) => (
+        <span key={i}>
+          {i > 0 && <br />}
+          {line}
+        </span>
+      ))}
+    </>
+  )
+}
+
+export default async function DoctorGroup() {
+  const s = await getSettings()
+
   return (
     <section className="relative w-full overflow-hidden bg-[#F8F7F9] aspect-[390/640] md:aspect-auto md:h-dvh">
 
@@ -11,7 +68,7 @@ export default function DoctorGroup() {
         style={{ bottom: 'var(--mobile-bottom-bar-height)' }}
       >
         <Image
-          src="/images/doctors/doctor-team-mobile.webp"
+          src={s.mobile_image}
           alt="서울이건치과 의료진"
           fill
           sizes="100vw"
@@ -28,7 +85,7 @@ export default function DoctorGroup() {
 
       {/* ── 데스크탑 이미지 ── */}
       <Image
-        src="/images/doctors/doctors-team-desktop.webp"
+        src={s.desktop_image}
         alt="서울이건치과 의료진"
         fill
         sizes="100vw"
@@ -47,20 +104,16 @@ export default function DoctorGroup() {
         className="md:hidden absolute inset-x-0 z-10 flex flex-col items-center text-center px-7"
         style={{ top: 'calc(var(--mobile-header-height) + 80px)' }}
       >
-        {/* 헤드라인 */}
         <h2 className="text-white text-[28px] font-bold leading-tight tracking-normal">
-          한자리에서<br />변하지 않는 마음
+          <BrText text={s.headline} />
         </h2>
 
-        {/* 구분선 */}
         <div className="w-10 h-[1.5px] bg-white/50 my-4" />
 
-        {/* 서브카피 */}
         <p className="text-white/75 text-[18px] font-light leading-snug mb-6">
-          마음을 담아 정성을 다하여
+          <BrText text={s.mobile_subcopy || s.subcopy} />
         </p>
 
-        {/* 버튼 */}
         <Link
           href="/about#doctor-intro"
           className="inline-flex items-center justify-center gap-2
@@ -69,7 +122,7 @@ export default function DoctorGroup() {
             shadow-[0_4px_20px_rgba(0,128,200,0.4)]
             transition-all duration-200 active:bg-[#006EAA]"
         >
-          이건진료진 소개
+          {s.mobile_button_text || s.button_text}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="w-4 h-4"
@@ -91,7 +144,7 @@ export default function DoctorGroup() {
           className="text-[#2B2D42] font-bold leading-[1.16] tracking-normal"
           style={{ fontSize: 'clamp(42px, 4vw, 58px)' }}
         >
-          한자리에서<br />변하지 않는 마음
+          <BrText text={s.headline} />
         </h2>
 
         <div className="w-14 h-px bg-[#2B2D42]/42 my-6" />
@@ -100,8 +153,7 @@ export default function DoctorGroup() {
           className="break-keep text-[#2B2D42]/78 font-medium leading-[1.65]"
           style={{ fontSize: 'clamp(20px, 1.55vw, 23px)' }}
         >
-          서울대학교 출신 2인 대표원장이<br />
-          처음 상담부터 차분히 설명합니다
+          <BrText text={s.subcopy} />
         </p>
 
         <Link
@@ -114,7 +166,7 @@ export default function DoctorGroup() {
             transition-all duration-200
             hover:bg-white/48 hover:border-[#0080C8] hover:text-[#0080C8]"
         >
-          자세히보기
+          {s.button_text}
         </Link>
       </div>
     </section>
