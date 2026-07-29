@@ -20,6 +20,8 @@ export default function DigitalProsthesisPage() {
       subtitle="치아의 기능과 심미를 함께 고려합니다"
       treatments={cosmeticTreatments}
       heroImage="/images/board/esthetic-2.jpg"
+      heroImagePosition="center center"
+      heroImageContain
       extraSection={<CosmeticIdentity />}
     />
   )

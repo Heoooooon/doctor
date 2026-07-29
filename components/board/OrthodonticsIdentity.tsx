@@ -22,10 +22,10 @@ function HeroText({ center = false }: { center?: boolean }) {
       <span className={`inline-block rounded-full bg-[#3F6FB5] text-white font-semibold tracking-wide ${center ? 'text-[12px] px-3.5 py-1 mb-2.5' : 'text-[13px] sm:text-[15px] px-4 py-1.5 mb-4'}`}>
         이건교정
       </span>
-      <h1 className={`font-black leading-none tracking-tight text-[#1f2d4d] ${center ? 'text-[34px] mb-2' : 'text-[min(76px,4.8vw)] whitespace-nowrap mb-3'}`}>
+      <h1 className={`font-black leading-none tracking-tight text-[#1f2d4d] ${center ? 'text-3xl mb-2' : 'text-3xl sm:text-5xl lg:text-6xl whitespace-nowrap mb-3'}`}>
         인비절라인
       </h1>
-      <p className={`font-bold text-[#2b3a5c] leading-snug ${center ? 'text-[16px] mb-2' : 'text-[19px] sm:text-[24px] lg:text-[28px] mb-4 whitespace-nowrap'}`}>
+      <p className={`font-bold text-[#2b3a5c] leading-snug ${center ? 'text-sm mb-2' : 'text-sm sm:text-lg mb-4 whitespace-nowrap'}`}>
         티 나지 않게 자연스러운 투명교정
       </p>
       <p className={`text-[#5b6b87] leading-relaxed ${center ? 'text-[13px]' : 'text-[14px] sm:text-[17px]'}`}>
@@ -39,10 +39,7 @@ export function OrthodonticsHeroBanner() {
   return (
     <section className="pt-16 sm:pt-20 bg-gradient-to-br from-[#eef4fb] to-[#dde8f4]">
       {/* ── 데스크탑/태블릿: 배경 합성 배너 (의료진·장치·우측 패널 포함) ── */}
-      <div
-        className="relative hidden md:block w-full overflow-hidden"
-        style={{ aspectRatio: '2172 / 724' }}
-      >
+      <div className="relative hidden md:block w-full overflow-hidden h-[72vh] min-h-[520px]">
         <Image
           src="/images/doctors/ortho-main.jpg"
           alt="인비절라인 투명교정"

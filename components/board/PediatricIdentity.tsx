@@ -20,7 +20,7 @@ export function PediatricCredentialSection() {
   return (
     <section className="pt-16 sm:pt-20">
       {/* 데스크탑/태블릿: 파스텔 배경 + 문구 중앙 + 오른쪽 누끼 사진 */}
-      <div className="relative hidden md:block overflow-hidden h-[220px] lg:h-[320px]">
+      <div className="relative hidden md:block overflow-hidden h-[295px] lg:h-[395px]">
         <Image
           src="/images/treatments/pediatric/ped-banner-bg.png"
           alt=""

@@ -19,6 +19,8 @@ interface TreatmentPageProps {
   localVideo?: string
   heroImage?: string
   heroFull?: boolean
+  heroImagePosition?: string
+  heroImageContain?: boolean
   extraSection?: React.ReactNode
   heroReplacement?: React.ReactNode
   treatImage?: string
@@ -34,6 +36,8 @@ export default function TreatmentPage({
   localVideo,
   heroImage,
   heroFull,
+  heroImagePosition,
+  heroImageContain,
   extraSection,
   heroReplacement,
   treatImage,
@@ -49,7 +53,7 @@ export default function TreatmentPage({
   return (
     <>
       <FaqJsonLd faqs={allFaqs} />
-      {heroReplacement ?? <BoardHero title={title} subtitle={subtitle} videoId={videoId} localVideo={localVideo} heroImage={heroImage} heroFull={heroFull} />}
+      {heroReplacement ?? <BoardHero title={title} subtitle={subtitle} videoId={videoId} localVideo={localVideo} heroImage={heroImage} heroFull={heroFull} heroImagePosition={heroImagePosition} heroImageContain={heroImageContain} />}
       {extraSection}
       <BoardAnchorNav items={navItems} />
 

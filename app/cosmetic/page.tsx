@@ -21,6 +21,8 @@ export default function CosmeticPage() {
       subtitle="자연스러운 아름다움을 되찾습니다"
       treatments={cosmeticTreatments}
       heroImage="/images/board/esthetic-2.jpg"
+      heroImagePosition="center center"
+      heroImageContain
       extraSection={<CosmeticIdentity />}
     />
   )
