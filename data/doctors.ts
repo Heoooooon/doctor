@@ -102,20 +102,26 @@ export const doctors: Doctor[] = [
       '자연치아를 최대한 보존하면서도\n아름다운 미소를 만들어 드리겠습니다.\n세심한 진료로 항상 함께하겠습니다.',
   },
   {
-    id: 'baek-seola',
-    name: '백설아',
+    id: 'kim-jina',
+    name: '김진아',
     role: '원장',
     specialty: '소아',
-    subRole: '소아치과 전문의',
+    subRole: '통합치의학과 전문의',
     specialtyDetail: '소아치과 · 불소도포',
-    image: '/images/doctors/doctor-paek.png',
+    image: '/images/doctors/doctor-kimjina.png',
     careers: [
-      '단국대학교 치과대학 졸업',
-      '단국대학교 치과대학병원 소아치과 수련',
-      '소아치과 전문의 취득',
+      '고려대학교 컴퓨터교육과 졸업',
+      '경희대학교 치의학전문대학원 치의학과 졸업',
+      '치의학 석사 취득',
+      '보건복지부 인증 통합치의학과 전문의',
+      '예치과병원 소아치과 전문과정 수료',
+      '분당예치과병원 · 중동21세기치과 진료',
+      '파미에키즈치과 · 연세어린이치과 소아진료 원장',
     ],
     memberships: [
-      '대한소아치과학회 정회원',
+      '대한통합치과학회 정회원',
+      'E-교정연구회 수료',
+      '경구·흡입진정 연수회 수료',
     ],
     highlights: [
       { icon: 'Baby', text: '아이 눈높이\n맞춤 진료' },
@@ -124,10 +130,6 @@ export const doctors: Doctor[] = [
     ],
     letter:
       '아이들에게 치과는 무서운 곳이 아니라\n친구 같은 곳이 되길 바랍니다.\n아이의 눈높이에서\n따뜻하게 돌보겠습니다.',
-    documents: [
-      '/images/doctors/baek-docu1.png',
-      '/images/doctors/baek-docu2.png',
-    ],
   },
   {
     id: 'park-jiwon',

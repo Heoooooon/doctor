@@ -11,7 +11,7 @@ const SECTION_IDS = [
   'jung-chaeyun',
   'yoo-suhyun',
   'park-jiwon',
-  'baek-seola',
+  'kim-jina',
   'schedule',
   'interior',
   'lab',

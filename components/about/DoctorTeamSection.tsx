@@ -10,10 +10,19 @@ const HOVER_SPECIALTY: Record<string, string> = {
   'jung-chaeyun': '임플란트 · 디지털보철',
   'yoo-suhyun':   '교정진료',
   'park-jiwon':   '보존진료, 일반진료',
-  'baek-seola':   '소아진료',
+  'kim-jina':     '소아진료',
 }
 
-const DOCTOR_ORDER = ['lee-jaesung', 'jung-chaeyun', 'yoo-suhyun', 'park-jiwon', 'baek-seola']
+const DOCTOR_ORDER = ['lee-jaesung', 'jung-chaeyun', 'yoo-suhyun', 'park-jiwon', 'kim-jina']
+
+// 카드 내 사진 확대 배율 — 김진아 원장 사진의 얼굴 크기에 맞춤
+const CARD_ZOOM: Record<string, number> = {
+  'lee-jaesung':  1.4,
+  'jung-chaeyun': 1.4,
+  'yoo-suhyun':   1.4,
+  'park-jiwon':   1.4,
+  'kim-jina':     1.15,
+}
 
 export default function DoctorTeamSection() {
   const [hoveredId,     setHoveredId]     = useState<string | null>(null)
@@ -94,13 +103,21 @@ export default function DoctorTeamSection() {
                   aria-label={`${doctor.name} ${doctor.role} 소개 보기`}
                 >
                   {/* 사진 */}
-                  <Image
-                    src={doctor.image}
-                    alt={`${doctor.name} ${doctor.role}`}
-                    fill
-                    sizes="(min-width: 1024px) 20vw, (min-width: 640px) 33vw, 50vw"
-                    className="absolute inset-0 object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                  />
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      transform: `scale(${CARD_ZOOM[doctor.id] ?? 1})`,
+                      transformOrigin: 'top center',
+                    }}
+                  >
+                    <Image
+                      src={doctor.image}
+                      alt={`${doctor.name} ${doctor.role}`}
+                      fill
+                      sizes="(min-width: 1024px) 20vw, (min-width: 640px) 33vw, 50vw"
+                      className="absolute inset-0 object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
 
                   {/* 기본 하단 그라디언트 + 이름 */}
                   <div

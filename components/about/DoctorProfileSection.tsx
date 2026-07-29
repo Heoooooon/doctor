@@ -4,7 +4,7 @@ import { doctors } from '@/data/doctors'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
 import DoctorTeamSection from '@/components/about/DoctorTeamSection'
 
-const DOCTOR_ORDER = ['lee-jaesung', 'jung-chaeyun', 'yoo-suhyun', 'park-jiwon', 'baek-seola']
+const DOCTOR_ORDER = ['lee-jaesung', 'jung-chaeyun', 'yoo-suhyun', 'park-jiwon', 'kim-jina']
 
 function DoctorCard({
   doctor,
@@ -26,12 +26,18 @@ function DoctorCard({
       className={`w-full scroll-mt-24 ${isReverse ? 'bg-[#F8F8F8]' : 'bg-white'}`}
     >
       <div className="flex flex-col lg:flex-row lg:items-stretch w-full max-w-[1400px] mx-auto">
-        {/* 사진 */}
-        <div className="flex-shrink-0 w-full lg:w-[440px] lg:self-stretch relative overflow-hidden">
+        {/* 사진 — kim-jina는 원본 비율 유지, 나머지는 컬럼 높이에 맞춰 크롭 */}
+        <div className={`flex-shrink-0 w-full lg:w-[440px] lg:self-stretch relative overflow-hidden ${
+          doctor.id === 'kim-jina' ? 'lg:flex lg:items-center' : ''
+        }`}>
           <img
             src={doctor.image}
             alt={`${doctor.name} ${doctor.role}`}
-            className="w-full h-[340px] lg:h-full object-cover object-top block"
+            className={
+              doctor.id === 'kim-jina'
+                ? 'w-full h-auto block'
+                : 'w-full h-[340px] lg:h-full object-cover object-top block'
+            }
           />
           {doctor.documents && doctor.documents.length > 0 && (
             <div className="absolute bottom-4 right-4 flex gap-2 lg:gap-3">

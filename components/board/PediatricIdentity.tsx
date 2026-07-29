@@ -19,48 +19,54 @@ const pillars = [
 export function PediatricCredentialSection() {
   return (
     <section className="pt-16 sm:pt-20">
-      {/* 데스크탑/태블릿: 원래 합성 배너 + 텍스트 오버레이 (변경 금지) */}
-      <div className="relative hidden md:block">
-        <Image
-          src="/images/doctors/baek-child-clean.jpg"
-          alt="보건복지부 인증 소아치과전문의 백설아 원장"
-          width={2172}
-          height={724}
-          className="w-full h-auto block"
-        />
-        <div className="absolute left-[8%] top-[28.5%] w-[46%]">
-          <h2 className="font-black text-[#0080C8] leading-none text-[7.2vw]">
-            소아치과
-          </h2>
-          <p className="mt-[1vw] font-bold text-[#2B2D42] leading-[1.3] text-[2.7vw]">
-            아이를 보듬는 마음으로<br />
-            정성껏 진료합니다.
-          </p>
-          <div className="mt-[1vw] flex items-center gap-[1.4vw]">
-            <Image
-              src="/images/logo/egun-logo.png"
-              alt="서울이건치과"
-              width={1000}
-              height={400}
-              className="h-[2.8vw] w-auto"
-            />
-            <span className="block w-px self-stretch bg-gray-300" />
-            <div className="leading-tight">
-              <p className="font-bold text-[#2B2D42] text-[1.9vw]">원장 백설아</p>
-              <p className="text-gray-500 text-[1.4vw]">소아치과전문의</p>
+      {/* 데스크탑/태블릿: 문구 중앙 + 오른쪽 누끼 사진 */}
+      <div className="relative hidden md:block overflow-hidden h-[220px] lg:h-[320px] bg-gradient-to-br from-[#eef4fb] to-[#dde8f4]">
+        <div className="flex h-full items-center justify-center gap-x-[4vw]">
+          <div>
+            <span className="inline-block rounded-full bg-[#0080C8] text-white font-semibold tracking-wide text-[0.85vw] px-[1vw] py-[0.3vw] mb-[0.7vw]">
+              아이를 위한 따뜻한 진료
+            </span>
+            <h2 className="font-black text-[#0080C8] leading-none text-[3.2vw]">
+              소아치과
+            </h2>
+            <p className="mt-[0.7vw] font-bold text-[#2B2D42] leading-[1.3] text-[1.3vw]">
+              아이를 보듬는 마음으로 정성껏 진료합니다.
+            </p>
+            <div className="mt-[0.9vw] flex items-center gap-[1vw]">
+              <Image
+                src="/images/logo/egun-logo.png"
+                alt="서울이건치과"
+                width={1000}
+                height={400}
+                className="h-[1.7vw] w-auto"
+              />
+              <span className="block w-px self-stretch bg-gray-300" />
+              <div className="leading-tight">
+                <p className="font-bold text-[#2B2D42] text-[1.1vw]">원장 김진아</p>
+                <p className="text-gray-500 text-[0.85vw]">통합치의학과 전문의</p>
+              </div>
             </div>
+          </div>
+          <div className="h-[88%] self-end shrink-0">
+            <Image
+              src="/images/doctors/doctor-kim2-cut.png"
+              alt="서울이건치과 소아진료 김진아 원장"
+              width={839}
+              height={850}
+              className="h-full w-auto block"
+            />
           </div>
         </div>
       </div>
-      {/* 모바일: 새 이미지(의료진·자격증) + 인비절라인형 텍스트 */}
+      {/* 모바일 */}
       <div className="md:hidden">
-        <div className="relative w-full overflow-hidden">
+        <div className="relative w-full overflow-hidden bg-gradient-to-br from-[#eef4fb] to-[#dde8f4] flex justify-center">
           <Image
-            src="/images/doctors/baek-child-cert.jpg"
-            alt="보건복지부 인증 소아치과전문의 백설아 원장"
-            width={1193}
-            height={724}
-            className="w-full h-auto block"
+            src="/images/doctors/doctor-kimjina-cut.png"
+            alt="서울이건치과 소아진료 김진아 원장"
+            width={1080}
+            height={1350}
+            className="w-[72%] h-auto block"
             priority
           />
         </div>
@@ -74,7 +80,7 @@ export function PediatricCredentialSection() {
           <p className="font-bold text-[#2B2D42] leading-snug text-[16px] mb-2">
             아이를 보듬는 마음으로 정성껏 진료합니다.
           </p>
-          <p className="text-[#5b6b87] text-[13px]">원장 백설아 · 소아치과전문의</p>
+          <p className="text-[#5b6b87] text-[13px]">원장 김진아 · 통합치의학과 전문의</p>
         </div>
       </div>
     </section>
@@ -88,7 +94,7 @@ export default function PediatricIdentity() {
       frosted
       label="PEDIATRIC DENTISTRY"
       title={<>아이의 첫 치과,<br /><span className="text-[#0080C8]">평생 구강 건강의 시작</span></>}
-      description={<>아이가 치과를 무서워하지 않도록 하는 것이 먼저입니다.<br />편안한 첫 경험이 평생의 구강 건강 습관을 만들고,<br />소아 전문의가 성장 단계마다 함께합니다.</>}
+      description={<>아이가 치과를 무서워하지 않도록 하는 것이 먼저입니다.<br />편안한 첫 경험이 평생의 구강 건강 습관을 만들고,<br />소아진료 경험을 갖춘 원장이 성장 단계마다 함께합니다.</>}
       pillars={pillars}
     />
     </>
