@@ -77,7 +77,7 @@ export const doctors: Doctor[] = [
   {
     id: 'jung-chaeyun',
     name: '정채윤',
-    role: '대표원장',
+    role: '원장',
     title: 'DDS, MSD',
     specialty: '통합치의학 전문의',
     subRole: '통합치의학 전문의',

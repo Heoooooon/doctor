@@ -19,9 +19,17 @@ const pillars = [
 export function PediatricCredentialSection() {
   return (
     <section className="pt-16 sm:pt-20">
-      {/* 데스크탑/태블릿: 문구 중앙 + 오른쪽 누끼 사진 */}
-      <div className="relative hidden md:block overflow-hidden h-[220px] lg:h-[320px] bg-gradient-to-br from-[#eef4fb] to-[#dde8f4]">
-        <div className="flex h-full items-center justify-center gap-x-[4vw]">
+      {/* 데스크탑/태블릿: 파스텔 배경 + 문구 중앙 + 오른쪽 누끼 사진 */}
+      <div className="relative hidden md:block overflow-hidden h-[220px] lg:h-[320px]">
+        <Image
+          src="/images/treatments/pediatric/ped-banner-bg.png"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover object-bottom"
+          priority
+        />
+        <div className="relative flex h-full items-center justify-center gap-x-[4vw]">
           <div>
             <span className="inline-block rounded-full bg-[#0080C8] text-white font-semibold tracking-wide text-[0.85vw] px-[1vw] py-[0.3vw] mb-[0.7vw]">
               아이를 위한 따뜻한 진료
@@ -43,17 +51,18 @@ export function PediatricCredentialSection() {
               <span className="block w-px self-stretch bg-gray-300" />
               <div className="leading-tight">
                 <p className="font-bold text-[#2B2D42] text-[1.1vw]">원장 김진아</p>
-                <p className="text-gray-500 text-[0.85vw]">통합치의학과 전문의</p>
+                <p className="text-gray-500 text-[0.85vw]">소아치과 전문의</p>
               </div>
             </div>
           </div>
-          <div className="h-[88%] self-end shrink-0">
+          <div className="h-full self-end shrink-0">
             <Image
               src="/images/doctors/doctor-kim2-cut.png"
               alt="서울이건치과 소아진료 김진아 원장"
               width={839}
               height={850}
               className="h-full w-auto block"
+              style={{ transform: 'scale(1.05)', transformOrigin: 'bottom center' }}
             />
           </div>
         </div>
@@ -80,7 +89,7 @@ export function PediatricCredentialSection() {
           <p className="font-bold text-[#2B2D42] leading-snug text-[16px] mb-2">
             아이를 보듬는 마음으로 정성껏 진료합니다.
           </p>
-          <p className="text-[#5b6b87] text-[13px]">원장 김진아 · 통합치의학과 전문의</p>
+          <p className="text-[#5b6b87] text-[13px]">원장 김진아 · 소아치과 전문의</p>
         </div>
       </div>
     </section>

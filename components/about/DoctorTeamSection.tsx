@@ -17,11 +17,16 @@ const DOCTOR_ORDER = ['lee-jaesung', 'jung-chaeyun', 'yoo-suhyun', 'park-jiwon',
 
 // 카드 내 사진 확대 배율 — 김진아 원장 사진의 얼굴 크기에 맞춤
 const CARD_ZOOM: Record<string, number> = {
-  'lee-jaesung':  1.4,
+  'lee-jaesung':  1.68,
   'jung-chaeyun': 1.4,
   'yoo-suhyun':   1.4,
   'park-jiwon':   1.4,
   'kim-jina':     1.15,
+}
+
+// 카드 내 사진 세로 오프셋(%) — 양수면 아래로
+const CARD_SHIFT_Y: Record<string, number> = {
+  'kim-jina': 3,
 }
 
 export default function DoctorTeamSection() {
@@ -98,7 +103,10 @@ export default function DoctorTeamSection() {
               >
                 <button
                   className="relative rounded-2xl overflow-hidden cursor-pointer text-left group focus:outline-none"
-                  style={{ aspectRatio: '3/4' }}
+                  style={{
+                    aspectRatio: '3/4',
+                    backgroundColor: CARD_SHIFT_Y[doctor.id] ? '#f5f7f8' : undefined,
+                  }}
                   onClick={() => handleCardClick(doctor.id)}
                   aria-label={`${doctor.name} ${doctor.role} 소개 보기`}
                 >
@@ -106,7 +114,7 @@ export default function DoctorTeamSection() {
                   <div
                     className="absolute inset-0"
                     style={{
-                      transform: `scale(${CARD_ZOOM[doctor.id] ?? 1})`,
+                      transform: `translateY(${CARD_SHIFT_Y[doctor.id] ?? 0}%) scale(${CARD_ZOOM[doctor.id] ?? 1})`,
                       transformOrigin: 'top center',
                     }}
                   >
