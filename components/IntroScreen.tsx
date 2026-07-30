@@ -32,7 +32,6 @@ export default function IntroScreen() {
 
   const closingRef = useRef(false);
   const isReplayRef = useRef(false);
-  const restoreScrollRef = useRef<() => void>(() => {});
   const removeListenersRef = useRef<() => void>(() => {});
   const teardownRef = useRef<() => void>(() => {});
   const closeTimerRef = useRef<number | null>(null);
@@ -55,12 +54,11 @@ export default function IntroScreen() {
       window.dispatchEvent(new Event('egun:intro-end'));
     }
     closeTimerRef.current = window.setTimeout(() => {
-      restoreScrollRef.current();
       setVisible(false);
     }, 800);
   }, []);
 
-  // 인트로 재생: 스크롤 잠금 + 해제 제스처 리스너 + 자동 해제 타이머 설정
+  // 인트로 재생: 해제 제스처 리스너 + 자동 해제 타이머 설정
   const runIntro = useCallback((opts?: { replay?: boolean }) => {
     if (closeTimerRef.current) {
       clearTimeout(closeTimerRef.current);
@@ -76,23 +74,11 @@ export default function IntroScreen() {
       void startPopupPrefetch();
     }
 
-    const html = document.documentElement;
-    const body = document.body;
-    const prevHtml = html.style.overflow;
-    const prevBody = body.style.overflow;
-
-    // 인트로 시작: 항상 최상단 + 배경 스크롤 잠금(섹션이 뒤로 밀려 올라가는 것 방지)
+    // 인트로 시작: 항상 최상단에서 시작 (배경 스크롤은 차단하지 않음)
     window.scrollTo(0, 0);
-    html.style.overflow = 'hidden';
-    body.style.overflow = 'hidden';
-    restoreScrollRef.current = () => {
-      html.style.overflow = prevHtml;
-      body.style.overflow = prevBody;
-    };
 
-    // 스크롤/터치/휠 제스처 → 인트로 해제 (기본 스크롤은 차단)
-    const onIntent = (e: Event) => {
-      if (e.cancelable) e.preventDefault();
+    // 스크롤/터치/휠 제스처 → 인트로 즉시 해제 (스크롤 자체는 차단하지 않음)
+    const onIntent = () => {
       handleClose();
     };
     const onKey = (e: KeyboardEvent) => {
@@ -101,8 +87,8 @@ export default function IntroScreen() {
       }
     };
 
-    window.addEventListener('wheel', onIntent, { passive: false });
-    window.addEventListener('touchmove', onIntent, { passive: false });
+    window.addEventListener('wheel', onIntent, { passive: true });
+    window.addEventListener('touchmove', onIntent, { passive: true });
     window.addEventListener('keydown', onKey);
     removeListenersRef.current = () => {
       window.removeEventListener('wheel', onIntent);
@@ -116,7 +102,6 @@ export default function IntroScreen() {
     teardownRef.current = () => {
       removeListenersRef.current();
       clearTimeout(timer);
-      restoreScrollRef.current();
     };
   }, [handleClose]);
 
