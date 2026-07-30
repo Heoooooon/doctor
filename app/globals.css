@@ -76,8 +76,7 @@ html.lenis body {
   opacity: 1;
   transition: opacity 0.8s ease;
   cursor: pointer;
-  touch-action: none;
-  overscroll-behavior: contain;
+  touch-action: pan-y;
 }
 .intro.fade-out {
   opacity: 0;
