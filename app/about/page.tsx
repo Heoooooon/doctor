@@ -6,6 +6,7 @@ import ScheduleSection from '@/components/about/ScheduleSection'
 import InteriorSection from '@/components/about/InteriorSection'
 import LabSection from '@/components/about/LabSection'
 import AccessSection from '@/components/about/AccessSection'
+import { getPublicClinicians } from '@/lib/clinicians/server'
 
 export const metadata: Metadata = {
   title: '서울이건치과 소개 | 수원 영통 치과 의료진·진료철학',
@@ -17,7 +18,9 @@ export const metadata: Metadata = {
   },
 }
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const clinicians = await getPublicClinicians()
+
   return (
     <div className="about-page">
       {/* SEO h1 */}
@@ -28,7 +31,7 @@ export default function AboutPage() {
 
       {/* 섹션들 */}
       <PhilosophySection />
-      <DoctorProfileSection />
+      <DoctorProfileSection doctors={clinicians} />
       <ScheduleSection />
       <InteriorSection />
       <LabSection />

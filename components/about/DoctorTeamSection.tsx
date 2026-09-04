@@ -2,8 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
-import { doctors } from '@/data/doctors'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
+import type { Doctor } from '@/data/doctors'
 
 const HOVER_SPECIALTY: Record<string, string> = {
   'lee-jaesung':  '고난도진료 · 심미보철',
@@ -13,31 +13,17 @@ const HOVER_SPECIALTY: Record<string, string> = {
   'kim-jina':     '소아진료',
 }
 
-const DOCTOR_ORDER = ['lee-jaesung', 'jung-chaeyun', 'yoo-suhyun', 'park-jiwon', 'kim-jina']
-
-// 카드 내 사진 확대 배율 — 김진아 원장 사진의 얼굴 크기에 맞춤
-const CARD_ZOOM: Record<string, number> = {
-  'lee-jaesung':  1.68,
-  'jung-chaeyun': 1.4,
-  'yoo-suhyun':   1.4,
-  'park-jiwon':   1.4,
-  'kim-jina':     1.15,
+type Props = {
+  readonly doctors: readonly Doctor[]
 }
 
-// 카드 내 사진 세로 오프셋(%) — 양수면 아래로
-const CARD_SHIFT_Y: Record<string, number> = {
-  'kim-jina': 3,
-}
-
-export default function DoctorTeamSection() {
+export default function DoctorTeamSection({ doctors }: Props) {
   const [hoveredId,     setHoveredId]     = useState<string | null>(null)
   const [highlightIdx,  setHighlightIdx]  = useState<number | null>(null)
   const { ref, isVisible } = useScrollReveal(0.15)
   const highlightTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
-  const displayDoctors = [...doctors].sort(
-    (a, b) => DOCTOR_ORDER.indexOf(a.id) - DOCTOR_ORDER.indexOf(b.id)
-  )
+  const displayDoctors = doctors
 
   const runHighlight = () => {
     // 진행 중인 타이머 클리어
@@ -79,7 +65,7 @@ export default function DoctorTeamSection() {
 
   return (
     <section ref={ref} id="doctors" className="py-10 sm:py-24 bg-[#F8F7F9] border-b border-gray-100 scroll-mt-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 md:pr-36 lg:pl-8 lg:pr-36">
         {/* 타이틀 */}
         <div className={`mb-10 sm:mb-14 ${isVisible ? 'scroll-reveal-drop' : 'scroll-hidden'}`}>
           <p className="text-xs tracking-[0.35em] uppercase text-[#0080C8] mb-2">Medical Team</p>
@@ -92,6 +78,12 @@ export default function DoctorTeamSection() {
           {displayDoctors.map((doctor, i) => {
             const isHovered    = hoveredId === doctor.id
             const isHighlighted = highlightIdx === i
+            const imageScale = doctor.presentation?.teamCardZoom ?? 1
+            const imageSizes = [
+              `(min-width: 1024px) ${Math.min(100, Math.ceil(20 * imageScale))}vw`,
+              `(min-width: 640px) ${Math.min(100, Math.ceil(33 * imageScale))}vw`,
+              `${Math.min(100, Math.ceil(50 * imageScale))}vw`,
+            ].join(', ')
 
             return (
               <div
@@ -102,10 +94,13 @@ export default function DoctorTeamSection() {
                 onMouseLeave={() => setHoveredId(null)}
               >
                 <button
-                  className="relative rounded-2xl overflow-hidden cursor-pointer text-left group focus:outline-none"
+                  className="relative cursor-pointer overflow-hidden rounded-2xl text-left group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0080C8] focus-visible:ring-offset-2"
                   style={{
                     aspectRatio: '3/4',
-                    backgroundColor: CARD_SHIFT_Y[doctor.id] ? '#f5f7f8' : undefined,
+                    backgroundColor:
+                      doctor.presentation?.teamCardShiftYPercent
+                        ? '#f5f7f8'
+                        : undefined,
                   }}
                   onClick={() => handleCardClick(doctor.id)}
                   aria-label={`${doctor.name} ${doctor.role} 소개 보기`}
@@ -114,7 +109,7 @@ export default function DoctorTeamSection() {
                   <div
                     className="absolute inset-0"
                     style={{
-                      transform: `translateY(${CARD_SHIFT_Y[doctor.id] ?? 0}%) scale(${CARD_ZOOM[doctor.id] ?? 1})`,
+                      transform: `translateY(${doctor.presentation?.teamCardShiftYPercent ?? 0}%) scale(${imageScale})`,
                       transformOrigin: 'top center',
                     }}
                   >
@@ -122,7 +117,7 @@ export default function DoctorTeamSection() {
                       src={doctor.image}
                       alt={`${doctor.name} ${doctor.role}`}
                       fill
-                      sizes="(min-width: 1024px) 20vw, (min-width: 640px) 33vw, 50vw"
+                      sizes={imageSizes}
                       className="absolute inset-0 object-cover object-top transition-transform duration-500 group-hover:scale-105"
                     />
                   </div>

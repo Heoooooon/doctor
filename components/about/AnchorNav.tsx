@@ -18,6 +18,7 @@ const NAV_ITEMS: NavItem[] = [
 export default function AnchorNav() {
   const [activeId, setActiveId] = useState<string>('philosophy')
   const observerRef = useRef<IntersectionObserver | null>(null)
+  const listRef = useRef<HTMLUListElement>(null)
 
   useEffect(() => {
     const sectionIds = NAV_ITEMS.map((item) => item.id)
@@ -48,13 +49,44 @@ export default function AnchorNav() {
     }
   }, [])
 
-  const handleClick = (id: string) => {
+  useEffect(() => {
+    const keepActiveVisible = () => {
+      const list = listRef.current
+      const active = list?.querySelector<HTMLButtonElement>(
+        '[aria-current="location"]',
+      )
+      const item = active?.parentElement
+      if (!list || !item) return
+
+      const itemLeft = item.offsetLeft
+      const itemRight = itemLeft + item.offsetWidth
+      if (list.scrollLeft > itemLeft) {
+        list.scrollLeft = itemLeft
+      } else if (itemRight > list.scrollLeft + list.clientWidth) {
+        list.scrollLeft = itemRight - list.clientWidth
+      }
+    }
+
+    keepActiveVisible()
+    window.addEventListener('scroll', keepActiveVisible, { passive: true })
+    return () => window.removeEventListener('scroll', keepActiveVisible)
+  }, [activeId])
+
+  const handleClick = (id: string, target: HTMLButtonElement) => {
     const el = document.getElementById(id)
     if (!el) return
+    const item = target.parentElement
+    const scroller = item?.parentElement
     const OFFSET = 144 // fixed header (80px) + AnchorNav (~52px) + buffer
     const top = el.getBoundingClientRect().top + window.scrollY - OFFSET
     window.dispatchEvent(new CustomEvent('about-anchor-scroll'))
     window.scrollTo({ top, behavior: 'auto' })
+    if (item && scroller) {
+      const centeredLeft =
+        item.offsetLeft + item.offsetWidth / 2 - scroller.clientWidth / 2
+      scroller.scrollTo({ left: Math.max(0, centeredLeft), behavior: 'auto' })
+    }
+    target.blur()
   }
 
   return (
@@ -63,11 +95,12 @@ export default function AnchorNav() {
       aria-label="페이지 내 이동"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <ul className="flex items-center overflow-x-auto scrollbar-hide gap-0">
+        <ul ref={listRef} className="flex items-center overflow-x-auto scrollbar-hide gap-0">
           {NAV_ITEMS.map((item) => (
             <li key={item.id} className="shrink-0">
               <button
-                onClick={() => handleClick(item.id)}
+                onClick={(event) => handleClick(item.id, event.currentTarget)}
+                onMouseDown={(event) => event.preventDefault()}
                 className={`relative px-3 sm:px-5 py-3.5 text-[17px] font-medium transition-colors whitespace-nowrap ${
                   activeId === item.id
                     ? 'text-[#0080C8]'

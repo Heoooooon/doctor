@@ -42,6 +42,7 @@ export default function QuickConsultBar() {
   const firstFieldRef = useRef<HTMLInputElement>(null)
   const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
+  const hideOnMobileAbout = pathname.startsWith('/about')
 
   // 히어로(첫 화면)를 지나 스크롤했을 때만 FAB 노출 → 히어로 카운터와 겹침 방지.
   // 데스크탑 홈은 #home-desktop 내부 스크롤, 그 외/모바일은 window 스크롤.
@@ -167,7 +168,9 @@ export default function QuickConsultBar() {
         aria-expanded={render}
         aria-hidden={!scrolled}
         tabIndex={scrolled ? 0 : -1}
-        className={`fixed right-4 bottom-4 sm:right-6 sm:bottom-6 z-[55] flex items-center gap-2 rounded-full bg-[#0080C8] pl-4 pr-5 h-12 sm:h-14 text-white font-semibold shadow-[0_10px_30px_rgba(0,128,200,0.45)] hover:bg-[#0a6fa8] hover:shadow-[0_14px_38px_rgba(0,128,200,0.55)] active:scale-95 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#0080C8]/40 focus:ring-offset-2 ${
+        className={`fixed right-4 bottom-4 sm:right-6 sm:bottom-6 z-[55] items-center gap-2 rounded-full bg-[#0080C8] pl-4 pr-5 h-12 sm:h-14 text-white font-semibold shadow-[0_10px_30px_rgba(0,128,200,0.45)] hover:bg-[#0a6fa8] hover:shadow-[0_14px_38px_rgba(0,128,200,0.55)] active:scale-95 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#0080C8]/40 focus:ring-offset-2 ${
+          hideOnMobileAbout ? 'hidden sm:flex' : 'flex'
+        } ${
           scrolled
             ? 'opacity-100 translate-y-0 pointer-events-auto'
             : 'opacity-0 translate-y-3 pointer-events-none'

@@ -12,6 +12,7 @@ import {
   Megaphone,
   BookOpen,
   PanelsTopLeft,
+  Stethoscope,
   LogOut,
   Menu,
   X,
@@ -20,6 +21,7 @@ import {
 const navItems = [
   { href: '/admin', label: '대시보드', icon: LayoutDashboard },
   { href: '/admin/consultations', label: '상담 DB', icon: MessageSquare },
+  { href: '/admin/clinicians', label: '의료진 관리', icon: Stethoscope },
   { href: '/admin/cases', label: '증례 관리', icon: Images },
   { href: '/admin/patient-cases', label: '환자사례 관리', icon: Users },
   { href: '/admin/notices', label: '공지사항', icon: Megaphone },

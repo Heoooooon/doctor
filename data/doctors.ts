@@ -12,6 +12,11 @@ export interface Doctor {
   highlights?: { icon: string; text: string }[]
   letter?: string
   documents?: string[]
+  presentation?: {
+    teamCardZoom?: number
+    teamCardShiftYPercent?: number
+    profileImageFit?: 'cover' | 'contain-natural-ratio'
+  }
 }
 
 export const doctors: Doctor[] = [
@@ -24,6 +29,7 @@ export const doctors: Doctor[] = [
     subRole: '임플란트 · 심미보철 전문가',
     specialtyDetail: '고난도진료 · 심미보철',
     image: '/images/doctors/doctor-lee.png',
+    presentation: { teamCardZoom: 1.68 },
     careers: [
       '서울대학교 치과대학/치의학대학원 졸업',
       '서울대학교 치의학대학원 석사학위 취득',
@@ -52,6 +58,7 @@ export const doctors: Doctor[] = [
     subRole: '교정과 전문의',
     specialtyDetail: '투명교정 · 성장기교정',
     image: '/images/doctors/doctor-yoo.png',
+    presentation: { teamCardZoom: 1.4 },
     careers: [
       '경희대학교 치의학전문대학원 졸업',
       '경희대학교 치과대학 치의학 석사',
@@ -83,6 +90,7 @@ export const doctors: Doctor[] = [
     subRole: '통합치의학 전문의',
     specialtyDetail: '임플란트 · 디지털보철',
     image: '/images/doctors/doctor-jung.png',
+    presentation: { teamCardZoom: 1.4 },
     careers: [
       '서울대학교 치과대학/치의학대학원 졸업',
       '보건복지부 인증 통합치의학 전문의',
@@ -109,6 +117,11 @@ export const doctors: Doctor[] = [
     subRole: '통합치의학과 전문의',
     specialtyDetail: '소아치과 · 불소도포',
     image: '/images/doctors/doctor-kimjina.png',
+    presentation: {
+      teamCardZoom: 1.15,
+      teamCardShiftYPercent: 3,
+      profileImageFit: 'contain-natural-ratio',
+    },
     careers: [
       '고려대학교 컴퓨터교육과 졸업',
       '경희대학교 치의학전문대학원 치의학과 졸업',
@@ -140,6 +153,7 @@ export const doctors: Doctor[] = [
     subRole: '통합치의학 전문의',
     specialtyDetail: '보존치료 · 통합치의학',
     image: '/images/doctors/doctor-park.png',
+    presentation: { teamCardZoom: 1.4 },
     careers: [
       'KAIST 우등졸업',
       '경희대학교 치의학대학원 우등졸업',

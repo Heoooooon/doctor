@@ -1,16 +1,14 @@
 'use client'
 
-import { doctors } from '@/data/doctors'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
 import DoctorTeamSection from '@/components/about/DoctorTeamSection'
-
-const DOCTOR_ORDER = ['lee-jaesung', 'jung-chaeyun', 'yoo-suhyun', 'park-jiwon', 'kim-jina']
+import type { Doctor } from '@/data/doctors'
 
 function DoctorCard({
   doctor,
   index,
 }: {
-  doctor: (typeof doctors)[0]
+  doctor: Doctor
   index: number
 }) {
   const isReverse = index % 2 === 1
@@ -26,15 +24,17 @@ function DoctorCard({
       className={`w-full scroll-mt-24 ${isReverse ? 'bg-[#F8F8F8]' : 'bg-white'}`}
     >
       <div className="flex flex-col lg:flex-row lg:items-stretch w-full max-w-[1400px] mx-auto">
-        {/* 사진 — kim-jina는 원본 비율 유지, 나머지는 컬럼 높이에 맞춰 크롭 */}
+        {/* 사진 — 설정에 따라 원본 비율 유지 또는 컬럼 높이에 맞춰 크롭 */}
         <div className={`flex-shrink-0 w-full lg:w-[440px] lg:self-stretch relative overflow-hidden ${
-          doctor.id === 'kim-jina' ? 'lg:flex lg:items-center' : ''
+          doctor.presentation?.profileImageFit === 'contain-natural-ratio'
+            ? 'lg:flex lg:items-center'
+            : ''
         }`}>
           <img
             src={doctor.image}
             alt={`${doctor.name} ${doctor.role}`}
             className={
-              doctor.id === 'kim-jina'
+              doctor.presentation?.profileImageFit === 'contain-natural-ratio'
                 ? 'w-full h-auto block'
                 : 'w-full h-[340px] lg:h-full object-cover object-top block'
             }
@@ -118,12 +118,13 @@ function DoctorCard({
   )
 }
 
-export default function DoctorProfileSection() {
+type Props = {
+  readonly doctors: readonly Doctor[]
+}
+
+export default function DoctorProfileSection({ doctors }: Props) {
   const { ref, isVisible } = useScrollReveal(0.15)
   const { ref: mRef, isVisible: mVisible } = useScrollReveal(0.18)
-  const displayDoctors = [...doctors].sort(
-    (a, b) => DOCTOR_ORDER.indexOf(a.id) - DOCTOR_ORDER.indexOf(b.id)
-  )
 
   return (
     <section
@@ -227,10 +228,10 @@ export default function DoctorProfileSection() {
       </div>
 
       {/* 이건진료진 카드 그리드 */}
-      <DoctorTeamSection />
+      <DoctorTeamSection doctors={doctors} />
 
       {/* 원장님 카드 — 각각 */}
-      {displayDoctors.map((doctor, index) => (
+      {doctors.map((doctor, index) => (
         <DoctorCard key={doctor.id} doctor={doctor} index={index} />
       ))}
     </section>
