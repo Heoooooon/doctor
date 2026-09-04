@@ -1,7 +1,7 @@
 # 운영 핸드오프 — 서버 접근·배포·인프라
 
 > AI 에이전트(Claude/GJC)와 개발자가 세션에 관계없이 서버 작업을 바로 실행할 수 있도록 하는 운영 문서.
-> 최종 갱신: 2026-08-10
+> 최종 갱신: 2026-09-04
 
 ## 인프라 한눈에 보기
 
@@ -15,6 +15,7 @@
 | nginx 설정 | `/etc/nginx/sites-enabled/seoulegun.conf` (egundc.com), `/etc/nginx/sites-enabled/seoulegundc` (jsdentad) |
 | SSL | Let's Encrypt (certbot 자동 갱신), 도메인별 인증서 |
 | DB/스토리지 | Supabase — 테이블 `slide_popups` 등, 스토리지 버킷 `images` (public) |
+| 코드 저장소 | `Heoooooon/doctor` (이 저장소, 운영 전용). 템플릿 솔루션은 `Heoooooon/dental-solution`, 제안 자료는 `Heoooooon/dental-portfolio`로 분리 (2026-09-04) |
 
 ## SSH 접근
 
@@ -52,7 +53,8 @@ git에는 절대 커밋하지 않음(.gitignore 처리됨). 값 변경 시 서�
 ## 관리자 페이지
 
 - 주소: `https://egundc.com/admin` (비밀번호는 `ADMIN_PASSWORD` 환경변수)
-- 인증: `admin-session` 쿠키 기반 (`lib/admin-auth.ts`)
+- 인증: `admin-session` 쿠키 — `ADMIN_PASSWORD`로 서명한 HMAC 토큰(8시간 만료). 검증 `lib/admin-session.ts`, 가드 `lib/admin-auth.ts`·`proxy.ts`. 기본 비밀번호 없음(미설정 시 503).
+- 의료진 관리: `/admin/clinicians` — 소개 페이지(`/about`) 의료진 등록·수정·삭제·순서·공개 여부. 저장 즉시 반영.
 - 슬라이드 팝업: `/admin/popups` — 등록 즉시 홈 인트로 종료 후 슬라이드 팝업으로 노출. 2개 이상 활성 시 화살표+도트 슬라이드(자동 넘김 없음).
 
 ## 자주 쓰는 진단 명령
@@ -70,6 +72,38 @@ curl -s https://egundc.com/api/popups
 ```
 
 ## 운영 이력·롤백
+
+- **2026-09-04 의료진 CMS 도입 + 관리자 인증 강화 + 저장소 분리 (배포 완료)**
+  - 배포 커밋: `59e384f` feat(admin) 의료진 CMS와 공개 연동 추가, `24ea302` security(admin) 관리자 세션 서명 검증 적용. 운영 반영 `./scripts/deploy-vps.sh`, 두 도메인 200.
+  - 서버 백업: `/root/seoulegundc-backup-20260904-1415.tar.gz` (`.env.local` 포함)
+
+  **1) 의료진 CMS**
+  - 새 Supabase 테이블 `doctors` (`supabase/migrations/20260903_doctors.sql`). 기존 정적 의료진 5명을 초기 데이터로 시드했고 운영 DB에 적용 완료(활성 5명).
+  - 관리자 `/admin/clinicians`: 등록·수정·삭제, 프로필 사진 업로드(Supabase Storage `images/clinic`), 노출 순서, 공개/비공개, 카드 확대 배율·세로 이동, 상세 사진 맞춤(원본 비율/잘라내기), 학력·경력·학회·한마디 편집.
+  - 공개 `/about`: DB의 활성 의료진만 `sort_order` 순으로 렌더링. DB 조회 실패 시에만 `data/doctors.ts` 정적 데이터로 fallback (의도적으로 전원 비공개한 경우 빈 목록 유지).
+  - API: `GET/POST /api/clinicians`, `PATCH/DELETE /api/clinicians/[id]` — 관리자 인증 필수, 변경 시 `/about` revalidate.
+  - 관리자 메뉴에 "의료진 관리" 추가. 기존 정적 `data/doctors.ts`는 fallback 용도로 유지(더 이상 편집 대상 아님).
+  - 접근성·반응형: 편집/삭제 모달 포커스 트랩·Escape·포커스 복원, 모바일 관리자 상단 메뉴 겹침 해소, 의료진 카드 포커스 링, 확대 카드 이미지 해상도 보정, 모바일 `/about` 앵커 활성 탭 가시 유지, 모바일 `/about`에서 상담 FAB 숨김(헤더 전화 버튼으로 대체).
+
+  **2) 관리자 인증 강화**
+  - 코드에 하드코딩돼 있던 기본 비밀번호(`egun2024`)와 개발 환경 인증 우회(`NODE_ENV !== 'production'`)를 제거. 비밀번호는 서버 `ADMIN_PASSWORD`만 유효하며 미설정 시 로그인 503.
+  - 세션 쿠키를 고정 문자열에서 HMAC-SHA256 서명 토큰으로 교체(8시간 만료, 위조·만료 토큰 거부). 쿠키 `HttpOnly; Secure; SameSite=Lax`.
+  - **⚠ 후속 조치 필요**: 서버 `ADMIN_PASSWORD`가 과거 코드에 하드코딩돼 GitHub 이력에 남아 있는 `egun2024`와 동일함. 새 강한 값으로 변경 후 `pm2 restart seoulegundc --update-env` 권장. 변경 시 로컬 `.env.local`도 동일하게 갱신.
+  - 운영 검증: 익명·위조 쿠키 API 401, 미인증 `/admin` → `/admin/login` 307, 정상 로그인 200, 의료진 API 5명 정상.
+
+  **3) 저장소 분리**
+  - 이 저장소(`Heoooooon/doctor`)는 **서울이건치과 운영 전용**으로 유지. 템플릿 제품화·타 고객 작업은 분리함.
+  - `Heoooooon/dental-solution` (private): 치과 홈페이지 판매용 템플릿 솔루션. 사이트 설정 계약(`template/`), 고객별 설정(`clinics/{seoulegun,test,centum365}`), 홈 프리셋 5종(`components/presets/`), 검증 테스트 110건. 이 저장소의 운영 문서·배포 스크립트·릴리스 이력은 포함하지 않음.
+  - `Heoooooon/dental-portfolio` (private): 고객 제안 자료(센텀365 제안 보드·PDF·콘셉트 이미지). 대용량 바이너리라 코드와 분리.
+  - 작업 흐름: 솔루션의 공통 개선 → 이 저장소에는 필요한 변경만 골라 별도 커밋. 서울이건치과 콘텐츠 변경 → 솔루션에는 `clinics/seoulegun/site.ts`만 갱신.
+
+  **검증 요약**
+  - 테스트 12/12, TypeScript, 프로덕션 빌드, LSP 통과. 로컬 프로덕션 빌드에서 비공개 QA 의료진 생성→수정→삭제 및 공개 페이지 비노출 확인 후 정리(운영 DB 잔여 없음, 5명 유지).
+  - 데스크톱 1440/1280, 모바일 375 브라우저 QA 및 독립 시각 검토 2회 PASS.
+
+  **롤백**
+  - 코드: `git revert 24ea302 59e384f` 후 `./scripts/deploy-vps.sh`. 또는 서버에서 `/root/seoulegundc-backup-20260904-1415.tar.gz` 복원 후 `pm2 restart seoulegundc`.
+  - DB: `doctors` 테이블은 이전 코드가 참조하지 않으므로 코드 롤백만으로 충분. 삭제가 필요하면 `drop table public.doctors;`.
 
 - **2026-08-10 모바일 메인 2번째 의료진 이미지 교체**
   - 대상 기능: 메인 페이지 모바일 `DoctorGroup` 섹션. 관리자 `/admin/sections`의 의료진 섹션 설정을 사용함.
