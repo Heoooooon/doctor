@@ -19,8 +19,9 @@ cd "$(dirname "$0")/.."
 echo "== 1/5 로컬 빌드 테스트 =="
 npm run build
 
-echo "== 2/5 서버 백업 =="
+echo "== 2/5 서버 백업 (+ 오래된 백업 정리, 최근 5개만 유지) =="
 ssh "$SERVER" "cd $REMOTE_APP && tar -czf /root/seoulegundc-backup-\$(date +%Y%m%d-%H%M).tar.gz . 2>/dev/null || true"
+ssh "$SERVER" "cd /root && ls -1t seoulegundc-backup-*.tar.gz 2>/dev/null | tail -n +6 | xargs -r rm -v"
 
 echo "== 3/5 업로드 =="
 rsync -az --delete \

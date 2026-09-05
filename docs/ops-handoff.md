@@ -73,6 +73,19 @@ curl -s https://egundc.com/api/popups
 
 ## 운영 이력·롤백
 
+- **2026-09-05 디스크 풀 장애 (egundc.com/about 500) — 배포 백업 무제한 누적**
+  - 증상: `https://egundc.com/about` `500 Internal Server Error`. pm2 로그에 `ChunkLoadError`/`MODULE_NOT_FOUND`(`.next/server/chunks/ssr/*.js` 누락), 이어서 `ENOSPC: no space left on device, mkdir '/opt/seoulegundc/.next'`.
+  - 원인: `scripts/deploy-vps.sh`가 배포마다 `/root/seoulegundc-backup-*.tar.gz`를 생성하지만 정리 로직이 없었음. 2026-07-06 첫 배포부터 누적되어 19개(35GB)가 쌓였고 49GB 디스크가 100% 사용률에 도달. 그 상태에서 진행된 배포의 서버 빌드가 디스크 부족으로 중간에 끊겨 `.next`가 손상됨(청크 파일 누락) → 모든 요청이 500.
+  - 조치:
+    1. `ssh root@172.237.29.96 "df -h"`로 100% 확인 → `du -sh /root/*.tar.gz`로 백업이 35GB인 것 확인.
+    2. 오래된 백업 17개 삭제, 최근 2개만 보존 (`/root/seoulegundc-backup-20260905-1248.tar.gz`, `-1254.tar.gz`) → 디스크 100% → 33%(32GB 여유) 확보.
+       - **주의**: 이 정리로 2026-09-04 CMS 배포 롤백용으로 남겨뒀던 `seoulegundc-backup-20260904-1415.tar.gz`도 함께 삭제됨. 그 시점으로 되돌려야 한다면 tar 백업이 아니라 `git revert 24ea302 59e384f` 방식만 사용 가능.
+    3. `su - appuser -c 'cd /opt/seoulegundc && rm -rf .next && NODE_OPTIONS=--max-old-space-size=1536 pnpm build'`로 손상된 `.next` 삭제 후 재빌드.
+    4. `pm2 restart seoulegundc --update-env && pm2 save`.
+  - 검증: `egundc.com/`, `egundc.com/about`, `jsdentad.mycafe24.com` 전부 200. `egundc.com/admin/clinicians` 307(미인증 리다이렉트, 정상). pm2 CPU 100% → 0%.
+  - 재발 방지: `scripts/deploy-vps.sh` 2단계에 백업 직후 `ls -1t seoulegundc-backup-*.tar.gz | tail -n +6 | xargs -r rm`을 추가해 항상 최근 5개만 유지하도록 변경. 이후 배포부터는 백업이 무제한 누적되지 않음.
+  - 운영 팁: 디스크 사용률은 `ssh root@172.237.29.96 df -h /`로 언제든 확인 가능. 80% 넘으면 `/root/*.tar.gz` 개수부터 의심할 것.
+
 - **2026-09-04 의료진 CMS 도입 + 관리자 인증 강화 + 저장소 분리 (배포 완료)**
   - 배포 커밋: `59e384f` feat(admin) 의료진 CMS와 공개 연동 추가, `24ea302` security(admin) 관리자 세션 서명 검증 적용. 운영 반영 `./scripts/deploy-vps.sh`, 두 도메인 200.
   - 서버 백업: `/root/seoulegundc-backup-20260904-1415.tar.gz` (`.env.local` 포함)
