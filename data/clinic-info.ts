@@ -36,7 +36,7 @@ export interface ClinicInfo {
 
 export const clinicInfo: ClinicInfo = {
   name: '서울이건치과',
-  representative: '이재성',
+  representative: '정채윤',
   phone: '031-896-5512',
   fax: '031-213-5510',
   businessNumber: '770-17-01708',
