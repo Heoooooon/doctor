@@ -117,11 +117,7 @@ export const doctors: Doctor[] = [
     subRole: '통합치의학과 전문의',
     specialtyDetail: '소아치과 · 불소도포',
     image: '/images/doctors/doctor-kimjina.png',
-    presentation: {
-      teamCardZoom: 1.15,
-      teamCardShiftYPercent: 3,
-      profileImageFit: 'contain-natural-ratio',
-    },
+    presentation: { teamCardZoom: 1.4 },
     careers: [
       '고려대학교 컴퓨터교육과 졸업',
       '경희대학교 치의학전문대학원 치의학과 졸업',
