@@ -425,7 +425,9 @@ function failureDetail(error, phase) {
   // Never persist arbitrary exception text: JSON parse errors, assertion errors,
   // or nested command causes can contain captured output or environment values.
   const known = /^(?:active (?:PM2 configuration|runtime cwd|source\/static\/build ID) drift|ambiguous PM2 process name|Next activation readiness timed out|PM2 stdout log (?:rotated|truncated) during readiness|(?:runuser|tar|gzip|du|chown) failed \(exit (?:\d+|SIG[A-Z]+)\))$/
-  const message = known.test(error?.message ?? '') ? error.message
+  // Only fixed smoke paths are safe: discovered asset paths may contain secrets.
+  const smokeHTTP = /^HTTP (?:[1-5]\d{2}, expected (?:200|401)|3\d{2} redirect refused): \/(?:__release\.txt|googlec8eaf265de8ba751\.html|api\/columns)?$/
+  const message = known.test(error?.message ?? '') || smokeHTTP.test(error?.message ?? '') ? error.message
     : typeof error?.code === 'string' && /^[A-Z][A-Z0-9_]{0,40}$/.test(error.code) ? `operation failed (${error.code})`
       : 'operation failed (details withheld)'
   return { phase, message }
@@ -576,7 +578,7 @@ export async function deploy({ upload, bootstrap = false, paths = PRODUCTION, de
       await verifyGoogle(candidate)
       const origin = state ? paths.shared : paths.legacy
       await stageMutable(candidate, state ? [paths.shared] : [paths.shared, paths.legacy])
-      await atomicJSON(path.join(candidate, 'public/__release.json'), { commit: manifest.commit })
+      await atomicJSON(path.join(candidate, 'public/__release.txt'), { commit: manifest.commit })
       await run('chown', ['-R', 'appuser:appuser', candidate])
       await assertDiskSpace(paths, manifest.archiveBytes, 0n, deps.statfs)
       phase = 'install'

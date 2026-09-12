@@ -151,9 +151,9 @@ export async function smoke(base, { expectedCommit } = {}) {
   requireCheck(Array.isArray(columns), 'Expected array: /api/columns')
   requireCheck(columns.every(row => row && row.is_active === true && !Object.hasOwn(row, 'content')), 'Expected public-only rows without content: /api/columns')
   if (expectedCommit !== undefined) {
-    const marker = json((await get('/__release.json')).text, '/__release.json')
-    requireCheck(typeof marker?.commit === 'string' && hexCommit.test(marker.commit), 'Invalid 40-hex commit: /__release.json')
-    requireCheck(marker.commit === expectedCommit, 'Release commit mismatch: /__release.json')
+    const marker = json((await get('/__release.txt')).text, '/__release.txt')
+    requireCheck(typeof marker?.commit === 'string' && hexCommit.test(marker.commit), 'Invalid 40-hex commit: /__release.txt')
+    requireCheck(marker.commit === expectedCommit, 'Release commit mismatch: /__release.txt')
   }
   return { passed: true, base: root.origin, checks, assets: assets.size, publicColumns: columns.length, commit: expectedCommit ?? null }
 }

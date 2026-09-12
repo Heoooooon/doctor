@@ -30,7 +30,7 @@ async function fixture(run: (base: string, requests: string[]) => Promise<void>,
     requests.push(`${req.method} ${req.url}`)
     if (override(req, res)) return
     if (req.url === '/') res.end(home)
-    else if (req.url === '/__release.json') res.end(JSON.stringify({ commit }))
+    else if (req.url === '/__release.txt') res.end(JSON.stringify({ commit }))
     else if (req.url === '/googlec8eaf265de8ba751.html') res.end(` ${token}\n`)
     else if (req.url === '/api/columns?all=1') {
       res.writeHead(401, { 'Cache-Control': 'private, no-store' }).end('{}')
@@ -73,6 +73,26 @@ test('good release checks local resources, ignores canonical/external/raw-text l
     assert.ok(requests.includes('HEAD /video.mp4'))
     assert.equal(requests.filter(path => path === 'GET /').length, 1)
     assert.ok(!requests.some(path => /not-real|comment|not-an-asset/.test(path)))
+  })
+})
+
+test('release marker works through a proxy that denies JSON file URLs', { timeout: 10_000 }, async () => {
+  await fixture(async (base, requests) => {
+    const result = await smoke(base, { expectedCommit: commit })
+    assert.equal(result.passed, true)
+    assert.equal(result.commit, commit)
+    assert.ok(requests.includes('GET /__release.txt'))
+    assert.ok(!requests.some(request => /\.json(?:\?|$)/i.test(request)))
+  }, (req, res) => {
+    if (/\.json$/i.test(new URL(req.url ?? '/', 'http://fixture').pathname)) {
+      res.writeHead(403).end('DO_NOT_LOG proxy denial')
+      return true
+    }
+    if (req.url === '/__release.txt') {
+      res.writeHead(200, { 'Content-Type': 'text/plain' }).end(JSON.stringify({ commit }))
+      return true
+    }
+    return false
   })
 })
 
@@ -119,9 +139,10 @@ test('responsive parsing preserves URL commas, handles descriptors and data URLs
 for (const [name, path, status, body, pattern, headers] of [
   ['root failure', '/', 503, 'DO_NOT_LOG', /503.*\//, {}],
   ['root 200 but CSS failure', '/app.css', 500, 'DO_NOT_LOG', /500.*\/app\.css/, {}],
-  ['wrong release', '/__release.json', 200, JSON.stringify({ commit: 'b'.repeat(40) }), /commit.*mismatch/, {}],
-  ['missing release', '/__release.json', 404, 'DO_NOT_LOG', /404.*\/__release\.json/, {}],
-  ['malformed release', '/__release.json', 200, '{', /JSON.*\/__release\.json/, {}],
+  ['wrong release', '/__release.txt', 200, JSON.stringify({ commit: 'b'.repeat(40) }), /commit.*mismatch/, {}],
+  ['missing release', '/__release.txt', 404, 'DO_NOT_LOG', /404.*\/__release\.txt/, {}],
+  ['malformed release', '/__release.txt', 200, '{', /JSON.*\/__release\.txt/, {}],
+  ['invalid commit format', '/__release.txt', 200, JSON.stringify({ commit: 'not-a-commit' }), /40-hex.*\/__release\.txt/, {}],
   ['private API exposed', '/api/columns?all=1', 200, 'DO_NOT_LOG', /200.*\/api\/columns/, {}],
   ['private API cached', '/api/columns?all=1', 401, '{}', /private, no-store/, {}],
   ['verification token incorrect', '/googlec8eaf265de8ba751.html', 200, 'wrong', /verification.*googlec8eaf265de8ba751/, {}],
@@ -158,8 +179,8 @@ for (const [name, html] of [
 test('legacy rollback needs no marker when no expected commit is supplied', async () => {
   await fixture(async (base, requests) => {
     assert.equal((await smoke(base)).passed, true)
-    assert.ok(!requests.includes('GET /__release.json'))
-  }, response('/__release.json', 404, ''))
+    assert.ok(!requests.includes('GET /__release.txt'))
+  }, response('/__release.txt', 404, ''))
 })
 
 test('HEAD unsupported falls back to GET', async () => {

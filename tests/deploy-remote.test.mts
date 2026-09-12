@@ -98,7 +98,7 @@ async function fixture(t: TestContext) {
           if (step === 'install') assert.deepEqual(rest, ['install', '--frozen-lockfile', '--prod=false'])
           if (step === 'build') {
             assert.ok(envArgs.includes('NODE_OPTIONS=--max-old-space-size=1536'))
-            assert.equal(JSON.parse(await readFile(path.join(options.cwd, 'public/__release.json'), 'utf8')).commit, expectedCandidate)
+            assert.equal(JSON.parse(await readFile(path.join(options.cwd, 'public/__release.txt'), 'utf8')).commit, expectedCandidate)
           }
           if (fail === step) throw new Error(`${step} failed`)
           if (step === 'build') {
@@ -296,6 +296,39 @@ test('private failure diagnostics retain activation phase without PM2 output, en
   for (const secret of ['PRIVATE', 'pm2_env', 'raw output', 'nested raw']) assert.ok(!text.includes(secret))
   await assert.rejects(readFile(f.paths.state), { code: 'ENOENT' })
 })
+
+for (const [name, message, retained] of [
+  ['marker forbidden', 'HTTP 403, expected 200: /__release.txt', true],
+  ['missing Google proof', 'HTTP 404, expected 200: /googlec8eaf265de8ba751.html', true],
+  ['homepage redirect', 'HTTP 302 redirect refused: /', true],
+  ['private API exposed', 'HTTP 200, expected 401: /api/columns', true],
+  ['response body suffix', 'HTTP 403, expected 200: /__release.txt DO_NOT_LOG', false],
+  ['environment suffix', 'HTTP 403, expected 200: /__release.txt\nPRIVATE=DO_NOT_LOG', false],
+  ['query string', 'HTTP 403, expected 200: /__release.txt?secret=DO_NOT_LOG', false],
+  ['unknown asset path', 'HTTP 403, expected 200: /uploads/DO_NOT_LOG.webp', false],
+  ['unknown exception', 'DO_NOT_LOG unknown exception', false],
+] as const) {
+  test(`private smoke failure diagnostics: ${name}`, async t => {
+    const f = await fixture(t)
+    const originalSmoke = f.deps.smoke
+    f.deps.smoke = async (base, options) => {
+      if (base.endsWith(':45678')) return originalSmoke(base, options)
+      throw new Error(message, { cause: new Error('DO_NOT_LOG nested cause') })
+    }
+    await assert.rejects(f.go(), AggregateError)
+    const text = await readFile(path.join(f.upload, 'error.json'), 'utf8')
+    const report = JSON.parse(text)
+    assert.equal(report.failure.phase, 'smoke-activation')
+    assert.equal(report.rollback.phase, 'rollback-smoke')
+    for (const detail of [report.failure, report.rollback]) {
+      if (retained) assert.equal(detail.message, message)
+      else assert.notEqual(detail.message, message)
+    }
+    assert.ok(!text.includes('DO_NOT_LOG'))
+    assert.ok(!text.includes('PRIVATE'))
+    await assert.rejects(readFile(f.paths.state), { code: 'ENOENT' })
+  })
+}
 
 test('persisted state enforces ancestry, runtime cwd, source/static checksums, and verified same-commit no-op', async t => {
   const f = await fixture(t)

@@ -16,7 +16,7 @@ const server = `const fs = require('node:fs');
 const http = require('node:http');
 const path = require('node:path');
 const port = Number(process.argv[process.argv.indexOf('-p') + 1]);
-const marker = JSON.parse(fs.readFileSync(path.join(process.cwd(),'public/__release.json'),'utf8'));
+const marker = JSON.parse(fs.readFileSync(path.join(process.cwd(),'public/__release.txt'),'utf8'));
 http.createServer((req,res) => {
   res.setHeader('Content-Type','application/json');
   res.end(JSON.stringify({commit:marker.commit,cwd:process.cwd(),script:__filename,uid:process.getuid(),args:process.argv.slice(2)}));
@@ -80,7 +80,7 @@ async function fixture(t: TestContext) {
   }
   await put(paths.legacy, '.env.local', 'PRIVATE=fixture-secret-never-log')
   await chmod(path.join(paths.legacy, '.env.local'), 0o600)
-  await put(paths.legacy, 'public/__release.json', JSON.stringify({ commit: OLD }))
+  await put(paths.legacy, 'public/__release.txt', JSON.stringify({ commit: OLD }))
   await put(paths.legacy, '.next/BUILD_ID', 'old-build')
   await put(paths.legacy, '.next/static/old.js', 'old chunk')
   await put(paths.legacy, '.local/bin/pnpm', pnpm)
