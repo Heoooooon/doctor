@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, type Ref } from 'react'
 import { useCountUp } from '@/hooks/useCountUp'
 
 const STATS = [
@@ -37,32 +37,101 @@ function StatItem({
   )
 }
 
+export type SedationObserverOptions<Root> = Pick<IntersectionObserverInit, 'threshold' | 'rootMargin'> & {
+  root?: Root | null
+}
+
+/** Own the video's mutable media attributes; React keeps the treatment text rendered. */
+export function startSedationMedia<Root>(
+  section: { closest(selector: string): Root | null },
+  video: Pick<HTMLVideoElement, 'src' | 'preload' | 'autoplay' | 'play' | 'pause'>,
+  setVisible: (visible: boolean) => void,
+  observe: (
+    onIntersection: (isIntersecting: boolean) => void | Promise<void>,
+    options: SedationObserverOptions<Root>
+  ) => () => void
+) {
+  let ready = false
+  let visible = false
+
+  function updatePlayback() {
+    if (!ready) return
+    video.autoplay = visible
+    if (visible) {
+      return video.play().catch((error: unknown) => {
+        if (!(error instanceof Error)) throw error
+        console.warn('Sedation video playback unavailable', error)
+      })
+    }
+    video.pause()
+  }
+
+  const stopViewport = observe((isIntersecting) => {
+    if (visible === isIntersecting) return
+    visible = isIntersecting
+    setVisible(visible)
+    return updatePlayback()
+  }, { threshold: 0.1 })
+
+  const stopApproach = observe((isIntersecting) => {
+    if (!isIntersecting) return
+    video.preload = 'metadata'
+    video.src = '/images/video/sedation-hero.mp4'
+    ready = true
+    stopApproach()
+    return updatePlayback()
+  }, {
+    // Desktop scrolls inside its own container; mobile uses the document viewport.
+    root: section.closest('#home-desktop'),
+    rootMargin: '300px 0px',
+  })
+
+  return () => {
+    stopViewport()
+    stopApproach()
+    video.autoplay = false
+    // Keep the source and last frame on exit, and resume rather than rewind.
+    video.pause()
+  }
+}
+
 export default function SedationSection() {
   const [visible, setVisible] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
+  const videoRef = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
-    const el = sectionRef.current
-    if (!el) return
+    const section = sectionRef.current
+    const video = videoRef.current
+    if (!section || !video) return
 
-    const observer = new IntersectionObserver(
-      ([entry]) => setVisible(entry.isIntersecting),
-      { threshold: 0.1 }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
+    return startSedationMedia(section, video, setVisible, (onIntersection, options) => {
+      const observer = new IntersectionObserver(
+        ([entry]) => { void onIntersection(entry.isIntersecting) },
+        options
+      )
+      observer.observe(section)
+      return () => observer.disconnect()
+    })
   }, [])
 
+  return <SedationSectionView visible={visible} sectionRef={sectionRef} videoRef={videoRef} />
+}
+
+export function SedationSectionView({ visible, sectionRef, videoRef }: {
+  visible: boolean
+  sectionRef: Ref<HTMLElement>
+  videoRef: Ref<HTMLVideoElement>
+}) {
   return (
     <section ref={sectionRef} className="min-h-[620px] w-full relative overflow-hidden bg-black md:min-h-[680px] lg:min-h-[720px]">
       <video
+        ref={videoRef}
         className="absolute inset-0 h-full w-full object-cover"
-        src="/images/video/sedation-hero.mp4"
-        autoPlay
         loop
         muted
         playsInline
-        preload="metadata"
+        preload="none"
         aria-hidden="true"
       />
 

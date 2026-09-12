@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -48,9 +48,15 @@ function clearIntroSeen() {
 
 export default function Header() {
   const [navOpen, setNavOpen] = useState(false)
+  const menuButtonRef = useRef<HTMLButtonElement>(null)
   const pathname = usePathname()
 
   const isBoardActive = BOARD_ITEMS.some(b => pathname === b.href)
+  const closeNav = () => {
+    if (!navOpen) return
+    menuButtonRef.current?.focus()
+    setNavOpen(false)
+  }
 
   return (
     <>
@@ -80,6 +86,7 @@ export default function Header() {
                 alt="서울이건치과"
                 width={1000}
                 height={400}
+                sizes="(max-width: 639px) 150px, 180px"
                 className="h-auto w-[150px] sm:w-[180px]"
               />
             </Link>
@@ -172,6 +179,7 @@ export default function Header() {
                 </svg>
               </a>
               <button
+                ref={menuButtonRef}
                 onClick={() => setNavOpen(true)}
                 aria-label="메뉴 열기"
                 aria-expanded={navOpen}
@@ -189,7 +197,7 @@ export default function Header() {
       </header>
 
       {/* 모바일 내비게이션 */}
-      <MobileNav isOpen={navOpen} onClose={() => setNavOpen(false)} />
+      <MobileNav isOpen={navOpen} onClose={closeNav} />
     </>
   )
 }

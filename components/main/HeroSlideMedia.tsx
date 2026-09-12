@@ -14,7 +14,6 @@ type HeroSlideMediaProps = {
 
 export function HeroSlideMedia({
   slides,
-  slide,
   current,
   prev,
   isMobile,
@@ -23,96 +22,46 @@ export function HeroSlideMedia({
 }: HeroSlideMediaProps) {
   return (
     <>
-      <div className="hidden md:block absolute inset-0">
-        {slides.map((item, index) =>
-          item.isVideo ? null : item.loopVideo ? (
-            <video
-              key={item.id}
-              src={item.image}
-              muted
-              loop
-              autoPlay
-              playsInline
-              aria-hidden="true"
-              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-[2500ms] ease-in-out"
-              style={{ opacity: index === current ? 1 : 0 }}
-            />
-          ) : (
-            <img
-              key={item.id}
-              src={item.image}
-              alt=""
-              aria-hidden="true"
-              className="absolute inset-0 w-full h-full object-cover hero-kenburns transition-opacity duration-[2500ms] ease-in-out"
-              style={{ opacity: index === current ? 1 : 0 }}
-            />
-          ),
-        )}
-      </div>
-
-      {!isMobile && slide.isVideo && (
-        <video
-          ref={videoRef}
-          key={`hero-video-${slide.id}`}
-          className="hidden md:block absolute inset-0 w-full h-full object-cover"
-          src={slide.image}
-          poster={getVideoPoster(slide.image)}
-          preload="auto"
-          autoPlay
-          muted
-          playsInline
-          onCanPlay={(event) => {
-            event.currentTarget.playbackRate = getVideoPlaybackRate(slide)
-          }}
-          onEnded={onVideoEnded}
-        />
-      )}
-
-      {/* 모바일 미디어 — 데스크탑과 같은 슬라이드 소스를 SSR부터 렌더해
-          새로고침 첫 페인트에서도 데스크탑과 동일한 첫 슬라이드가 보인다.
-          (md:hidden으로 데스크탑에서는 숨김. ref/이벤트는 모바일에서만 연결) */}
-      <div className="md:hidden absolute inset-0">
+      {/* One media layer avoids downloads from CSS-hidden device variants. The
+          first video and its shared poster remain useful before mobile detection. */}
+      <div className="absolute inset-0 isolate">
         {slides.map((item, index) => {
           const active = index === current
           const isPrev = index === prev
-          const visible = active || isPrev
-          const panClass = active || isPrev ? `mobile-pan-${index}` : ''
-          const zIndex = active ? 2 : isPrev ? 1 : 0
-          const src = getSlideMedia(item, true)
+          const video = item.isVideo || item.loopVideo
+          const prepareNext = index === (current + 1) % slides.length && !video
+          // Keep source-free shells mounted: their opacity can transition even
+          // on direct jumps, without requesting distant images or video posters.
+          // Retain the outgoing source and prepare only the next still.
+          const shouldLoad = active || isPrev || prepareNext
+          const src = shouldLoad ? getSlideMedia(item, isMobile) : undefined
+          const motionClass = isMobile
+            ? active || isPrev ? `mobile-pan-${index}` : ''
+            : video ? '' : 'hero-kenburns'
+          const className = `absolute inset-0 w-full h-full object-cover transition-opacity duration-700 md:duration-[2500ms] ease-in-out ${motionClass}`
+          const style = {
+            opacity: active || (isMobile && isPrev) ? 1 : 0,
+            zIndex: active ? 2 : isPrev ? 1 : 0,
+          }
 
-          if (item.isVideo) {
+          if (video) {
             return (
               <video
-                ref={isMobile && active ? videoRef : undefined}
-                key={`hero-video-m-${item.id}`}
-                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out ${panClass}`}
-                style={{ opacity: visible ? 1 : 0, zIndex }}
+                ref={active && item.isVideo ? videoRef : undefined}
+                key={item.id}
+                className={className}
+                style={style}
                 src={src}
-                poster={getVideoPoster(src)}
-                preload={active ? 'auto' : 'metadata'}
+                poster={src ? getVideoPoster(src) : undefined}
+                preload={active ? 'auto' : 'none'}
                 muted
                 playsInline
+                loop={item.loopVideo}
                 autoPlay={active}
                 onCanPlay={(event) => {
                   event.currentTarget.playbackRate = getVideoPlaybackRate(item)
                 }}
-                onEnded={isMobile && active ? onVideoEnded : undefined}
-              />
-            )
-          }
-
-          if (item.loopVideo) {
-            return (
-              <video
-                key={item.id}
-                src={src}
-                muted
-                loop
-                autoPlay
-                playsInline
-                aria-hidden="true"
-                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out ${panClass}`}
-                style={{ opacity: visible ? 1 : 0, zIndex }}
+                onEnded={active && item.isVideo ? onVideoEnded : undefined}
               />
             )
           }
@@ -121,10 +70,18 @@ export function HeroSlideMedia({
             <img
               key={item.id}
               src={src}
+              srcSet={shouldLoad ? item.srcSet : undefined}
+              // Cover fills the viewport height on portrait devices. Account for
+              // that rather than selecting a blurry 960px frame by width alone.
+              sizes={item.width && item.height ? `max(100vw, ${Math.ceil(100 * item.width / item.height)}vh)` : '100vw'}
+              width={item.width}
+              height={item.height}
+              loading="eager"
+              fetchPriority={active ? 'high' : 'low'}
               alt=""
               aria-hidden="true"
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out ${panClass}`}
-              style={{ opacity: visible ? 1 : 0, zIndex }}
+              className={className}
+              style={style}
             />
           )
         })}

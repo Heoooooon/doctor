@@ -68,9 +68,12 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
 
       {/* 슬라이드 패널 */}
       <nav
+        id="mobile-nav"
         role="dialog"
         aria-modal="true"
         aria-label="메인 메뉴"
+        aria-hidden={!isOpen}
+        inert={!isOpen}
         className={`fixed top-0 right-0 z-50 h-full w-72 bg-white shadow-2xl transform transition-transform duration-300 ease-out flex flex-col ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
@@ -103,6 +106,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
               <li key={item.href}>
                 <Link
                   href={item.href}
+                  prefetch={isOpen ? null : false}
                   onClick={onClose}
                   className={`flex min-h-[52px] items-center gap-3 px-6 py-3 text-[18px] font-medium transition-colors ${
                     isActive
@@ -127,6 +131,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
               <li key={item.href}>
                 <Link
                   href={item.href}
+                  prefetch={isOpen ? null : false}
                   onClick={onClose}
                   className={`flex min-h-[56px] items-center gap-3 px-6 py-4 text-[18px] font-medium transition-colors ${
                     isActive

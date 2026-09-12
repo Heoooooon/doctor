@@ -1,15 +1,7 @@
 'use client'
 
-import { useEffect, useState, useMemo } from 'react'
-
-interface Column {
-  id: string
-  title: string
-  image_url: string | null
-  column_date: string
-  category: string | null
-  tags: string[] | null
-}
+import { useState, useMemo } from 'react'
+import type { ColumnSummary } from '@/lib/columns'
 
 const CATEGORIES = ['전체', '자연치아살리기', '임플란트', '심미보철', '교정치료', '소아치과', '일반진료']
 
@@ -17,7 +9,7 @@ function formatDate(dateStr: string) {
   return dateStr.replace(/-/g, '. ')
 }
 
-function PostCard({ post }: { post: Column }) {
+function PostCard({ post }: { post: ColumnSummary }) {
   const tag = post.category ?? '원장칼럼'
   return (
     <article className="group cursor-pointer">
@@ -54,32 +46,8 @@ function PostCard({ post }: { post: Column }) {
   )
 }
 
-function SkeletonCard() {
-  return (
-    <div className="animate-pulse">
-      <div className="aspect-[4/3] bg-gray-100 mb-3" />
-      <div className="h-5 bg-gray-100 rounded-full w-1/4 mb-2" />
-      <div className="h-4 bg-gray-100 rounded w-4/5 mb-1" />
-      <div className="h-4 bg-gray-100 rounded w-2/3 mb-2" />
-      <div className="h-3 bg-gray-100 rounded w-1/4" />
-    </div>
-  )
-}
-
-export default function ColumnBoard() {
-  const [posts, setPosts] = useState<Column[]>([])
+export default function ColumnBoard({ posts }: { readonly posts: readonly ColumnSummary[] }) {
   const [selected, setSelected] = useState('전체')
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    fetch('/api/columns')
-      .then((r) => r.json())
-      .then((data) => {
-        setPosts(Array.isArray(data) ? data : [])
-        setLoading(false)
-      })
-      .catch(() => setLoading(false))
-  }, [])
 
   const filtered = useMemo(
     () => (selected === '전체' ? posts : posts.filter((p) => p.category === selected)),
@@ -208,11 +176,7 @@ export default function ColumnBoard() {
 
         {/* ── Post Grid ── */}
         <section className="flex-1 min-w-0">
-          {loading ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-10">
-              {[...Array(6)].map((_, i) => <SkeletonCard key={i} />)}
-            </div>
-          ) : filtered.length === 0 ? (
+          {filtered.length === 0 ? (
             <div className="text-center py-24 text-[#9CA3AF]">
               <svg className="w-12 h-12 mx-auto mb-4 opacity-30" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />

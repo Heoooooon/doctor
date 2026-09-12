@@ -89,7 +89,6 @@ export default async function DoctorGroup() {
         alt="서울이건치과 의료진"
         fill
         sizes="100vw"
-        priority
         className="hidden md:block object-cover"
         style={{
           objectPosition: '72% 58%',
@@ -118,9 +117,9 @@ export default async function DoctorGroup() {
           href="/about#doctor-intro"
           className="inline-flex items-center justify-center gap-2
             h-[48px] px-7 rounded-full
-            bg-[#0080C8] text-white text-[18px] font-semibold
+            bg-[#006BA8] text-white text-[18px] font-semibold
             shadow-[0_4px_20px_rgba(0,128,200,0.4)]
-            transition-all duration-200 active:bg-[#006EAA]"
+            transition-[filter] duration-200 hover:brightness-110 active:brightness-95"
         >
           {s.mobile_button_text || s.button_text}
           <svg

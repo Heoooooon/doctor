@@ -90,10 +90,10 @@ export default function ImplantSection() {
 
         <Link
           href="/implant"
-          className={`inline-flex min-h-[44px] items-center gap-2 px-7 py-3 text-[18px] font-semibold text-white bg-[#0080C8] rounded-full shadow-[0_4px_20px_rgba(0,128,200,0.4)] transition-all duration-300 group hover:bg-[#006EAA] ${isVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}
+          className={`inline-flex min-h-[44px] items-center gap-2 px-7 py-3 text-[18px] font-semibold text-white bg-[#006BA8] rounded-full shadow-[0_4px_20px_rgba(0,128,200,0.4)] transition-[filter] duration-300 group hover:brightness-110 active:brightness-95 ${isVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}
           style={isVisible ? { animationDelay: '0.8s' } : undefined}
         >
-          자세히 보기
+          올온 임플란트 자세히 보기
         </Link>
       </div>
 

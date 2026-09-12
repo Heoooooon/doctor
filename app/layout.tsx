@@ -11,10 +11,13 @@ import { LocalBusinessJsonLd } from '@/components/seo/JsonLd'
 import { TrackingScripts, GtmNoScript } from '@/components/seo/Tracking'
 import { tracking } from '@/data/tracking'
 
+const title = '수원치과 서울이건치과 | 자연치아 보존·임플란트·교정'
+const description =
+  '수원시 영통구 매탄동 서울이건치과. 자연치아 보존을 우선으로 임플란트·교정·소아진료를 안내합니다. 서울대 출신 대표원장, 원내 기공소, 진료시간·주차·오시는 길을 확인하세요.'
+
 export const metadata: Metadata = {
-  title: '서울이건치과 | 수원치과 영통치과 매탄동치과 임플란트·교정',
-  description:
-    '서울대 출신 2인 대표원장이 진료하는 수원 영통 치과. 디지털 네비게이션 임플란트, 의식하 진정(수면) 임플란트, 자연치아살리기, 교정, 소아치과. 수원시 영통구 인계로 위치.',
+  title,
+  description,
   metadataBase: new URL('https://egundc.com'),
   verification: {
     google: 'p_FSsHqSLTp0KO8n3FpFMOKytCiScgpMXBaZtF55ibE',
@@ -32,9 +35,8 @@ export const metadata: Metadata = {
     canonical: 'https://egundc.com',
   },
   openGraph: {
-    title: '서울이건치과 | 수원치과 영통치과 매탄동치과 임플란트·교정',
-    description:
-      '서울대 출신 2인 대표원장이 진료하는 수원 영통 치과. 네비게이션 임플란트·수면치료·자연치아살리기·교정·소아치과.',
+    title,
+    description,
     url: 'https://egundc.com',
     siteName: '서울이건치과',
     locale: 'ko_KR',
@@ -50,9 +52,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: '서울이건치과 | 수원치과 영통치과 매탄동치과 임플란트·교정',
-    description:
-      '서울대 출신 2인 대표원장이 진료하는 수원 영통 치과. 네비게이션 임플란트·수면치료·자연치아살리기·교정·소아치과.',
+    title,
+    description,
     images: ['/images/logo/egun-logo%20(1).png'],
   },
 }

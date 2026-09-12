@@ -12,6 +12,7 @@ const TYPES = [
     quote: '최소한의 임플란트로 틀니 없이 내 치아처럼',
     features: ['4-6개의 임플란트로 전악 고정', '틀니의 불편함 해소', '수술 당일 임시 치아 장착'],
     img: '/images/treatments/implant/all-on.jpg',
+    alt: '아래턱 임플란트와 전악 보철물이 보이는 파노라마 엑스레이',
     href: '/implant#all-on',
   },
   {
@@ -21,6 +22,7 @@ const TYPES = [
     quote: '수술 직후 틀니 없이 식사가 가능한 치아 제작',
     features: ['당일 임시 보철', '저작 기능 즉시 회복', '최소 회복 기간'],
     img: '/images/treatments/implant/immediate_2.webp',
+    alt: '위아래 치열과 보철물이 맞물린 구강 정면 사진',
     href: '/implant#immediate-loading',
   },
   {
@@ -30,6 +32,7 @@ const TYPES = [
     quote: '최소 절개·최소 침습·디지털 임플란트',
     features: ['3D CT 기반 시술 계획', '수술 가이드 제작', '정확한 식립 위치'],
     img: '/images/treatments/implant/navigation.jpg',
+    alt: '3D 턱뼈 영상과 CT 단면에서 임플란트 식립 위치를 계획하는 화면',
     href: '/implant#navigation',
   },
 ]
@@ -136,7 +139,7 @@ export default function ImplantTypeSection() {
               <div className="relative aspect-[3/2] sm:aspect-auto sm:h-[200px] shrink-0 overflow-hidden">
                 <Image
                   src={type.img}
-                  alt={`수원 영통 ${type.title}`}
+                  alt={type.alt}
                   fill
                   sizes="(max-width: 640px) 100vw, 33vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-105"

@@ -1,7 +1,11 @@
 import type { MetadataRoute } from 'next'
 import { absoluteUrl, boardCarouselItems, BASE_URL } from '@/lib/board-carousel'
+import { getPublicColumns } from '@/lib/columns'
+import { columnUrl } from '@/lib/column-seo'
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export const dynamic = 'force-dynamic'
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // 색인 대상 페이지만 포함. 중복(/cosmetic, /orthodontics)과 유틸(/signup, /privacy)은 제외.
   const pages = [
     { url: '/', priority: 1.0 },
@@ -21,18 +25,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const standardPages: MetadataRoute.Sitemap = pages.map((page) => ({
     url: `${BASE_URL}${page.url}`,
-    lastModified: new Date(),
     changeFrequency: page.priority >= 0.8 ? 'weekly' : 'monthly',
     priority: page.priority,
   }))
 
   const boardPages: MetadataRoute.Sitemap = boardCarouselItems.map((item) => ({
     url: absoluteUrl(item.href),
-    lastModified: new Date(),
     changeFrequency: 'monthly' as const,
     priority: 0.6,
     images: [absoluteUrl(item.image)],
   }))
 
-  return [...standardPages, ...boardPages]
+  const columnPages: MetadataRoute.Sitemap = (await getPublicColumns()).map((post) => ({
+    url: columnUrl(post.id),
+    // There is no updated_at: publication is the only known content date.
+    lastModified: post.column_date,
+    changeFrequency: 'monthly',
+    priority: 0.6,
+  }))
+
+  return [...standardPages, ...boardPages, ...columnPages]
 }

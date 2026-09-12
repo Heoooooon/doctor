@@ -16,7 +16,7 @@ export default function CleanSection() {
       <div className="md:hidden absolute inset-0">
         <Image
           src="/images/clinic/clean.jpg"
-          alt="멸균 소독 과정"
+          alt=""
           fill
           sizes="100vw"
           className="object-cover"

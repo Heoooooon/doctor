@@ -17,7 +17,6 @@ export default function SlidePopup() {
   const [slides, setSlides] = useState<SlidePopupItem[]>([])
   const [open, setOpen] = useState(false)
   const [index, setIndex] = useState(0)
-  const touchStartX = useRef<number | null>(null)
 
   const slidesRef = useRef<SlidePopupItem[]>([])
   const readyRef = useRef(false)
@@ -121,6 +120,33 @@ export default function SlidePopup() {
 
   if (!open || slides.length === 0) return null
 
+  return (
+    <SlidePopupView
+      slides={slides}
+      index={index}
+      onClose={close}
+      onHideToday={hideTodayAndClose}
+      onPrev={goPrev}
+      onNext={goNext}
+      onSelect={goTo}
+    />
+  )
+}
+
+export interface SlidePopupViewProps {
+  readonly slides: readonly SlidePopupItem[]
+  readonly index: number
+  readonly onClose: () => void
+  readonly onHideToday: () => void
+  readonly onPrev: () => void
+  readonly onNext: () => void
+  readonly onSelect: (index: number) => void
+}
+
+/** 팝업 다이얼로그 마크업 — 상태 없는 뷰(테스트 가능한 seam) */
+export function SlidePopupView({ slides, index, onClose, onHideToday, onPrev, onNext, onSelect }: SlidePopupViewProps) {
+  const touchStartX = useRef<number | null>(null)
+
   const hasMultiple = slides.length > 1
   const atStart = index === 0
   const atEnd = index === slides.length - 1
@@ -136,7 +162,7 @@ export default function SlidePopup() {
         type="button"
         className="absolute inset-0 bg-black/60"
         aria-label="팝업 닫기"
-        onClick={close}
+        onClick={onClose}
       />
 
       {/*
@@ -154,14 +180,14 @@ export default function SlidePopup() {
             const dx = (e.changedTouches[0]?.clientX ?? 0) - touchStartX.current
             touchStartX.current = null
             if (Math.abs(dx) < 40) return
-            if (dx > 0) goPrev()
-            else goNext()
+            if (dx > 0) onPrev()
+            else onNext()
           }}
         >
           <div className="relative leading-none overflow-hidden">
             <button
               type="button"
-              onClick={close}
+              onClick={onClose}
               className="absolute top-3 right-3 z-20 flex h-8 w-8 items-center justify-center rounded-full bg-black/35 text-white hover:bg-black/50 transition-colors"
               aria-label="닫기"
             >
@@ -176,6 +202,8 @@ export default function SlidePopup() {
                 const img = (
                   <img
                     src={slide.image_url}
+                    width={slide.width}
+                    height={slide.height}
                     alt={slide.title || '팝업 이미지'}
                     className="block w-full h-auto max-h-[min(68vh,740px)] md:max-h-[min(72vh,820px)] object-contain object-top bg-white"
                     draggable={false}
@@ -211,10 +239,10 @@ export default function SlidePopup() {
           */}
           <div className="bg-[#2B2D42]">
             {hasMultiple && (
-              <div className="flex items-center justify-center gap-2 px-3 pt-3 pb-2">
+              <div className="flex items-center justify-center gap-2 px-3 pt-1.5 pb-1">
                 <button
                   type="button"
-                  onClick={goPrev}
+                  onClick={onPrev}
                   disabled={atStart}
                   className="flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full border border-[#0080C8]/45 bg-[#0080C8] text-white shadow-sm hover:bg-[#006aaa] transition-colors disabled:opacity-35 disabled:pointer-events-none"
                   aria-label="이전 슬라이드"
@@ -223,7 +251,7 @@ export default function SlidePopup() {
                 </button>
 
                 <div
-                  className="flex items-center gap-1.5"
+                  className="flex items-center"
                   role="tablist"
                   aria-label="슬라이드"
                 >
@@ -233,20 +261,23 @@ export default function SlidePopup() {
                       type="button"
                       role="tab"
                       aria-selected={i === index}
-                      onClick={() => goTo(i)}
+                      onClick={() => onSelect(i)}
                       aria-label={`${i + 1} / ${slides.length}`}
-                      className={`rounded-full transition-all ${
-                        i === index
-                          ? 'h-2 w-2 bg-white'
-                          : 'h-2 w-2 bg-white/35 hover:bg-white/55'
-                      }`}
-                    />
+                      className="group flex h-11 w-11 items-center justify-center rounded-full"
+                    >
+                      <span
+                        aria-hidden="true"
+                        className={`h-2 w-2 rounded-full transition-colors ${
+                          i === index ? 'bg-white' : 'bg-white/45 group-hover:bg-white/65'
+                        }`}
+                      />
+                    </button>
                   ))}
                 </div>
 
                 <button
                   type="button"
-                  onClick={goNext}
+                  onClick={onNext}
                   disabled={atEnd}
                   className="flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full border border-[#0080C8]/45 bg-[#0080C8] text-white shadow-sm hover:bg-[#006aaa] transition-colors disabled:opacity-35 disabled:pointer-events-none"
                   aria-label="다음 슬라이드"
@@ -259,15 +290,15 @@ export default function SlidePopup() {
             <div className="flex border-t border-white/10">
               <button
                 type="button"
-                onClick={hideTodayAndClose}
-                className="flex-1 px-2 py-3.5 text-center text-xs sm:text-sm font-medium text-white/90 hover:bg-white/10 active:bg-white/15 transition-colors"
+                onClick={onHideToday}
+                className="flex-1 px-2 py-3.5 text-center text-xs sm:text-sm font-medium text-white hover:bg-white/10 active:bg-white/15 transition-colors"
               >
                 오늘 하루 보지 않기
               </button>
               <div className="w-px self-stretch bg-white/15" aria-hidden="true" />
               <button
                 type="button"
-                onClick={close}
+                onClick={onClose}
                 className="flex-1 px-2 py-3.5 text-center text-xs sm:text-sm font-medium text-white hover:bg-white/10 active:bg-white/15 transition-colors"
               >
                 닫기

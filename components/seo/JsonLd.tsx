@@ -7,13 +7,10 @@ export function LocalBusinessJsonLd() {
     name: clinicInfo.name,
     alternateName: [
       '서울이건치과의원',
-      '수원이건치과',
-      '영통이건치과',
-      '매탄동치과',
       '이건치과',
     ],
     description:
-      '수원치과·영통치과·매탄동치과 서울이건치과 - 서울대 출신 대표 원장 2인이 처음 상담부터 치료 마무리까지 책임지고 진료합니다.',
+      '수원시 영통구 매탄동에 위치한 서울이건치과. 자연치아 보존을 우선으로 서울대 출신 대표원장이 치료 방향을 설명하고, 원내 기공소와 협업합니다.',
     url: 'https://egundc.com',
     telephone: clinicInfo.phone,
     faxNumber: clinicInfo.fax,

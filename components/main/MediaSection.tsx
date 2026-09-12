@@ -37,7 +37,7 @@ export default function MediaSection() {
           >
             <div className="relative w-full aspect-[4/5] overflow-hidden rounded-lg bg-white p-2 shadow-[0_16px_36px_rgba(43,45,66,0.10)] ring-1 ring-[#E5E7EB]/80 transition-all duration-500 ease-out group-hover:shadow-[0_26px_60px_rgba(43,45,66,0.18)] group-hover:ring-[#D6D9DF] group-focus-visible:shadow-[0_26px_60px_rgba(43,45,66,0.18)]">
               <div className="relative h-full w-full overflow-hidden rounded-md bg-stone-200">
-                <Image src={item.image} alt={item.label}
+                <Image src={item.image} alt=""
                   fill
                   sizes="(max-width: 768px) 45vw, (max-width: 1280px) 25vw, 300px"
                   className="object-cover transition duration-700 ease-out group-hover:scale-[1.035] group-hover:brightness-105 group-focus-visible:scale-[1.035] group-focus-visible:brightness-105" />

@@ -5,11 +5,11 @@ import { useState } from 'react'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
 
 const CARDS = [
-  { img: '/images/treatments/natural-tooth/resin-buildup.jpg', spine: 'ONE·DAY', title: '원데이 레진 빌드업', href: '/natural-tooth#resin-buildup' },
-  { img: '/images/treatments/natural-tooth/vpt.jpg',            spine: 'VPT',     title: 'VPT 신경보존술',    href: '/natural-tooth#vpt' },
-  { img: '/images/treatments/natural-tooth/preserve_treat.jpg', spine: 'ONLAY',  title: '최소삭제 온레이',    href: '/natural-tooth#onlay' },
-  { img: '/images/treatments/natural-tooth/endo-1.jpg',         spine: 'ROOT',    title: '신경치료·근관치료', href: '/natural-tooth#root-canal' },
-  { img: '/images/treatments/natural-tooth/sc-rp.jpg',          spine: 'GUM',     title: '잇몸치료',           href: '/natural-tooth#gum' },
+  { img: '/images/treatments/natural-tooth/resin-buildup.jpg', alt: '레진 빌드업 전후 어금니 비교 사진', spine: 'ONE·DAY', title: '원데이 레진 빌드업', href: '/natural-tooth#resin-buildup' },
+  { img: '/images/treatments/natural-tooth/vpt.jpg', alt: 'VPT 신경보존술 전후 치아 엑스레이 비교', spine: 'VPT', title: 'VPT 신경보존술', href: '/natural-tooth#vpt' },
+  { img: '/images/treatments/natural-tooth/preserve_treat.jpg', alt: '온레이 치료 전후 어금니 비교: 금속 수복물과 치아색 수복물', spine: 'ONLAY', title: '최소삭제 온레이', href: '/natural-tooth#onlay' },
+  { img: '/images/treatments/natural-tooth/endo-1.jpg', alt: '신경치료 사례의 CT와 치아 엑스레이: 치근 끝 부위 표시', spine: 'ROOT', title: '신경치료·근관치료', href: '/natural-tooth#root-canal' },
+  { img: '/images/treatments/natural-tooth/sc-rp.jpg', alt: '스케일링 전후 아래 앞니 안쪽 치석 제거 비교', spine: 'GUM', title: '잇몸치료', href: '/natural-tooth#gum' },
 ]
 
 function CardItem({ card, idx, hoverIdx, setHoverIdx }: {
@@ -32,12 +32,12 @@ function CardItem({ card, idx, hoverIdx, setHoverIdx }: {
       onMouseEnter={() => setHoverIdx(idx)}
       onMouseLeave={() => setHoverIdx(null)}
     >
-      <div
-        className="absolute inset-0"
+      <img
+        src={card.img}
+        alt={card.alt}
+        loading="lazy"
+        className="absolute inset-0 w-full h-full object-cover"
         style={{
-          backgroundImage: `url(${card.img})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
           transform: hoverIdx === idx ? 'scale(1.06)' : 'scale(1)',
           transition: 'transform 0.5s ease',
         }}
@@ -178,13 +178,11 @@ export default function PreserveTreatSection() {
             aria-label={`${card.title} 자세히 보기`}
             className="relative mx-auto block w-full max-w-[430px] aspect-[16/10] overflow-hidden rounded-xl shadow-[0_10px_24px_rgba(15,23,42,0.16)]"
           >
-            <div
-              className="absolute inset-0"
-              style={{
-                backgroundImage: `url(${card.img})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-              }}
+            <img
+              src={card.img}
+              alt={card.alt}
+              loading="lazy"
+              className="absolute inset-0 w-full h-full object-cover"
             />
           </Link>
         ))}

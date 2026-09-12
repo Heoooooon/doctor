@@ -34,11 +34,12 @@ const SECTIONS = [
 export default function Home() {
   return (
     <>
+      <link rel="preload" href="/fonts/egun-intro.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
       <IntroScreen />
       <SlidePopup />
       <HomeScrollRestore />
 
-      <h1 className="sr-only">서울이건치과 — 수원치과·영통치과 임플란트·교정·수면치과 | 서울대 출신 2인 대표원장</h1>
+      <h1 className="sr-only">수원치과 서울이건치과 — 자연치아 보존·임플란트·교정</h1>
       <nav className="sr-only" aria-label="서울이건치과 주요 진료 안내">
         <h2>서울이건치과 주요 진료 안내</h2>
         <ul>

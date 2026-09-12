@@ -1,23 +1,40 @@
+import type { Metadata } from 'next'
+import { cache } from 'react'
 import { notFound } from 'next/navigation'
+import { buildColumnJsonLd, buildColumnMetadata } from '@/lib/column-seo'
+import type { ColumnPost } from '@/lib/columns'
 import { createAdminClient } from '@/lib/supabase/server'
 import { isAdminAuthenticated } from '@/lib/admin-auth'
 import Link from 'next/link'
 
 interface Props {
-  params: Promise<{ id: string }>
+  readonly params: Promise<{ id: string }>
 }
 
-export default async function ColumnDetailPage({ params }: Props) {
-  const { id } = await params
+// Request-scoped memoization keeps metadata and HTML on the same authorized row.
+const getColumn = cache(async (id: string): Promise<ColumnPost> => {
   const supabase = createAdminClient()
 
   // 비공개 초안(is_active=false)도 로그인한 관리자는 미리보기 가능
   const isAdmin = await isAdminAuthenticated()
   let postQuery = supabase.from('columns').select('*').eq('id', id)
   if (!isAdmin) postQuery = postQuery.eq('is_active', true)
-  const { data: post } = await postQuery.single()
-
+  const { data: post, error } = await postQuery.maybeSingle<ColumnPost>()
+  if (error?.code === '22P02') notFound()
+  if (error) throw error
   if (!post) notFound()
+  return post
+})
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { id } = await params
+  return buildColumnMetadata(await getColumn(id))
+}
+
+export default async function ColumnDetailPage({ params }: Props) {
+  const { id } = await params
+  const post = await getColumn(id)
+  const supabase = createAdminClient()
 
   const formattedDate = new Date(post.column_date).toLocaleDateString('ko-KR', {
     year: 'numeric', month: 'long', day: 'numeric',
@@ -34,6 +51,12 @@ export default async function ColumnDetailPage({ params }: Props) {
 
   return (
     <main className="min-h-screen bg-white pt-20 sm:pt-24">
+      {post.is_active && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(buildColumnJsonLd(post)).replace(/</g, '\\u003c') }}
+        />
+      )}
       {/* 상단 네비 */}
       <div className="max-w-[860px] mx-auto px-5 pt-4 pb-4">
         <Link href="/column" className="inline-flex items-center gap-1.5 text-sm text-gray-400 hover:text-[#0080C8] transition-colors">

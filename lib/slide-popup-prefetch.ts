@@ -10,6 +10,8 @@ export interface SlidePopupItem {
   link_url: string | null
   sort_order: number
   is_active: boolean
+  width?: number
+  height?: number
 }
 
 const HIDE_UNTIL_KEY = 'egun:popup-hide-until'
@@ -57,7 +59,7 @@ export function hasIntroEnded() {
   return introEnded
 }
 
-function preloadImage(url: string): Promise<void> {
+function preloadImage(item: SlidePopupItem): Promise<void> {
   return new Promise((resolve) => {
     const img = new Image()
     img.decoding = 'async'
@@ -65,13 +67,18 @@ function preloadImage(url: string): Promise<void> {
     const done = () => {
       if (settled) return
       settled = true
+      window.clearTimeout(timeout)
+      if (img.naturalWidth > 0 && img.naturalHeight > 0) {
+        item.width = img.naturalWidth
+        item.height = img.naturalHeight
+      }
       resolve()
     }
     img.onload = done
     img.onerror = done
     // 네트워크 지연 시에도 인트로 종료 후 팝업은 뜨게 (이미지는 나중에 표시)
-    window.setTimeout(done, 2500)
-    img.src = url
+    const timeout = window.setTimeout(done, 2500)
+    img.src = item.image_url
     if (img.complete) done()
   })
 }
@@ -103,7 +110,7 @@ export function startPopupPrefetch(): Promise<SlidePopupItem[]> {
       )
 
       // 인트로 시간 동안 이미지 디코드까지 최대한 끝내 둔다 (최대 2.5s)
-      await Promise.all(active.map((item) => preloadImage(item.image_url)))
+      await Promise.all(active.map((item) => preloadImage(item)))
 
       return active
     } catch {

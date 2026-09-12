@@ -1,13 +1,16 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
+import dynamic from 'next/dynamic'
 import Header from './Header'
 import Footer from './Footer'
 import QuickConsultBar from './QuickConsultBar'
 import FloatingSidebar from './FloatingSidebar'
 import ScrollToTopButton from './ScrollToTopButton'
-import SmoothScroll from '@/components/SmoothScroll'
 import HoverHintCursor from '@/components/HoverHintCursor'
+
+const SmoothScroll = dynamic(() => import('@/components/SmoothScroll'), { ssr: false })
+
 export default function SiteShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
   const isAdmin = pathname.startsWith('/admin')

@@ -1,4 +1,5 @@
-@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css');
+@import "./pretendard.css";
+@import "./pretendard-home.css";
 @import "tailwindcss";
 
 /* ── Lenis 부드러운 스크롤 (하위 페이지) ── */
@@ -27,16 +28,22 @@ html.lenis body {
 /* ── 인트로 이후 슬라이드 팝업 ── */
 @keyframes slide-popup-in {
   from {
-    opacity: 0;
     transform: translateY(12px) scale(0.98);
   }
   to {
-    opacity: 1;
     transform: translateY(0) scale(1);
   }
 }
+/* Keep action labels readable throughout entrance; only the media fades in. */
+@keyframes slide-popup-media-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 .animate-slide-popup-in {
   animation: slide-popup-in 0.35s ease-out both;
+}
+.animate-slide-popup-in .slide-popup-track {
+  animation: slide-popup-media-in 0.35s ease-out both;
 }
 
 /* 팝업 장 넘김: 트랙 translate (이미지 remount/opacity 없음 → 깜빡임 방지) */
@@ -45,6 +52,9 @@ html.lenis body {
 }
 @media (prefers-reduced-motion: reduce) {
   .animate-slide-popup-in {
+    animation: none;
+  }
+  .animate-slide-popup-in .slide-popup-track {
     animation: none;
   }
   .slide-popup-track {
@@ -57,7 +67,7 @@ html.lenis body {
    (styled-jsx는 JS 로드 후 적용되어 캐러셀이 먼저 보이는 깜빡임이 생김) */
 @font-face {
   font-family: 'Paperozi';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-9Black.woff2') format('woff2');
+  src: url('/fonts/egun-intro.woff2') format('woff2');
   font-weight: 900;
   font-display: swap;
 }
@@ -170,7 +180,7 @@ html.lenis body {
   max-width: 800px;
   padding: 20px 0;
   margin: 0 auto;
-  font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+  font-family: 'Pretendard Variable', 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
   color: #333;
   line-height: 1.7;
 }
@@ -352,12 +362,12 @@ html.lenis body {
 @layer base {
   html {
     font-size: 16px;
-    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
   body {
-    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
     color: #1a1a1a;
   }
 }

@@ -10,10 +10,17 @@
 ### 기본 폰트: Pretendard
 
 ```css
-font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
 ```
 
-CDN: `https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css`
+선언: `app/pretendard.css`, 파일: `public/fonts/pretendard-v1.3.9/` (상류 v1.3.9 가변 서브셋 원본).
+외부 CSS의 추가 요청 없이 로컬 스타일과 같은 출처의 폰트 파일로 제공한다. 재다운로드: `node scripts/vendor-pretendard.mjs`.
+
+가변 서브셋은 같은 Pretendard의 굵기와 형태를 유지하면서 실제 사용 문자에 필요한 폰트 파일만 요청한다. 굵기별 전체 한글 폰트를 중복 다운로드하지 않는다.
+
+`app/pretendard-home.css`는 원본 선언 뒤에 적용한다. 홈과 공통 UI의 문자를 우선 포함한 `egun-home.woff2`를 사용하고, 새 CMS 문구 등 범위 밖 문자는 상류 서브셋으로 폴백한다. 문구 변경 후 `scripts/optimize-home-font.py --check`를 지정된 fontTools 환경에서 실행해 재생성 필요 여부를 확인한다.
+
+인트로의 기존 Paperlogy 글꼴은 문구에 쓰이는 문자만 담은 `public/fonts/egun-intro.woff2`로 제공한다. 인트로 문구 변경 시 `node scripts/optimize-intro-font.mjs`로 재생성한다. 글리프·애니메이션은 보존하며 폰트 라이선스도 함께 배포한다.
 
 | Weight | 이름 | 용도 |
 |--------|------|------|
@@ -64,7 +71,7 @@ CDN: `https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/
 | 비활성 | `#9CA3AF` | placeholder, 비활성 |
 
 **사용 원칙**
-- 주요 CTA는 반드시 `#0080C8` (Primary)
+- 주요 CTA는 `#0080C8` (Primary)를 기본으로 사용한다. 18px 흰색 일반 텍스트의 대비가 4.5:1에 못 미치는 버튼은 기존 hover 색상 `#006BA8`을 기본 배경으로 사용한다.
 - 배경이 어두울 때 (`--e-dark`) 텍스트는 흰색 또는 `#F8F7F9`
 - 임의 색상 추가 금지 — 팔레트 외 색상은 반드시 이 파일에 먼저 추가
 
@@ -105,6 +112,8 @@ Ghost:         text-[#0080C8] underline-offset-4 hover:underline
 ```
 
 - 터치 최소 영역: `min-height: 44px` (모바일 필수)
+- 슬라이드 팝업의 위치 표시 점은 8px로 유지하되 실제 버튼은 44×44px로 제공한다.
+- 푸터의 어두운 배경에서 본문은 white/60, 보조 표기는 white/50로 유지한다. 장식 구분선은 의미 있는 텍스트로 읽히지 않게 처리한다.
 - 비활성: `opacity-50 cursor-not-allowed`
 
 ### 카드
@@ -155,6 +164,9 @@ Ghost:         text-[#0080C8] underline-offset-4 hover:underline
 | 마퀴 | `.all-on-marquee-track` | 올온 섹션 로고 슬라이드 |
 | 배경 팬 | `.implant-bg-img` | 임플란트 섹션 배경 |
 | 모바일 슬라이드 팬 | `.mobile-pan-0~5` | 히어로 슬라이드별 |
+| 팝업 진입 | `.animate-slide-popup-in` | 0.35초 이동·확대 유지. 이미지에만 페이드를 적용해 닫기·오늘 하루 보지 않기 글자의 대비를 진입 중에도 보존 |
+
+팝업 이미지는 사전 로딩에서 얻은 실제 너비·높이를 렌더링 속성으로 전달해 처음 나타날 때의 레이아웃 이동을 줄인다. 닫힌 모바일 메뉴는 inert로 접근과 불필요한 사전 로딩을 막고, 닫을 때 열기 버튼으로 포커스를 돌려준다.
 
 새 애니메이션 추가 시: 필요 최소한으로, `globals.css`에 추가하고 이 파일에 기록.
 
@@ -170,6 +182,8 @@ Ghost:         text-[#0080C8] underline-offset-4 hover:underline
 | 의료진 프로필 | 600 × 800px | WebP / JPG |
 | 내부 전경 | 1200 × 800px | WebP / JPG |
 | 아이콘 | 48 × 48px | SVG 우선 |
+
+히어로 정지 이미지는 원본을 보존하고 `scripts/optimize-hero-media.mjs`로 생성한 960px·최대 1920px WebP를 사용한다. 원본 종횡비를 유지하고 작은 원본을 확대하지 않는다. 현재·이전·다음 정지 이미지만 준비하며, 화면 밖의 수면치료 영상은 접근 시 로드하고 화면을 벗어나면 일시정지한다.
 
 ---
 

@@ -1,5 +1,8 @@
 import type { Metadata } from 'next'
 import ColumnBoard from '@/components/column/ColumnBoard'
+import { getPublicColumns } from '@/lib/columns'
+
+export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
   title: '원장칼럼 | 치과 건강정보 - 서울이건치과',
@@ -8,10 +11,11 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://egundc.com/column' },
 }
 
-export default function ColumnPage() {
+export default async function ColumnPage() {
+  const posts = await getPublicColumns()
   return (
     <main className="bg-white min-h-screen pt-20">
-      <ColumnBoard />
+      <ColumnBoard posts={posts} />
     </main>
   )
 }
