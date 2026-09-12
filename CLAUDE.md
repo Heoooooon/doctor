@@ -32,6 +32,16 @@ Before making any design, copy, layout, SEO, or component decision, always refer
 - `docs/seo-guide.md` — 핵심 키워드, 페이지별 메타 태그, 구조화 데이터, 네이버 전략
 - `docs/medical-law.md` — 의료법 금지 표현, 필수 면책 문구, 개인정보 처리 기준
 
+### 배포 안전 기준
+
+- 서버 쓰기 전에 `AGENTS.md`의 **서버 작업 (배포·SSH)**와
+  `docs/ops-handoff.md`의 **현재 상태·배포·최초 전환**을 반드시 확인한다.
+- 검증된 미커밋 변경을 버리거나 다른 체크아웃으로 배포하지 않는다.
+  최신 커밋을 고정한 공식 진입점 `./scripts/deploy-vps.sh`만 사용한다.
+  예전 스크립트 복사본·직접 rsync·활성 폴더 내부 빌드는 금지한다.
+- 다른 작업자의 운영 변경을 발견하면 덮어쓰지 말고 보존·조정부터 한다.
+  커밋·푸시·최초 운영 전환은 사용자 승인 후 진행한다.
+
 ### 핵심 원칙 요약
 
 - 폰트: **Pretendard** (Noto Sans KR 아님)
