@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { createHash } from 'node:crypto'
-import { appendFile, mkdir, mkdtemp, readdir, readFile, readlink, realpath, rename, rm, symlink, writeFile } from 'node:fs/promises'
+import { appendFile, mkdir, mkdtemp, readdir, readFile, readlink, realpath, rename, rm, stat, symlink, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import path from 'node:path'
 import test, { type TestContext } from 'node:test'
@@ -48,6 +48,7 @@ async function fixture(t: TestContext) {
     script: path.join(paths.legacy, 'node_modules/next/dist/bin/next'),
     args: ['start', '-H', '127.0.0.1', '-p', '3000'], interpreter: '/usr/bin/node',
   }
+  let activePresent = true
   let fail = ''
   let expectedCandidate = NEW
   let emitReady = true
@@ -84,10 +85,10 @@ async function fixture(t: TestContext) {
         if (tool === 'pm2' && rest[0] === 'jlist') {
           events.push('runtime')
           if (hold) await hold()
-          return JSON.stringify([{ name: active.name, pid: 123, pm2_env: {
+          return JSON.stringify(activePresent ? [{ name: active.name, pid: 123, pm2_env: {
             name: active.name, pm_cwd: active.cwd, pm_exec_path: active.script,
             args: active.args, exec_interpreter: active.interpreter, status: 'online', pm_out_log_path: outputLog,
-          } }])
+          } }] : [])
         }
         if (tool === 'pnpm') {
           const step = rest[0] === 'install' ? 'install' : 'build'
@@ -106,13 +107,24 @@ async function fixture(t: TestContext) {
           }
           return ''
         }
+        if (tool === 'pm2' && rest[0] === 'delete') {
+          assert.deepEqual(rest, ['delete', 'seoulegundc'])
+          assert.ok(activePresent)
+          events.push('delete')
+          activePresent = false
+          return ''
+        }
         if (tool === 'pm2' && rest[0] === 'startOrReload') {
           const config = JSON.parse((await readFile(rest[1], 'utf8')).replace(/^module.exports = /, '').replace(/;\n$/, ''))
           const next = config.apps[0]
           const rollback = next.cwd === paths.legacy
           events.push(rollback ? 'rollback' : 'activate')
           assert.deepEqual(rest.slice(2), ['--only', 'seoulegundc', '--update-env'])
-          active = next
+          if (!rollback && fail === 'start') throw new Error('start failed')
+          // Match real PM2 6.0.14: reloading an existing name retains resolved
+          // cwd/script. Only starting an absent entry adopts both new paths.
+          active = activePresent ? { ...next, cwd: active.cwd, script: active.script } : next
+          activePresent = true
           if ((!rollback && fail === 'activate') || (rollback && fail === 'rollback')) throw new Error('activation failed')
           if (emitReady) await appendFile(outputLog, 'Ready in 1ms\n')
           return ''
@@ -227,14 +239,16 @@ test('success preserves verification and mutable data, backs up first, and write
   assert.equal(await readFile(path.join(f.active.cwd, 'data/local-popups.json'), 'utf8'), '["live"]')
   assert.ok(f.events.indexOf('gzip') < f.events.indexOf('extract'))
   assert.ok(f.events.indexOf('stop-preview') < f.events.indexOf('arm-ready'))
-  assert.ok(f.events.indexOf('arm-ready') < f.events.indexOf('activate'))
+  assert.ok(f.events.indexOf('arm-ready') < f.events.indexOf('delete'))
+  assert.ok(f.events.indexOf('delete') < f.events.indexOf('activate'))
+  assert.equal(f.events.filter(event => event === 'delete').length, 1)
   assert.ok(f.events.indexOf('activate') < f.events.indexOf('ready'))
   assert.ok(f.events.indexOf('ready') < f.events.indexOf('smoke-active'))
   assert.equal(f.events.filter(e => e === 'smoke-active').length, 3)
   assert.deepEqual(f.events.slice(-2), ['save', 'unlock'])
 })
 
-for (const failure of ['activate', 'smoke-active']) {
+for (const failure of ['activate', 'smoke-active', 'start']) {
   test(`${failure} failure restores captured legacy PM2 config and verifies rollback`, async t => {
     const f = await fixture(t)
     const original = f.active
@@ -242,6 +256,7 @@ for (const failure of ['activate', 'smoke-active']) {
     await assert.rejects(f.go(), /rolled back/)
     assert.deepEqual(f.active, original)
     assert.ok(f.events.includes('rollback'))
+    assert.equal(f.events.filter(event => event === 'delete').length, failure === 'start' ? 1 : 2)
     assert.ok(f.events.lastIndexOf('arm-ready') < f.events.indexOf('rollback'))
     assert.ok(f.events.indexOf('rollback') < f.events.lastIndexOf('ready'))
     assert.ok(f.events.lastIndexOf('ready') < f.events.indexOf('smoke-rollback'))
@@ -259,6 +274,27 @@ test('rollback failure is explicit and cannot write success state', async t => {
   await assert.rejects(f.go(), /ROLLBACK FAILED/)
   await assert.rejects(readFile(f.paths.state), { code: 'ENOENT' })
   assert.equal(f.events.at(-1), 'unlock')
+})
+
+test('private failure diagnostics retain activation phase without PM2 output, environment, or nested raw causes', async t => {
+  const f = await fixture(t)
+  f.deps.processCwd = async () => f.paths.legacy
+  const originalSmoke = f.deps.smoke
+  f.deps.smoke = async (base, options) => {
+    if (!base.endsWith(':45678') && f.active.cwd === f.paths.legacy) {
+      throw new Error('PRIVATE=do-not-print pm2_env raw output', { cause: new Error('nested raw command output') })
+    }
+    return originalSmoke(base, options)
+  }
+  await assert.rejects(f.go(), /ROLLBACK FAILED/)
+  const file = path.join(f.upload, 'error.json')
+  const text = await readFile(file, 'utf8')
+  const report = JSON.parse(text)
+  assert.deepEqual(report.failure, { phase: 'verify-activation', message: 'active runtime cwd drift' })
+  assert.deepEqual(report.rollback, { phase: 'rollback-smoke', message: 'operation failed (details withheld)' })
+  assert.equal((await stat(file)).mode & 0o777, 0o600)
+  for (const secret of ['PRIVATE', 'pm2_env', 'raw output', 'nested raw']) assert.ok(!text.includes(secret))
+  await assert.rejects(readFile(f.paths.state), { code: 'ENOENT' })
 })
 
 test('persisted state enforces ancestry, runtime cwd, source/static checksums, and verified same-commit no-op', async t => {

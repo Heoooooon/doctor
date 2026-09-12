@@ -421,6 +421,16 @@ async function loadState(file, bootstrap, paths) {
   return state
 }
 
+function failureDetail(error, phase) {
+  // Never persist arbitrary exception text: JSON parse errors, assertion errors,
+  // or nested command causes can contain captured output or environment values.
+  const known = /^(?:active (?:PM2 configuration|runtime cwd|source\/static\/build ID) drift|ambiguous PM2 process name|Next activation readiness timed out|PM2 stdout log (?:rotated|truncated) during readiness|(?:runuser|tar|gzip|du|chown) failed \(exit (?:\d+|SIG[A-Z]+)\))$/
+  const message = known.test(error?.message ?? '') ? error.message
+    : typeof error?.code === 'string' && /^[A-Z][A-Z0-9_]{0,40}$/.test(error.code) ? `operation failed (${error.code})`
+      : 'operation failed (details withheld)'
+  return { phase, message }
+}
+
 /** State v1: {schemaVersion,repository,current:{commit,tree,release,sourceSha256,
  * staticSha256,buildId,process:{name,cwd,script,args,interpreter}},previous,backup}.
  * Bootstrap previous has commit/tree null and a fingerprint of the untouched
@@ -447,6 +457,8 @@ export async function deploy({ upload, bootstrap = false, paths = PRODUCTION, de
   let stateWriteStarted = false
   let failure
   let result
+  let phase = 'preflight'
+  let validUpload = false
   const stateDirectory = path.dirname(paths.state)
   async function runtime(appRun = app) {
     const processes = JSON.parse(await appRun('pm2', ['jlist']))
@@ -464,13 +476,19 @@ export async function deploy({ upload, bootstrap = false, paths = PRODUCTION, de
     if (Object.keys(actual).some(key => actual[key] !== record[key])) throw new Error('active source/static/build ID drift')
   }
   async function switchProcess(file, appRun = app) {
+    const entries = JSON.parse(await appRun('pm2', ['jlist'])).filter(entry => entry.name === NAME)
+    if (entries.length > 1) throw new Error('ambiguous PM2 process name')
     const observer = await (deps.armReady ?? armReady)(activeLog, {
       signal: appRun === app ? controller.signal : undefined,
     })
     try {
-      // A rejected command may already have changed the process. Mark activation
-      // only after the readiness subscription is armed, before running PM2.
+      // PM2 6.0.14 startOrReload keeps an existing entry's resolved pm_cwd and
+      // pm_exec_path, even when ecosystem cwd/script change. Remove ONLY this
+      // named entry so the fresh-start path resolves the immutable config.
+      // Mark activation before deletion: a failed start must still roll back.
       if (appRun === app) activated = true
+      if (entries.length === 1) await appRun('pm2', ['delete', NAME])
+      // Rollback also uses this path; after a failed start the entry may be absent.
       await appRun('pm2', ['startOrReload', file, '--only', NAME, '--update-env'])
       await observer.ready
     } finally { await observer.close() }
@@ -499,12 +517,16 @@ export async function deploy({ upload, bootstrap = false, paths = PRODUCTION, de
     })
     checkSignal(controller.signal)
     if (path.dirname(upload) !== paths.incoming || !/^upload\.[A-Za-z0-9_-]+$/.test(path.basename(upload)) || await realpath(upload) !== upload) throw new Error('invalid upload directory')
+    validUpload = true
+    phase = 'state-validation'
     const state = await loadState(paths.state, bootstrap, paths)
     initialState = state
+    phase = 'artifact-validation'
     const manifest = validateManifest(JSON.parse(await readFile(path.join(upload, 'manifest.json'), 'utf8')))
     if (state && !manifest.ancestors.includes(state.current.commit)) throw new Error('candidate is not a descendant of active revision')
     const archive = path.join(upload, 'source.tar.gz')
     if ((await stat(archive)).size !== manifest.archiveBytes || await sha256(archive) !== manifest.archiveSha256) throw new Error('source artifact checksum/size mismatch')
+    phase = 'verify-previous'
     if (state) {
       previous = state.current
       await checkActive(previous)
@@ -526,6 +548,7 @@ export async function deploy({ upload, bootstrap = false, paths = PRODUCTION, de
       // full rollback smoke and may honestly fail it.
     }
     if (!result) {
+      phase = 'backup'
       await validateArchive(archive, run)
       const targets = [previous.release]
       if (await exists(paths.shared)) targets.push(paths.shared)
@@ -547,6 +570,7 @@ export async function deploy({ upload, bootstrap = false, paths = PRODUCTION, de
       await checkActive(previous)
       rollbackFile = await configFile('rollback', previous.process)
       await mkdir(paths.releases, { recursive: true })
+      phase = 'stage'
       candidate = await mkdtemp(path.join(paths.releases, `${manifest.commit}.`))
       await run('tar', ['-xzf', archive, '--no-same-owner', '--no-same-permissions', '-C', candidate])
       await verifyGoogle(candidate)
@@ -555,11 +579,14 @@ export async function deploy({ upload, bootstrap = false, paths = PRODUCTION, de
       await atomicJSON(path.join(candidate, 'public/__release.json'), { commit: manifest.commit })
       await run('chown', ['-R', 'appuser:appuser', candidate])
       await assertDiskSpace(paths, manifest.archiveBytes, 0n, deps.statfs)
+      phase = 'install'
       await app('pnpm', ['install', '--frozen-lockfile', '--prod=false'], { cwd: candidate })
       await assertDiskSpace(paths, manifest.archiveBytes, 0n, deps.statfs)
+      phase = 'build'
       await app('pnpm', ['build'], { cwd: candidate }, ['NODE_OPTIONS=--max-old-space-size=1536'])
       await verifyGoogle(candidate)
       const built = await fingerprint(candidate)
+      phase = 'preview'
       preview = await (deps.preview ?? (release => startPreview(release, {
         command: 'runuser', args: port => appArguments(paths, '/usr/bin/node',
           [path.join(release, 'node_modules/next/dist/bin/next'), 'start', '-H', '127.0.0.1', '-p', String(port)]),
@@ -578,12 +605,17 @@ export async function deploy({ upload, bootstrap = false, paths = PRODUCTION, de
       const current = { commit: manifest.commit, tree: manifest.tree, release: candidate, ...built, process: config }
       const activateFile = await configFile('activate', config)
       checkSignal(controller.signal)
+      phase = 'activate'
       await switchProcess(activateFile)
+      phase = 'verify-activation'
       await checkActive(current)
+      phase = 'smoke-activation'
       await smokeAll(manifest.commit)
+      phase = 'verify-activation'
       await checkActive(current)
       await verifySharedLinks(candidate, paths.shared)
       checkSignal(controller.signal)
+      phase = 'persist-state'
       await app('pm2', ['save'])
       checkSignal(controller.signal)
       const nextState = { schemaVersion: 1, repository: REPOSITORY, current, previous, backup }
@@ -594,11 +626,16 @@ export async function deploy({ upload, bootstrap = false, paths = PRODUCTION, de
     }
   } catch (error) {
     failure = error
+    const report = { schemaVersion: 1, failure: failureDetail(error, phase), rollback: null }
     if (activated) {
       try {
+        phase = 'rollback-activate'
         await switchProcess(rollbackFile, rollbackApp)
+        phase = 'rollback-verify'
         await checkActive(previous, rollbackApp)
+        phase = 'rollback-smoke'
         await smokeAll(previous.commit)
+        phase = 'rollback-persist'
         await rollbackApp('pm2', ['save'])
         // rename may have succeeded before a directory fsync failed. Never leave
         // a candidate state pointing at a process that we just rolled back.
@@ -606,9 +643,17 @@ export async function deploy({ upload, bootstrap = false, paths = PRODUCTION, de
           if (initialState) await atomicJSON(paths.state, initialState)
           else await rm(paths.state, { force: true })
         }
+        report.rollback = { phase: 'rollback-complete', message: 'previous process restored and smoke-verified' }
         failure = new Error('deployment failed; previous process restored and smoke-verified (rolled back)', { cause: error })
       } catch (rollbackError) {
+        report.rollback = failureDetail(rollbackError, phase)
         failure = new AggregateError([error, rollbackError], 'deployment failed; ROLLBACK FAILED; manual recovery required')
+      }
+    }
+    if (validUpload) {
+      try { await atomicJSON(path.join(upload, 'error.json'), report) }
+      catch (reportError) {
+        failure = new AggregateError([failure, reportError], `${failure.message}; private diagnostic persistence failed`)
       }
     }
   } finally {
