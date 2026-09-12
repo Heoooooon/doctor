@@ -3,21 +3,36 @@
 > AI 에이전트(Claude/GJC)와 개발자가 세션에 관계없이 서버 작업을 바로 실행할 수 있도록 하는 운영 문서.
 > 최종 갱신: 2026-09-13
 
-## 현재 상태 — 새 배포 방식은 운영 적용 대기
+## 현재 상태 — 새 배포 방식으로 운영 복구 완료
 
-**2026-09-12 22:53 복구 이후 23:09 빌드로 운영이 다시 바뀐 것을 확인했다.**
-홈 메타·히어로 소스가 검증된 로컬과 다르고, Google 소유권 확인 파일은 운영 디스크에서
-사라졌으며 회원 관리 파일은 다시 존재한다. 실행자는 확인하지 못했다. 과거의
-“복구 완료” 기록을 현재 정상 상태로 해석하지 않는다.
+**2026-09-13 00:34 KST 검증: 승인된 릴리스 `5515faf98f5a569fcdb3694ea5e1ee3cc1f46ea3` 운영 적용 완료.**
+공식 `./scripts/deploy-vps.sh --bootstrap` 종료 코드 0과 `status: deployed`를 확인했다.
+이후 배포는 `./scripts/deploy-vps.sh`를 사용한다.
 
-읽기 전용 HTTP 검사에서도 홈은 `200`이지만 Google 확인 파일은 `404`,
-익명 `GET /api/columns?all=1`은 `200`(Cache-Control 없음)으로 확인됐다.
-비공개 응답 본문은 기록하지 않았다. 새 스모크 검사도 Google 확인 파일 `404`를 탐지해
-종료 코드 `1`로 실패했다. 화면 접근 가능 여부와 인증 보호 정상 여부는 별개다.
+- 활성 경로: `/opt/seoulegundc-releases/5515faf98f5a569fcdb3694ea5e1ee3cc1f46ea3.YtgwkE`
+- PM2 `seoulegundc` PID `819932`, `online`. cwd와 실행 스크립트 모두 해당 릴리스 경로.
+- Build ID: `1NzKnIvCTis7zopVrG7-G`.
+- 두 서비스 도메인 홈·참조 자산·Google 확인 파일 검사 통과.
+  `/__release.txt`는 양쪽 모두 200이며 위 커밋 SHA와 일치한다.
+- 운영 SEO 검사 **138/138**, 공개 칼럼 **18개**.
+  비공개 칼럼 조회는 익명·위조 쿠키·봇 이름 모두 **401**, 정상 관리자 로그인 후 **200**.
+  비공개 응답은 `private, no-store`, `noindex, nofollow`.
+- 전체 테스트 **137/137**, 로컬·서버 빌드 통과. 공유 환경설정은 appuser 소유·권한 `600`.
+- Aside 실제 브라우저: 데스크톱 1440×1000·모바일 390×844에서 홈·인트로·팝업,
+  모바일 메뉴 열기/닫기와 칼럼 이동, 두 호스트의 칼럼 18개·관리자 로그인 화면을 확인했다.
+  네이버 블로그 연결을 보존했고 관찰한 JS·리소스 오류는 없었다. 로그인/폼 제출/회원 조회는 하지 않았다.
+  화면 증거 6개: `/Users/cmore/.aside/u/0/sessions/2026-09-13_TDpC4G9SjO0SgVEN/artifacts/`
+  (파일 접두어 `st_01a09640-`). 화면 밖 지연 미디어 전체를 별도로 순회한 검사는 아니다.
+- 배포 기준은 `/var/lib/seoulegundc-deploy/state.json`에 저장됐다.
+  코드의 커밋·푸시가 완료되어 미커밋 작업본이 운영 기준이던 상태를 해소했다.
+- 전환 직전 백업:
+  `/var/lib/seoulegundc-deploy/backups/1789227038079.3058c832-0a95-4651-9e6e-0f4c2d9768f8.tar.gz`
+  (gzip 검사 통과). SHA-256 `c82d56b1b10cc6c22d3a5736aac69b54ddad054b80e2bbffda24fa616df36cbd`.
+- 기존 앱·실패 후보·백업은 삭제하지 않았다. 디스크는 49GB 중 29GB 사용, 18GB 여유.
+  현재 기준의 이전 릴리스는 퇴행했던 레거시이므로 수동으로 되돌리지 않는다.
 
-사용자가 검증 변경·배포 안전장치의 **커밋·푸시와 최초 운영 전환을 승인했다.**
-현재는 첫 전환 실패 원인을 수정한 뒤 재전환하는 단계이며 성공한 전환으로 기록하지 않는다. 23:58 KST 점검에서 다른 배포
-프로세스는 없었고 디스크 여유는 25GB였다. `--check` 성공도 운영 적용 완료를 뜻하지 않는다.
+이번 복구는 2026-09-12 23:09 재덮어쓰기에서 발생한 Google 파일 404와 익명 비공개API 200을
+해결했다. 아래 실패·백업 기록은 당시 이력이며 현재 장애 상태를 뜻하지 않는다.
 
 원격 `main`에 추가된 회원 관리 `4954b7e`와 원장 사진 수정 `f1a99ed`를 fast-forward로
 보존해 가져왔다. 기존 로컬 수정과 겹치는 파일은 없으며 합친 작업본의 테스트 124개,
@@ -40,7 +55,9 @@ TypeScript·프로덕션 빌드를 통과했다. 과거 사고 당시의 “회�
   고정 스모크 경로(홈·릴리스 마커·Google 확인 파일·칼럼 API)의 HTTP 상태 오류도 보존한다.
   비밀 환경설정·응답 본문·임의 자산 경로·원시 PM2 출력·스택은 기록하지 않는다.
 - 첫 실행의 기존 프로세스 복귀는 됐으나, 레거시의 Google404/익명 비공개API200이 남아
-  복귀 건강 검사도 실패했다. 복구 완료가 아니라는 뜻이다.
+  복귀 건강 검사도 실패했다. 그 실행만으로는 복구 완료가 아니었다.
+- PM2 수정 `fd25426` 이후에는 보조 도메인의 nginx `.json` 차단으로 버전 확인이 403이었다.
+  보안 설정을 완화하지 않고 확인 파일 경로를 `.txt`로 바꾼 `5515faf`로 최종 전환했다.
 - 첫 전환 전 백업:
   `/var/lib/seoulegundc-deploy/backups/1789225455177.b199cc70-e4fe-4560-a164-4510e58d8447.tar.gz`.
   로컬 사본 `/Users/cmore/Downloads/egundc-before-release-20260913.tar.gz`도 gzip 검사 통과.
@@ -59,10 +76,11 @@ TypeScript·프로덕션 빌드를 통과했다. 과거 사고 당시의 “회�
 |---|---|
 | VPS | `172.237.29.96` (cafe24) |
 | 서비스 도메인 | **egundc.com** (실도메인), jsdentad.mycafe24.com (스테이징 겸용) |
-| 현재 레거시 앱·appuser 홈 | `/opt/seoulegundc` (최초 전환 전 경로) |
-| 새 릴리스 경로 | `/opt/seoulegundc-releases/` 아래 개별 디렉터리 (최초 전환 후) |
-| 공유 설정·업로드 | `/opt/seoulegundc-shared/` (최초 전환 후, 기존 파일은 복사·보존) |
-| 배포 기준 기록 | `/var/lib/seoulegundc-deploy/state.json` (최초 성공 후) |
+| 기존 앱·appuser 홈 | `/opt/seoulegundc` (홈과 보존본, 현재 실행 경로 아님) |
+| 활성 앱 | `/opt/seoulegundc-releases/` 아래 state.json에 기록된 고정 디렉터리 |
+| 공유 설정·앱 업로드 | `/opt/seoulegundc-shared/` (릴리스에서 링크, 기존 파일은 복사·보존) |
+| 기존 `/uploads/` nginx 매핑 | `/var/www/seoulegun/uploads/` (기존 alias 유지, 이번 전환에서 변경하지 않음) |
+| 배포 기준 기록 | `/var/lib/seoulegundc-deploy/state.json` |
 | 프로세스 | pm2 `seoulegundc` (appuser 소유), `next start -H 127.0.0.1 -p 3000` |
 | 리버스 프록시 | nginx — 두 도메인 모두 → `127.0.0.1:3000` |
 | nginx 설정 | `/etc/nginx/sites-enabled/seoulegun.conf` (egundc.com), `/etc/nginx/sites-enabled/seoulegundc` (jsdentad) |
