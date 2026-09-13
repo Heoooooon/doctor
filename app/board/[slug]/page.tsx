@@ -109,10 +109,21 @@ export default async function BoardCarouselPage({ params }: Props) {
             <p className="text-lg leading-8 text-gray-700">
               {item.description}
             </p>
-            <p className="rounded-2xl bg-[#F8F7F9] p-5 text-base leading-7 text-gray-600">
-              본 페이지는 검색엔진과 공유 미리보기에서 서울이건치과의 주요 진료 안내 이미지를 정확히 인식할 수 있도록 구성된 안내 페이지입니다.
-              치료 방법과 결과는 개인의 구강 상태에 따라 달라질 수 있습니다.
-            </p>
+            {item.sections.map((section) => (
+              <section key={section.heading} className="space-y-2">
+                <h2 className="text-xl font-semibold text-[#2B2D42] sm:text-2xl">
+                  {section.heading}
+                </h2>
+                <p className="text-lg leading-8 text-gray-700">{section.body}</p>
+              </section>
+            ))}
+
+            {item.requiresTreatmentNotice && (
+              <p className="rounded-2xl bg-[#F8F7F9] p-5 text-base leading-7 text-gray-600">
+                의료법에 의거, 치료 결과는 개인마다 다를 수 있습니다. 치료 방법과 기간은 구강 상태에 따라 달라지므로
+                자세한 내용은 내원 상담에서 확인해 주세요.
+              </p>
+            )}
             <Link
               href={item.relatedHref}
               className="inline-flex rounded-full bg-[#0080C8] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#006EAA]"
