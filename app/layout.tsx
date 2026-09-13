@@ -9,6 +9,7 @@ export const viewport: Viewport = {
 import SiteShell from '@/components/layout/SiteShell'
 import { LocalBusinessJsonLd } from '@/components/seo/JsonLd'
 import { TrackingScripts, GtmNoScript } from '@/components/seo/Tracking'
+import { NaverAnalytics } from '@/components/seo/NaverAnalytics'
 import { tracking } from '@/data/tracking'
 
 const title = '수원치과 서울이건치과 | 자연치아 보존·임플란트·교정'
@@ -68,6 +69,7 @@ export default function RootLayout({
       <body className="antialiased">
         <GtmNoScript />
         <TrackingScripts />
+        <NaverAnalytics />
         <LocalBusinessJsonLd />
         <SiteShell>{children}</SiteShell>
       </body>

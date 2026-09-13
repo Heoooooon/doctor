@@ -8,6 +8,9 @@ export const tracking = {
   /** Google Tag Manager 컨테이너 ID — 예: 'GTM-XXXXXXX' */
   gtmContainerId: 'GTM-NMCTMX55',
 
+  /** 네이버 애널리틱스 공통 스크립트의 wcs_add["wa"] 값 — 예: '3ce350e52491c4' */
+  naverAnalyticsId: '3ce350e52491c4',
+
   /** 네이버 서치어드바이저 — <meta name="naver-site-verification" content="이 값"> */
   naverSiteVerification: '87980840c90252ddda42353b4e65e0a02bcc6879',
 
