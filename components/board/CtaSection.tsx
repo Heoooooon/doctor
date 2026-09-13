@@ -3,10 +3,12 @@
 // @TASK Board - 상담 CTA 블록
 import { Phone, MessageCircle } from 'lucide-react'
 import { clinicInfo } from '@/data/clinic-info'
+import { conversionEvents, trackConversion } from '@/lib/analytics-events'
 
 const CTA_ITEMS = [
   {
     icon: MessageCircle,
+    event: conversionEvents.kakaoClick,
     label: '카카오 상담',
     href: clinicInfo.socialLinks.kakao,
     external: true,
@@ -16,6 +18,7 @@ const CTA_ITEMS = [
   },
   {
     icon: Phone,
+    event: conversionEvents.phoneClick,
     label: '전화 상담',
     href: 'tel:031-896-5512',
     external: false,
@@ -44,10 +47,11 @@ export default function CtaSection() {
       </div>
 
       <div className="grid grid-cols-2 gap-4 mb-8">
-        {CTA_ITEMS.map(({ icon: Icon, label, href, external, bg, text, iconColor }) => (
+        {CTA_ITEMS.map(({ icon: Icon, event, label, href, external, bg, text, iconColor }) => (
           <a
             key={label}
             href={href}
+            onClick={() => trackConversion(event, { location: 'board_cta' })}
             target={external ? '_blank' : undefined}
             rel={external ? 'noopener noreferrer' : undefined}
             className={`${bg} ${text} rounded-2xl p-6 flex flex-col items-center gap-3 hover:opacity-90 active:scale-[0.98] transition-all duration-200`}

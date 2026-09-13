@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { conversionEvents, trackConversion } from '@/lib/analytics-events'
 import Link from 'next/link'
 import { MapPin, Phone } from 'lucide-react'
 import { clinicInfo } from '@/data/clinic-info'
@@ -139,6 +140,10 @@ export default function FloatingSidebar() {
             <a
               key={item.label}
               href={item.href}
+              onClick={() => {
+                if (item.tel) trackConversion(conversionEvents.phoneClick, { location: 'sidebar' })
+                else if (item.href === clinicInfo.socialLinks.kakao) trackConversion(conversionEvents.kakaoClick, { location: 'sidebar' })
+              }}
               target={item.external ? '_blank' : undefined}
               rel={item.external ? 'noopener noreferrer' : undefined}
               aria-label={item.label}

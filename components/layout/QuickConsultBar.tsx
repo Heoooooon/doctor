@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState, type FormEvent } from 'react'
 import { usePathname } from 'next/navigation'
 import { Phone, X, MessageSquareText } from 'lucide-react'
+import { conversionEvents, trackConversion } from '@/lib/analytics-events'
 
 interface FormState {
   name: string
@@ -134,6 +135,7 @@ export default function QuickConsultBar() {
         return
       }
 
+      trackConversion(conversionEvents.consultSubmit, { method: 'quick_bar' })
       showToast('success', '상담 신청이 완료되었습니다. 빠른 시일 내에 연락드리겠습니다.')
       setForm({ name: '', contact: '', agreed: false })
       setErrors({})

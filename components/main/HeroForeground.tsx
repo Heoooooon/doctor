@@ -1,5 +1,7 @@
 'use client'
 
+import { conversionEvents, trackConversion } from '@/lib/analytics-events'
+
 import { ArrowRight, MapPin, Phone } from 'lucide-react'
 
 type HeroForegroundProps = {
@@ -128,6 +130,7 @@ export default function HeroForeground({
                     </button>
                     <a
                       href="tel:031-896-5512"
+                      onClick={() => trackConversion(conversionEvents.phoneClick, { location: 'home_hero' })}
                       className="hero-sequence inline-flex min-h-[54px] items-center gap-2 rounded-md border border-white/35 bg-white/10 px-7 py-3 text-[19px] font-semibold text-white transition-all duration-200 hover:border-white/55 hover:bg-white/16 focus:outline-none focus:ring-2 focus:ring-white/70 focus:ring-offset-2 focus:ring-offset-black active:translate-y-px"
                       style={{ animationDelay: '890ms' }}
                     >
@@ -215,6 +218,7 @@ export default function HeroForeground({
                 </button>
                 <a
                   href="tel:031-896-5512"
+                      onClick={() => trackConversion(conversionEvents.phoneClick, { location: 'home_hero' })}
                   className="inline-flex min-h-[48px] w-12 items-center justify-center rounded-md border border-white/35 bg-white/12 text-white transition-colors duration-200 active:translate-y-px"
                   aria-label="전화 상담"
                 >

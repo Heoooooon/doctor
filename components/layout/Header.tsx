@@ -1,6 +1,7 @@
 'use client'
 
 import { useRef, useState } from 'react'
+import { conversionEvents, trackConversion } from '@/lib/analytics-events'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -157,6 +158,7 @@ export default function Header() {
             {/* 예약하기 버튼 (데스크탑) */}
             <a
               href={`tel:${PHONE}`}
+              onClick={() => trackConversion(conversionEvents.phoneClick, { location: 'header' })}
               className="hidden"
               style={{ backgroundColor: '#0080C8' }}
             >
@@ -170,6 +172,7 @@ export default function Header() {
             <div className="lg:hidden ml-auto flex items-center gap-3">
               <a
                 href={`tel:${PHONE}`}
+              onClick={() => trackConversion(conversionEvents.phoneClick, { location: 'header' })}
                 className="flex items-center justify-center w-11 h-11 rounded-full text-white"
                 style={{ backgroundColor: '#0080C8' }}
                 aria-label="전화 상담"
