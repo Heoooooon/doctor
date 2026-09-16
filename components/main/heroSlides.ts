@@ -6,6 +6,12 @@ export type HeroSlide = {
   readonly height?: number
   /** 모바일 전용 미디어(세로 크롭 변형 등). 없으면 image를 그대로 사용 */
   readonly mobileImage?: string
+  /**
+   * 정지 이미지 슬라이드의 대체 텍스트. 사진에 실제로 보이는 것만 적는다.
+   * 인물의 신원이 확인되지 않으므로 이름·직함은 넣지 않는다.
+   * 기준: docs/seo-guide.md — 이미지 alt 검수
+   */
+  readonly alt?: string
   readonly isVideo?: boolean
   readonly loopVideo?: boolean
   readonly interval?: number
@@ -22,21 +28,25 @@ export const HERO_SLIDES: readonly HeroSlide[] = [
     id: 3, image: '/images/slides/slide-3-hero-1920.webp',
     srcSet: '/images/slides/slide-3-hero-960.webp 960w, /images/slides/slide-3-hero-1920.webp 1920w',
     width: 1920, height: 1080, interval: 3000, mobileInterval: 4000,
+    alt: '서울이건치과 이재성 대표원장이 파노라마 방사선 영상을 보며 진료 상담을 진행하는 모습',
   },
   {
     id: 4, image: '/images/slides/slide-4-hero-1920.webp',
     srcSet: '/images/slides/slide-4-hero-960.webp 960w, /images/slides/slide-4-hero-1920.webp 1920w',
     width: 1920, height: 1072, interval: 3000, mobileInterval: 5000,
+    alt: '이재성 대표원장이 치과 학술대회 연단에서 발표하는 모습',
   },
   {
     id: 5, image: '/images/slides/slide-5-hero-1920.webp',
     srcSet: '/images/slides/slide-5-hero-960.webp 960w, /images/slides/slide-5-hero-1920.webp 1920w',
     width: 1920, height: 1072, interval: 3000, mobileInterval: 5000,
+    alt: '이재성 대표원장이 대한 시니어치과 학회 송년 학술대회에서 임플란트 수술용 가이드를 주제로 발표하는 모습',
   },
   {
     id: 6, image: '/images/slides/slide-6-hero-1308.webp',
     srcSet: '/images/slides/slide-6-hero-960.webp 960w, /images/slides/slide-6-hero-1308.webp 1308w',
     width: 1308, height: 1080, interval: 3000,
+    alt: '수술모와 마스크를 착용한 이재성 대표원장이 진료하는 모습',
   },
   {
     id: 1,

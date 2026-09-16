@@ -78,8 +78,8 @@ export function HeroSlideMedia({
               height={item.height}
               loading="eager"
               fetchPriority={active ? 'high' : 'low'}
-              alt=""
-              aria-hidden="true"
+              alt={item.alt ?? ''}
+              aria-hidden={item.alt ? undefined : 'true'}
               className={className}
               style={style}
             />
