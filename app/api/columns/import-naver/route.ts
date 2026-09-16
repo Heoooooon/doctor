@@ -1,7 +1,7 @@
 import { randomUUID } from 'crypto'
 import { NextRequest, NextResponse } from 'next/server'
 import { isAdminAuthenticated } from '@/lib/admin-auth'
-import { COLUMN_SYSTEM_PROMPT, generateColumnWithOpenAI } from '@/lib/column-ai'
+import { COLUMN_SYSTEM_PROMPT, generateColumnWithOpenAI, removeUnuploadedImageBlocks } from '@/lib/column-ai'
 import { createAdminClient } from '@/lib/supabase/server'
 import { hasSupabaseConfig } from '@/lib/supabase/config'
 
@@ -168,14 +168,6 @@ async function uploadImage(buffer: Buffer, contentType: string, index: number): 
   return { url: data.publicUrl, path: storagePath, name, contentType }
 }
 
-// 업로드되지 않은 이미지(자리표시자 등)를 참조하는 img-box 블록을 본문에서 제거
-function removeUnuploadedImageBlocks(html: string, allowedImageUrls: string[]): string {
-  const allowed = new Set(allowedImageUrls)
-  return html.replace(
-    /<div[^>]*class=["'][^"']*\bimg-box\b[^"']*["'][^>]*>[\s\S]*?<img[^>]*src=["']([^"']+)["'][^>]*>[\s\S]*?<\/div>\s*(?:<p[^>]*class=["'][^"']*\bimg-caption\b[^"']*["'][^>]*>[\s\S]*?<\/p>)?/gi,
-    (match, src: string) => (allowed.has(src) ? match : ''),
-  )
-}
 
 const NAVER_SYSTEM_PROMPT = `${COLUMN_SYSTEM_PROMPT}
 
@@ -184,6 +176,7 @@ const NAVER_SYSTEM_PROMPT = `${COLUMN_SYSTEM_PROMPT}
 - 입력에 있는 <img src="..."> URL만 그대로 사용합니다. 절대 새 이미지 URL을 지어내지 않습니다.
 - 제공된 이미지가 있으면 자리표시자([이미지 설명 URL])를 만들지 말고, 원래 글에서의 위치와 주변 문장을 참고해 본문 흐름에 맞게 배치합니다.
 - 각 이미지는 <div class="img-box"><img src="제공된 URL" alt="내용 설명"></div>와 <p class="img-caption">▲ 캡션</p> 구조로 감쌉니다.
+- alt는 비워두지 않습니다. 주변 문장과 캡션을 보고 사진에 무엇이 보이는지 적으며, 캡션과 글자까지 똑같은 문장을 복사하지는 않습니다.
 - 구강·치료 사진은 과장 없이 상태 설명 중심으로 캡션을 작성합니다.
 - 제공된 이미지가 하나도 없을 때만 기존 규칙대로 자리표시자를 사용할 수 있습니다.`
 
