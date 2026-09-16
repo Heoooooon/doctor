@@ -8,7 +8,9 @@ export const pediatricTreatments: TreatmentContent[] = [
     heroTitle: { line2: '소아충치치료' },
     subtitle: '아이의 치아는 빠르게 변할 수 있어 조기 관리가 중요합니다',
     image: '/images/treatments/pediatric/child_treat.png',
+    imageAlt: '진료 의자에 누운 아이의 치아를 거울과 기구로 살펴보는 모습',
     bottomImage: '/images/treatments/pediatric/child-2.png',
+    bottomImageAlt: '불소도포가 필요한 경우를 정리한 안내 이미지',
     description:
       '유치의 충치는 **성인보다 진행 속도가 빠를 수 있으며,** 영구치 발육과 배열에도 영향을 줄 수 있어 **조기 발견과 관리가 중요합니다.** 아이의 협조도와 치아 상태에 맞춰 치료 방법을 선택하고, **불안감을 줄이면서 안전하게** 치료를 진행합니다.',
     benefits: [
@@ -43,6 +45,7 @@ export const pediatricTreatments: TreatmentContent[] = [
     heroTitle: { line2: '웃음가스치료' },
     subtitle: '치과를 무서워하는 아이를 위한 보조적 진정 방법',
     image: '/images/treatments/pediatric/kids-2.png',
+    imageAlt: '진료를 마친 아이가 진료 의자에 앉아 의료진과 주먹인사를 하는 모습',
     description:
       '아산화질소(웃음가스)를 이용해\n**치료 중 아이의 불안과 긴장을 줄여주는** 보조적 진정 방법입니다.\n**의식이 유지된 상태에서** 편안함을 느낄 수 있도록 돕고,\n흡입을 멈추면 **빠르게 회복되어 일상 복귀가 가능합니다.**',
     benefits: [

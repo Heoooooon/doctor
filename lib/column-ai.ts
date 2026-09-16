@@ -106,5 +106,41 @@ export async function generateColumnWithOpenAI(notes: string, systemPrompt = COL
     throw new Error('OPENAI_EMPTY_RESULT')
   }
 
-  return JSON.parse(text) as GenerateResult
+  const result = JSON.parse(text) as GenerateResult
+  return { ...result, content: fillMissingImageAlt(result.content, result.title) }
+}
+
+// 본문 이미지의 빈 대체 텍스트를 바로 아래 캡션으로 채운다.
+// 캡션이 없으면 글 제목을 쓴다. 모델이 alt를 비워도 설명 없는 이미지가 저장되지 않게 하려는 장치다.
+export function fillMissingImageAlt(html: string, title: string): string {
+  if (!html) return html
+
+  const captionAfter = (from: number): string => {
+    const tail = html.slice(from, from + 600)
+    const caption = tail.match(/<p[^>]*class=["'][^"']*\bimg-caption\b[^"']*["'][^>]*>([\s\S]*?)<\/p>/i)
+    if (!caption) return ''
+    return caption[1].replace(/<[^>]*>/g, '').replace(/^[\s\u25b2▲]+/, '').trim()
+  }
+
+  return html.replace(/<img\b[^>]*>/gi, (tag, offset: number) => {
+    const alt = tag.match(/\salt=["']([^"']*)["']/i)
+    if (alt && alt[1].trim()) return tag
+
+    const description = captionAfter(offset + tag.length) || title.trim()
+    if (!description) return tag
+
+    const escaped = description.replace(/"/g, '&quot;')
+    return alt
+      ? tag.replace(/\salt=["'][^"']*["']/i, ` alt="${escaped}"`)
+      : tag.replace(/<img\b/i, `<img alt="${escaped}"`)
+  })
+}
+
+// 업로드되지 않은 이미지(자리표시자 등)를 참조하는 img-box 블록을 본문에서 제거
+export function removeUnuploadedImageBlocks(html: string, allowedImageUrls: string[]): string {
+  const allowed = new Set(allowedImageUrls)
+  return html.replace(
+    /<div[^>]*class=["'][^"']*\bimg-box\b[^"']*["'][^>]*>[\s\S]*?<img[^>]*src=["']([^"']*)["'][^>]*>[\s\S]*?<\/div>\s*(?:<p[^>]*class=["'][^"']*\bimg-caption\b[^"']*["'][^>]*>[\s\S]*?<\/p>)?/gi,
+    (match, src: string) => (allowed.has(src) ? match : ''),
+  )
 }

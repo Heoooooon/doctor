@@ -115,7 +115,7 @@ export default function DoctorTeamSection({ doctors }: Props) {
                   >
                     <Image
                       src={doctor.image}
-                      alt={`${doctor.name} ${doctor.role}`}
+                      alt={`서울이건치과 ${doctor.name} ${doctor.role}${doctor.specialty ? ` · ${doctor.specialty}` : ''}`}
                       fill
                       sizes={imageSizes}
                       className="absolute inset-0 object-cover object-top transition-transform duration-500 group-hover:scale-105"

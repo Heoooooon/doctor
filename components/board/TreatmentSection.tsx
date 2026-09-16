@@ -1312,7 +1312,7 @@ function ResinBuildupChapter({ treatment }: { treatment: TreatmentContent }) {
                 beforeOffsetX={treatment.beforeOffsetX}
               />
             ) : treatment.image ? (
-              <img src={treatment.image} alt={treatment.title} className="w-full h-auto" />
+              <img src={treatment.image} alt={treatment.imageAlt ?? treatment.title} className="w-full h-auto" />
             ) : (
               <div className="w-full aspect-[4/3] flex items-center justify-center text-gray-400 text-sm">
                 치료 이미지 준비 중
@@ -1494,7 +1494,7 @@ function LaminateChapter({ treatment }: { treatment: TreatmentContent }) {
                 afterAlt={`${treatment.title} 시술 후`}
               />
             ) : treatment.image ? (
-              <img src={treatment.image} alt={treatment.title} className="w-full h-auto" />
+              <img src={treatment.image} alt={treatment.imageAlt ?? treatment.title} className="w-full h-auto" />
             ) : (
               <div className="w-full aspect-[4/3] flex items-center justify-center text-gray-400 text-sm">
                 치료 이미지 준비 중
@@ -1754,7 +1754,7 @@ function PediatricOrthoChapter({ treatment }: { treatment: TreatmentContent }) {
                 afterAlt={`${treatment.title} 시술 후`}
               />
             ) : treatment.image ? (
-              <img src={treatment.image} alt={treatment.title} className="w-full h-auto" />
+              <img src={treatment.image} alt={treatment.imageAlt ?? treatment.title} className="w-full h-auto" />
             ) : (
               <div className="w-full aspect-[4/3] flex items-center justify-center text-gray-400 text-sm">
                 치료 이미지 준비 중
@@ -1887,7 +1887,7 @@ function PediatricCavityChapter({ treatment }: { treatment: TreatmentContent }) 
           <div className="relative rounded-[28px] overflow-hidden bg-white border border-white shadow-[0_28px_90px_rgba(15,71,110,0.16)]">
             <img
               src={treatment.image}
-              alt={treatment.title}
+              alt={treatment.imageAlt ?? treatment.title}
               className="w-full aspect-[4/3] object-cover"
             />
           </div>
@@ -1926,7 +1926,7 @@ function PediatricCavityChapter({ treatment }: { treatment: TreatmentContent }) 
         <div className="rounded-[24px] overflow-hidden shadow-[0_16px_60px_rgba(16,55,91,0.10)]">
           <img
             src={treatment.bottomImage}
-            alt="소아충치치료"
+            alt={treatment.bottomImageAlt ?? treatment.title}
             className="w-full object-cover"
           />
         </div>
@@ -2139,7 +2139,7 @@ export default function TreatmentSection({
               {treatment.photoGrid.map((item, i) => (
                 <div key={i} className="rounded-xl overflow-hidden bg-gray-100 border border-gray-200">
                   <div className="relative">
-                    <img src={item.src} alt={item.caption} className="w-full aspect-[4/3] object-cover block" />
+                    <img src={item.src} alt={item.alt ?? item.caption} className="w-full aspect-[4/3] object-cover block" />
                     <div className="absolute top-2 left-2 w-7 h-7 rounded-full bg-[#0080C8] flex items-center justify-center shadow">
                       <span className="text-white text-[12px] font-bold leading-none">{i + 1}</span>
                     </div>
@@ -2171,13 +2171,13 @@ export default function TreatmentSection({
               />
             ) : treatment.image && treatment.sideImage ? (
               <div className="space-y-3">
-                <img src={treatment.image} alt={treatment.title} className="w-full h-auto rounded-2xl" />
+                <img src={treatment.image} alt={treatment.imageAlt ?? treatment.title} className="w-full h-auto rounded-2xl" />
                 <img src={treatment.sideImage} alt={`${treatment.title} 사례`} className="w-full h-auto rounded-2xl" />
               </div>
             ) : treatment.image ? (
               <img
                 src={treatment.image}
-                alt={treatment.title}
+                alt={treatment.imageAlt ?? treatment.title}
                 className="w-full h-auto rounded-2xl"
               />
             ) : (
@@ -2243,7 +2243,7 @@ export default function TreatmentSection({
           style={textVisible ? { animationDelay: '0.4s' } : undefined}>
           <img
             src={treatment.bottomImage}
-            alt={treatment.title}
+            alt={treatment.bottomImageAlt ?? treatment.title}
             className="w-full h-auto rounded-2xl"
           />
           {treatment.sideImage && (

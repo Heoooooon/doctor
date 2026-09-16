@@ -241,7 +241,7 @@ function CaseCard({
           {item.before_image_url ? (
             <img
               src={item.before_image_url}
-              alt="치료 전"
+              alt={`${item.treatment_type || item.board_category} 치료 전 구강 사진`}
               className={`w-full h-52 sm:h-64 object-cover block transition duration-500 ${isLoggedIn ? '' : 'blur-2xl scale-110'}`}
             />
           ) : (
@@ -260,7 +260,7 @@ function CaseCard({
         {/* After — 원본 공개 */}
         <div className="relative sm:w-1/2 overflow-hidden bg-gray-50 sm:cursor-pointer" onClick={openLightbox}>
           {item.after_image_url ? (
-            <img src={item.after_image_url} alt="치료 후" className="w-full h-52 sm:h-64 object-cover block" />
+            <img src={item.after_image_url} alt={`${item.treatment_type || item.board_category} 치료 후 구강 사진`} className="w-full h-52 sm:h-64 object-cover block" />
           ) : (
             <div className="w-full h-52 sm:h-64 flex items-center justify-center"><span className="text-xs text-gray-300">준비 중</span></div>
           )}
@@ -336,13 +336,13 @@ function CaseCard({
           {isLoggedIn && item.before_image_url && (
             <figure className="flex-1 min-w-0 h-full flex flex-col items-center justify-center gap-3" onClick={(e) => e.stopPropagation()}>
               <figcaption className="bg-black/55 text-white text-xs font-bold px-3 py-1 rounded tracking-wide">BEFORE</figcaption>
-              <img src={item.before_image_url} alt="치료 전 원본" className="max-w-full max-h-[82vh] object-contain cursor-default" />
+              <img src={item.before_image_url} alt={`${item.treatment_type || item.board_category} 치료 전 원본 사진`} className="max-w-full max-h-[82vh] object-contain cursor-default" />
             </figure>
           )}
           {item.after_image_url && (
             <figure className="flex-1 min-w-0 h-full flex flex-col items-center justify-center gap-3" onClick={(e) => e.stopPropagation()}>
               <figcaption className="bg-[#0080C8]/85 text-white text-xs font-bold px-3 py-1 rounded tracking-wide">AFTER</figcaption>
-              <img src={item.after_image_url} alt="치료 후 원본" className="max-w-full max-h-[82vh] object-contain cursor-default" />
+              <img src={item.after_image_url} alt={`${item.treatment_type || item.board_category} 치료 후 원본 사진`} className="max-w-full max-h-[82vh] object-contain cursor-default" />
             </figure>
           )}
         </div>

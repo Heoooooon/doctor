@@ -5,6 +5,18 @@ import Image from 'next/image'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
 import { useLockedMobileVh } from '@/hooks/useLockedMobileVh'
 
+// 사진을 직접 확인하고 보이는 대로 적은 설명. 유형을 단정할 수 없는 사진은
+// 확인된 재질·형태까지만 적는다. 기준: docs/seo-guide.md — 이미지 alt 검수
+const ALL_ON_ALT: Readonly<Record<number, string>> = {
+  1: '금속 바 프레임에 인공치아를 연결한 전악 임플란트 보철물의 교합면',
+  2: '투명 레진으로 제작한 치과용 아치형 장치',
+  3: '인공치아와 잇몸부가 이어진 전악 임플란트 보철물의 정면',
+  4: '금속 프레임이 드러난 전악 임플란트 보철물의 측면',
+  5: '스크루 구멍이 배열된 전악 임플란트 보철물의 안쪽 면',
+  6: '앞니와 잇몸부를 가까이 촬영한 전악 임플란트 보철물',
+  7: '금속 슬리브가 끼워진 임플란트 수술용 가이드',
+}
+
 export default function ImplantSection() {
   const { ref, isVisible } = useScrollReveal(0.2)
   // 인앱 브라우저(카톡 등) 툴바 토글로 인한 스크롤 튐 방지 — 모바일 높이를 px로 고정
@@ -16,20 +28,25 @@ export default function ImplantSection() {
       className="h-svh md:h-screen w-full relative overflow-hidden flex flex-col items-center justify-center px-4"
       style={{ backgroundColor: '#000', ...(lockedVh ? { height: `${lockedVh}px` } : {}) }}
     >
-      {/* 배경 이미지 — 수평 마퀴 슬라이드 */}
+      {/* 배경 이미지 — 수평 마퀴 슬라이드.
+          끊김 없는 반복을 위해 같은 사진을 두 번 깔므로 설명은 첫 번째 묶음에만 달고,
+          두 번째 묶음은 같은 문구가 중복되지 않게 장식으로 둔다. */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="all-on-marquee-track flex h-full" style={{ animationDuration: '8.35s' }}>
-          {[1,2,3,4,5,6,7,1,2,3,4,5,6,7].map((n, i) => (
-            <Image
-              key={i}
-              src={`/images/treatments/allon/all-on (${n}).jpg`}
-              alt=""
-              aria-hidden="true"
-              width={1440}
-              height={1080}
-              className="h-full w-auto flex-shrink-0 object-cover"
-            />
-          ))}
+          {[1,2,3,4,5,6,7,1,2,3,4,5,6,7].map((n, i) => {
+            const isDuplicate = i >= 7
+            return (
+              <Image
+                key={i}
+                src={`/images/treatments/allon/all-on (${n}).jpg`}
+                alt={isDuplicate ? '' : ALL_ON_ALT[n]}
+                aria-hidden={isDuplicate ? 'true' : undefined}
+                width={1440}
+                height={1080}
+                className="h-full w-auto flex-shrink-0 object-cover"
+              />
+            )
+          })}
         </div>
       </div>
       {/* 다크 오버레이 — 텍스트 가독성 */}

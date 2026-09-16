@@ -32,7 +32,7 @@ function DoctorCard({
         }`}>
           <img
             src={doctor.image}
-            alt={`${doctor.name} ${doctor.role}`}
+            alt={`서울이건치과 ${doctor.name} ${doctor.role}${doctor.specialty ? ` · ${doctor.specialty}` : ''}`}
             className={
               doctor.presentation?.profileImageFit === 'contain-natural-ratio'
                 ? 'w-full h-auto block'
@@ -45,7 +45,7 @@ function DoctorCard({
                 <img
                   key={i}
                   src={doc}
-                  alt={`${doctor.name} 자격증 ${i + 1}`}
+                  alt={`${doctor.name} ${doctor.role} 자격 증빙 이미지`}
                   className="h-[90px] lg:h-[150px] w-auto shadow-2xl border-2 border-white/40 rounded-sm"
                 />
               ))}

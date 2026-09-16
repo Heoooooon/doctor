@@ -23,15 +23,19 @@ export interface TreatmentContent {
   bottomCta?: string
   faq: FAQ[]
   image?: string
+  /** 대표 이미지 대체 텍스트. 없으면 title을 쓴다. */
+  imageAlt?: string
   beforeImage?: string
   afterImage?: string
   beforeScale?: number
   beforeOffsetX?: number
   videoUrl?: string
   bottomImage?: string
+  /** 하단 이미지 대체 텍스트. 없으면 title을 쓴다. */
+  bottomImageAlt?: string
   sideImage?: string
   bottomVideoUrl?: string
   faqVideoUrl?: string    // 자주 묻는 질문(FAQ) 섹션 바로 위에 임베드할 유튜브 URL
-  photoGrid?: { src: string; caption: string }[]
+  photoGrid?: { src: string; caption: string; alt?: string }[]
   heroTitle?: { line1?: string; line2: string }
 }

@@ -124,7 +124,7 @@ export default function MapSection() {
             >
               <Image
                 src="/images/clinic/map.png"
-                alt="서울이건치과 위치 지도"
+                alt="수원시 영통구 매탄동 서울이건치과 위치 지도"
                 fill
                 sizes="(max-width: 1024px) 100vw, 42vw"
                 className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
