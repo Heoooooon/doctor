@@ -16,15 +16,17 @@ const pillars = [
   },
 ]
 
-function HeroText({ center = false }: { center?: boolean }) {
+// 데스크탑·모바일 두 번 렌더되므로 제목 태그를 바꿀 수 있게 해
+// 문서 안에 h1이 하나만 남도록 한다.
+function HeroText({ center = false, as: Heading = 'h1' }: { center?: boolean; as?: 'h1' | 'p' }) {
   return (
     <div className={center ? 'text-center' : 'text-left'}>
       <span className={`inline-block rounded-full bg-[#3F6FB5] text-white font-semibold tracking-wide ${center ? 'text-[12px] px-3.5 py-1 mb-2.5' : 'text-[13px] sm:text-[15px] px-4 py-1.5 mb-4'}`}>
         이건교정
       </span>
-      <h1 className={`font-black leading-none tracking-tight text-[#1f2d4d] ${center ? 'text-3xl mb-2' : 'text-3xl sm:text-5xl lg:text-6xl whitespace-nowrap mb-3'}`}>
+      <Heading className={`font-black leading-none tracking-tight text-[#1f2d4d] ${center ? 'text-3xl mb-2' : 'text-3xl sm:text-5xl lg:text-6xl whitespace-nowrap mb-3'}`}>
         인비절라인
-      </h1>
+      </Heading>
       <p className={`font-bold text-[#2b3a5c] leading-snug ${center ? 'text-sm mb-2' : 'text-sm sm:text-lg mb-4 whitespace-nowrap'}`}>
         티 나지 않게 자연스러운 투명교정
       </p>
@@ -66,7 +68,7 @@ export function OrthodonticsHeroBanner() {
           />
         </div>
         <div className="px-6 pt-7 pb-6">
-          <HeroText center />
+          <HeroText center as="p" />
         </div>
       </div>
     </section>
