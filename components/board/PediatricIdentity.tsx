@@ -24,6 +24,7 @@ export function PediatricCredentialSection() {
         <Image
           src="/images/treatments/pediatric/ped-banner-bg.png"
           alt=""
+          aria-hidden="true"
           fill
           sizes="100vw"
           className="object-cover object-bottom"
@@ -34,9 +35,10 @@ export function PediatricCredentialSection() {
             <span className="inline-block rounded-full bg-[#0080C8] text-white font-semibold tracking-wide text-[0.85vw] px-[1vw] py-[0.3vw] mb-[0.7vw]">
               아이를 위한 따뜻한 진료
             </span>
-            <h2 className="font-black text-[#0080C8] leading-none text-[3.2vw]">
+            {/* 페이지 대표 제목 — 모바일 복사본은 h2로 두어 h1은 문서당 하나만 남긴다. */}
+            <h1 className="font-black text-[#0080C8] leading-none text-[3.2vw]">
               소아치과
-            </h2>
+            </h1>
             <p className="mt-[0.7vw] font-bold text-[#2B2D42] leading-[1.3] text-[1.3vw]">
               아이를 보듬는 마음으로 정성껏 진료합니다.
             </p>

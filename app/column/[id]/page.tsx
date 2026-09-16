@@ -40,6 +40,8 @@ export default async function ColumnDetailPage({ params }: Props) {
     year: 'numeric', month: 'long', day: 'numeric',
   })
 
+  const hasContentHeading = /<h1[\s>]/i.test(post.content ?? '')
+
   // 다른 칼럼 더 보기 — 현재 글 제외, 최신순 3개
   const { data: others } = await supabase
     .from('columns')
@@ -90,10 +92,19 @@ export default async function ColumnDetailPage({ params }: Props) {
       {/* 본문 HTML 렌더링 */}
       <article className="max-w-[860px] mx-auto px-5 pb-20">
         {post.content ? (
-          <div
-            className="post-wrap"
-            dangerouslySetInnerHTML={{ __html: post.content }}
-          />
+          hasContentHeading ? (
+            <div
+              className="post-wrap"
+              dangerouslySetInnerHTML={{ __html: post.content }}
+            />
+          ) : (
+            // 본문이 h1 없이 시작하는 글은 제목이 화면에도 문서 구조에도 없어
+            // 글 제목을 본문 앞에 대표 제목으로 세운다.
+            <div className="post-wrap">
+              <h1>{post.title}</h1>
+              <div dangerouslySetInnerHTML={{ __html: post.content }} />
+            </div>
+          )
         ) : (
           <p className="text-gray-400 py-12 text-center">내용이 없습니다.</p>
         )}

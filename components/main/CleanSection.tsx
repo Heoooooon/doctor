@@ -14,9 +14,11 @@ export default function CleanSection() {
     >
       {/* ── 모바일: 배경 풀스크린 이미지 ─────────────────────── */}
       <div className="md:hidden absolute inset-0">
+        {/* 모바일 배경 — 같은 사진이 데스크탑 영역에 설명과 함께 들어가 있어 장식으로 처리한다. */}
         <Image
           src="/images/clinic/clean.jpg"
           alt=""
+          aria-hidden="true"
           fill
           sizes="100vw"
           className="object-cover"

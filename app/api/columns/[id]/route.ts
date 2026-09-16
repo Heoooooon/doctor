@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createAdminClient } from '@/lib/supabase/server'
 import { isAdminAuthenticated } from '@/lib/admin-auth'
 import { hasSupabaseConfig } from '@/lib/supabase/config'
+import { columnUrl, notifyIndexNow } from '@/lib/indexnow'
 import { mkdir, readFile, writeFile } from 'fs/promises'
 import path from 'path'
 
@@ -66,6 +67,9 @@ export async function PATCH(request: NextRequest, context: RouteContext) {
     const supabase = createAdminClient()
     const { data, error } = await supabase.from('columns').update(updates).eq('id', id).select().single()
     if (error) return NextResponse.json({ error: '처리 중 오류가 발생했습니다.' }, { status: 500 })
+
+    if (data.is_active) await notifyIndexNow([columnUrl(data.id)])
+
     return NextResponse.json(data)
   } catch {
     return NextResponse.json({ error: '요청을 처리할 수 없습니다.' }, { status: 500 })

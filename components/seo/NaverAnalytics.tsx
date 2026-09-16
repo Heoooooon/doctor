@@ -4,6 +4,7 @@ import Script from 'next/script'
 import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import { tracking } from '@/data/tracking'
+import { isUntrackedPath } from '@/lib/tracking-paths'
 
 declare global {
   interface Window {
@@ -24,13 +25,14 @@ export function NaverAnalytics() {
 
   useEffect(() => {
     if (!ready || !naverAnalyticsId) return
+    if (isUntrackedPath(pathname)) return
     if (reported.current === pathname) return
     reported.current = pathname
     window.wcs_add = { ...window.wcs_add, wa: naverAnalyticsId }
     window.wcs_do?.()
   }, [ready, pathname, naverAnalyticsId])
 
-  if (!naverAnalyticsId) return null
+  if (!naverAnalyticsId || isUntrackedPath(pathname)) return null
   return (
     <Script
       src="https://wcs.naver.net/wcslog.js"
