@@ -1,9 +1,15 @@
-import Script from 'next/script'
-import { tracking } from '@/data/tracking'
+'use client'
 
-// GTM/GA4 스크립트 — data/tracking.ts에 ID가 있을 때만 삽입
+import Script from 'next/script'
+import { usePathname } from 'next/navigation'
+import { tracking } from '@/data/tracking'
+import { isUntrackedPath } from '@/lib/tracking-paths'
+
+// GTM/GA4 스크립트 — data/tracking.ts에 ID가 있고 집계 대상 경로일 때만 삽입
 export function TrackingScripts() {
   const { gtmContainerId, ga4MeasurementId } = tracking
+  const pathname = usePathname()
+  if (isUntrackedPath(pathname)) return null
   return (
     <>
       {gtmContainerId && (
@@ -28,7 +34,8 @@ export function TrackingScripts() {
 
 // GTM noscript 폴백 — <body> 바로 다음에 위치해야 함
 export function GtmNoScript() {
-  if (!tracking.gtmContainerId) return null
+  const pathname = usePathname()
+  if (!tracking.gtmContainerId || isUntrackedPath(pathname)) return null
   return (
     <noscript>
       <iframe
