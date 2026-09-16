@@ -40,7 +40,7 @@ export const boardCarouselItems: BoardCarouselItem[] = [
   {
     slug: 'seoul-national-university-doctors',
     title: '서울대 출신 대표원장 | 서울이건치과',
-    description: '서울대 출신 대표원장이 직접 설명하고 진료 계획을 세우는 서울이건치과의 진료 안내입니다.',
+    description: '서울대 출신 대표원장이 진단부터 치료 계획까지 직접 설명하는 수원 서울이건치과 진료 안내입니다. 검사 결과를 함께 보며 선택지와 예상 과정을 안내해 드립니다.',
     image: '/images/board/carousel/carousel-doctor.jpg',
     alt: '서울대 출신 서울이건치과 대표원장 진료 안내 이미지',
     href: '/board/seoul-national-university-doctors',
@@ -88,7 +88,7 @@ export const boardCarouselItems: BoardCarouselItem[] = [
   {
     slug: 'pediatric-orthodontics',
     title: '소아치과·교정치과 | 서울이건치과',
-    description: '아이의 치아 관리와 성장기 교정 상담을 위한 소아치과·교정치과 진료 안내입니다.',
+    description: '수원 영통 서울이건치과의 소아치과·성장기 교정 안내입니다. 아이의 충치 예방과 치열 발달 상태를 확인하고 연령에 맞는 관리 방법과 교정 시작 시기를 상담해 드립니다.',
     image: '/images/board/carousel/carousel-ortho.jpg',
     alt: '소아치과와 교정치과 진료 안내 이미지',
     href: '/board/pediatric-orthodontics',
@@ -104,7 +104,7 @@ export const boardCarouselItems: BoardCarouselItem[] = [
   {
     slug: 'night-clinic',
     title: '야간진료 안내 | 서울이건치과',
-    description: '바쁜 현대인을 위한 서울이건치과 야간진료 시간과 내원 안내입니다.',
+    description: '낮에 시간 내기 어려운 분을 위한 수원 서울이건치과 야간진료 안내입니다. 화요일·금요일은 야간진료, 목요일은 교정진료로 오후 8시 30분까지 운영합니다.',
     image: '/images/board/carousel/carousel-time-current.png',
     alt: '서울이건치과 야간진료 안내: 화요일·금요일, 목요일 교정진료, 오후 8시 30분까지',
     href: '/board/night-clinic',
