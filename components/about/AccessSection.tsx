@@ -74,7 +74,7 @@ export default function AccessSection() {
             <div className="relative w-full aspect-[4/3] sm:aspect-video lg:aspect-auto lg:h-[calc(100%-56px)] min-h-64 rounded-2xl overflow-hidden border border-gray-200">
               <Image
                 src="/images/clinic/map.png"
-                alt="서울이건치과 위치 지도"
+                alt="수원시 영통구 매탄동 서울이건치과 위치 지도"
                 fill
                 className="object-cover"
                 sizes="100vw"
@@ -218,7 +218,7 @@ export default function AccessSection() {
                   </ul>
                 </div>
               ))}
-              <Image src="/images/clinic/parking%20(1).jpg" alt="주차장 안내" width={4000} height={3000} className="w-4/5 h-auto rounded-xl mx-auto block" />
+              <Image src="/images/clinic/parking%20(1).jpg" alt="서울이건치과 건물 주차장 안내" width={4000} height={3000} className="w-4/5 h-auto rounded-xl mx-auto block" />
             </div>
 
             {/* 오른쪽: 주차 안내 + way-1, way-2 */}
@@ -236,8 +236,8 @@ export default function AccessSection() {
                   ))}
                 </ul>
               </div>
-              <Image src="/images/clinic/way-1.png" alt="오시는 길 안내 1" width={876} height={485} className="w-full h-auto rounded-xl block" />
-              <Image src="/images/clinic/way-2.png" alt="오시는 길 안내 2" width={1004} height={690} className="w-full h-auto rounded-xl block" />
+              <Image src="/images/clinic/way-1.png" alt="파리바게뜨 건물 2층 본관과 뜰커피 건물 3층 별관 위치, 도보·주차 경로를 표시한 약도" width={876} height={485} className="w-full h-auto rounded-xl block" />
+              <Image src="/images/clinic/way-2.png" alt="본관 2층과 별관 3층 건물을 표시한 병원 앞 거리 사진" width={1004} height={690} className="w-full h-auto rounded-xl block" />
             </div>
           </div>
         </div>

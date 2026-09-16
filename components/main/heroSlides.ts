@@ -28,7 +28,7 @@ export const HERO_SLIDES: readonly HeroSlide[] = [
     id: 3, image: '/images/slides/slide-3-hero-1920.webp',
     srcSet: '/images/slides/slide-3-hero-960.webp 960w, /images/slides/slide-3-hero-1920.webp 1920w',
     width: 1920, height: 1080, interval: 3000, mobileInterval: 4000,
-    alt: '서울이건치과 이재성 대표원장이 파노라마 방사선 영상을 보며 진료 상담을 진행하는 모습',
+    alt: '수원 서울이건치과 이재성 대표원장이 파노라마 방사선 영상을 보며 진료 상담을 진행하는 모습',
   },
   {
     id: 4, image: '/images/slides/slide-4-hero-1920.webp',
@@ -46,7 +46,7 @@ export const HERO_SLIDES: readonly HeroSlide[] = [
     id: 6, image: '/images/slides/slide-6-hero-1308.webp',
     srcSet: '/images/slides/slide-6-hero-960.webp 960w, /images/slides/slide-6-hero-1308.webp 1308w',
     width: 1308, height: 1080, interval: 3000,
-    alt: '수술모와 마스크를 착용한 이재성 대표원장이 진료하는 모습',
+    alt: '수원 서울이건치과 진료실에서 수술모와 마스크를 착용한 이재성 대표원장이 진료하는 모습',
   },
   {
     id: 1,
