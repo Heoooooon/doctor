@@ -17,8 +17,9 @@ export const tracking = {
    * 하나를 지우면 그 계정의 소유확인이 풀린다.
    */
   naverSiteVerification: [
-    '87980840c90252ddda42353b4e65e0a02bcc6879',
+    // 확인 크롤러가 첫 번째 태그만 읽는 경우가 있어, 확인을 진행 중인 코드를 앞에 둔다.
     '62dc81a6f5676827f6b1f38fd85a68bd8bc5978b',
+    '87980840c90252ddda42353b4e65e0a02bcc6879',
   ],
 
   /** 빙 웹마스터 — <meta name="msvalidate.01" content="이 값"> */
