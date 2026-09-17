@@ -11,8 +11,15 @@ export const tracking = {
   /** 네이버 애널리틱스 공통 스크립트의 wcs_add["wa"] 값 — 예: '3ce350e52491c4' */
   naverAnalyticsId: '3ce350e52491c4',
 
-  /** 네이버 서치어드바이저 — <meta name="naver-site-verification" content="이 값"> */
-  naverSiteVerification: '87980840c90252ddda42353b4e65e0a02bcc6879',
+  /**
+   * 네이버 서치어드바이저 소유확인 코드.
+   * 계정마다 코드가 다르게 발급되므로 목록으로 두고 모두 렌더링한다.
+   * 하나를 지우면 그 계정의 소유확인이 풀린다.
+   */
+  naverSiteVerification: [
+    '87980840c90252ddda42353b4e65e0a02bcc6879',
+    '62dc81a6f5676827f6b1f38fd85a68bd8bc5978b',
+  ],
 
   /** 빙 웹마스터 — <meta name="msvalidate.01" content="이 값"> */
   bingSiteVerification: '0F6CFB59E28EEA2CF0305427B9B4C841',

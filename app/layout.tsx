@@ -14,7 +14,7 @@ import { tracking } from '@/data/tracking'
 
 const title = '수원치과 서울이건치과 | 자연치아 보존·임플란트·교정'
 const description =
-  '수원시 영통구 매탄동 서울이건치과. 자연치아 보존을 우선으로 임플란트·교정·소아진료를 안내합니다. 서울대 출신 대표원장, 원내 기공소, 진료시간·주차·오시는 길을 확인하세요.'
+  '수원시 영통구 매탄동 서울이건치과. 자연치아 보존을 우선으로 임플란트·교정·소아진료를 안내합니다.'
 
 export const metadata: Metadata = {
   title,
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   verification: {
     google: 'p_FSsHqSLTp0KO8n3FpFMOKytCiScgpMXBaZtF55ibE',
     other: {
-      ...(tracking.naverSiteVerification && {
+      ...(tracking.naverSiteVerification.length > 0 && {
         'naver-site-verification': tracking.naverSiteVerification,
       }),
       ...(tracking.bingSiteVerification && {
@@ -44,9 +44,9 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/images/logo/egun-logo%20(1).png',
-        width: 800,
-        height: 600,
+        url: '/images/logo/egun-logo.png',
+        width: 1000,
+        height: 400,
         alt: '서울이건치과',
       },
     ],
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title,
     description,
-    images: ['/images/logo/egun-logo%20(1).png'],
+    images: ['/images/logo/egun-logo.png'],
   },
 }
 

@@ -1,5 +1,6 @@
 // @TASK Board - 이건미디어 페이지
 import type { Metadata } from 'next'
+import { pageMetadata } from '@/lib/page-metadata'
 import {
   MessageCircle,
   Star,
@@ -9,13 +10,17 @@ import {
 } from 'lucide-react'
 import { clinicInfo } from '@/data/clinic-info'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: '/media',
   title: '이건미디어 | 환자후기·이건TV - 서울이건치과',
   description:
     '카카오톡 상담, 환자후기, 원장칼럼, 이건TV를 통해 수원 영통 서울이건치과를 만나보세요.',
   keywords: ['서울이건치과 후기', '수원치과 후기', '이건TV', '서울이건치과 미디어'],
-  alternates: { canonical: 'https://egundc.com/media' },
-}
+  image: '/images/media-image/youtube.webp',
+  imageWidth: 1080,
+  imageHeight: 1080,
+  imageAlt: '서울이건치과 이건TV',
+})
 
 const MEDIA_SECTIONS = [
   {
