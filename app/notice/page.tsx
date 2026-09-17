@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
+import { pageMetadata } from '@/lib/page-metadata'
 import { hasSupabaseConfig } from '@/lib/supabase/config'
 import NoticeList from '@/components/board/NoticeList'
 import { readFile } from 'fs/promises'
@@ -49,12 +50,17 @@ async function readLocalNotices(): Promise<Notice[]> {
   }
 }
 
-export const metadata = {
+export const metadata = pageMetadata({
+  path: '/notice',
   title: '공지사항 | 수원치과 서울이건치과',
-  description: '수원치과 서울이건치과의 공지사항입니다. 휴진·명절 휴무 일정, 야간진료 운영, 진료시간 변경과 원내 안내 사항을 가장 먼저 확인하실 수 있습니다.',
+  description:
+    '수원치과 서울이건치과의 공지사항입니다. 휴진·명절 휴무 일정, 야간진료 운영, 진료시간 변경과 원내 안내 사항을 가장 먼저 확인하실 수 있습니다.',
   keywords: ['서울이건치과 공지', '수원치과 휴무', '서울이건치과 진료시간'],
-  alternates: { canonical: 'https://egundc.com/notice' },
-}
+  image: '/images/media-image/notice.webp',
+  imageWidth: 1080,
+  imageHeight: 1080,
+  imageAlt: '서울이건치과 공지사항',
+})
 
 export default async function NoticePage({ searchParams }: NoticePageProps) {
   const params = await searchParams
