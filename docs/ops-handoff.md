@@ -18,6 +18,27 @@
 - 배포 검증: 테스트 150/150, 빌드 성공, 종료 코드 0. 운영에서 레거시 21경로 전부 308로 의도한
   페이지에 도착, 실제 페이지 15개는 200 유지, `/__release.txt` 커밋 `acf6261`.
 
+### 배포 디스크 부족 사고와 정리 (2026-09-21)
+
+**문구 수정 배포가 `insufficient deployment disk space at /opt/seoulegundc-releases;
+need 9918242816 bytes free`로 중단됐다.** 스크립트가 활성 릴리스를 건드리기 전에 실패해
+운영은 그대로 서비스됐다(fail closed 동작 확인).
+
+- 원인은 **`deploy-remote.mjs`에 보존·정리 단계가 없는 것**이다. 49GB 디스크에 릴리스 11개(8.6GB),
+  백업 11개(8.3GB), 그리고 **배포가 성공해도 지워지지 않는 `/var/lib/seoulegundc-deploy/incoming/upload.*`
+  스테이징 폴더 11개(7.9GB)**가 쌓여 39GB를 점유하고 있었다.
+- 사용자 승인 후 쟔여물 전체, 9/21 이전 백업 8개, `current`·`previous` 외 릴리스 9개를 삭제해
+  **39GB → 18GB**로 줄였고, 재배포가 정상 완료됐다.
+- **삭제 전 보호 대상은 루트의 pm2가 아니라 실제 구동 프로세스로 판별한다.** pm2는 `appuser`가
+  관리해서 `root`의 `pm2 list`는 비어 있고, 루트 dump에는 무관한 `/var/www/seoulegun/current`가
+  남아 있다. 다음으로 보호 경로를 구해 `state.json`의 `current.release`와 같은지 확인한 뒤 진행한다.
+  ```bash
+  PID=$(ss -lptnH 'sport = :3000' | grep -o 'pid=[0-9]*' | head -1 | cut -d= -f2)
+  readlink -f /proc/$PID/cwd
+  ```
+- **미해결:** 정리는 수동이었고 스크립트는 그대로다. 배포마다 약 734MB씩 `incoming`이 다시 쌓이므로
+  `deploy-remote.mjs`에 업로드 스테이징 정리와 릴리스·백업 보존 개수 제한을 넣어야 한다.
+
 ### 같은 날 처리한 검색엔진 작업
 
 - **빙 소유확인은 이미 끝난 상태였다.** 빙 화면 문구: *"was imported from Google Search Console.
@@ -25,7 +46,13 @@
   for this site."* 따라서 `BingSiteAuth.xml`은 필수가 아니라 **보조 수단**으로 남아 있다(삭제 금지 유지).
 - **네이버 칼럼 18건 수집 요청 접수 완료**(22:26~22:29). 네이버 노출 웹문서 13개에 `/column/`이
   하나도 없고 Yeti의 칼럼 수집도 14일간 3건뿐이었다(빙 74건, 구글 39건). 접수일 뿐 수집·색인 확정은 아니다.
-- 점검 리포트(콘솔 수치 + 서버 로그 분석): `.omo/reports/seo-status-2026-09-21.html` (로컬 전용, Git 제외).
+- 점검 리포트(콘솔 수치 + 서버 로그 분석): `.omo/reports/seo-status-2026-09-21.html`,
+  보고용 요약본: `.omo/reports/seo-brief-2026-09-21.html` (둘 다 로컬 전용, Git 제외).
+- **홈 제목·설명을 두 번 바꾸었다.** 1차(`2fd50fb`)는 브랜드 우선 + 야간진료 안내,
+  2차(`d424544`)는 원장님 확정 문구다. 현재 운영 문구는 `docs/seo-guide.md`의 메인 페이지 블록에 있다.
+- IndexNow는 공용 엔드포인트를 써서 **네이버에도 공유된다**(네이버 공식 가이드 명시).
+  다만 14일 로그에서 키 파일을 가져간 건 빙뿐이라, 확실히 하려면 `lib/indexnow.ts`에
+  `https://searchadvisor.naver.com/indexnow` 직접 통지를 한 줄 더 붙이면 된다.
 
 ## 직전 상태 — 빙 웹마스터 XML 소유확인 파일 배포
 
